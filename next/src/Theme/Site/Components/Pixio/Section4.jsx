@@ -17,23 +17,23 @@ export const Section4 = () => {
 								<ul className="filters" data-bs-toggle="buttons">
 									<li className="btn active">
 										<input type="radio"/>
-										<a href="javascript:void(0);">ALL</a> 
+										<a href="#!">ALL</a> 
 									</li>
 									<li data-filter=".Dresses" className="btn">
 										<input type="radio"/>
-										<a href="javascript:void(0);">Dresses</a> 
+										<a href="#!">Dresses</a> 
 									</li>
 									<li data-filter=".Tops" className="btn">
 										<input type="radio"/>
-										<a href="javascript:void(0);">Tops</a> 
+										<a href="#!">Tops</a> 
 									</li>
 									<li data-filter=".Outerwear" className="btn">
 										<input type="radio"/>
-										<a href="javascript:void(0);">Outerwear</a> 
+										<a href="#!">Outerwear</a> 
 									</li>
 									<li data-filter=".Jacket" className="btn">
 										<input type="radio"/>
-										<a href="javascript:void(0);">Jacket</a> 
+										<a href="#!">Jacket</a> 
 									</li>
 								</ul>			
 							</div>
@@ -46,7 +46,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/1.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -74,7 +74,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/2.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -102,7 +102,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/3.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -130,7 +130,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/4.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -158,7 +158,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/5.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -186,7 +186,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/6.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -214,7 +214,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/7.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>
@@ -242,7 +242,7 @@ export const Section4 = () => {
 									<div className="dz-media">
 										<img src="images/shop/product/8.png" alt="image"/>
 										<div className="shop-meta">
-											<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
 												<i className="fa-solid fa-eye d-md-none d-block"></i>
 												<span className="d-md-block d-none">Quick View</span>
 											</a>

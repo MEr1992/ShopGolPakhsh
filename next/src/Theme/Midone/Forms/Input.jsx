@@ -94,7 +94,7 @@ export function Input(props) {
             {type == "password" && (
                 <FeatherIcon 
                     name={state.currentType == "password" ? "Eye" : "EyeOff"} 
-                    spanWrapperClass="show-password relative top-1/2 left-1 float-left transform -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800" 
+                    spanWrapperclassName="show-password relative top-1/2 left-1 float-left transform -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800" 
                     onClick={showHidePassword} 
                 /> 
             )}

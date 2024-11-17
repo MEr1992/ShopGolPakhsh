@@ -14,7 +14,7 @@ export const Footer = ({ params="" }) => {
     // const local = params?.lang ?  params?.lang : "en" ;
 
 	useEffect(() => {
-		getNeedles(local + formUrl, setNeedles);
+		// getNeedles(local + formUrl, setNeedles);
 		console.log("useEffect footer");
 		// window.jQuery = window.$;
     }, []);
@@ -30,7 +30,9 @@ export const Footer = ({ params="" }) => {
 							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
 								<div className="widget widget_about me-2">
 									<div className="footer-logo logo-white">
-										<a href="index.html"><img src="images/logo.svg" alt=""/></a> 
+										<a href="index.html">
+											<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
+										</a> 
 									</div>
 									<ul className="widget-address">
 										<li>
@@ -51,7 +53,7 @@ export const Footer = ({ params="" }) => {
 												<div className="input-group mb-0">
 													<input name="dzEmail" required="required" type="email" className="form-control" placeholder="Your Email Address"/>
 													<div className="input-group-addon">
-														<button name="submit" value="Submit" type="submit" className="btn">
+														<button name="submit" defaultValue="Submit" type="submit" className="btn">
 															<i className="icon feather icon-arrow-right"></i>
 														</button>
 													</div>
@@ -67,7 +69,7 @@ export const Footer = ({ params="" }) => {
 									<ul>
 										<li>
 											<div className="dz-media">
-												<img src="images/shop/product/small/1.png" alt=""/>
+												<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
 											</div>
 											<div className="dz-content">
 												<h6 className="name"><a href="post-standard.html">Cozy Knit Cardigan Sweater</a></h6>
@@ -76,7 +78,7 @@ export const Footer = ({ params="" }) => {
 										</li>
 										<li>
 											<div className="dz-media">
-												<img src="images/shop/product/small/2.png" alt=""/>
+												<img src={assetsPath+"/pixio/images/shop/product/small/2.png"} alt=""/>
 											</div>
 											<div className="dz-content">
 												<h6 className="name"><a href="post-standard.html">Sophisticated Swagger Suit</a></h6>
@@ -85,7 +87,7 @@ export const Footer = ({ params="" }) => {
 										</li>
 										<li>
 											<div className="dz-media">
-												<img src="images/shop/product/small/3.png" alt=""/>
+												<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
 											</div>
 											<div className="dz-content">
 												<h6 className="name"><a href="post-standard.html">Athletic Mesh Sports Leggings</a></h6>
@@ -99,12 +101,12 @@ export const Footer = ({ params="" }) => {
 								<div className="widget widget_services">
 									<h5 className="footer-title">Our Stores</h5>
 									<ul>
-										<li><a href="javascript:void(0);">New York</a></li>
-										<li><a href="javascript:void(0);">London SF</a></li>
-										<li><a href="javascript:void(0);">Edinburgh</a></li>
-										<li><a href="javascript:void(0);">Los Angeles</a></li>
-										<li><a href="javascript:void(0);">Chicago</a></li>
-										<li><a href="javascript:void(0);">Las Vegas</a></li>
+										<li><a href="#!">New York</a></li>
+										<li><a href="#!">London SF</a></li>
+										<li><a href="#!">Edinburgh</a></li>
+										<li><a href="#!">Los Angeles</a></li>
+										<li><a href="#!">Chicago</a></li>
+										<li><a href="#!">Las Vegas</a></li>
 									</ul>   
 								</div>
 							</div>
@@ -112,12 +114,12 @@ export const Footer = ({ params="" }) => {
 								<div className="widget widget_services">
 									<h5 className="footer-title">Useful Links</h5>
 									<ul>
-										<li><a href="javascript:void(0);">Privacy Policy</a></li>
-										<li><a href="javascript:void(0);">Returns</a></li>
-										<li><a href="javascript:void(0);">Terms & Conditions</a></li>
-										<li><a href="javascript:void(0);">Contact Us</a></li>
-										<li><a href="javascript:void(0);">Latest News</a></li>
-										<li><a href="javascript:void(0);">Our Sitemap</a></li>
+										<li><a href="#!">Privacy Policy</a></li>
+										<li><a href="#!">Returns</a></li>
+										<li><a href="#!">Terms & Conditions</a></li>
+										<li><a href="#!">Contact Us</a></li>
+										<li><a href="#!">Latest News</a></li>
+										<li><a href="#!">Our Sitemap</a></li>
 									</ul>
 								</div>
 							</div>
@@ -125,11 +127,11 @@ export const Footer = ({ params="" }) => {
 								<div className="widget widget_services">
 									<h5 className="footer-title">Footer Menu</h5>
 									<ul>
-										<li><a href="javascript:void(0);">Instagram profile</a></li>
-										<li><a href="javascript:void(0);">New Collection</a></li>
-										<li><a href="javascript:void(0);">Woman Dress</a></li>
-										<li><a href="javascript:void(0);">Contact Us</a></li>
-										<li><a href="javascript:void(0);">Latest News</a></li>
+										<li><a href="#!">Instagram profile</a></li>
+										<li><a href="#!">New Collection</a></li>
+										<li><a href="#!">Woman Dress</a></li>
+										<li><a href="#!">Contact Us</a></li>
+										<li><a href="#!">Latest News</a></li>
 									</ul>
 								</div>
 							</div>
@@ -147,7 +149,7 @@ export const Footer = ({ params="" }) => {
 							<div className="col-lg-6 col-md-12 text-end"> 
 								<div className="d-flex align-items-center justify-content-center justify-content-md-center justify-content-xl-end">
 									<span className="me-3">We Accept: </span>
-									<img src="images/footer-img.png" alt=""/>
+									<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
 								</div>
 							</div>
 						</div>

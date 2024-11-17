@@ -41,7 +41,7 @@ export const Repeat = ({child, parent, needles, className , count_data=1, classN
                                 </div>
                                 {(displayClose)?
                                     <div className="col-span-1 text-center pt-6 mt-3">
-                                        <FeatherIcon spanWrapperClass="icon-plus" iconClassName="mt-5" name="XOctagon" color="darkred"  onClick={()=>remove(key)} />
+                                        <FeatherIcon spanWrapperclassName="icon-plus" iconClassName="mt-5" name="XOctagon" color="darkred"  onClick={()=>remove(key)} />
                                     </div>
                                 :
                                     ""

@@ -14,7 +14,7 @@ export default function Page({ params }) {
     const { assetsPath } = useConfig();
 
     useEffect(() => {
-        getNeedles(local+formUrl, setNeedles);
+        // getNeedles(local+formUrl, setNeedles);
         window.$ && window.$('#top-menu').addClass('style-1 header-transparent')
     }, []);
 

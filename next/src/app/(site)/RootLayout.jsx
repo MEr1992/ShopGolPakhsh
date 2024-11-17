@@ -57,12 +57,12 @@ export default function RootLayout({ children }) {
 					<link rel="stylesheet" type="text/css" href={`${assetsPath}/pixio/custom.css`} />
 					{/* <Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='beforeInteractive' /> */}
 				</head>	
-				<body id="bg">
+				<body id="bg" suppressHydrationWarning={true}>
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
 								<Header />
-								<div class="page-content bg-light">
+								<div className="page-content bg-light">
 									{children}
 								</div>
 								<Footer />

@@ -8,7 +8,7 @@ export const Slider = ({assetsPath}) => {
 					<div className="row">
 						<div className="col-lg-6">
 							<div className="slider-main slick-initialized slick-slider">
-								<div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: "5401px", transform: "translate3d(-491px, 0px, 0px)"}}><div className="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								<div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: "5401px", transform: "translate3d(-491px, 0px, 0px)"}}><div className="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Vintage Denim Overalls Shorts.</h1>
 										<div className="swiper-meta-items">
@@ -18,11 +18,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{width: "491px"}} tabindex="0">
+								</div><div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{width: "491px"}} tabIndex="0">
 									<div className="content-info">
 										<h1 className="title">Beautiful Woman Purple Sweater.</h1>
 										<div className="swiper-meta-items">
@@ -32,11 +32,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="0">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="0">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="0">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="0">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="1" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="1" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Shot Slad Curly Woman.</h1>
 										<div className="swiper-meta-items">
@@ -46,11 +46,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="2" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="2" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Athletic Mesh Sports Leggings.</h1>
 										<div className="swiper-meta-items">
@@ -60,11 +60,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="3" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="3" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Curly Girl Beautiful Dress.</h1>
 										<div className="swiper-meta-items">
@@ -74,11 +74,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="4" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="4" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Vintage Denim Overalls Shorts.</h1>
 										<div className="swiper-meta-items">
@@ -88,11 +88,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Beautiful Woman Purple Sweater.</h1>
 										<div className="swiper-meta-items">
@@ -102,11 +102,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Shot Slad Curly Woman.</h1>
 										<div className="swiper-meta-items">
@@ -116,11 +116,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Athletic Mesh Sports Leggings.</h1>
 										<div className="swiper-meta-items">
@@ -130,11 +130,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Curly Girl Beautiful Dress.</h1>
 										<div className="swiper-meta-items">
@@ -144,11 +144,11 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" style={{width: "491px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" style={{width: "491px"}} tabIndex="-1">
 									<div className="content-info">
 										<h1 className="title">Vintage Denim Overalls Shorts.</h1>
 										<div className="swiper-meta-items">
@@ -158,8 +158,8 @@ export const Slider = ({assetsPath}) => {
 											</div>
 										</div>
 										<div className="content-btn m-b30">
-											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabindex="-1">ADD TO CART</a>
-											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabindex="-1">VIEW DETAIL </a>
+											<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20" tabIndex="-1">ADD TO CART</a>
+											<a href="product-default.html" className="btn btn-outline-secondary btnhover20" tabIndex="-1">VIEW DETAIL </a>
 										</div>
 									</div>
 								</div></div></div>
@@ -167,73 +167,73 @@ export const Slider = ({assetsPath}) => {
 						</div>
 						<div className="col-lg-6">
 							<div className="slider-thumbs slick-initialized slick-slider"><button className="slick-prev slick-arrow" aria-label="Previous" type="button" style={{display: "inline-block"}}>Previous</button>
-								<div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: "4692px", transform: "translate3d(-782px, 0px, 0px)"}}><div className="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								<div className="slick-list draggable"><div className="slick-track" style={{opacity: 1, width: "4692px", transform: "translate3d(-782px, 0px, 0px)"}}><div className="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Dress">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media4.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Shorts">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media5.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{width: "391px"}} tabindex="0">
+								</div><div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{width: "391px"}} tabIndex="0">
 									<div className="banner-media" data-name="Winter">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style={{width: "391px"}} tabindex="0">
+								</div><div className="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style={{width: "391px"}} tabIndex="0">
 									<div className="banner-media" data-name="Summer">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media2.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="2" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="2" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Leggings">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="3" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="3" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Dress">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media4.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide" data-slick-index="4" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide" data-slick-index="4" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Shorts">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media5.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Winter">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Summer">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media2.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Leggings">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Dress">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media4.png"} alt="banner-media" />
 										</div>
 									</div>
-								</div><div className="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" style={{width: "391px"}} tabindex="-1">
+								</div><div className="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" style={{width: "391px"}} tabIndex="-1">
 									<div className="banner-media" data-name="Shorts">
 										<div className="img-preview">
 											<img src={assetsPath+"/pixio/images/banner/banner-media5.png"} alt="banner-media" />

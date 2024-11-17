@@ -56,7 +56,7 @@ export const Header = ({ params }) => {
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="javascript:void(0);"><span>Home</span><i className="fas fa-chevron-down tabindex" ></i></a>
+										<a href="#!"><span>Home</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 										<div className="mega-menu ">
 											<ul className="demo-menu mb-0">
 												<li>
@@ -81,12 +81,12 @@ export const Header = ({ params }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
-										<a href="javascript:void(0);"><span>Shop</span><i className="fas fa-chevron-down tabindex" ></i></a>
+										<a href="#!"><span>Shop</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 										<div className="mega-menu shop-menu">
 											<ul>
 												<li className="side-left">
 													<ul>
-														<li><a href="javascript:void(0);" className="menu-title">Shop Structure</a>
+														<li><a href="#!" className="menu-title">Shop Structure</a>
 															<ul>
 																<li><a href="shop-standard.html">Shop Standard</a></li>
 																<li><a href="shop-list.html">Shop List</a></li>
@@ -97,7 +97,7 @@ export const Header = ({ params }) => {
 																<li><a href="shop-style-2.html">Shop Style 2</a></li>
 															</ul>
 														</li>
-														<li><a href="javascript:void(0);" className="menu-title">Product Structure</a>
+														<li><a href="#!" className="menu-title">Product Structure</a>
 															<ul>
 																<li><a href="product-default.html">Default</a></li>
 																<li><a href="product-thumbnail.html">Thumbnail</a></li>
@@ -106,7 +106,7 @@ export const Header = ({ params }) => {
 																<li><a href="product-full-width.html">Full Width</a></li>
 															</ul>
 														</li>
-														<li><a href="javascript:void(0);" className="menu-title">Shop Pages</a>
+														<li><a href="#!" className="menu-title">Shop Pages</a>
 															<ul>						
 																<li><a href="shop-wishlist.html">Wishlist</a></li>
 																<li><a href="shop-cart.html">Cart</a></li>
@@ -155,18 +155,18 @@ export const Header = ({ params }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
-										<a href="javascript:void(0);"><span>Blog</span><i className="fas fa-chevron-down tabindex"></i></a>
+										<a href="#!"><span>Blog</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Blog Dark Style</a>
+													<a href="#!" className="menu-title">Blog Dark Style</a>
 													<ul>
 														<li><a href="blog-dark-2-column.html">Blog 2 Column</a></li>
 														<li><a href="blog-dark-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
 														<li><a href="blog-dark-3-column.html">Blog 3 Column</a></li>
 														<li><a href="blog-dark-half-image.html">Blog Half Image</a></li>
 													</ul>
-													<a href="javascript:void(0);" className="menu-title">Blog Light Style</a>
+													<a href="#!" className="menu-title">Blog Light Style</a>
 													<ul>
 														<li><a href="blog-light-2-column.html">Blog 2 Column</a></li>
 														<li><a href="blog-light-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
@@ -175,14 +175,14 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Blog Sidebar</a>
+													<a href="#!" className="menu-title">Blog Sidebar</a>
 													<ul>
 														<li><a href="blog-left-sidebar.html">Blog left Sidebar</a></li>
 														<li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
 														<li><a href="blog-both-sidebar.html">Blog Both Sidebar</a></li>
 														<li><a href="blog-wide-sidebar.html">Blog Wide Sidebar</a></li>
 													</ul>
-													<a href="javascript:void(0);" className="menu-title">Blog Page</a>
+													<a href="#!" className="menu-title">Blog Page</a>
 													<ul>
 														<li><a href="blog-archive.html">Blog Archive</a></li>
 														<li><a href="blog-author.html">Author</a></li>
@@ -191,7 +191,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Blog Details</a>
+													<a href="#!" className="menu-title">Blog Details</a>
 													<ul>	
 														<li><a href="post-standard.html">Post Standard</a></li>
 														<li><a href="post-left-sidebar.html">Post Left Sidebar</a></li>
@@ -207,7 +207,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li className="post-menu">
-													<a href="javascript:void(0);" className="menu-title">Recent Posts</a>
+													<a href="#!" className="menu-title">Recent Posts</a>
 													<div className="widget widget_post pt-2">
 														<ul>
 															<li>
@@ -253,7 +253,7 @@ export const Header = ({ params }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
-										<a href="javascript:void(0);"><span>Portfolio</span><i className="fas fa-chevron-down tabindex"></i></a>
+										<a href="#!"><span>Portfolio</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu portfolio-menu">
 											<ul>
 												<li className="side-left">
@@ -321,7 +321,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li className="side-right line-left">
-													<a href="javascript:void(0);" className="menu-title">Portfolio Details</a>
+													<a href="#!" className="menu-title">Portfolio Details</a>
 													<ul>
 														<li><a href="portfolio-details-1.html">Portfolio Details 1</a></li>
 														<li><a href="portfolio-details-2.html">Portfolio Details 2</a></li>
@@ -334,11 +334,11 @@ export const Header = ({ params }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down wide-width">
-										<a href="javascript:void(0);"><span>Pages</span><i className="fas fa-chevron-down tabindex"></i></a>
+										<a href="#!"><span>Pages</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Pages</a>
+													<a href="#!" className="menu-title">Pages</a>
 													<ul>
 														<li><a href="about-us.html">About Us</a></li>
 														<li><a href="about-me.html">About Me</a></li>
@@ -351,13 +351,13 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Contact Us</a>
+													<a href="#!" className="menu-title">Contact Us</a>
 													<ul>
 														<li><a href="contact-us-1.html">Contact Us 1</a></li>
 														<li><a href="contact-us-2.html">Contact Us 2</a></li>
 														<li><a href="contact-us-3.html">Contact Us 3</a></li>
 													</ul>
-													<a href="javascript:void(0);" className="menu-title">Web Pages</a>
+													<a href="#!" className="menu-title">Web Pages</a>
 													<ul>
 														<li><a href="error-1.html">Error 404 1</a></li>
 														<li><a href="error-2.html">Error 404 2</a></li>
@@ -366,7 +366,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Banner Style</a>
+													<a href="#!" className="menu-title">Banner Style</a>
 													<ul>						
 														<li><a href="banner-with-bg-color.html">Banner with BG Color</a></li>
 														<li><a href="banner-with-image.html">Banner with Image</a></li>
@@ -378,7 +378,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Header Style</a>
+													<a href="#!" className="menu-title">Header Style</a>
 													<ul>
 														<li><a href="header-style-1.html">Header Style 1</a></li>
 														<li><a href="header-style-2.html">Header Style 2</a></li>
@@ -391,7 +391,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Footer Style</a>
+													<a href="#!" className="menu-title">Footer Style</a>
 													<ul>
 														<li><a href="footer-style-1.html">Footer Style 1</a></li>
 														<li><a href="footer-style-2.html">Footer Style 2</a></li>
@@ -403,7 +403,7 @@ export const Header = ({ params }) => {
 													</ul>
 												</li>
 												<li>
-													<a href="javascript:void(0);" className="menu-title">Dashboard</a>
+													<a href="#!" className="menu-title">Dashboard</a>
 													<ul>
 														<li><a href="account-dashboard.html">Dashboard</a></li>
 														<li><a href="account-orders.html">Orders</a></li>
@@ -419,7 +419,7 @@ export const Header = ({ params }) => {
 										</div>
 									</li>
 									<li className="sub-menu-down">
-										<a href="javascript:void(0);"><span>My Account</span> <div className="badge badge-sm rounded badge-animated">New</div><i className="fas fa-chevron-down tabindex"></i></a>
+										<a href="#!"><span>My Account</span> <div className="badge badge-sm rounded badge-animated">New</div><i className="fas fa-chevron-down tabIndex"></i></a>
 										<ul className="sub-menu">						
 											<li><a href="account-dashboard.html">Dashboard</a></li>
 											<li><a href="account-orders.html">Orders</a></li>
@@ -459,23 +459,23 @@ export const Header = ({ params }) => {
 											</a>
 										</li>
 										<li className="nav-item search-link">
-											<a className="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+											<a className="nav-link" href="#!" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
 												<i className="iconly-Light-Search"></i>
 											</a>
 										</li>
 										<li className="nav-item wishlist-link">
-											<a className="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+											<a className="nav-link" href="#!" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 												<i className="iconly-Light-Heart2"></i>
 											</a>
 										</li>
 										<li className="nav-item cart-link">
-											<a href="javascript:void(0);" className="nav-link cart-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+											<a href="#!" className="nav-link cart-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 												<i className="iconly-Broken-Buy"></i>
 												<span className="badge badge-circle">5</span>
 											</a>
 										</li>
 										<li className="nav-item filte-link">
-											<a href="javascript:void(0);" className="nav-link filte-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+											<a href="#!" className="nav-link filte-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
 												<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 13" fill="none">
 													<rect y="11" width="30" height="2" fill="black"/>
 													<rect width="30" height="2" fill="black"/>
@@ -490,7 +490,7 @@ export const Header = ({ params }) => {
 					</div>
 				</div>
 				
-				<div className="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+				<div className="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabIndex="-1" id="offcanvasTop">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
 					</button>
@@ -625,7 +625,7 @@ export const Header = ({ params }) => {
 					</div>
 				</div>
 				
-				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight">
+				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasRight">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
 					</button>
@@ -645,7 +645,7 @@ export const Header = ({ params }) => {
 									</li>
 								</ul>
 								<div className="tab-content pt-4" id="dz-shopcart-sidebar">
-									<div className="tab-pane fade show active" id="shopping-cart-pane" role="tabpanel" aria-labelledby="shopping-cart" tabindex="0">
+									<div className="tab-pane fade show active" id="shopping-cart-pane" role="tabpanel" aria-labelledby="shopping-cart" tabIndex="0">
 										<div className="shop-sidebar-cart">
 											<ul className="sidebar-cart-list">
 												<li>
@@ -657,12 +657,12 @@ export const Header = ({ params }) => {
 															<h6 className="title"><a href="product-thumbnail.html">Sophisticated Swagger Suit</a></h6>
 															<div className="d-flex align-items-center">
 																<div className="btn-quantity light quantity-sm me-3">
-																	<input type="text" value="1" name="demo_vertical2"/>
+																	<input type="text" defaultValue="1" name="demo_vertical2"/>
 																</div>
 																<h6 className="dz-price mb-0">$50.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i>
 														</a>
 													</div>
@@ -676,12 +676,12 @@ export const Header = ({ params }) => {
 															<h6 className="title"><a href="product-thumbnail.html">Cozy Knit Cardigan Sweater</a></h6>
 															<div className="d-flex align-items-center">
 																<div className="btn-quantity light quantity-sm me-3">
-																	<input type="text" value="1" name="demo_vertical2"/>
+																	<input type="text" defaultValue="1" name="demo_vertical2"/>
 																</div>
 																<h6 className="dz-price mb-0">$40.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i> 
 														</a>
 													</div>
@@ -695,12 +695,12 @@ export const Header = ({ params }) => {
 															<h6 className="title"><a href="product-thumbnail.html">Athletic Mesh Sports Leggings</a></h6>
 															<div className="d-flex align-items-center">
 																<div className="btn-quantity light quantity-sm me-3">
-																	<input type="text" value="1" name="demo_vertical2"/>
+																	<input type="text" defaultValue="1" name="demo_vertical2"/>
 																</div>
 																<h6 className="dz-price  mb-0">$65.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i>
 														</a>
 													</div>
@@ -730,7 +730,7 @@ export const Header = ({ params }) => {
 											</div>	
 										</div>	
 									</div>
-									<div className="tab-pane fade" id="wishlist-pane" role="tabpanel" aria-labelledby="wishlist" tabindex="0">
+									<div className="tab-pane fade" id="wishlist-pane" role="tabpanel" aria-labelledby="wishlist" tabIndex="0">
 										<div className="shop-sidebar-cart">
 											<ul className="sidebar-cart-list">
 												<li>
@@ -744,7 +744,7 @@ export const Header = ({ params }) => {
 																<h6 className="dz-price  mb-0">$50.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i>
 														</a>
 													</div>
@@ -760,7 +760,7 @@ export const Header = ({ params }) => {
 																<h6 className="dz-price  mb-0">$40.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i> 
 														</a>
 													</div>
@@ -776,7 +776,7 @@ export const Header = ({ params }) => {
 																<h6 className="dz-price  mb-0">$65.00</h6>
 															</div>
 														</div>
-														<a href="javascript:void(0);" className="dz-close">
+														<a href="#!" className="dz-close">
 															<i className="ti-close"></i>
 														</a>
 													</div>
@@ -793,7 +793,7 @@ export const Header = ({ params }) => {
 					</div>
 				</div>
 
-				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabindex="-1" id="offcanvasLeft">
+				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasLeft">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
 					</button>
@@ -804,7 +804,7 @@ export const Header = ({ params }) => {
 									<div className="input-group">
 										<input name="dzSearch" required="required" type="search" className="form-control" placeholder="Search Product"/>
 										<div className="input-group-addon">
-											<button name="submit" value="Submit" type="submit" className="btn">
+											<button name="submit" defaultValue="Submit" type="submit" className="btn">
 												<i className="icon feather icon-search"></i>
 											</button>
 										</div>
@@ -827,43 +827,43 @@ export const Header = ({ params }) => {
 								<h6 className="widget-title">Color</h6>
 								<div className="d-flex align-items-center flex-wrap color-filter ps-2">
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="#000000" aria-label="..." checked/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" defaultValue="#000000" aria-label="..." defaultChecked={true} />
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2" value="#9BD1FF" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2" defaultValue="#9BD1FF" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3" value="#21B290" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3" defaultValue="#21B290" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel4" value="#FEC4C4" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel4" defaultValue="#FEC4C4" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel5" value="#FF7354" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel5" defaultValue="#FF7354" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel6" value="#51EDC8" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel6" defaultValue="#51EDC8" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel7" value="#B77CF3" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel7" defaultValue="#B77CF3" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel8" value="#FF4A76" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel8" defaultValue="#FF4A76" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel9" value="#3E68FF" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel9" defaultValue="#3E68FF" aria-label="..."/>
 										<span></span>
 									</div>
 									<div className="form-check">
-										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabe20" value="#7BEF68" aria-label="..."/>
+										<input className="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabe20" defaultValue="#7BEF68" aria-label="..."/>
 										<span></span>
 									</div>
 								</div>
@@ -872,32 +872,32 @@ export const Header = ({ params }) => {
 							<div className="widget">
 								<h6 className="widget-title">Size</h6>
 								<div className="btn-group product-size">
-									<input type="radio" className="btn-check" name="btnradio1" id="btnradio11" checked=""/>
-									<label className="btn" for="btnradio11">4</label>
+									<input type="radio" className="btn-check" name="btnradio1" id="btnradio11" defaultChecked=""/>
+									<label className="btn" htmlFor="btnradio11">4</label>
 
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio21"/>
-									<label className="btn" for="btnradio21">6</label>
+									<label className="btn" htmlFor="btnradio21">6</label>
 
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio31"/>
-									<label className="btn" for="btnradio31">8</label>
+									<label className="btn" htmlFor="btnradio31">8</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio41"/>
-									<label className="btn" for="btnradio41">10</label>
+									<label className="btn" htmlFor="btnradio41">10</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio51"/>
-									<label className="btn" for="btnradio51">12</label>
+									<label className="btn" htmlFor="btnradio51">12</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio61"/>
-									<label className="btn" for="btnradio61">14</label>
+									<label className="btn" htmlFor="btnradio61">14</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio71"/>
-									<label className="btn" for="btnradio71">16</label>
+									<label className="btn" htmlFor="btnradio71">16</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio81"/>
-									<label className="btn" for="btnradio81">18</label>
+									<label className="btn" htmlFor="btnradio81">18</label>
 									
 									<input type="radio" className="btn-check" name="btnradio1" id="btnradio91"/>
-									<label className="btn" for="btnradio91">20</label>
+									<label className="btn" htmlFor="btnradio91">20</label>
 								</div>
 							</div>
 							<div className="widget widget_categories">
@@ -928,7 +928,7 @@ export const Header = ({ params }) => {
 									<a href="blog-tag.html">Formal</a>
 								</div>
 							</div>
-							<a href="javascript:void(0);" className="btn btn-sm font-14 btn-secondary btn-sharp">RESET</a>
+							<a href="#!" className="btn btn-sm font-14 btn-secondary btn-sharp">RESET</a>
 						</div>
 					</div>
 				</div>
