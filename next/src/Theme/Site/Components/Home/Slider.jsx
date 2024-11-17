@@ -3,7 +3,7 @@ import {useEffect} from "react"
 export const Slider = ({assetsPath}) => {
 	// console.log("assetsPath");
 	useEffect(() => {
-		if(window.$('.slider-main').length > 0){			
+		if(window.$ && window.$('.slider-main').length > 0){			
 			$('.slider-main').slick({
 				slidesToShow: 1,
 				slidesToScroll: 1,
