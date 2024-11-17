@@ -1,0 +1,19 @@
+/**
+ * CSS FILES
+ */
+ 
+ /* STYLESHEETS */
+ @import url(vendor/magnific-popup/magnific-popup.min.css);
+ @import url(vendor/bootstrap-select/dist/css/bootstrap-select.min.css);
+ @import url(vendor/swiper/swiper-bundle.min.css);
+ @import url(vendor/nouislider/nouislider.min.css);
+ @import url(vendor/animate/animate.css);
+ @import url(vendor/lightgallery/dist/css/lightgallery.css);
+ @import url(vendor/lightgallery/dist/css/lg-thumbnail.css);
+ @import url(vendor/lightgallery/dist/css/lg-zoom.css);
+ @import url(vendor/slick/slick.css);
+/* Custom Stylesheet */
+ @import url(css/style.css);
+ @import url(css/skin/skin-1.css);
+/* GOOGLE FONTS */
+ /* @import url(https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap); */
