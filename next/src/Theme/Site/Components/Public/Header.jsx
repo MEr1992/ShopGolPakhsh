@@ -20,8 +20,8 @@ export const Header = ({ params }) => {
 
 	useEffect(()=>{
 		// (window.jQuery, window, document), window.$(document).ready(function() {
-			console.log(window.$);
-			console.log(window.jQuery);
+			// console.log(window.$);
+			// console.log(window.jQuery);
 			// window.$ && window.$("#navigation").navigation()
 		// });
 	}, []);

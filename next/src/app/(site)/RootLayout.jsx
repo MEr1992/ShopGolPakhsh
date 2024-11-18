@@ -55,7 +55,8 @@ export default function RootLayout({ children }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					{/* CSS FILES */}
 					<link rel="stylesheet" type="text/css" href={`${assetsPath}/pixio/custom.css`} />
-					{/* <Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='beforeInteractive' /> */}
+					<Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='afterInteractive' />
+
 				</head>	
 				<body id="bg" suppressHydrationWarning={true}>
 					<div className="page-wraper">

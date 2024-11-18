@@ -1,37 +1,43 @@
 import {useEffect} from "react"
 
 export const Slider = ({assetsPath}) => {
-	// console.log("assetsPath");
+	
 	useEffect(() => {
-		if(window.$ && window.$('.slider-main').length > 0){			
-			$('.slider-main').slick({
+		loadSlider();
+	}, []);
+
+	const loadSlider = ()=>{
+		if(window.$ && window.$('.slider-main-top').length > 0 && window.$('.slider-main-top').slick){
+			$('.slider-main-top').slick({
 				slidesToShow: 1,
 				slidesToScroll: 1,
 				arrows: false,
 				fade: false,
 				infinite: true,
-				asNavFor: '.slider-thumbs'
+				asNavFor: '.slider-thumbs-top'
 			});
-			$('.slider-thumbs').slick({
+
+			$('.slider-thumbs-top').slick({
 				slidesToShow: 2,
 				slidesToScroll: 1,
-				asNavFor: '.slider-main',
+				asNavFor: '.slider-main-top',
 				dots: false,
 				centerMode: false,
 				infinite: true,
 				focusOnSelect: true,
 			});
+		}else{
+			setTimeout(()=> loadSlider() , 1000);
 		}
-	}, [])
-	
-	// console.log(assetsPath);
+	}
+		
     return(
 		<>
 			<div className="main-slider-wrapper">
 				<div className="slider-inner">
 					<div className="row">
 						<div className="col-lg-6">
-							<div className="slider-main">
+							<div className="slider-main-top">
 								<div className="slick-slide">
 									<div className="content-info">
 										<h1 className="title">Beautiful Woman Purple Sweater.</h1>
@@ -110,7 +116,7 @@ export const Slider = ({assetsPath}) => {
 							</div>
 						</div>
 						<div className="col-lg-6">
-							<div className="slider-thumbs">
+							<div className="slider-thumbs-top">
 								<div className="slick-slide">
 									<div className="banner-media" data-name="Winter">
 										<div className="img-preview">
