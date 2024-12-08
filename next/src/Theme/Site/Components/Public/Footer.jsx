@@ -7,15 +7,15 @@ import Script from 'next/script'
 export const Footer = ({ params="" }) => {
 	// console.log(params);
 	const {assetsPath } = useConfig();
-	let { getNeedles } = useData();
-    let [needles, setNeedles] = useState({});
+	// let { getNeedles } = useData();
+    // let [needles, setNeedles] = useState({});
     const formUrl = "/footer";
     const local = "fa";
     // const local = params?.lang ?  params?.lang : "en" ;
 
 	useEffect(() => {
 		// getNeedles(local + formUrl, setNeedles);
-		console.log("useEffect footer");
+		// console.log("useEffect footer");
 		// window.jQuery = window.$;
     }, []);
 
@@ -161,24 +161,25 @@ export const Footer = ({ params="" }) => {
 
 			{/* <Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='afterInteractive' /> */}
 			<Script src={`${assetsPath}/pixio/vendor/wow/wow.min.js`} strategy='afterInteractive' />
-			<Script src={`${assetsPath}/pixio/vendor/bootstrap/dist/js/bootstrap.bundle.min.js`} strategy='afterInteractive' />
-			<Script src={`${assetsPath}/pixio/vendor/bootstrap-select/dist/js/bootstrap-select.min.js`} strategy='afterInteractive' />
-			<Script src={`${assetsPath}/pixio/vendor/bootstrap-touchspin/bootstrap-touchspin.js`} strategy='afterInteractive' />
+			<Script src={`${assetsPath}/pixio/vendor/bootstrap/dist/js/bootstrap.bundle.min.js`} strategy='beforeInteractive' />
+			<Script src={`${assetsPath}/pixio/vendor/bootstrap-select/dist/js/bootstrap-select.min.js`} strategy='beforeInteractive' />
+			<Script src={`${assetsPath}/pixio/vendor/bootstrap-touchspin/bootstrap-touchspin.js`} strategy='beforeInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/swiper/swiper-bundle.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/magnific-popup/magnific-popup.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/imagesloaded/imagesloaded.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/masonry/masonry-4.2.2.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/masonry/isotope.pkgd.min.js`} strategy='afterInteractive' />
-			{/* <Script src={`${assetsPath}/pixio/vendor/countdown/jquery.countdown.js`} strategy='afterInteractive' /> */}
+			<Script src={`${assetsPath}/pixio/vendor/countdown/jquery.countdown.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/wnumb/wNumb.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/nouislider/nouislider.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/slick/slick.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/lightgallery.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js`} strategy='afterInteractive' />
+			<Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
 			{/* <Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/js/dz.ajax.js`} strategy='afterInteractive' /> */}
-			<Script src={`${assetsPath}/pixio/js/custom.js`} strategy='beforeInteractive' />
+			<Script src={`${assetsPath}/pixio/js/custom.js`} strategy='afterInteractive' />
 		</>
 	);
 }

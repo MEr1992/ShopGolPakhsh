@@ -10,7 +10,8 @@ export const LastProducts = ({assetsPath}) => {
 						<div className="col-lg-6 col-md-12">
 							<div className="section-head style-1 m-b30  wow fadeInUp" data-wow-delay="0.2s">
 								<div className="left-content">
-									<h2 className="title">Most popular products</h2>
+									{/* <h2 className="title">Most popular products</h2> */}
+									<h2 className="title">Last products</h2>
 								</div>
 							</div>	
 						</div>

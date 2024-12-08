@@ -886,7 +886,6 @@ var PixioCarousel = function(){
 		}
 	}
 
-	
 	/* Function ============ */
 	return {
 	
@@ -932,27 +931,29 @@ var PixioCarousel = function(){
 
 
 /* Document.ready Start */	
-jQuery(document).ready(function() {
-    'use strict';
+// jQuery(document).ready(function() {
+//     'use strict';
 	
-	PixioCarousel.init();
+// 	PixioCarousel.init();
 	
 	
-});
+// });
 /* Document.ready END */
 
 /* Window Load START */
-jQuery(window).on('load',function () {
-	'use strict'; 
-	PixioCarousel.load();
+// jQuery(window).on('load',function () {
+// 	'use strict'; 
+// 	PixioCarousel.load();
 
 	
-});
+// });
 /*  Window Load END */
 
 /* Window Resize START */
-jQuery(window).on('resize',function () {
-	'use strict'; 
-	PixioCarousel.resize();
-});
+// jQuery(window).on('resize',function () {
+// 	'use strict'; 
+// 	PixioCarousel.resize();
+// });
 /*  Window Resize END */
+
+window.PixioCarousel = PixioCarousel;

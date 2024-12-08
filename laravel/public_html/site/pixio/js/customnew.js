@@ -103,8 +103,7 @@ var Pixio = function () {
 				});
 			}
 		});
-
-		$('body').scrollspy && $('body').scrollspy({ target: ".navbar", offset: headerHeight + 2 });
+		$('body').scrollspy({ target: ".navbar", offset: headerHeight + 2 });
 	}
 
 	/* Load File ============ */
@@ -416,7 +415,7 @@ var Pixio = function () {
 	/* Countdown ============ */
 	var handleCountDown = function (WebsiteLaunchDate) {
 		/* Time Countr Down Js */
-		if ($('.countdown').countdown && $(".countdown").length) {
+		if ($(".countdown").length) {
 			$('.countdown').countdown({ date: WebsiteLaunchDate + ' 23:5' }, function () {
 				$('.countdown').text('we are live');
 			});
@@ -525,14 +524,14 @@ var Pixio = function () {
 	/* handle Bootstrap Touch Spin ============ */
 	var handleBootstrapTouchSpin = function () {
 		if ($("input[name='demo_vertical2']").length > 0) {
-			jQuery("input[name='demo_vertical2']").TouchSpin && jQuery("input[name='demo_vertical2']").TouchSpin({
+			jQuery("input[name='demo_vertical2']").TouchSpin({
 				verticalbuttons: true,
 				verticalupclass: 'fa-solid fa-plus',
 				verticaldownclass: 'fa-solid fa-minus'
 			});
 		}
 		if ($(".quantity-input").length > 0) {
-			jQuery(".quantity-input").TouchSpin && jQuery(".quantity-input").TouchSpin({
+			jQuery(".quantity-input").TouchSpin({
 				verticalbuttons: true,
 				verticalupclass: 'fa-solid fa-plus',
 				verticaldownclass: 'fa-solid fa-minus'
@@ -542,7 +541,7 @@ var Pixio = function () {
 
 	var handleSelectpicker = function () {
 		if (jQuery('.default-select').length > 0) {
-			jQuery('.default-select').selectpicker && jQuery('.default-select').selectpicker();
+			jQuery('.default-select').selectpicker();
 		}
 	}
 
@@ -785,9 +784,9 @@ var Pixio = function () {
 		</div>`;
 
 		if (getCookie('prevent_subscription') != 'true') {
-			$('body').append(modalBox);
+			jQuery('body').append(modalBox);
 			setTimeout(function () {
-				$("#myModal").modal && $("#myModal").modal('show');
+				jQuery("#myModal").modal('show');
 			}, 5000)
 		}
 	}
@@ -855,7 +854,7 @@ var Pixio = function () {
 
 	var handleTagSlider = function () {
 		if (jQuery('#tagSlider').length > 0) {
-			$('#tagSlider').grouploop && $('#tagSlider').grouploop({
+			$('#tagSlider').grouploop({
 				velocity: 1,
 				forward: false,
 				pauseOnHover: true,
@@ -865,7 +864,7 @@ var Pixio = function () {
 
 		}
 		if (jQuery('#tagSlider2').length > 0) {
-			$('#tagSlider2').grouploop && $('#tagSlider2').grouploop({
+			$('#tagSlider2').grouploop({
 				velocity: 1,
 				forward: true,
 				pauseOnHover: true,
@@ -1211,8 +1210,3 @@ jQuery(window).on('scroll', function () {
 	Pixio.scroll();
 });
 /*  Window Resize END */
-
-window.Pixio = Pixio;
-window.jQuery = jQuery;
-window.$ = jQuery;
-// alert(123);

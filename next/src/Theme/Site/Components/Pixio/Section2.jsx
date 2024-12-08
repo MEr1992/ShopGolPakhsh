@@ -22,8 +22,8 @@ export const Section2 = () => {
 								<a className="service-btn-2 wow fadeInUp" data-wow-delay="0.6s" href="about-us.html" >
 									<span className="icon-wrapper">
 										<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M12.832 31.1663L31.1654 12.833" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-											<path d="M12.832 12.833H31.1654V31.1663" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M12.832 31.1663L31.1654 12.833" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+											<path d="M12.832 12.833H31.1654V31.1663" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 										</svg>
 									</span>
 								</a>

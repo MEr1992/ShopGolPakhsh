@@ -11,6 +11,7 @@ const StoreProvider = dynamic(() => import("@/redux/StoreProvider"))
 const store = dynamic(() => import("@/redux/store"))
 const App = dynamic(() => import("@/app/(shop-panel)/App").then((module) => module.App));
 const Loading = dynamic(() => import('./Loading'))
+// import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import { Header,Footer } from '@/Theme/Site';
 

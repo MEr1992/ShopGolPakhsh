@@ -161,7 +161,7 @@ export const loadingIcons = {
         </svg> ,
     oval: <svg width="25" viewBox="-2 -2 42 42" xmlns="http://www.w3.org/2000/svg" stroke="rgb(45, 55, 72)" className="w-8 h-8">
             <g fill="none" fill-rule="evenodd">
-                <g transform="translate(1 1)" stroke-width="4">
+                <g transform="translate(1 1)" strokeWidth="4">
                     <circle stroke-opacity=".5" cx="18" cy="18" r="18"></circle>
                     <path d="M36 18c0-9.94-8.06-18-18-18">
                         <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform>
@@ -170,7 +170,7 @@ export const loadingIcons = {
             </g>
         </svg>,
     puff: <svg width="25" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="rgb(45, 55, 72)" className="w-8 h-8">
-            <g fill="none" fill-rule="evenodd" stroke-width="4">
+            <g fill="none" fill-rule="evenodd" strokeWidth="4">
                 <circle cx="22" cy="22" r="1">
                     <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"></animate>
                     <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"></animate>
@@ -182,16 +182,16 @@ export const loadingIcons = {
             </g>
         </svg>,
     rings: <svg width="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="rgb(45, 55, 72)" className="w-8 h-8">
-            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="3">
+            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" strokeWidth="3">
                 <circle cx="22" cy="22" r="6" stroke-opacity="0">
                     <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear" repeatCount="indefinite"></animate>
                     <animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0" calcMode="linear" repeatCount="indefinite"></animate>
-                    <animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0" calcMode="linear" repeatCount="indefinite"></animate>
+                    <animate attributeName="strokeWidth" begin="1.5s" dur="3s" values="2;0" calcMode="linear" repeatCount="indefinite"></animate>
                 </circle>
                 <circle cx="22" cy="22" r="6" stroke-opacity="0">
                     <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear" repeatCount="indefinite"></animate>
                     <animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0" calcMode="linear" repeatCount="indefinite"></animate>
-                    <animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0" calcMode="linear" repeatCount="indefinite"></animate>
+                    <animate attributeName="strokeWidth" begin="3s" dur="3s" values="2;0" calcMode="linear" repeatCount="indefinite"></animate>
                 </circle>
                 <circle cx="22" cy="22" r="8">
                     <animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6" calcMode="linear" repeatCount="indefinite"></animate>
@@ -200,7 +200,7 @@ export const loadingIcons = {
         </svg>,
     spinningCircles: <svg width="20" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
             <g fill="none" fill-rule="evenodd">
-                <g transform="translate(2 1)" stroke="rgb(45, 55, 72)" stroke-width="1.5">
+                <g transform="translate(2 1)" stroke="rgb(45, 55, 72)" strokeWidth="1.5">
                     <circle cx="42.601" cy="11.462" r="5" fill-opacity="1" fill="rgb(45, 55, 72)">
                         <animate attributeName="fill-opacity" begin="0s" dur="1.3s" values="1;0;0;0;0;0;0;0" calcMode="linear" repeatCount="indefinite"></animate>
                     </circle>

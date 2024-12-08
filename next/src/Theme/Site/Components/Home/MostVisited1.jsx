@@ -1,4 +1,6 @@
-export const Section14 = () => {
+export const MostVisited = ({assetsPath}) => {
+	// console.log("assetsPath");
+	// console.log(assetsPath);
     return(
 		<>
 			{/* Blog Start */}
@@ -36,7 +38,7 @@ export const Section14 = () => {
 						<div className="swiper-slide">
 							<div className="dz-card style-2 wow fadeInUp" data-wow-delay="0.2s">
 								<div className="dz-media">
-									<img src="images/blog/grid/1.jpg" alt=""/>
+									<img src={assetsPath+"/pixio/images/blog/grid/1.jpg"} alt=""/>
 									<div className="post-date">17 May 2023</div>
 								</div>
 								<div className="dz-info">
@@ -65,7 +67,7 @@ export const Section14 = () => {
 						<div className="swiper-slide">
 							<div className="dz-card style-2 wow fadeInUp" data-wow-delay="0.4s">
 								<div className="dz-media">
-									<img src="images/blog/grid/2.jpg" alt=""/>
+									<img src={assetsPath+"/pixio/images/blog/grid/2.jpg"} alt=""/>
 									<div className="post-date">28 Feb 2023</div>
 								</div>
 								<div className="dz-info">
@@ -94,7 +96,7 @@ export const Section14 = () => {
 						<div className="swiper-slide">
 							<div className="dz-card style-2 wow fadeInUp" data-wow-delay="0.6s">
 								<div className="dz-media">
-									<img src="images/blog/grid/3.jpg" alt=""/>
+									<img src={assetsPath+"/pixio/images/blog/grid/3.jpg"} alt=""/>
 									<div className="post-date">15 Aug 2023</div>
 								</div>
 								<div className="dz-info">
@@ -123,7 +125,7 @@ export const Section14 = () => {
 						<div className="swiper-slide">
 							<div className="dz-card style-2 wow fadeInUp" data-wow-delay="0.8s">
 								<div className="dz-media">
-									<img src="images/blog/grid/4.jpg" alt=""/>
+									<img src={assetsPath+"/pixio/images/blog/grid/4.jpg"} alt=""/>
 									<div className="post-date">28 Nov 2023</div>
 								</div>
 								<div className="dz-info">
@@ -152,7 +154,7 @@ export const Section14 = () => {
 						<div className="swiper-slide">
 							<div className="dz-card style-2 wow fadeInUp" data-wow-delay="1.0s">
 								<div className="dz-media">
-									<img src="images/blog/grid/5.jpg" alt=""/>
+									<img src={assetsPath+"/pixio/images/blog/grid/5.jpg"} alt=""/>
 									<div className="post-date">13 Feb 2023</div>
 								</div>
 								<div className="dz-info">

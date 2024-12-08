@@ -85,7 +85,8 @@ export const BestSeller = ({assetsPath}) => {
 								<div className="dz-media h-100">
 									<img src={assetsPath+"/pixio/images/about/pic1.jpg"} alt=""/>
 									<div className="media-contant">
-										<h2 className="title">Great saving on everyday essentials</h2> 
+										<h2 className="title">Best Seller</h2> 
+										{/* <h2 className="title">Great saving on everyday essentials</h2>  */}
 										<h5 className="sub-title">Up to 60% off + up to $107 Cashback</h5>
 										<a href="shop-list.html" className="btn btn-white btn-lg">See All</a>
 									</div>
