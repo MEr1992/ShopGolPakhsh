@@ -19,8 +19,20 @@ class Category extends Model
             //
         });
     }
+    function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+    function childs()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
     function products()
     {
         return $this->hasMany(Product::class, 'category_id');
+    }
+    function parentProducts()
+    {
+        return $this->hasMany(Product::class, 'parent_category');
     }
 }

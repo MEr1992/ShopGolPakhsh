@@ -15,8 +15,9 @@ class CreateProductBrandsTable extends Migration
             $table->collation = 'utf8_persian_ci';
             $table->id();
             $table->string('name_fa')->nullable()->comment("نام");
+            $table->string('name_en')->nullable()->comment("نام");
             $table->string('logo')->nullable()->comment("لوگو");
-            $table->integer('count_product')->default(0)->comment("تعداد محصولات در لاین");
+            $table->integer('count_product')->default(0)->comment("تعداد محصولات در برند");
             $table->integer('status_id')->default(1)->comment("شناسه وضعیت فعال/غیر فعال");
             $table->softDeletes();
             $table->timestamps();

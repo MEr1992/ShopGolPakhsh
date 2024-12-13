@@ -11,8 +11,8 @@ class RouteServiceProviderChild
     public static function map()
     {
         self::mapAdminRoutes();
-        // self::mapApiRoutes();
-        // self::mapSAdminRoutes();
+        self::mapWebRoutes();
+        self::mapSAdminRoutes();
     }
 
     protected static function mapAdminRoutes()
@@ -22,6 +22,12 @@ class RouteServiceProviderChild
             ->namespace(self::$namespace."Admin\Controllers")
             ->group(__DIR__ . '/../../Admin/routes.php');
     }
+    protected static function mapWebRoutes()
+    {
+        Route::namespace(self::$namespace."Site\Controllers")
+            ->middleware('web')
+            ->group(__DIR__ . '/../../Site/routes.php');
+    }
     protected static function mapApiRoutes()
     {
         Route::prefix('api')
@@ -29,7 +35,6 @@ class RouteServiceProviderChild
             ->namespace(self::$namespace."Api\Controllers")
             ->group(__DIR__ . '/../../Api/routes.php');
     }
-
     protected static function mapSAdminRoutes()
     {
         Route::prefix('SAdmin')
@@ -37,5 +42,4 @@ class RouteServiceProviderChild
             ->namespace(self::$namespace."SAdmin\Controllers")
             ->group(__DIR__ . '/../../SAdmin/routes.php');
     }
-
 }

@@ -1,6 +1,41 @@
-export const LastProducts = ({assetsPath}) => {
-	// console.log("assetsPath");
-	// console.log(assetsPath);
+import { useEffect } from "react";
+
+export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
+	let delay = ["0.6s","0.8s","1.0s","1.2s","0.2s","0.4s","0.6s","2.0s"];
+	let classLi = ["Tops","Dresses","Dresses","Tops","Dresses","Outerwear","Dresses","Tops"];
+	
+	useEffect(() => {
+		// loadCategory()
+	}, []);
+	
+	const loadCategory = () => {
+		if(window.Pixio){
+			window.Pixio && window.Pixio.load();
+		}else{
+			setTimeout(loadCategory, 1000)
+		}
+	}
+	const masonryBox =()=>{
+		console.log("masonryBox");
+		// if (jQuery('#masonry, .masonry').length > 0) {
+			var self = jQuery("#masonry, .masonry");
+		// 	var filterValue = "";
+		// }
+		// if (jQuery('.filters').length > 0) {
+			jQuery(".filters li").on('click', function () {
+
+				jQuery('.filters li').removeClass('active');
+				jQuery(this).addClass('active');
+
+				var filterValue = $(this).attr("data-filter");
+
+				self.isotope({
+					filter: filterValue,
+				});
+			});
+		// }
+	}
+
     return(
 		<>
 			{/* Products  Section Start */}
@@ -11,7 +46,7 @@ export const LastProducts = ({assetsPath}) => {
 							<div className="section-head style-1 m-b30  wow fadeInUp" data-wow-delay="0.2s">
 								<div className="left-content">
 									{/* <h2 className="title">Most popular products</h2> */}
-									<h2 className="title">Last products</h2>
+									<h2 className="title">{Lang("public.Last products")}</h2>
 								</div>
 							</div>	
 						</div>
@@ -20,255 +55,59 @@ export const LastProducts = ({assetsPath}) => {
 								<ul className="filters" data-bs-toggle="buttons">
 									<li className="btn active">
 										<input type="radio"/>
-										<a href="#!">ALL</a> 
+										<a href="#!" >{Lang("public.ALL")}</a> 
 									</li>
-									<li data-filter=".Dresses" className="btn">
-										<input type="radio"/>
-										<a href="#!">Dresses</a> 
-									</li>
-									<li data-filter=".Tops" className="btn">
-										<input type="radio"/>
-										<a href="#!">Tops</a> 
-									</li>
-									<li data-filter=".Outerwear" className="btn">
-										<input type="radio"/>
-										<a href="#!">Outerwear</a> 
-									</li>
-									<li data-filter=".Jacket" className="btn">
-										<input type="radio"/>
-										<a href="#!">Jacket</a> 
-									</li>
+									{categories?.map((category, i)=>{
+										if(i <= 3)
+											return(
+												<li data-filter={"."+category?.["title_"+local]} className="btn">
+													<input type="radio"/>
+													<a href="#!" onClick={masonryBox}>{category?.["title_"+local]}</a> 
+												</li>
+											);
+									})}
 								</ul>			
 							</div>
 						</div>
 					</div>
 					<div className="clearfix">
 						<ul id="masonry" className="row g-xl-4 g-3">
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Tops wow fadeInUp" data-wow-delay="0.6s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/1.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
+							{items?.map((item, index)=>{
+								let delayNew = delay[index];
+								let classLiNew = classLi[index];
+
+								return(
+									<li className={"card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp "+classLiNew} data-wow-delay={delayNew}>
+										<div className="shop-card">
+											<div className="dz-media">
+												<img src={mediaPath+"/product/"+item?.image} alt="image"/>
+												<div className="shop-meta">
+													<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+														<i className="fa-solid fa-eye d-md-none d-block"></i>
+														<span className="d-md-block d-none">{Lang("public.Quick View")}</span>
+													</a>
+													<div className="btn btn-primary meta-icon dz-wishicon">
+														<i className="icon feather icon-heart dz-heart"></i>
+														<i className="icon feather icon-heart-on dz-heart-fill"></i>
+													</div>
+													<div className="btn btn-primary meta-icon dz-carticon">
+														<i className="flaticon flaticon-basket"></i>
+														<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
+													</div>
+												</div>							
 											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
+											<div className="dz-content">
+												<h5 className="title"><a href="shop-list.html">Cozy Knit Cardigan Sweater</a></h5>
+												<h5 className="price">$80</h5>
 											</div>
-										</div>							
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Cozy Knit Cardigan Sweater</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Dresses Jacket wow fadeInUp" data-wow-delay="0.8s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/2.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
+											<div className="product-tag">
+												<span className="badge ">Get 20% Off</span>
 											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>								
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Sophisticated Swagger Suit</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Dresses wow fadeInUp" data-wow-delay="1.0s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/3.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>									
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Classic Denim Skinny Jeans</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Tops Jacket wow fadeInUp" data-wow-delay="1.2s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/4.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>									
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Athletic Mesh Sports Leggings</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Dresses wow fadeInUp" data-wow-delay="0.2s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/5.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>								
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Vintage Denim Overalls Shorts</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Outerwear wow fadeInUp" data-wow-delay="0.4s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/6.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>								
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Satin Wrap Party Blouse</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Dresses wow fadeInUp" data-wow-delay="0.6s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/7.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>									
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Plaid Wool Winter Coat</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-							<li className="card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 Tops wow fadeInUp" data-wow-delay="2.0s">
-								<div className="shop-card">
-									<div className="dz-media">
-										<img src={assetsPath+"/pixio/images/shop/product/8.png"} alt="image"/>
-										<div className="shop-meta">
-											<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-												<i className="fa-solid fa-eye d-md-none d-block"></i>
-												<span className="d-md-block d-none">Quick View</span>
-											</a>
-											<div className="btn btn-primary meta-icon dz-wishicon">
-												<i className="icon feather icon-heart dz-heart"></i>
-												<i className="icon feather icon-heart-on dz-heart-fill"></i>
-											</div>
-											<div className="btn btn-primary meta-icon dz-carticon">
-												<i className="flaticon flaticon-basket"></i>
-												<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-											</div>
-										</div>								
-									</div>
-									<div className="dz-content">
-										<h5 className="title"><a href="shop-list.html">Water-Resistant Windbreaker Jacket</a></h5>
-										<h5 className="price">$80</h5>
-									</div>
-									<div className="product-tag">
-										<span className="badge ">Get 20% Off</span>
-									</div>
-								</div>
-							</li>
-						</ul>
+										</div>
+									</li>
+								);
+							})}
+							</ul>
 					</div>
 				</div>
 			</section>

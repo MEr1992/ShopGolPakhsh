@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 
-export const Category = ({assetsPath}) => {
+export const Category = ({ items,mediaPath,local,Lang }) => {
 	
 	useEffect(() => {
-		handleTextChar();
 		loadCategory()
 	}, []);
 	
@@ -27,6 +26,7 @@ export const Category = ({assetsPath}) => {
 				$(data).remove();
 			})
 	}
+	let delay = "0";
 
     return(
 		<>
@@ -37,67 +37,26 @@ export const Category = ({assetsPath}) => {
 						<div className="col-lg-8 left-box">
 							<div className="swiper swiper-shop">
 								<div className="swiper-wrapper">
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="0.2s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/1.png"} alt="image"/>
+									{items?.map((item, i)=>{
+										delay = parseInt(delay+2);
+										let delayNew = delay/10+"s";
+
+										return(
+											<div className="swiper-slide">
+												<div className="shop-box style-1 wow fadeInUp" data-wow-delay={delayNew}>
+													<div className="dz-media">
+														<img src={mediaPath+"/category/"+item?.image} alt="image"/>
+													</div>
+													<h6 className="product-name"><a href="shop-with-category.html">{item?.["title_"+local]}</a></h6>
+												</div>
 											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">Shirts</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="0.4s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/2.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">Shorts</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="0.6s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/3.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">t-Shirt</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="0.8s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/4.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">t-Jeans</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="0.9s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/5.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">t-Jeans</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="1.0s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/2.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">Shorts</a></h6>
-										</div>
-									</div>
-									<div className="swiper-slide">
-										<div className="shop-box style-1 wow fadeInUp" data-wow-delay="1.1s">
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/clothes/3.png"} alt="image"/>
-											</div>
-											<h6 className="product-name"><a href="shop-with-category.html">t-Shirt</a></h6>
-										</div>
-									</div>
+										);
+									})}
 								</div>
 							</div>
 							<span className="icon-button" href="shop-standard.html">
 								<div className="text-row word-rotate-box c-black border-secondary">
-									<span className="word-rotate">More Collection Explore </span>
+									<span className="word-rotate">{Lang("public.More Collection Explore")} </span>
 									{/* <svg className="badge__emoji" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35" fill="none"> */}
 										<path d="M32.2645 16.9503H4.08145L10.7508 10.4669C11.2604 9.97176 10.5046 9.1837 9.98813 9.68289C9.98815 9.68286 2.35193 17.1063 2.35193 17.1063C2.12911 17.3092 2.14686 17.6755 2.35196 17.8903C2.35193 17.8903 9.98815 25.3169 9.98815 25.3169C10.5021 25.81 11.2622 25.0367 10.7508 24.5328C10.7508 24.5329 4.07897 18.0441 4.07897 18.0441H32.2645C32.9634 18.0375 32.9994 16.9636 32.2645 16.9503Z" fill="#000"></path>
 									{/* </svg> */}
@@ -106,8 +65,8 @@ export const Category = ({assetsPath}) => {
 						</div>
 						<div className="col-lg-4 right-box">
 							<div>
-								<h3 className="title wow fadeInUp" data-wow-delay="1.2s">Featured Categories</h3>
-								<p className="text wow fadeInUp" data-wow-delay="1.4s">Discover the most trending products in Pixio.</p>
+								<h3 className="title wow fadeInUp" data-wow-delay="1.2s">{Lang("public.Featured Categories")}</h3>
+								<p className="text wow fadeInUp" data-wow-delay="1.4s">{Lang("public.Discover the most trending products in Pixio.")}</p>
 								<div className="pagination-align wow fadeInUp" data-wow-delay="1.6s">
 									<div className="shop-button-prev">
 										<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
@@ -123,7 +82,7 @@ export const Category = ({assetsPath}) => {
 							</div>
 							<span className="icon-button" href="shop-standard.html">
 								<div className="text-row word-rotate-box c-black border-white">
-									<span className="word-rotate">More Collection Explore </span>
+									<span className="word-rotate">{Lang("public.More Collection Explore")}</span>
 									{/* <svg className="badge__emoji" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35" fill="none"> */}
 										<path d="M32.2645 16.9503H4.08145L10.7508 10.4669C11.2604 9.97176 10.5046 9.1837 9.98813 9.68289C9.98815 9.68286 2.35193 17.1063 2.35193 17.1063C2.12911 17.3092 2.14686 17.6755 2.35196 17.8903C2.35193 17.8903 9.98815 25.3169 9.98815 25.3169C10.5021 25.81 11.2622 25.0367 10.7508 24.5328C10.7508 24.5329 4.07897 18.0441 4.07897 18.0441H32.2645C32.9634 18.0375 32.9994 16.9636 32.2645 16.9503Z" fill="white"></path>
 									{/* </svg> */}

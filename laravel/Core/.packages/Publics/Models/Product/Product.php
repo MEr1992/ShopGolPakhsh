@@ -26,9 +26,9 @@ class Product extends Model
     function category()
     {
         return $this->belongsTo(Category::class);
-    }
-    function line()
+    }  
+    function categoryParent()
     {
-        return $this->belongsTo(Line::class);
+        return $this->belongsTo(Category::class);
     }
 }

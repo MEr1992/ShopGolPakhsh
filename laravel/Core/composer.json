@@ -30,6 +30,7 @@
             "Models\\": ".packages/Publics/Models/",
             "Request\\": ".packages/Publics/Requests/",
             "Admin\\": ".packages/Admin/",
+            "Site\\": ".packages/Site/",
             "SAdmin\\": ".packages/SAdmin/",
             "Publics\\": ".packages/Publics/",
             "Api\\": ".packages/Api/"

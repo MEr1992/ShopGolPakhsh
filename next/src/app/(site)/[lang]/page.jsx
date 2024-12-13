@@ -1,32 +1,35 @@
 "use client"
 
 import { useEffect,useState } from "react";
+import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
 import { Slider,Category,LastProducts,BestSeller,Line,MostVisited,Brand } from "@/Theme/Site/Components/";
 
 export default function Page({ params }) {
-    const formUrl = "" ; 
-    // const local = params?.lang ? params?.lang : 'en' ;
-    const local = 'fa';
+    const { Lang } = useLang();
+    const { mediaPath,assetsPath } = useConfig();
     let {getNeedles} = useData();
-    let [needles, setNeedles] = useState();
-    const { assetsPath } = useConfig();
+    let [items, setItems] = useState();
+    const local = params?.lang ? params?.lang : 'en' ;
+    const formUrl = ""; 
+    const laralelUrl = "/home"; 
 
     useEffect(() => {
-        // getNeedles(local+formUrl, setNeedles);
-        window.$ && window.$('#top-menu').addClass('style-1 header-transparent')
+        window.$ && window.$('#top-menu').addClass('style-1 header-transparent');
+        getNeedles(local, setItems);
+        // getNeedles(local+laralelUrl, setItems);
     }, []);
 
     return(
         <>
-            <Slider assetsPath={assetsPath} />
-            <Category assetsPath={assetsPath} />
-            <LastProducts assetsPath={assetsPath} />
-            <BestSeller assetsPath={assetsPath} />
-            <Line assetsPath={assetsPath} />
-            <MostVisited assetsPath={assetsPath} />
-            <Brand assetsPath={assetsPath} />
+            <Slider items={items?.sliders} assetsPath={assetsPath} mediaPath={mediaPath} Lang={Lang} />
+            <Category items={items?.categories} mediaPath={mediaPath} local={local} Lang={Lang} />
+            <LastProducts items={items?.lastProducts} categories={items?.categories} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+            <BestSeller items={items?.bestSellerProducts} mediaPath={mediaPath} Lang={Lang} />
+            <Line items={items?.lines} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+            <MostVisited items={items?.mostVisitedProducts} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+            <Brand items={items?.brands} mediaPath={mediaPath} Lang={Lang} />
         </>
     );
 }

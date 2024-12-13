@@ -1,6 +1,6 @@
-export const BestSeller = ({assetsPath}) => {
-	// console.log("assetsPath");
-	// console.log(assetsPath);
+export const BestSeller = ({ items,mediaPath,Lang }) => {
+	let delay = ["0.2s","0.3s","0.4s","0.6s"];
+
     return(
 		<>
 			{/* About Section */}
@@ -9,89 +9,49 @@ export const BestSeller = ({assetsPath}) => {
 					<div className="row ">
 						<div className="col-lg-6 col-md-12 align-self-center">
 							<div className="row">
-								<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
-									<div className="shop-card style-3 wow fadeInUp" data-wow-delay="0.2s">
-										<div className="dz-media">
-											<img src={assetsPath+"/pixio/images/shop/product-2/1.png"} alt="image"/>
-										</div>
-										<div className="dz-content">
-											<div>
-												<span className="sale-title">up to 79% off</span>
-												<h6 className="title"><a href="shop-list.html">Cozy Knit Cardigan Sweater</a></h6>
+								{items?.map((item, i)=>{
+									let classSpan = "text-success";
+									let displayDiscount = Lang("public.Free delivery");
+									let displayPrice = <> {"$"+item?.price} </>
+									if(item?.discount>0)
+									{
+										classSpan = "";
+										displayDiscount = <>{Lang("public.up to")+" "+item?.discount+"%"+Lang("public.off")}</>;
+										displayPrice = <>
+											{"$"+item?.discount_price}
+											<del>{"$"+item?.price}</del>
+										</>
+									}
+									return(
+										<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
+											<div className="shop-card style-3 wow fadeInUp" data-wow-delay={delay}>
+												<div className="dz-media">
+													<img src={mediaPath+"/product/"+item?.image} alt="image"/>
+												</div>
+												<div className="dz-content">
+													<div>
+														<span className={"sale-title "+classSpan}>{displayDiscount}</span>
+														<h6 className="title"><a href="shop-list.html">{item?.name}</a></h6>
+													</div>
+													<h6 className="price">{displayPrice}</h6>
+												</div>
 											</div>
-											<h6 className="price">
-												$80
-												<del>$95</del>
-											</h6>
 										</div>
-									</div>
-								</div>
-								<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
-									<div className="shop-card style-3 wow fadeInUp" data-wow-delay="0.3s">
-										<div className="dz-media">
-											<img src={assetsPath+"/pixio/images/shop/product-2/2.png"} alt="image"/>
-										</div>
-										<div className="dz-content">
-											<div>
-												<span className="sale-title text-success">Free delivery</span>
-												<h6 className="title"><a href="shop-list.html">Sophisticated Swagger Suit</a></h6>
-											</div>
-											<h6 className="price">
-												$80
-												<del>$95</del>
-											</h6>
-										</div>
-										<span className="sale-badge">50%<br/>Sale <img src={assetsPath+"/pixio/images/star.png"} alt=""/></span>
-									</div>
-								</div>
-								<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
-									<div className="shop-card style-3 wow fadeInUp" data-wow-delay="0.4s">
-										<div className="dz-media">
-											<img src={assetsPath+"/pixio/images/shop/product-2/3.png"} alt="image"/>
-										</div>
-										<div className="dz-content">
-											<div>
-												<span className="sale-title text-success">Free delivery</span>
-												<h6 className="title"><a href="shop-list.html">Classic Denim Skinny Jeans</a></h6>
-											</div>
-											<h6 className="price">
-												$80
-												<del>$95</del>
-											</h6>
-										</div>
-									</div>
-								</div>
-								<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
-									<div className="shop-card style-3 wow fadeInUp" data-wow-delay="0.6s">
-										<div className="dz-media">
-											<img src={assetsPath+"/pixio/images/shop/product-2/4.png"} alt="image"/>
-										</div>
-										<div className="dz-content">
-											<div>
-												<span className="sale-title">up to 79% off</span>
-												<h6 className="title"><a href="shop-list.html">Athletic Mesh Sports Leggings</a></h6>
-											</div>
-											<h6 className="price">
-												$80
-												<del>$95</del>
-											</h6>
-										</div>
-									</div>
-								</div>
+									);
+								})}
 							</div>	
 						</div>
 						<div className="col-lg-6 col-md-12 m-b30">
 							<div className="about-box style-1  clearfix h-100 right">
 								<div className="dz-media h-100">
-									<img src={assetsPath+"/pixio/images/about/pic1.jpg"} alt=""/>
+									<img src={mediaPath+"/siteText/pic1.jpg"} alt=""/>
 									<div className="media-contant">
-										<h2 className="title">Best Seller</h2> 
-										{/* <h2 className="title">Great saving on everyday essentials</h2>  */}
-										<h5 className="sub-title">Up to 60% off + up to $107 Cashback</h5>
-										<a href="shop-list.html" className="btn btn-white btn-lg">See All</a>
+									<h2 className="title">{Lang("public.Best Seller on everyday For YOU")}</h2> 
+										<h5 className="sub-title">{Lang("public.Up to 60% off + up to $107 Cashback")}</h5>
+										<a href="shop-list.html" className="btn btn-white btn-lg">{Lang("public.See All")}</a>
 									</div>
 									<svg className="title animation-text" viewBox="0 0 1320 300">
-										<text x="0" y="">Great saving</text>
+										<text x="0" y="">{Lang("public.Great saving")}</text>
 									</svg>	
 								</div>
 							</div>

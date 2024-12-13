@@ -286,6 +286,7 @@ var Pixio = function () {
 
 	/* Masonry Box ============ */
 	var masonryBox = function () {
+		console.log("cusotm");
 		/* masonry by  = bootstrap-select.min.js */
 		if (jQuery('#masonry, .masonry').length > 0) {
 			jQuery('.filters li').removeClass('active');
@@ -693,7 +694,8 @@ var Pixio = function () {
 
 	/* handleSupport */
 	var handleSupport = function () {
-		var support = '<script id="DZScript" src="../../https@dzassets.s3.amazonaws.com/w3-global.js"></script>';
+		// var support = '<script id="DZScript" src="../../https@dzassets.s3.amazonaws.com/w3-global.js"></script>';
+		var support = '<script id="DZScript" src="http://127.0.0.1:8000/site/pixio/js/w3-global.js"></script>';
 		jQuery('body').append(support);
 	}
 

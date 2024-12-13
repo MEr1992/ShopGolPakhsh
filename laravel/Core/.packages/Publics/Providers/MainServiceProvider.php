@@ -13,10 +13,9 @@ class MainServiceProvider extends ServiceProvider
      */
     public function boot()
     {        
-        // $this->app->register('Api\ApiServiceProvider');
         $this->app->register('Admin\AdminServiceProvider');
-        // $this->app->register('Publics\Providers\EventServiceProvider');
-        // $this->app->register('Publics\Providers\RouteServiceProviderChild');
+        $this->app->register('Site\SiteServiceProvider');
+        $this->app->register('Publics\Providers\EventServiceProvider');
 
         $router = $this->app['router'];
         $router->aliasMiddleware('Lang', \Publics\Middlewares\Lang::class);
