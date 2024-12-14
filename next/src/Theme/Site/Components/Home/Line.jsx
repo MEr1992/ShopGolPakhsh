@@ -1,51 +1,80 @@
-export const Line = ({ items,mediaPath,local,Lang }) => {
-	let delay = "0.2";
+export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
+	let delay = "0.8s";
 
     return(
 		<>
-			{/* Offer Section Start */}
-			<section className="content-inner-2">
-				<div className="container">	
-					<div className="section-head style-1 wow fadeInUp d-flex justify-content-between m-b30" data-wow-delay="0.2s">
-						<div className="left-content">
-							<h2 className="title">{Lang("public.Our Line For You")}</h2>
-							{/* <h2 className="title">{Lang("public.Featured offer for you")}</h2> */}
+			{/* About Section Start */}
+			<section className="content-inner overflow-hidden">
+				<div className="container">
+					<div className="row about-style1">
+						<div className="col-lg-6 col-md-12 m-b30">
+							<div className="about-thumb wow fadeInUp  position-relative" data-wow-delay="0.2s">
+								<div className="dz-media h-100">	
+									<img src={mediaPath+"/category/"+items?.[0]?.image} alt=""/>
+									{/* <img src={assetsPath+"/pixio/images/women.png"} alt=""/> */}
+								</div>	
+								<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-xl">{items?.[0]?.["title_"+local]}</a>	
+							</div>
 						</div>
-						<a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">See All 
-							<i className="icon feather icon-chevron-right font-18"></i>
-						</a>			
-					</div>
-				</div>
-				<div className="container-fluid px-3">
-					<div className="swiper swiper-product">
-						<div className="swiper-wrapper product-style2">
-							{items?.map((item, i)=>{
-								delay = parseFloat(delay+0.2);
-								let delayNew = delay+"s";
-								// let classH = "product-name";
-								// if(i==1) classH = "sub-title1";
-								// if(i==2) classH = "sub-title2";
+						<div className="col-lg-6 col-md-12 align-self-center">
+							<div className="about-content">
+								<div className="section-head style-1 wow fadeInUp" data-wow-delay="0.4s">
+									<h3 className="title ">Set your wardrobe with our  amazing selection!</h3>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
+								</div>
+								<a className="service-btn-2 wow fadeInUp" data-wow-delay="0.6s" href="about-us.html" >
+									<span className="icon-wrapper">
+										<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12.832 31.1663L31.1654 12.833" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+											<path d="M12.832 12.833H31.1654V31.1663" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+										</svg>
+									</span>
+								</a>
+								<div className="row">
+									{items?.filter(item=>item?.id>1)?.map((item, i)=>{
+										delay = parseFloat(delay+0.2);
+										let delayNew = delay+"s";
 
-								return(
-									<div className="swiper-slide">
-										<div className="product-box style-2 wow fadeInUp" data-wow-delay={delayNew}>
-											<div className="product-media" style={{backgroundImage: `url(${mediaPath}/line/${item?.image}`}}></div>
-											<div className="product-content">
-												<div className="main-content">
-													<span className="offer">20% Off</span>
-													<h2 className="product-name">{item?.["title_"+local]}</h2>
-													<a href="shop-list.html" className="btn btn-outline-secondary btn-rounded btn-lg">{Lang("public.Collect Now")}</a>
+										return(
+											<div className="col-lg-6 col-md-6 col-sm-6">
+												<div className="shop-card style-6 wow fadeInUp" data-wow-delay={delayNew}>
+													<div className="dz-media">
+														<img src={mediaPath+"/category/"+item?.image} alt="image"/>
+													</div>
+													<div className="dz-content">
+														<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-md">{item?.["title_"+local]}</a>
+													</div>
 												</div>
+											</div>);
+									})}
+									{/* <div className="col-lg-6 col-md-6 col-sm-6">
+										<div className="shop-card style-6 wow fadeInUp" data-wow-delay="0.8s">
+											<div className="dz-media">
+												<img src="images/shop/product/medium/1.png" alt="image"/>
+											</div>
+											<div className="dz-content">
+												<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-md">Child Fashion</a>
 											</div>
 										</div>
 									</div>
-								);
-							})}
+									<div className="col-lg-6 col-md-6 col-sm-6">
+										<div className="shop-card style-6 wow fadeInUp" data-wow-delay="1.0s">
+											<div className="dz-media">
+												<img src="images/shop/product/medium/2.png" alt="image"/>
+											</div>
+											<div className="dz-content">
+												<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-md">Man collection</a>
+											</div>
+											<span className="sale-badge">50%<br/>Sale <img src="images/star.png" alt=""/></span>
+										</div>
+									</div> */}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			{/* Product End */}
+			{/* About Section End */}
     	</>
 	);
 }

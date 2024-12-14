@@ -35,4 +35,15 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'parent_category');
     }
+    /**
+     * Scopes
+     */
+    public function scopeCatParent($query) // دسته بندی  سطح 1
+    {
+        return $query->where('parent_id', 0);
+    }
+    public function scopeCatChild($query) // دسته بندی  سطح 2
+    {
+        return $query->where('parent_id', '>', 0);
+    }
 }

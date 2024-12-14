@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use \Models\Content\Slider;
 use \Models\Product\Category;
 use \Models\Product\Brand;
-use \Models\Product\Line;
 use \Models\Product\Product;
 
 class HomeController extends Controller
@@ -17,7 +16,6 @@ class HomeController extends Controller
             'sliders' => $this->slider(),
             'categories' => $this->category(),
             'brands' => $this->brand(),
-            'lines' => $this->line(),
             'lastProducts' => $this->lastProduct(),
             'bestSellerProducts' => $this->bestSellerProduct(),
             'mostVisitedProducts' => $this->mostVisitedProduct(),
@@ -36,10 +34,6 @@ class HomeController extends Controller
     public function brand()
     {
         return Brand::active()->get();
-    }
-    public function line()
-    {
-        return Line::active()->orderBy("id","ASC")->get();
     }
     public function lastProduct()
     {
