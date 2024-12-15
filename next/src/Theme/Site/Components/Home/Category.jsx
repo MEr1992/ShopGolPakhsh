@@ -40,7 +40,6 @@ export const Category = ({ items,mediaPath,local,Lang }) => {
 									{items?.map((item, i)=>{
 										delay = parseInt(delay+2);
 										let delayNew = delay/10+"s";
-
 										return(
 											<div className="swiper-slide">
 												<div className="shop-box style-1 wow fadeInUp" data-wow-delay={delayNew}>

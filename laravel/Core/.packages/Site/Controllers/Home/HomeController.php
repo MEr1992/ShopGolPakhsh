@@ -7,6 +7,7 @@ use \Models\Content\Slider;
 use \Models\Product\Category;
 use \Models\Product\Brand;
 use \Models\Product\Product;
+use \Models\Content\BlogSubject;
 
 class HomeController extends Controller
 {
@@ -46,5 +47,21 @@ class HomeController extends Controller
     public function mostVisitedProduct()
     {
         return Product::active()->orderByDesc("count_view")->limit(10)->get();
+    }
+    public function subject()
+    {
+        return BlogSubject::active()->get();
+    }
+    /**
+     * get data menu
+     */
+    public function getMenus()
+    {
+        // dd("lang is: ", app()->getLocale());
+        $items = [
+            'categories' => $this->category(),
+            'subjects' => $this->subject(),
+        ];
+        return response()->json($items);
     }
 }

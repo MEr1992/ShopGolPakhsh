@@ -4,8 +4,9 @@ import dynamic from 'next/dynamic';
 import Script from 'next/script'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { useEffect,useState } from "react";
 import { useConfig } from "@/lib/config";
-import { config } from "@/lib";
+import { config, useLang } from "@/lib";
 import { usePathname } from 'next/navigation';
 const StoreProvider = dynamic(() => import("@/redux/StoreProvider"))
 const store = dynamic(() => import("@/redux/store"))
@@ -17,14 +18,31 @@ import { Header,Footer } from '@/Theme/Site';
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
-	const { assetsPath } = useConfig();
+	const pathParams = pathname.split("/")
+	const lang = (pathParams.length > 1) ? pathParams[1]: "fa";
+	const { assetsPath,mediaPath } = useConfig();
+	// const { locale } = useLang();
 
 	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
 	const HeaderComp = Header;
+	// console.log("pathname", pathname.split("/"));
 
+    let [menus, setMenus] = useState();
+    useEffect(() => {
+		fetchMenus();
+	}, []);
+
+	const fetchMenus = async()=>{
+        let response = await fetch(`${config.host()}/${lang}/get-menus`, {mode: "cors"});
+        const menuResponse = await response.json();
+		setMenus(menuResponse);
+    }
+	// console.log("pathname");
+	// console.log(pathname);
+	
 	return (
 		<>
-			<html lang="en">
+			<html lang="en" dir={lang=="fa"?"rtl":"ltr"}>
 				<head>
 					{/* Title */}
 					<title>Gol: Shop & Online sales of cosmetic products</title>
@@ -63,7 +81,7 @@ export default function RootLayout({ children }) {
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
-								<Header />
+								<Header menus={menus} mediaPath={mediaPath} />
 								<div className="page-content bg-light">
 									{children}
 								</div>

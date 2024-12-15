@@ -1,6 +1,132 @@
+import {useEffect} from "react"
+
 export const Brand = ({ items,mediaPath,Lang }) => {
 	let items1 = items?.filter((item,i)=>i>=0 && i<=5);
 	let items2 = items?.filter((item,i)=>i>=6 && i<=11);
+
+	useEffect(() => {
+		// setTimeout(()=>{
+			// items?.length > 0 && handleTagSlider();
+			// if (jQuery('#tagSlider').length > 0 && jQuery('#tagSlider2').length > 0) {
+				// handleTagSlider();
+			// }
+			// handlePointerEffect();
+		// }, 1000)
+	}, [items]);
+	const handlePointerEffect = ()=>{
+		/* 
+			pointer.js was created by OwL for use on websites, 
+			and can be found at https://seattleowl.com/pointer.
+		*/
+		const pointer = document.createElement("div")
+		pointer.id = "pointer-dot"
+		const ring = document.createElement("div")
+		ring.id = "pointer-ring"
+		document.body.insertBefore(pointer, document.body.children[0])
+		document.body.insertBefore(ring, document.body.children[0])
+
+		let mouseX = -100
+		let mouseY = -100
+		let ringX = -100
+		let ringY = -100
+		let isHover = false
+		let mouseDown = false
+		const init_pointer = (options) => {
+
+			window.onmousemove = (mouse) => {
+				mouseX = (mouse.clientX != undefined) ? mouse.clientX : -100;
+				mouseY = (mouse.clientY != undefined) ? mouse.clientY : -100;
+			}
+
+			window.onmousedown = (mouse) => {
+				mouseDown = true
+			}
+
+			window.onmouseup = (mouse) => {
+				mouseDown = false
+			}
+
+			const trace = (a, b, n) => {
+				return (1 - n) * a + n * b;
+			}
+			window["trace"] = trace
+
+			const getOption = (option) => {
+				let defaultObj = {
+					pointerColor: "#750c7e",
+					ringSize: 15,
+					ringClickSize: (options["ringSize"] || 15) - 5,
+				}
+				if (options[option] == undefined) {
+					return defaultObj[option]
+				} else {
+					return options[option]
+				}
+			}
+
+			const render = () => {
+				if (mouseX != undefined) {
+					ringX = trace(ringX, mouseX, 0.2)
+					ringY = trace(ringY, mouseY, 0.2)
+
+					if (document.querySelector(".p-action-click:hover")) {
+						pointer.style.borderColor = getOption("pointerColor")
+						isHover = true
+					} else {
+						pointer.style.borderColor = "white"
+						isHover = false
+					}
+					ring.style.borderColor = getOption("pointerColor")
+					if (mouseDown) {
+						ring.style.padding = getOption("ringClickSize") + "px"
+					} else {
+						ring.style.padding = getOption("ringSize") + "px"
+					}
+					
+					pointer.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+
+					ring.style.transform = `translate(${ringX - (mouseDown ? getOption("ringClickSize") : getOption("ringSize"))}px, ${ringY - (mouseDown ? getOption("ringClickSize") : getOption("ringSize"))}px)`
+
+					requestAnimationFrame(render)
+				}
+			}
+			requestAnimationFrame(render)
+		}
+
+		jQuery('a').on('mousemove', function (e) {
+			jQuery('#pointer-ring').addClass('active');
+		});
+
+		jQuery('a').on('mouseleave', function (e) {
+			jQuery('#pointer-ring').removeClass('active');
+		});
+
+		init_pointer({});
+	}
+
+	const handleTagSlider = ()=>{
+		if (jQuery('#tagSlider').length > 0) {
+			$('#tagSlider').grouploop && $('#tagSlider').grouploop({
+				velocity: 1,
+				forward: false,
+				pauseOnHover: true,
+				childNode: ".item",
+				childWrapper: ".item-wrap"
+			});
+
+		}
+		if (jQuery('#tagSlider2').length > 0) {
+			$('#tagSlider2').grouploop && $('#tagSlider2').grouploop({
+				velocity: 1,
+				forward: true,
+				pauseOnHover: true,
+				childNode: ".item",
+				childWrapper: ".item-wrap"
+			});
+		}
+	}
+
+
 	
     return(
 		<>
@@ -28,7 +154,7 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 				<div className="container-fluid">
 					<div className="tag-slider style-1 wow fadeInUp" data-wow-delay="0.2s" id="tagSlider">
 						<div className="item-wrap">
-							{items1?.map((item, i)=>{
+							{items?.map((item, i)=>{
 								return(
 									<div className="item">
 										<a href="javascript:void(0);" className="companies-wrapper">
@@ -43,7 +169,7 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 					</div>
 					<div className="tag-slider wow fadeInUp" data-wow-delay="0.4s" id="tagSlider2">
 						<div className="item-wrap">	
-							{items2?.map((item, i)=>{
+							{items?.map((item, i)=>{
 								return(
 									<div className="item">
 										<a href="javascript:void(0);" className="companies-wrapper">

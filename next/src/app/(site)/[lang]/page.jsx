@@ -28,8 +28,8 @@ export default function Page({ params }) {
             <LastProducts items={items?.lastProducts} categories={items?.categories} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
             <BestSeller items={items?.bestSellerProducts} mediaPath={mediaPath} Lang={Lang} />
             <Line items={items?.categories?.filter(cat=>cat?.parent_id==0)} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
-            <MostVisited items={items?.mostVisitedProducts} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
             <Brand items={items?.brands} mediaPath={mediaPath} Lang={Lang} />
+            <MostVisited items={items?.mostVisitedProducts} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
         </>
     );
 }

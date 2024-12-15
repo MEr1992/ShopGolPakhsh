@@ -5,7 +5,7 @@ import Link from "next/link";
 // import { useAuth } from "../Auth/auth";
 import Img from "@/Theme/Site/Utils";
 import { usePathname, useSearchParams } from "next/navigation";
-// import { local, useLang } from "@/lib";
+import { local, useLang } from "@/lib";
 import { useEffect } from "react";
 
 const { assetsPath } = useConfig();
@@ -16,7 +16,7 @@ export const Header = ({ params,menus,mediaPath }) => {
 
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	// const { Lang, local } = useLang();
+	const { Lang, local } = useLang();
 	let locale = "fa";
 
 	useEffect(()=>{
@@ -61,7 +61,7 @@ export const Header = ({ params,menus,mediaPath }) => {
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>Home</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{Lang("public.Home")}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
 										<a href="#!"><span>Shop</span><i className="fas fa-chevron-down tabIndex"></i></a>
@@ -82,7 +82,7 @@ export const Header = ({ params,menus,mediaPath }) => {
 													</ul>
 												</li>
 												<li className="side-right line-left">
-													<a href="#!" className="menu-title">Line</a>
+													<a href="#!" className="menu-title">{Lang("public.Line")}</a>
 													<ul>
 														{parentCategories?.map((category,i)=>{
 															return(
@@ -155,10 +155,10 @@ export const Header = ({ params,menus,mediaPath }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>about_us</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{Lang("public.about_us")}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>contact_us</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{Lang("public.contact_us")}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 								</ul>
 								<div className="dz-social-icon">

@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v13.1.1 (64 bit)
-MySQL - 10.4.24-MariaDB : Database - shoponline
+SQLyog Enterprise v13.1.1 (64 bit)
+MySQL - 10.4.24-MariaDB : Database - shopgol
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 10.4.24-MariaDB : Database - shoponline
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`shoponline` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`shopgol` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `shoponline`;
+USE `shopgol`;
 
 /*Table structure for table `base_keywords` */
 
@@ -148,68 +148,24 @@ DROP TABLE IF EXISTS `cache`;
 CREATE TABLE `cache` (
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int(11) NOT NULL
+  `expiration` int(11) NOT NULL,
+  PRIMARY KEY (`key`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `cache` */
 
-/*Table structure for table `content_site_texts` */
+/*Table structure for table `cache_locks` */
 
-DROP TABLE IF EXISTS `content_site_texts`;
+DROP TABLE IF EXISTS `cache_locks`;
 
-CREATE TABLE `content_site_texts` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `title_fa` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان به زبان فارسی',
-  `code` int(11) DEFAULT NULL COMMENT 'کد',
-  `icon` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'آیکون',
-  `image` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
-  `text_fa` text COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'متن به زبان فارسی',
-  `text_fa_2` text COLLATE utf8_persian_ci DEFAULT NULL,
-  `btn_txt_1` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL,
-  `btn_url_1` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL,
-  `btn_txt_2` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL,
-  `btn_url_2` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL,
-  `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int(11) NOT NULL,
+  PRIMARY KEY (`key`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `content_site_texts` */
-
-/*Table structure for table `content_sliders` */
-
-DROP TABLE IF EXISTS `content_sliders`;
-
-CREATE TABLE `content_sliders` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
-  `title_2` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان دوم',
-  `link` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'لینک',
-  `link_2` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'لینک دوم',
-  `btn` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان دکمه',
-  `btn_2` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان دکمه دوم',
-  `price` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'قیمت در اسلایدر',
-  `mobile` int(11) NOT NULL DEFAULT 0 COMMENT 'اسلایدر موبایل مقدار 1 و اسلایدر سیستم مقدار 0',
-  `order` int(11) DEFAULT 1 COMMENT 'ترتیب',
-  `image` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
-  `lang` varchar(2) COLLATE utf8_persian_ci NOT NULL DEFAULT 'fa' COMMENT 'زبان',
-  `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
-
-/*Data for the table `content_sliders` */
-
-insert  into `content_sliders`(`id`,`title`,`title_2`,`link`,`link_2`,`btn`,`btn_2`,`price`,`mobile`,`order`,`image`,`lang`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Beautiful Woman Purple Sweater.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$75.00',0,1,'banner-media.png','fa',1,NULL,NULL,NULL),
-(2,'Shot Slad Curly Woman.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$50.00',0,1,'banner-media2.png','fa',1,NULL,NULL,NULL),
-(3,'Athletic Mesh Sports Leggings.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$65.00',0,1,'banner-media3.png','fa',1,NULL,NULL,NULL),
-(4,'Curly Girl Beautiful Dress.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$85.00',0,1,'banner-media4.png','fa',1,NULL,NULL,NULL),
-(5,'Vintage Denim Overalls Shorts.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$95.00',0,1,'banner-media5.png','fa',1,NULL,NULL,NULL);
+/*Data for the table `cache_locks` */
 
 /*Table structure for table `product_brands` */
 
@@ -218,31 +174,19 @@ DROP TABLE IF EXISTS `product_brands`;
 CREATE TABLE `product_brands` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name_fa` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نام',
-  `name_en` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نام',
   `logo` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'لوگو',
-  `count_product` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد محصولات در برند',
+  `count_product` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد محصولات در لاین',
   `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `product_brands` */
 
-insert  into `product_brands`(`id`,`name_fa`,`name_en`,`logo`,`count_product`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,NULL,NULL,'logo1.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(2,NULL,NULL,'logo2.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(3,NULL,NULL,'logo3.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(4,NULL,NULL,'logo4.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(5,NULL,NULL,'logo5.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(6,NULL,NULL,'logo6.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(7,NULL,NULL,'logo7.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(8,NULL,NULL,'logo8.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(9,NULL,NULL,'logo1.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(10,NULL,NULL,'logo2.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(11,NULL,NULL,'logo3.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(12,NULL,NULL,'logo4.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17');
+insert  into `product_brands`(`id`,`name_fa`,`logo`,`count_product`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
+(1,'آکاردان edit','image91051730361918.png',0,0,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17');
 
 /*Table structure for table `product_categories` */
 
@@ -251,31 +195,16 @@ DROP TABLE IF EXISTS `product_categories`;
 CREATE TABLE `product_categories` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title_fa` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
-  `title_en` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
-  `parent_id` int(11) NOT NULL DEFAULT 0 COMMENT 'شناسه دسته بندی اصلی',
   `image` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
-  `count_child` int(2) NOT NULL DEFAULT 0 COMMENT 'تعداد دسته بندی سطح دو',
-  `count_product` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد محصولات در دسته بندی',
+  `count_product` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد محصولات در لاین',
   `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `product_categories` */
-
-insert  into `product_categories`(`id`,`title_fa`,`title_en`,`parent_id`,`image`,`count_child`,`count_product`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Luxury Bras','Luxury Bras',0,'line-3.png',3,6,1,NULL,NULL,NULL),
-(2,'Summer','Summer',0,'line-2.png',2,6,1,NULL,NULL,NULL),
-(3,'Swimwear','Swimwear',0,'line-1.png',2,5,1,NULL,NULL,NULL),
-(4,'Shirts','Shirts',1,'1.png',0,4,1,NULL,NULL,NULL),
-(5,'Shorts','Shorts',2,'2.png',0,5,1,NULL,NULL,NULL),
-(6,'t-Shirt','t-Shirt',3,'3.png',0,4,1,NULL,NULL,NULL),
-(7,'t-Jeans','t-Jeans',1,'4.png',0,1,1,NULL,NULL,NULL),
-(8,'t-Jeans','t-Jeans',2,'5.png',0,1,1,NULL,NULL,NULL),
-(9,'Shorts','Shorts',3,'2.png',0,1,1,NULL,NULL,NULL),
-(10,'t-Shirt','t-Shirt',1,'3.png',0,1,1,NULL,NULL,NULL);
 
 /*Table structure for table `product_keyword` */
 
@@ -293,6 +222,24 @@ CREATE TABLE `product_keyword` (
 
 /*Data for the table `product_keyword` */
 
+/*Table structure for table `product_lines` */
+
+DROP TABLE IF EXISTS `product_lines`;
+
+CREATE TABLE `product_lines` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title_fa` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
+  `image` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
+  `count_product` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد محصولات در لاین',
+  `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+/*Data for the table `product_lines` */
+
 /*Table structure for table `products` */
 
 DROP TABLE IF EXISTS `products`;
@@ -301,46 +248,21 @@ CREATE TABLE `products` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نام',
   `category_id` int(11) DEFAULT NULL COMMENT 'شناسه دسته بندی محصول',
-  `parent_category` int(11) DEFAULT NULL COMMENT 'شناسه دسته بندی اصلی محصول',
+  `line_id` int(11) DEFAULT NULL COMMENT 'شناسه لاین محصول',
   `brand_id` int(11) DEFAULT NULL COMMENT 'شناسه برند محصول',
-  `price` int(11) DEFAULT NULL COMMENT 'قیمت',
-  `discount` int(11) DEFAULT NULL COMMENT 'درصد تخفیف',
-  `discount_price` int(11) DEFAULT NULL COMMENT 'قیمت تخفیف خورده',
   `image` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
   `review` text COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نقد وبررسی',
   `usage` text COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نحوه استفاده و مصرف',
   `description` text COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'توضیحات',
-  `count_view` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد بازدید',
-  `count_sell` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد فروش',
-  `count_like` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد علاقه مندی',
   `lang` varchar(255) COLLATE utf8_persian_ci NOT NULL DEFAULT 'fa' COMMENT 'زبان',
   `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `products` */
-
-insert  into `products`(`id`,`name`,`category_id`,`parent_category`,`brand_id`,`price`,`discount`,`discount_price`,`image`,`review`,`usage`,`description`,`count_view`,`count_sell`,`count_like`,`lang`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Cozy Knit Cardigan Sweater',4,1,1,95,79,80,'product-2-1.png',NULL,NULL,NULL,0,10,0,'fa',1,NULL,NULL,NULL),
-(2,'Sophisticated Swagger Suit',5,2,2,95,NULL,NULL,'product-2-2.png',NULL,NULL,NULL,0,8,0,'fa',1,NULL,NULL,NULL),
-(3,'Classic Denim Skinny Jeans',6,3,3,95,NULL,NULL,'product-2-3.png',NULL,NULL,NULL,0,5,0,'fa',1,NULL,NULL,NULL),
-(4,'Athletic Mesh Sports Leggings',7,1,4,95,79,80,'product-2-4.png',NULL,NULL,NULL,0,2,0,'fa',1,NULL,NULL,NULL),
-(5,'Printed Spread Collar Casual Shirt',8,2,5,95,79,80,'shart-1.png',NULL,NULL,NULL,100,0,0,'fa',1,NULL,NULL,NULL),
-(6,'Checkered Slim Collar Casual Shirt',9,3,6,95,79,80,'shart-2.png',NULL,NULL,NULL,90,0,0,'fa',1,NULL,NULL,NULL),
-(7,'Solid Cut Away Collar Casual Shirt',10,1,7,95,79,80,'shart-3.png',NULL,NULL,NULL,80,0,0,'fa',1,NULL,NULL,NULL),
-(8,'Printed Spread Collar Casual Shirt',5,2,8,95,79,80,'shart-4.png',NULL,NULL,NULL,70,0,0,'fa',1,NULL,NULL,NULL),
-(9,'Checkered Spread Collar Casual Shirt',6,3,9,95,79,80,'shart-5.png',NULL,NULL,NULL,60,0,0,'fa',1,NULL,NULL,NULL),
-(10,'Water-Resistant Windbreaker Jacket',4,1,10,95,20,80,'8.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(11,'Plaid Wool Winter Coat',5,2,11,95,20,80,'7.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(12,'Satin Wrap Party Blouse',6,3,12,95,20,80,'6.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(13,'Vintage Denim Overalls Shorts',4,1,1,95,20,80,'5.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(14,'Athletic Mesh Sports Leggings',5,2,2,95,20,80,'4.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(15,'Classic Denim Skinny Jeans',6,3,3,95,20,80,'3.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(16,'Sophisticated Swagger Suit',4,1,4,95,20,80,'2.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(17,'Cozy Knit Cardigan Sweater',5,2,5,95,20,80,'1.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL);
 
 /*Table structure for table `user_roles` */
 

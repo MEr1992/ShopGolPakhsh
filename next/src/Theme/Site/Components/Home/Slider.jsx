@@ -18,6 +18,7 @@ export const Slider = ({ items,mediaPath,Lang }) => {
 				arrows: false,
 				fade: false,
 				infinite: true,
+				rtl: true,
 				asNavFor: '.slider-thumbs-top'
 			});
 
@@ -28,6 +29,7 @@ export const Slider = ({ items,mediaPath,Lang }) => {
 				dots: false,
 				centerMode: false,
 				infinite: true,
+				rtl: true,
 				focusOnSelect: true,
 			});
 			// MagnificPopup();

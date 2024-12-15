@@ -47,27 +47,6 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 												</div>
 											</div>);
 									})}
-									{/* <div className="col-lg-6 col-md-6 col-sm-6">
-										<div className="shop-card style-6 wow fadeInUp" data-wow-delay="0.8s">
-											<div className="dz-media">
-												<img src="images/shop/product/medium/1.png" alt="image"/>
-											</div>
-											<div className="dz-content">
-												<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-md">Child Fashion</a>
-											</div>
-										</div>
-									</div>
-									<div className="col-lg-6 col-md-6 col-sm-6">
-										<div className="shop-card style-6 wow fadeInUp" data-wow-delay="1.0s">
-											<div className="dz-media">
-												<img src="images/shop/product/medium/2.png" alt="image"/>
-											</div>
-											<div className="dz-content">
-												<a href="shop-list.html" className="btn btn-outline-secondary btn-light btn-md">Man collection</a>
-											</div>
-											<span className="sale-badge">50%<br/>Sale <img src="images/star.png" alt=""/></span>
-										</div>
-									</div> */}
 								</div>
 							</div>
 						</div>
