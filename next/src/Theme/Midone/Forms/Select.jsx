@@ -20,7 +20,12 @@ const Select = (props)=>{
         value: defaultValue,
     });
 
-    useEffect(()=> setState({value: defaultValue}), [defaultValue]);
+    // console.log("defaultValue is:", defaultValue, children, data);
+
+    useEffect(()=> {
+            setState({value: defaultValue});
+        }
+    , [defaultValue, children]);
     const {Lang} = useLang();
 
     return(
@@ -28,13 +33,13 @@ const Select = (props)=>{
             <label htmlFor={id} className='form-label font-bold'>{label} {requiredDiv}</label>
             <select
                 id = {id}
-                key={state?.value}
+                key={state?.value + data?.length + children}
                 ref={Element.createRef(refItem)}
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 w-full'
                 disabled={(disabled == undefined)?false:true}
-                onChange={(e)=>{state.value = e.target.value; onChange&&onChange(e)}}
+                onChange={(e)=>{state.value = e.target.value; onChange && onChange(e)}}
                 defaultValue={state?.value}
-                style= {{fontHeight: "1.65rem"}}
+                style = {{fontHeight: "1.65rem"}}
             >
                 <option value="" >{Lang('public.select_option')}</option>
                 { children }

@@ -1,41 +1,62 @@
 "use client";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
-import { Grid,Frame,useData,FeatherIcon,Pic } from "@/Theme/Midone/Utils";
+import { useData } from "@/Theme/Midone/Utils/Data";
+import { Grid, Frame, FeatherIcon, Pic } from "@/Theme/Midone/Utils";
+// import { useAuth } from "@/lib/auth";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function List(){
-    const { Lang,local } = useLang();
-    const { laraAdmin,nextAdmin } = useConfig();
-    const { destroy } = useData();
-    const formUrl = "/products";
+    // const {user} = useAuth();
+    // let query = user?.role_id == 2 &&`promoter=${user?.id}`;
+    // const access = user?.role_id == 1 ?  true : false;
+    const {Lang,local} = useLang();
+    const {mediaPath,laraAdmin,nextAdmin} = useConfig();
+    const {destroy} = useData();
+    // const urlParams = useSearchParams()
+    // const  promotion = urlParams.get('promotion') || null;
+
+    // access==true && promotion!= null ? query = "promotion="+promotion : query;
+
+    const formUrl = nextAdmin+"/products";
+    // const url = laraAdmin+"/products?"+query;
+    const url = laraAdmin+"/products";
 
     let info = {
-        insertLink: nextAdmin+formUrl+"/new",
-        url: laraAdmin+formUrl,
+        // insertLink: access ? `${formUrl}/new` : "",
+        insertLink: `${formUrl}/new`,
+        // perPage:20,
+        url: url,
         columns: [
             {label: "", jsx:(item)=>
-                <Pic src={mediaPath+"/product/"+item?.image} defaultImg={`${mediaPath}/public/default/avatar.png`} key={"img"+item?.image} classImg="user-avatar rounded-full" />},
-            {label: "name", field: "name"},
-            {label: "category", field: "category"},
-            {label: "line", field: "line"},
-            {label: "brand", field: "brand"},
+                <Pic src={mediaPath+"/product/"+item?.image} defaultImg={`${mediaPath}/public/default/avatar.png`} key={"img"+item?.image} classImg="user-avatar" />},
+            {label: "product", field: "name"},
+            {label: "category", field: "category.title_fa"},
+            {label: "line", field: "line.title_fa"},
+            {label: "brand", field: "brand.name_fa"},
             {label: "status",  jsx: (item)=><span className={item.active_status?.color}>{item.active_status?.["title_"+local]}</span>},
-            {label: "", sort:false, width:"110px", jsx:(item)=>
-                <>
+            {label: "", sort:false, 
+                jsx:(item)=><>
                     <div className='flex justify-center '>
-                        <FeatherIcon name="Edit" url={nextAdmin+formUrl+"/"+item.id+"/edit"} tooltip={Lang('public.edit')} />
-                        <FeatherIcon name="XOctagon" tooltip={Lang('public.delete')} color="darkred" onClick={()=>destroy(laraAdmin+formUrl+"/"+item.id)} />
+                        <FeatherIcon  name="Edit" url={formUrl+"/"+item?.id+"/edit"} tooltip={Lang('public.edit')} />
+                        {/* <FeatherIcon  name="Users" url={formUrl+"/"+item?.id+"/promoters"} tooltip={Lang('public.promoters')} /> */}
+                        <FeatherIcon name="Eye" url={formUrl+"/"+item?.id} tooltip={Lang('public.view')} />
+                        <FeatherIcon  name="XOctagon" tooltip={Lang('public.delete')} color="darkred" onClick={()=>destroy(laraAdmin+"/products"+"/"+item?.id)} />
                     </div>
                 </>
-            },
+            }, 
         ],
     }
 
     return(
-        <Frame>
-            <div className="intro-y col-span-12">
-                <Grid {...info} key={"table key"} />
-            </div>
-        </Frame>
+        <>
+            <Frame title={Lang(["public.products"])}>
+                <div className="intro-y col-span-12">
+                    <Grid {...info} />
+                   
+                </div>
+            </Frame>
+        </>
     );
 }

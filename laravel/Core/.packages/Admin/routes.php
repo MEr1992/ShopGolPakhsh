@@ -46,6 +46,7 @@ Route::resource("blog-subjects","Content\BlogSubjectController");
 // ================ End Routes Content ===========================================
 
 // ================ Start Routes Product =========================================
+Route::get("products/get-needles", "Product\ProductController@getNeedles");
 Route::resource("products","Product\ProductController");
 Route::resource("categories","Product\ProductCategoryController");
 Route::resource("brands","Product\ProductBrandController");
