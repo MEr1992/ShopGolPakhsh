@@ -176,6 +176,7 @@ export const Footer = ({ params="" }) => {
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/lightgallery.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js`} strategy='afterInteractive' />
+			<Script src={`${assetsPath}/pixio/vendor/group-slide/group-loop.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
 			{/* <Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/js/dz.ajax.js`} strategy='afterInteractive' /> */}

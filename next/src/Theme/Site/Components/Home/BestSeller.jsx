@@ -11,12 +11,12 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 							<div className="row">
 								{items?.map((item, i)=>{
 									let classSpan = "text-success";
-									let displayDiscount = Lang("public.Free delivery");
+									let displayDiscount = Lang("public.free_delivery");
 									let displayPrice = <> {"$"+item?.price} </>
 									if(item?.discount>0)
 									{
 										classSpan = "";
-										displayDiscount = <>{Lang("public.up to")+" "+item?.discount+"%"+Lang("public.off")}</>;
+										displayDiscount = <>{Lang("public.up_to")+" "+item?.discount+"%"+Lang("public.off")}</>;
 										displayPrice = <>
 											{"$"+item?.discount_price}
 											<del>{"$"+item?.price}</del>
@@ -46,12 +46,12 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 								<div className="dz-media h-100">
 									<img src={mediaPath+"/siteText/pic1.jpg"} alt=""/>
 									<div className="media-contant">
-									<h2 className="title">{Lang("public.Best Seller on everyday For YOU")}</h2> 
-										<h5 className="sub-title">{Lang("public.Up to 60% off + up to $107 Cashback")}</h5>
-										<a href="shop-list.html" className="btn btn-white btn-lg">{Lang("public.See All")}</a>
+									<h2 className="title">{Lang("public.tilte_best")}</h2> 
+										<h5 className="sub-title">{Lang("public.text_best")}</h5>
+										<a href="shop-list.html" className="btn btn-white btn-lg">{Lang("public.see_all")}</a>
 									</div>
 									<svg className="title animation-text" viewBox="0 0 1320 300">
-										<text x="0" y="">{Lang("public.Great saving")}</text>
+										<text x="0" y="">{Lang("public.animate_best")}</text>
 									</svg>	
 								</div>
 							</div>

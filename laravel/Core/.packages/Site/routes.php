@@ -13,6 +13,7 @@ Route::middleware(['auth:web'])->get('/user', function () {
 });
 
 Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($lang) {
+    // dd($lang);
     // Authentication routes...
     Route::get('/login/google', 'Auth\GoogleController@redirectToGoogle')->name('auth.google');
 
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
 
     // public  routes that do not require authintication
     Route::get('/', 'Home\HomeController@index');
+    Route::get('/get-menus', 'Home\HomeController@getMenus');
     // Route::get('/about', 'Home\HomeController@about');
     // Route::get('/contact', 'Home\HomeController@contact');
 
