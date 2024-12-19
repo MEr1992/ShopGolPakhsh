@@ -9,7 +9,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 					<div className="section-head style-1 wow fadeInUp d-lg-flex justify-content-between" data-wow-delay="0.2s">
 						<div className="left-content">
 							{/* <h2 className="title">{Lang("public.Blockbuster deals")}</h2> */}
-							<h2 className="title">{Lang("public.Most popular products")}</h2>
+							<h2 className="title">{Lang("public.most_visited_products")}</h2>
 						</div>
 						<a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">See all deals 
 							<i className="icon feather icon-chevron-right font-18"></i>
@@ -40,7 +40,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 											</div>
 											<div className="dz-content">
 												<div>
-													<span className="sale-title">{displayDiscount}</span>
+													<span className="sale-title">{item?.category?.["title_"+local]}</span>
 													<h5 className="title"><a href="shop-list.html">{item?.name}</a></h5>
 												</div>
 												<h6 className="price">{displayPrice}</h6>

@@ -108,6 +108,7 @@ DROP TABLE IF EXISTS `blog_subjects`;
 CREATE TABLE `blog_subjects` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title_fa` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
+  `title_en` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'عنوان',
   `image` varchar(200) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'تصویر',
   `count_blog` int(11) NOT NULL DEFAULT 0 COMMENT 'تعداد مقاله در موضوع',
   `status_id` int(11) NOT NULL DEFAULT 1 COMMENT 'شناسه وضعیت فعال/غیر فعال',
@@ -115,9 +116,14 @@ CREATE TABLE `blog_subjects` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `blog_subjects` */
+
+insert  into `blog_subjects`(`id`,`title_fa`,`title_en`,`image`,`count_blog`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
+(1,'پوست','Skin','1.png',0,1,NULL,NULL,NULL),
+(2,'مو','Hair','2.png',0,1,NULL,NULL,NULL),
+(3,'بدن','Body','3.png',0,1,NULL,NULL,NULL);
 
 /*Table structure for table `blogs` */
 
@@ -200,16 +206,21 @@ CREATE TABLE `content_sliders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `content_sliders` */
 
 insert  into `content_sliders`(`id`,`title`,`title_2`,`link`,`link_2`,`btn`,`btn_2`,`price`,`mobile`,`order`,`image`,`lang`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Beautiful Woman Purple Sweater.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$75.00',0,1,'banner-media.png','fa',1,NULL,NULL,NULL),
-(2,'Shot Slad Curly Woman.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$50.00',0,1,'banner-media2.png','fa',1,NULL,NULL,NULL),
-(3,'Athletic Mesh Sports Leggings.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$65.00',0,1,'banner-media3.png','fa',1,NULL,NULL,NULL),
-(4,'Curly Girl Beautiful Dress.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$85.00',0,1,'banner-media4.png','fa',1,NULL,NULL,NULL),
-(5,'Vintage Denim Overalls Shorts.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$95.00',0,1,'banner-media5.png','fa',1,NULL,NULL,NULL);
+(1,'Beautiful Woman Purple Sweater.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$75.00',0,1,'banner-media.png','en',1,NULL,NULL,NULL),
+(2,'Shot Slad Curly Woman.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$50.00',0,1,'banner-media2.png','en',1,NULL,NULL,NULL),
+(3,'Athletic Mesh Sports Leggings.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$65.00',0,1,'banner-media3.png','en',1,NULL,NULL,NULL),
+(4,'Curly Girl Beautiful Dress.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$85.00',0,1,'banner-media4.png','en',1,NULL,NULL,NULL),
+(5,'Vintage Denim Overalls Shorts.',NULL,NULL,NULL,'ADD TO CART','VIEW DETAIL','$95.00',0,1,'banner-media5.png','en',1,NULL,NULL,NULL),
+(6,'ژاکت بنفش زن زیبا.',NULL,NULL,NULL,'افزودن به سبد خرید','مشاهده جزییات','$75.00',0,1,'banner-media.png','fa',1,NULL,NULL,NULL),
+(7,'شلیک اسلد زن فرفری.',NULL,NULL,NULL,'افزودن به سبد خرید','مشاهده جزییات','$50.00',0,1,'banner-media2.png','fa',1,NULL,NULL,NULL),
+(8,'ساق ورزشی مشبک ورزشی.',NULL,NULL,NULL,'افزودن به سبد خرید','مشاهده جزییات','$65.00',0,1,'banner-media3.png','fa',1,NULL,NULL,NULL),
+(9,'لباس دختر مجعد زیبا.',NULL,NULL,NULL,'افزودن به سبد خرید','مشاهده جزییات','$85.00',0,1,'banner-media4.png','fa',1,NULL,NULL,NULL),
+(10,'شلوارک جین قدیمی.',NULL,NULL,NULL,'افزودن به سبد خرید','مشاهده جزییات','$95.00',0,1,'banner-media5.png','fa',1,NULL,NULL,NULL);
 
 /*Table structure for table `product_brands` */
 
@@ -226,7 +237,7 @@ CREATE TABLE `product_brands` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `product_brands` */
 
@@ -241,8 +252,16 @@ insert  into `product_brands`(`id`,`name_fa`,`name_en`,`logo`,`count_product`,`s
 (8,NULL,NULL,'logo8.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
 (9,NULL,NULL,'logo1.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
 (10,NULL,NULL,'logo2.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(11,NULL,NULL,'logo3.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
-(12,NULL,NULL,'logo4.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17');
+(11,NULL,NULL,'logo1.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(12,NULL,NULL,'logo2.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(13,NULL,NULL,'logo3.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(14,NULL,NULL,'logo4.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(15,NULL,NULL,'logo5.png',2,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(16,NULL,NULL,'logo6.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(17,NULL,NULL,'logo7.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(18,NULL,NULL,'logo8.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(19,NULL,NULL,'logo1.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17'),
+(20,NULL,NULL,'logo2.png',1,1,NULL,'2024-10-31 11:35:22','2024-10-31 12:52:17');
 
 /*Table structure for table `product_categories` */
 
@@ -266,16 +285,16 @@ CREATE TABLE `product_categories` (
 /*Data for the table `product_categories` */
 
 insert  into `product_categories`(`id`,`title_fa`,`title_en`,`parent_id`,`image`,`count_child`,`count_product`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Luxury Bras','Luxury Bras',0,'line-3.png',3,6,1,NULL,NULL,NULL),
-(2,'Summer','Summer',0,'line-2.png',2,6,1,NULL,NULL,NULL),
-(3,'Swimwear','Swimwear',0,'line-1.png',2,5,1,NULL,NULL,NULL),
-(4,'Shirts','Shirts',1,'1.png',0,4,1,NULL,NULL,NULL),
-(5,'Shorts','Shorts',2,'2.png',0,5,1,NULL,NULL,NULL),
-(6,'t-Shirt','t-Shirt',3,'3.png',0,4,1,NULL,NULL,NULL),
-(7,'t-Jeans','t-Jeans',1,'4.png',0,1,1,NULL,NULL,NULL),
-(8,'t-Jeans','t-Jeans',2,'5.png',0,1,1,NULL,NULL,NULL),
-(9,'Shorts','Shorts',3,'2.png',0,1,1,NULL,NULL,NULL),
-(10,'t-Shirt','t-Shirt',1,'3.png',0,1,1,NULL,NULL,NULL);
+(1,'لباس های لوکس','Luxury Bras',0,'line-3.png',3,6,1,NULL,NULL,NULL),
+(2,'تابستان','Summer',0,'line-2.png',2,6,1,NULL,NULL,NULL),
+(3,'لباس شنا','Swimwear',0,'line-1.png',2,5,1,NULL,NULL,NULL),
+(4,'پیراهن','Shirts',1,'1.png',0,4,1,NULL,NULL,NULL),
+(5,'شورت','Shorts',2,'2.png',0,5,1,NULL,NULL,NULL),
+(6,'تی شرت','t-Shirt',3,'3.png',0,4,1,NULL,NULL,NULL),
+(7,'تی جین','t-Jeans',1,'4.png',0,1,1,NULL,NULL,NULL),
+(8,'تی جین','t-Jeans',2,'5.png',0,1,1,NULL,NULL,NULL),
+(9,'شورت','Shorts',3,'2.png',0,1,1,NULL,NULL,NULL),
+(10,'تی شرت','t-Shirt',1,'3.png',0,1,1,NULL,NULL,NULL);
 
 /*Table structure for table `product_keyword` */
 
@@ -319,28 +338,45 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 /*Data for the table `products` */
 
 insert  into `products`(`id`,`name`,`category_id`,`parent_category`,`brand_id`,`price`,`discount`,`discount_price`,`image`,`review`,`usage`,`description`,`count_view`,`count_sell`,`count_like`,`lang`,`status_id`,`deleted_at`,`created_at`,`updated_at`) values 
-(1,'Cozy Knit Cardigan Sweater',4,1,1,95,79,80,'product-2-1.png',NULL,NULL,NULL,0,10,0,'fa',1,NULL,NULL,NULL),
-(2,'Sophisticated Swagger Suit',5,2,2,95,NULL,NULL,'product-2-2.png',NULL,NULL,NULL,0,8,0,'fa',1,NULL,NULL,NULL),
-(3,'Classic Denim Skinny Jeans',6,3,3,95,NULL,NULL,'product-2-3.png',NULL,NULL,NULL,0,5,0,'fa',1,NULL,NULL,NULL),
-(4,'Athletic Mesh Sports Leggings',7,1,4,95,79,80,'product-2-4.png',NULL,NULL,NULL,0,2,0,'fa',1,NULL,NULL,NULL),
-(5,'Printed Spread Collar Casual Shirt',8,2,5,95,79,80,'shart-1.png',NULL,NULL,NULL,100,0,0,'fa',1,NULL,NULL,NULL),
-(6,'Checkered Slim Collar Casual Shirt',9,3,6,95,79,80,'shart-2.png',NULL,NULL,NULL,90,0,0,'fa',1,NULL,NULL,NULL),
-(7,'Solid Cut Away Collar Casual Shirt',10,1,7,95,79,80,'shart-3.png',NULL,NULL,NULL,80,0,0,'fa',1,NULL,NULL,NULL),
-(8,'Printed Spread Collar Casual Shirt',5,2,8,95,79,80,'shart-4.png',NULL,NULL,NULL,70,0,0,'fa',1,NULL,NULL,NULL),
-(9,'Checkered Spread Collar Casual Shirt',6,3,9,95,79,80,'shart-5.png',NULL,NULL,NULL,60,0,0,'fa',1,NULL,NULL,NULL),
-(10,'Water-Resistant Windbreaker Jacket',4,1,10,95,20,80,'8.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(11,'Plaid Wool Winter Coat',5,2,11,95,20,80,'7.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(12,'Satin Wrap Party Blouse',6,3,12,95,20,80,'6.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(13,'Vintage Denim Overalls Shorts',4,1,1,95,20,80,'5.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(14,'Athletic Mesh Sports Leggings',5,2,2,95,20,80,'4.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(15,'Classic Denim Skinny Jeans',6,3,3,95,20,80,'3.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(16,'Sophisticated Swagger Suit',4,1,4,95,20,80,'2.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
-(17,'Cozy Knit Cardigan Sweater',5,2,5,95,20,80,'1.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL);
+(1,'Cozy Knit Cardigan Sweater',4,1,1,95,79,80,'product-2-1.png',NULL,NULL,NULL,0,10,0,'en',1,NULL,NULL,NULL),
+(2,'Sophisticated Swagger Suit',5,2,2,95,NULL,NULL,'product-2-2.png',NULL,NULL,NULL,0,8,0,'en',1,NULL,NULL,NULL),
+(3,'Classic Denim Skinny Jeans',6,3,3,95,NULL,NULL,'product-2-3.png',NULL,NULL,NULL,0,5,0,'en',1,NULL,NULL,NULL),
+(4,'Athletic Mesh Sports Leggings',7,1,4,95,79,80,'product-2-4.png',NULL,NULL,NULL,0,2,0,'en',1,NULL,NULL,NULL),
+(5,'Printed Spread Collar Casual Shirt',8,2,5,95,79,80,'shart-1.png',NULL,NULL,NULL,100,0,0,'en',1,NULL,NULL,NULL),
+(6,'Checkered Slim Collar Casual Shirt',9,3,6,95,79,80,'shart-2.png',NULL,NULL,NULL,90,0,0,'en',1,NULL,NULL,NULL),
+(7,'Solid Cut Away Collar Casual Shirt',10,1,7,95,79,80,'shart-3.png',NULL,NULL,NULL,80,0,0,'en',1,NULL,NULL,NULL),
+(8,'Printed Spread Collar Casual Shirt',5,2,8,95,79,80,'shart-4.png',NULL,NULL,NULL,70,0,0,'en',1,NULL,NULL,NULL),
+(9,'Checkered Spread Collar Casual Shirt',6,3,9,95,79,80,'shart-5.png',NULL,NULL,NULL,60,0,0,'en',1,NULL,NULL,NULL),
+(10,'Water-Resistant Windbreaker Jacket',4,1,10,95,20,80,'8.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(11,'Plaid Wool Winter Coat',5,2,11,95,20,80,'7.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(12,'Satin Wrap Party Blouse',6,3,12,95,20,80,'6.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(13,'Vintage Denim Overalls Shorts',4,1,1,95,20,80,'5.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(14,'Athletic Mesh Sports Leggings',5,2,2,95,20,80,'4.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(15,'Classic Denim Skinny Jeans',6,3,3,95,20,80,'3.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(16,'Sophisticated Swagger Suit',4,1,4,95,20,80,'2.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(17,'Cozy Knit Cardigan Sweater',5,2,5,95,20,80,'1.png',NULL,NULL,NULL,0,0,0,'en',1,NULL,NULL,NULL),
+(18,'ژاکت کشباف بافتنی راحت',4,1,1,95,79,80,'product-2-1.png',NULL,NULL,NULL,0,10,0,'fa',1,NULL,NULL,NULL),
+(19,'کت و شلوار سوئگر پیچیده',5,2,2,95,NULL,NULL,'product-2-2.png',NULL,NULL,NULL,0,8,0,'fa',1,NULL,NULL,NULL),
+(20,'شلوار جین اسکینی کلاسیک',6,3,3,95,NULL,NULL,'product-2-3.png',NULL,NULL,NULL,0,5,0,'fa',1,NULL,NULL,NULL),
+(21,'ساق ورزشی مشبک ورزشی',7,1,4,95,79,80,'product-2-4.png',NULL,NULL,NULL,0,2,0,'fa',1,NULL,NULL,NULL),
+(22,'پیراهن گاه به گاه یقه پهن چاپ شده',8,2,5,95,79,80,'shart-1.png',NULL,NULL,NULL,100,0,0,'fa',1,NULL,NULL,NULL),
+(23,'پیراهن یقه باریک چهارخانه',9,3,6,95,79,80,'shart-2.png',NULL,NULL,NULL,90,0,0,'fa',1,NULL,NULL,NULL),
+(24,'پیراهن گاه به گاه یقه جامد',10,1,7,95,79,80,'shart-3.png',NULL,NULL,NULL,80,0,0,'fa',1,NULL,NULL,NULL),
+(25,'پیراهن گاه به گاه یقه پهن چاپ شده',5,2,8,95,79,80,'shart-4.png',NULL,NULL,NULL,70,0,0,'fa',1,NULL,NULL,NULL),
+(26,'پیراهن یقه پهن چهارخانه',6,3,9,95,79,80,'shart-5.png',NULL,NULL,NULL,60,0,0,'fa',1,NULL,NULL,NULL),
+(27,'ژاکت بادشکن مقاوم در برابر آب',4,1,10,95,20,80,'8.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(28,'مانتو زمستانی پشمی چهارخانه',5,2,11,95,20,80,'7.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(29,'بلوز پارتی ساتن',6,3,12,95,20,80,'6.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(30,'شلوارک جین قدیمی',4,1,1,95,20,80,'5.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(31,'ساق ورزشی مشبک ورزشی',5,2,2,95,20,80,'4.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(32,'شلوار جین اسکینی کلاسیک',6,3,3,95,20,80,'3.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(33,'کت و شلوار سوئگر پیچیده',4,1,4,95,20,80,'2.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL),
+(34,'ژاکت کشباف بافتنی راحت',5,2,5,95,20,80,'1.png',NULL,NULL,NULL,0,0,0,'fa',1,NULL,NULL,NULL);
 
 /*Table structure for table `user_roles` */
 

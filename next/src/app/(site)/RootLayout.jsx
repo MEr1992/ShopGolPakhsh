@@ -6,43 +6,35 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useEffect,useState } from "react";
 import { useConfig } from "@/lib/config";
-import { config, useLang } from "@/lib";
+import { config } from "@/lib";
 import { usePathname } from 'next/navigation';
+import { Header,Footer } from '@/Theme/Site';
 const StoreProvider = dynamic(() => import("@/redux/StoreProvider"))
 const store = dynamic(() => import("@/redux/store"))
 const App = dynamic(() => import("@/app/(shop-panel)/App").then((module) => module.App));
 const Loading = dynamic(() => import('./Loading'))
 // import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-import { Header,Footer } from '@/Theme/Site';
-
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
 	const pathParams = pathname.split("/")
-	const lang = (pathParams.length > 1) ? pathParams[1]: "fa";
+	const local = (pathParams.length > 1) ? pathParams[1]: "fa";
 	const { assetsPath,mediaPath } = useConfig();
-	// const { locale } = useLang();
-
-	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
-	const HeaderComp = Header;
-	// console.log("pathname", pathname.split("/"));
-
     let [menus, setMenus] = useState();
     useEffect(() => {
 		fetchMenus();
 	}, []);
-
 	const fetchMenus = async()=>{
-        let response = await fetch(`${config.host()}/${lang}/get-menus`, {mode: "cors"});
+        let response = await fetch(`${config.host()}/${local}/get-menus`, {mode: "cors"});
         const menuResponse = await response.json();
 		setMenus(menuResponse);
     }
-	// console.log("pathname");
-	// console.log(pathname);
-	
+	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
+	const HeaderComp = Header;
+
 	return (
 		<>
-			<html lang="en" dir={lang=="fa"?"rtl":"ltr"}>
+			<html lang="en" dir={local=="fa"?"rtl":"ltr"}>
 				<head>
 					{/* Title */}
 					<title>Gol: Shop & Online sales of cosmetic products</title>
@@ -74,6 +66,7 @@ export default function RootLayout({ children }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					{/* CSS FILES */}
 					<link rel="stylesheet" type="text/css" href={`${assetsPath}/pixio/custom.css`} />
+					{local == "fa" && <link rel="stylesheet" type="text/css" href={`${assetsPath}/pixio/style.rtl.css`} />}
 					<Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='afterInteractive' />
 
 				</head>	
@@ -81,7 +74,7 @@ export default function RootLayout({ children }) {
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
-								<Header menus={menus} mediaPath={mediaPath} />
+								<Header menus={menus} mediaPath={mediaPath} local={local} />
 								<div className="page-content bg-light">
 									{children}
 								</div>

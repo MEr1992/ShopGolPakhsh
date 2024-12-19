@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
     public function category()
     {
-        return Category::active()->get();
+        return Category::with("childs")->active()->get();
     }
     public function brand()
     {
@@ -38,7 +38,7 @@ class HomeController extends Controller
     }
     public function lastProduct()
     {
-        return Product::active()->orderByDesc("id")->limit(8)->get();
+        return Product::with("category")->active()->orderByDesc("id")->limit(8)->get();
     }
     public function bestSellerProduct()
     {
@@ -46,7 +46,7 @@ class HomeController extends Controller
     }
     public function mostVisitedProduct()
     {
-        return Product::active()->orderByDesc("count_view")->limit(10)->get();
+        return Product::with("category")->active()->orderByDesc("count_view")->limit(10)->get();
     }
     public function subject()
     {
@@ -57,7 +57,6 @@ class HomeController extends Controller
      */
     public function getMenus()
     {
-        // dd("lang is: ", app()->getLocale());
         $items = [
             'categories' => $this->category(),
             'subjects' => $this->subject(),

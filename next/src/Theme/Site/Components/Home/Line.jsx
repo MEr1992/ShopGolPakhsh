@@ -19,8 +19,8 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 						<div className="col-lg-6 col-md-12 align-self-center">
 							<div className="about-content">
 								<div className="section-head style-1 wow fadeInUp" data-wow-delay="0.4s">
-									<h3 className="title ">Set your wardrobe with our  amazing selection!</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
+									<h3 className="title ">{Lang("public.tilte_line")}</h3>
+									<p>{Lang("public.text_line")}</p>
 								</div>
 								<a className="service-btn-2 wow fadeInUp" data-wow-delay="0.6s" href="about-us.html" >
 									<span className="icon-wrapper">

@@ -1,42 +1,40 @@
 "use client"
 
+import { useEffect } from "react";
 import { config, useConfig } from "@/lib/config";
 import Link from "next/link";
 // import { useAuth } from "../Auth/auth";
 import Img from "@/Theme/Site/Utils";
 import { usePathname, useSearchParams } from "next/navigation";
-// import { local, useLang } from "@/lib";
-import { useEffect } from "react";
 
-const { assetsPath } = useConfig();
-
-export const Header = ({ params,menus,mediaPath }) => {
+export const Header = ({ params,menus,mediaPath,local }) => {
 	// const { logout, user, mutate } = useAuth({ middleware: 'guest' })
 	const { logout, user, mutate } = {};
-
+	const { assetsPath } = useConfig();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	// const { Lang, local } = useLang();
-	let locale = "fa";
 
-	useEffect(()=>{
-		// (window.jQuery, window, document), window.$(document).ready(function() {
-			// console.log(window.$);
-			// console.log(window.jQuery);
-			// window.$ && window.$("#navigation").navigation()
-		// });
-	}, []);
-
+	// useEffect(()=>{
+	// 	(window.jQuery, window, document), window.$(document).ready(function() {
+	// 		window.$ && window.$("#navigation").navigation()
+	// 	});
+	// }, []);
 	const handleLang = (target) => {
 		let url = config.front() + pathname
 
 		let newRelativePathQuery = url.replace(new RegExp(config.front() + "/[a-z]{2}"), config.front() + '/' + target) + '?' + searchParams.toString();
 		location.href = newRelativePathQuery;
 	}
-	let classHeader = (pathname=="/"+locale)? " header-transparent" : "";
+
+	let classHeader = (pathname=="/"+local)? " header-transparent" : "";
 	let parentCategories = menus?.categories?.filter((category)=>category?.parent_id==0);
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
 	let subjects = menus?.subjects;
+	let listMenus = [];
+	(local=="en")?
+		listMenus = ['Home','Shop','Blog','About us','Contact us']
+	:
+		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
 
 	return(
 		<>
@@ -44,49 +42,67 @@ export const Header = ({ params,menus,mediaPath }) => {
 				<div className="sticky-header main-bar-wraper navbar-expand-lg">
 					<div className="main-bar clearfix">
 						<div className="container-fluid clearfix d-lg-flex d-block">
-							
 							<div className="logo-header logo-dark me-md-5">
 								<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></a>
 							</div>
-							
 							<button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 								<span></span>
 								<span></span>
 								<span></span>
 							</button>
-						
 							<div className="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 								<div className="logo-header logo-dark">
 									<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>Home</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+									</li>
+									<li className="has-mega-menu sub-menu-down auto-width">
+										<a href="#!"><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<div className="mega-menu">
+											<ul>
+												{parentCategories?.map((category,i)=>{
+													return(
+														<li className="post-menu">
+															<a href="#!" className="menu-title">{category?.["title_"+local]}</a>
+															<div className="widget widget_post pt-2">
+																<ul>
+																	{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
+																		return(
+																			<li>
+																				<div className="dz-media">
+																					<img src={mediaPath+"/category/"+child?.image} alt=""/>
+																				</div>
+																				<div className="dz-content">
+																					<h6 className="name"><a href="post-standard.html">{child?.["title_"+local]}</a></h6>
+																					<span className="time">{"("+child?.count_product+")"}</span>
+																				</div>
+																			</li>
+																		);
+																	})}
+																</ul>
+															</div>
+														</li>
+													);
+												})}
+											</ul>
+										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
-										<a href="#!"><span>Shop</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu portfolio-menu">
 											<ul>
 												<li className="side-left">
 													<ul className="portfolio-nav-link">
-														{childCategories?.map((category,i)=>{
+														{subjects?.map((subject,i)=>{
 															return(
 																<li>
 																	<a href="portfolio-tiles.html">
-																		<img src={mediaPath+"/category/"+category?.image} alt="/"/>
-																		<span>{category?.["title_"+locale]}</span>
+																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
+																		<span>{subject?.["title_"+local]}</span>
 																	</a>
 																</li>
-															);
-														})}
-													</ul>
-												</li>
-												<li className="side-right line-left">
-													<a href="#!" className="menu-title">Line</a>
-													<ul>
-														{parentCategories?.map((category,i)=>{
-															return(
-																<li><a href="portfolio-details-1.html">{category?.["title_"+locale]}</a></li>
 															);
 														})}
 													</ul>
@@ -95,7 +111,7 @@ export const Header = ({ params,menus,mediaPath }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
-										<a href="#!"><span>Blog</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
 												{subjects?.map((subject,i)=>{
@@ -103,62 +119,19 @@ export const Header = ({ params,menus,mediaPath }) => {
 														<li>
 															<a href="#!" className="menu-title">Blog Dark Style</a>
 															<ul>
-																<li><a href="blog-dark-2-column.html">{subject?.["title_"+locale]}</a></li>
+																<li><a href="blog-dark-2-column.html">{subject?.["title_"+local]}</a></li>
 															</ul>
 														</li>
 													);
 												})}
-												<li className="post-menu">
-													<a href="#!" className="menu-title">Recent Posts</a>
-													<div className="widget widget_post pt-2">
-														<ul>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/1.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Cozy Knit Cardigan Sweater</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/2.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Sophisticated Swagger Suit</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/3.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Athletic Mesh Sports Leggings</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/4.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Satin Wrap Party Blouse</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-														</ul>
-													</div>
-												</li>
 											</ul>
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>about_us</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>contact_us</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href="#!"><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 								</ul>
 								<div className="dz-social-icon">

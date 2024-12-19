@@ -13,6 +13,10 @@ class Product extends Model
     protected $dates   = ['deleted_at'];
     protected $table   = 'products';
 
+    public function newQuery($excludeDeleted = true)
+    {
+        return parent::newQuery($excludeDeleted)->where($this->table.'.lang', \App::getLocale());
+    }
     protected static function booted(): void
     {
         static::deleting(function(Product $product) { // before delete() method call this 
