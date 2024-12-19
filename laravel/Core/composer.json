@@ -6,13 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "darkaonline/l5-swagger": "^8.6",
         "hekmatinasser/verta": "^8.4",
-        "joisarjignesh/bigbluebutton": "^2.8",
+        "ipe/smsir-php": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "morilog/jalali": "^3.4"
+        "morilog/jalali": "3.*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -30,7 +29,6 @@
             "Models\\": ".packages/Publics/Models/",
             "Request\\": ".packages/Publics/Requests/",
             "Admin\\": ".packages/Admin/",
-            "Site\\": ".packages/Site/",
             "SAdmin\\": ".packages/SAdmin/",
             "Publics\\": ".packages/Publics/",
             "Api\\": ".packages/Api/"
@@ -70,7 +68,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "process-timeout": 2000
     },
     "minimum-stability": "stable",
     "prefer-stable": true
