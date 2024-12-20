@@ -15,7 +15,8 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 					forward: false,
 					pauseOnHover: true,
 					childNode: ".item",
-					childWrapper: ".item-wrap"
+					childWrapper: ".item-wrap",
+					stickFirstItem: false
 				});
 
 			}
@@ -168,7 +169,7 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 						</div>	
 					</div>
 				</div>
-				<div className="container-fluid">
+				<div className="container-fluid" style={{direction:"ltr"}}>
 					<div className="tag-slider style-1 wow fadeInUp" data-wow-delay="0.2s" id="tagSlider">
 						<div className="item-wrap">
 							{items?.map((item, i)=>{

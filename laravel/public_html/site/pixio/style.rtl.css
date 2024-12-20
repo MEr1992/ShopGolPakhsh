@@ -1,5 +1,15 @@
 @import url(./fonts.rtl/YekanBakh/style.css);
-
+body{
+	font-family: "YekanBakh";
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .h6,.btn, .wp-block-button__link, .woocommerce .widget_shopping_cart .buttons a,
+.woocommerce.widget_shopping_cart .buttons a, .woocommerce #review_form #respond .form-submit input, .woocommerce-cart-form .table tr .button, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce #place_order,
+.header-nav.w3menu .nav > li > a,
+.section-head h1, .section-head .h1, .section-head h2, .section-head .h2, .section-head h3, .section-head .h3, .section-head h4, .section-head .h4, .section-head h5, .section-head .h5, .section-head h6, .section-head .h6,
+.shop-card .product-tag .badge, p,
+.header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title {
+	font-family: "YekanBakh";
+}
 /* Style For Section Header */
 .post-menu {
     text-align: right;
@@ -124,4 +134,17 @@
 /* Style For Section MostVisitedProducts */
 .section-head i {
     transform: rotate(180deg);
+}
+/* Style For Section ShopSidBar */
+.breadcrumb-row ul .breadcrumb-item + .breadcrumb-item::before {
+	/* float: left; */
+	float: right;
+	transform: rotate(180deg);
+}
+.breadcrumb-row ul li {
+	margin-left: 3px;
+}
+.filter-tag li:last-child {
+	margin-right: auto;
+	margin-left: 30px;
 }

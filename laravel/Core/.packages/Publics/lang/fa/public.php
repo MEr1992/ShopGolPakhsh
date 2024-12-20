@@ -48,7 +48,7 @@ $lang = [
     'count'=>'تعداد',
     'report'=>'گزارش',
     'more_detail'=>'جزییات بیشتر',
-    // Wors Of Site
+    // Words Of Site For Home
     'tilte_slider'=>'مجموعه تابستانی',
     'text_slider'=>'مد روز و کلاسیک برای فصل جدید',
     'rotating_slider'=>'محصولات خاص فروشگاه',
@@ -73,6 +73,7 @@ $lang = [
     'text_brand'=>'ما با 6.3 هزار شرکت قابل اعتماد به رشد خود ادامه می دهیم',
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
+    // Words Of Site
 ];
 
 $menus = include(__DIR__.'/./menus.php');
