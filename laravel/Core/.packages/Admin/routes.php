@@ -42,10 +42,15 @@ Route::resource("personnels", "Person\PersonnelController");
 Route::resource("roles", "Person\RoleController");
 // ================ End Routes Users =============================================
 
-// ================ Start Routes Content =========================================
-Route::resource("blogs","Content\BlogController");
-Route::resource("blog-subjects","Content\BlogSubjectController");
-// ================ End Routes Content ===========================================
+// ======================================== Start Routes Content ======================================================
+Route::get("blogs/get-needles", "Content\BlogController@getNeedles");
+Route::get("blogs/details/{id}", "Content\BlogController@details");
+Route::resource("blogs", "Content\BlogController");
+Route::post("blog-comments/send", "Content\BlogCommentController@sendComment");
+Route::put("blog-comments/delete/{id}", "Content\BlogCommentController@deleteComment");
+Route::get("blog-comments/details/{id}", "Content\BlogCommentController@details");
+Route::resource("/blog-comments", "Content\BlogCommentController");
+// ======================================== End Routes Content ======================================================
 
 // ================ Start Routes Product =========================================
 Route::get("products/get-needles", "Product\ProductController@getNeedles");
