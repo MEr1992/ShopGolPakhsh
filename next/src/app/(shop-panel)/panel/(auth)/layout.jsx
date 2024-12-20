@@ -25,7 +25,9 @@ export default function Main({ children }) {
                             </span>
                         </a>
                         <div className="my-auto">
-                            {loginPic}
+                            {/* {loginPic} */}
+                            <img alt="Icewall Tailwind HTML Admin Template" className="-intro-x w-1/2 -mt-16" src={laraDomain+"/admin/Midone-v3/Icewall_v1.0.9/dist/images/illustration.svg"} />
+
                             <div className="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                                 {Lang("public.text_main1")}
                                 <br /> {Lang("public.text_main2")}
