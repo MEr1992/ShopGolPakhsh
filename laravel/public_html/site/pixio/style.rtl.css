@@ -7,7 +7,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .header-nav.w3menu .nav > li > a,
 .section-head h1, .section-head .h1, .section-head h2, .section-head .h2, .section-head h3, .section-head .h3, .section-head h4, .section-head .h4, .section-head h5, .section-head .h5, .section-head h6, .section-head .h6,
 .shop-card .product-tag .badge, p,
-.header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title {
+.header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title,
+.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num {
 	font-family: "YekanBakh";
 }
 /* Style For Section Header */
@@ -30,6 +31,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .pagination-align.style-1 {
 	left: auto;
 	right: 70%;
+	transform: rotate(180deg);
 }
 .main-slider.style-1 .banner-media .img-preview::after {
     right: auto;
@@ -148,3 +150,59 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 	margin-right: auto;
 	margin-left: 30px;
 }
+.filter-wrapper .filter-right-area > div:nth-child(3n-1) {
+	/* border-left: 0 !important; */
+	border-right: 0 !important;
+}
+.filter-wrapper .filter-right-area > div {
+	border-left: 0px solid var(--border-color);
+	border-right: 1px solid var(--border-color);
+}
+.filter-wrapper .filter-right-area .form-group .default-select .dropdown-toggle::after, .filter-wrapper .filter-right-area .form-group .bootstrap-select .dropdown-toggle::after {
+	/* content: "\f107";
+	font-family: "Font Awesome 6 free";
+	border: 0;
+	font-weight: 700; */
+	margin-left: 0px;
+	margin-right: 18px;
+	/* font-size: 14px;
+	color: var(--title); */
+}
+.bootstrap-select > .dropdown-toggle {
+	/* text-align: right; */
+	text-align: left;
+	white-space: nowrap;
+}
+.me-3 {
+	margin-right: 0rem !important;
+	margin-left: 1rem !important;
+}
+.widget_search .form-group .input-group-addon {
+	right: auto;
+	left: 15px;
+}
+.widget_archive li a, .wp-block-latest-posts li a, .wp-block-categories-list li a, .wp-block-archives-list li a, .widget_categories li a {
+	/* float: left;
+	text-transform: capitalize;
+	text-align: left; */
+	float: right;
+	text-align: right;
+}
+.widget_archive ul li, .wp-block-categories-list li, .wp-block-archives-list li, .wp-block-latest-posts li, .widget_categories ul li {
+	text-align: left;
+	/* display: table;
+	width: 100%;
+	padding: 0.625rem 0rem 0.625rem 1rem !important;
+	line-height: 1.3 !important; */
+}
+/* .widget_categories ul ul {
+	margin-left: auto !important;
+	margin-right: 10px;
+} */
+/* .wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
+	padding-left: 1.125rem;
+	padding-right: 1.125rem !important;
+	margin-top: 0.5rem;
+	margin-left: -0.9375rem;
+	margin-right: -0.9375rem !important;
+} */

@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function products()
     {
-        return Product::active()->orderByDesc("id")->paginate(9);
+        return Product::with("category")->active()->orderByDesc("id")->paginate(9);
     }
     /**
      * get All Categories

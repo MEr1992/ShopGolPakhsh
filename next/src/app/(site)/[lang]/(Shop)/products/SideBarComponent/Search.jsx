@@ -6,7 +6,7 @@ export const Search = ({ assetsPath,mediaPath,local,Lang }) => {
 			<div className="widget widget_search">
 				<div className="form-group">
 					<div className="input-group">
-						<input name="dzSearch" required="required" type="search" className="form-control" placeholder="Search Product"/>
+						<input name="dzSearch" required="required" type="search" className="form-control" placeholder={Lang("public.search_product")}/>
 						<div className="input-group-addon">
 							<button name="submit" value="Submit" type="submit" className="btn">
 								<i className="icon feather icon-search"></i>

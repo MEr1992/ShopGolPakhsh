@@ -11,7 +11,8 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 							{/* <h2 className="title">{Lang("public.Blockbuster deals")}</h2> */}
 							<h2 className="title">{Lang("public.most_visited_products")}</h2>
 						</div>
-						<a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">See all deals 
+						{/* <a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.See all deals")}  */}
+						<a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.see_all")} 
 							<i className="icon feather icon-chevron-right font-18"></i>
 						</a>			
 					</div>

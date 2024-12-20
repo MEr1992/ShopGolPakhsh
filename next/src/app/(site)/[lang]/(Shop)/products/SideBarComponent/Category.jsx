@@ -4,12 +4,11 @@ export const Category = ({ items,assetsPath,mediaPath,local,Lang }) => {
     return(
 		<>
 			<div className="widget widget_categories">
-				<h6 className="widget-title">Category</h6>
+				<h6 className="widget-title">{Lang("public.category")}</h6>
 				<ul>
 					{items?.map((item, index)=>{
 						return(
 							<>
-							
 								<li className={"cat-item cat-item-"+counter[index]}><a href="blog-category.html">{item?.["title_"+local]}</a> {"("+item?.count_product+")"}</li>	
 								<ul style={{marginLeft: "10px"}}>
 									{item?.childs?.map((child,i)=>{

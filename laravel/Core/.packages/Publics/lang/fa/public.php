@@ -73,7 +73,14 @@ $lang = [
     'text_brand'=>'ما با 6.3 هزار شرکت قابل اعتماد به رشد خود ادامه می دهیم',
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
+    'see_all'=>'مشاهده همه',
     // Words Of Site
+    'filter' => 'فیلتر',
+    'showing'=>'نمایش',
+    'of'=>'از',
+    'results'=>'Results',
+    'search_product'=>'جستجو محصول',
+    // 'search_product'=>'Search Product',
 ];
 
 $menus = include(__DIR__.'/./menus.php');

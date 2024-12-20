@@ -1,6 +1,9 @@
 "use client"
+import { Cart } from "@/Theme/Site/Components/Public/Cart";
+import { Like } from "@/Theme/Site/Components/Public/Like";
+import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
+
 export const ProductGrid = ({ item,assetsPath,mediaPath,local,Lang }) => {
-		// 9
 
     return(
 		<>
@@ -9,18 +12,9 @@ export const ProductGrid = ({ item,assetsPath,mediaPath,local,Lang }) => {
 					<div className="dz-media">
 						<img src={mediaPath+"/product/"+item?.image} alt="image"/>
 						<div className="shop-meta">
-							<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-								<i className="fa-solid fa-eye d-md-none d-block"></i>
-								<span className="d-md-block d-none">{Lang("public.Quick View")}</span>
-							</a>
-							<div className="btn btn-primary meta-icon dz-wishicon">
-								<i className="icon feather icon-heart dz-heart"></i>
-								<i className="icon feather icon-heart-on dz-heart-fill"></i>
-							</div>
-							<div className="btn btn-primary meta-icon dz-carticon">
-								<i className="flaticon flaticon-basket"></i>
-								<i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-							</div>
+							<QuickView Lang={Lang} />
+							<Like Lang={Lang} />
+							<Cart Lang={Lang} />
 						</div>							
 					</div>
 					<div className="dz-content">
@@ -28,7 +22,7 @@ export const ProductGrid = ({ item,assetsPath,mediaPath,local,Lang }) => {
 						<h5 className="price">{item?.price}</h5>
 					</div>
 					<div className="product-tag">
-						<span className="badge ">Get {item?.discount+"%"} Off</span>
+						<span className="badge ">{item?.category?.["title_"+local]}</span>
 					</div>
 				</div>
 			</div>	
