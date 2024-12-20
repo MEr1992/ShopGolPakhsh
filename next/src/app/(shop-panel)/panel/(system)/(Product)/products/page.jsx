@@ -33,7 +33,6 @@ export default function List(){
                 <Pic src={mediaPath+"/product/"+item?.image} defaultImg={`${mediaPath}/public/default/avatar.png`} key={"img"+item?.image} classImg="user-avatar" />},
             {label: "product", field: "name"},
             {label: "category", field: "category.title_fa"},
-            {label: "line", field: "line.title_fa"},
             {label: "brand", field: "brand.name_fa"},
             {label: "status",  jsx: (item)=><span className={item.active_status?.color}>{item.active_status?.["title_"+local]}</span>},
             {label: "", sort:false, 

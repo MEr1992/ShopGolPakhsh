@@ -23,9 +23,9 @@ export default function Form({id}){
         if(id != 0) get(url, component, "info");
     }, [id]);
 
-    let uploadUrl = laraAdmin+"/upload/.-media-products";
-    let deleteUrl = laraAdmin+"/deleteFile/.-media-products";
-    let uploadDir = 'media/products/';
+    let uploadUrl = laraAdmin+"/upload/.-media-product";
+    let deleteUrl = laraAdmin+"/deleteFile/.-media-product";
+    let uploadDir = 'media/product/';
 
     const saveItem = ()=>save(url, component, method, formUrl);
     const back = ()=>router.back();
@@ -33,15 +33,17 @@ export default function Form({id}){
     return <>
             <Box>     
                 <Input label="product" className="col-span-12" refItem={[component, "name"]} required="true" />
-                <Input  refItem={[component, "price"]} required="true" />
+                <Input type="price"  refItem={[component, "price"]} required="true" />
                 <Input refItem={[component, "discount"]} />
                 <SelectTail label="category" refItem={[component, "category_id"]} 
                             required="true"
-                            data={needles?.category} 
+                            data={needles?.category}
+                            titleKey="title_fa"
                         />                
                 <SelectTail label="brand" refItem={[component, "brand_id"]} 
                             required="true"
                             data={needles?.brand} 
+                            titleKey="name_fa"
                         />                
                 <Textarea  refItem={[component, "usage"]} required="true"/>
                 <Textarea  refItem={[component, "description"]} required="true"/>

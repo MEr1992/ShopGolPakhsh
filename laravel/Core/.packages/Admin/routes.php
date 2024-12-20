@@ -35,6 +35,8 @@ Route::put("users/change-password", "Person\UserController@changePassword");
 Route::get("users/show-info/{id}", "Person\UserController@showInfo");
 Route::get("users/get-needles", "Person\UserController@getNeedles");
 Route::resource("users", "Person\UserController");
+
+Route::get("personnels/get-needles", "Person\PersonnelController@getNeedles");
 Route::resource("personnels", "Person\PersonnelController");
 
 Route::resource("roles", "Person\RoleController");
@@ -48,10 +50,16 @@ Route::resource("blog-subjects","Content\BlogSubjectController");
 // ================ Start Routes Product =========================================
 Route::get("products/get-needles", "Product\ProductController@getNeedles");
 Route::resource("products","Product\ProductController");
+
+Route::get("categories/get-needles", "Product\ProductCategoryController@getNeedles");
 Route::resource("categories","Product\ProductCategoryController");
+
 Route::resource("brands","Product\ProductBrandController");
 Route::resource("lines","Product\ProductLineController");
 // ================ End Routes Product ===========================================
+
+Route::post('/breadcrumb', 'Public\Breadcrumb@getItems');
+
 
 use Faker\Generator;
 

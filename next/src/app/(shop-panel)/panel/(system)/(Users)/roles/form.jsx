@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
-import { menu } from "@/lib/menu-list";
+import { menu } from "@/lib/menus";
 import { useData, useFormRefs, Input, Button, ButtonContainer, Box, CheckBox } from "@/Theme/Midone/Forms";
 import { useRouter } from 'next/navigation';
 
@@ -57,7 +57,7 @@ export default function Form({ id }) {
             </Box> */}
 
             <ButtonContainer>
-                <Button label="save" onClick={saveItem} />
+                <Button label="save" onClick={saveItem} component={component} />
                 <Button label="back" onClick={back} />
             </ButtonContainer>
         </>
