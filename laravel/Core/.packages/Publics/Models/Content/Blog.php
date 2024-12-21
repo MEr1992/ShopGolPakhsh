@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Models\Traits\Base;
+use Morilog\Jalali\Jalalian;
 
 class Blog extends Model
 {
@@ -65,4 +66,9 @@ class Blog extends Model
      * Get the editorUser the blog.
      */
     // function editor Is In Base Traits
+
+    public function getCreatedAtAttribute($date)
+    {
+        return $date ? Jalalian::fromCarbon(new \Carbon\Carbon($date))->format('Y/m/d') : null;
+    }
 }

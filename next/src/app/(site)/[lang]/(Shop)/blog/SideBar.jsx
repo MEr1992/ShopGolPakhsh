@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
+
 export const SideBar = ({ categories, assetsPath, mediaPath, local, Lang }) => {
     return (
         <>
             <div className="col-xl-4 col-lg-4">
-                <aside className="side-bar sticky-top mt-lg-0 mt-md-5 mt-3">
-                    <div className="widget">
+                <aside className="side-bar sticky-top mt-lg-0 mt-md-5 mt-3 text-right rtl">
+                    {/* <div className="widget">
                         <h5 className="widget-title">جستجو</h5>
                         <div className="search-bx">
                             <form role="search" method="post">
@@ -19,22 +21,21 @@ export const SideBar = ({ categories, assetsPath, mediaPath, local, Lang }) => {
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="widget widget_categories style-1">
-                        <h5 className="widget-title">دسته‌بندی</h5>
+                        {/* <h5 className="widget-title">دسته‌بندی</h5> */}
                         <ul>
-                            <li className="cat-item"><a href="blog-category.html">پیراهن‌ها</a> (10)</li>
-                            <li className="cat-item"><a href="blog-category.html">تاپ‌ها و بلوزها</a> (5)</li>
-                            <li className="cat-item"><a href="blog-category.html">بوت‌ها</a> (17)</li>
-                            <li className="cat-item"><a href="blog-category.html">زیورآلات</a> (13)</li>
-                            <li className="cat-item"><a href="blog-category.html">آرایش</a> (06)</li>
-                            <li className="cat-item"><a href="blog-category.html">عطرها</a> (17)</li>
-                            <li className="cat-item"><a href="blog-category.html">اصلاح و پیرایش</a> (13)</li>
-                            <li className="cat-item"><a href="blog-category.html">ژاکت</a> (06)</li>
-                            <li className="cat-item"><a href="blog-category.html">کت</a> (22)</li>
+                            {categories?.map((item, index) => (
+                                <li className="cat-item" key={index}>
+                                    <Link href={`/${local}/blog?category=${item.id}`}>
+                                        {item.title_fa}
+                                    </Link>
+                                </li>
+                            ))}
+                            {/* <li className="cat-item"><a href="blog-category.html">کت</a> (22)</li> */}
                         </ul>
                     </div>
-                    <div className="widget recent-posts-entry">
+                    {/* <div className="widget recent-posts-entry">
                         <h5 className="widget-title">آخرین پست‌ها</h5>
                         <div className="widget-post-bx">
                             <div className="widget-post clearfix">
@@ -90,7 +91,7 @@ export const SideBar = ({ categories, assetsPath, mediaPath, local, Lang }) => {
                             <a href="blog-tag.html">جلسه تجاری</a>
                             <a href="blog-tag.html">رسمی</a>
                         </div>
-                    </div>
+                    </div> */}
                 </aside>
             </div>
         </>

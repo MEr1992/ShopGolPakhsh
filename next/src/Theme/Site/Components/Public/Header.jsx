@@ -31,10 +31,12 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
 	let subjects = menus?.subjects;
 	let listMenus = [];
+	let hrefMenus = [`/${local}`,`/${local}/products`,`/${local}/blog`,`/${local}/contact`,];
 	(local=="en")?
 		listMenus = ['Home','Shop','Blog','About us','Contact us']
 	:
-		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
+		// listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
+		listMenus = ['خانه','فروشگاه','بلاگ','ارتباط با ما']
 
 	return(
 		<>
@@ -56,10 +58,13 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href={hrefMenus[0]}>
+											<span>{listMenus[0]}</span>
+											<i className="fas fa-chevron-down tabIndex" ></i>
+										</a>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
-										<a href="#!"><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<a href={hrefMenus[1]}><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
 												{parentCategories?.map((category,i)=>{
@@ -89,7 +94,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 											</ul>
 										</div>
 									</li>
-									<li className="has-mega-menu sub-menu-down">
+									{/* <li className="has-mega-menu sub-menu-down">
 										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu portfolio-menu">
 											<ul>
@@ -109,9 +114,9 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 												</li>
 											</ul>
 										</div>
-									</li>
-									<li className="has-mega-menu sub-menu-down auto-width">
-										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
+									</li> */}
+									{/* <li className="has-mega-menu sub-menu-down auto-width">
+										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
 												{subjects?.map((subject,i)=>{
@@ -126,24 +131,33 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 												})}
 											</ul>
 										</div>
+									</li> */}
+									<li className="has-mega-menu sub-menu-down auto-width menu-left">
+										<a href={hrefMenus[2]}>
+											<span>{listMenus[2]}</span>
+											<i className="fas fa-chevron-down tabIndex" ></i>
+										</a>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<a href={hrefMenus[3]}>
+											<span>{listMenus[3]}</span>
+											<i className="fas fa-chevron-down tabIndex" ></i>
+										</a>
 									</li>
-									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
-									</li>
+									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
+										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+									</li> */}
 								</ul>
-								<div className="dz-social-icon">
+								{/* <div className="dz-social-icon">
 									<ul>
 										<li><a className="fab fa-facebook-f" target="_blank" href="../../https@www.facebook.com/dexignzone"></a></li>
 										<li><a className="fab fa-twitter" target="_blank" href="../../https@twitter.com/dexignzones"></a></li>
 										<li><a className="fab fa-linkedin-in" target="_blank" href="../../https@www.linkedin.com/showcase/3686700/admin/default.htm"></a></li>
 										<li><a className="fab fa-instagram" target="_blank" href="../../https@www.instagram.com/dexignzone/default.htm"></a></li>
 									</ul>
-								</div>
+								</div> */}
 							</div>
-							<div className="extra-nav">
+							{/* <div className="extra-nav">
 								<div className="extra-cell">						
 									<ul className="header-right">
 										<li className="nav-item search-link">
@@ -153,7 +167,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

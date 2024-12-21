@@ -52,6 +52,8 @@ Route::get("blog-comments/details/{id}", "Content\BlogCommentController@details"
 Route::resource("/blog-comments", "Content\BlogCommentController");
 // ======================================== End Routes Content ======================================================
 
+Route::resource("sliders", "Content\SliderController");
+
 // ================ Start Routes Product =========================================
 Route::get("products/get-needles", "Product\ProductController@getNeedles");
 Route::resource("products","Product\ProductController");

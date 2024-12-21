@@ -15,6 +15,7 @@ class Breadcrumb extends Controller
         'brands' => [\Models\Product\Brand::class, 'name_fa'],
         'categories' => [\Models\Product\Category::class, 'title_fa'],
         'blogs' => [\Models\Content\Blog::class, 'title'],
+        'sliders' => [\Models\Content\Slider::class, 'title'],
     ];
 
     public function getItems(Request $request)

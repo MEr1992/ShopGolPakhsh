@@ -9,6 +9,7 @@ export const getMenus = (user) => {
         { title: "brand", icon: "Star", href: "/brands" },
         { title: "category", icon: "Slack", href: "/categories" },
         { title: "blogs", icon: "Pocket", href: "/blogs" },
+        { title: "sliders", icon: "List", href: "/sliders" },
     ];
 
     const commonMenus2 = [

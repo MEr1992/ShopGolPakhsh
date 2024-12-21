@@ -19,7 +19,7 @@ export default function Page({ params }) {
     useEffect(() => {
         getNeedles(local+laralelUrl, setItems);
     }, []);
-console.log(items);
+// console.log(items);
 
     return(
         <>
@@ -27,8 +27,8 @@ console.log(items);
 			<section className="content-inner-3 pt-3 z-index-unset">
 				<div className="container">
 					<div className="row">
-                        <SideBar categories={items?.categories} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
-                        <ItemPage items={items?.blog} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        <SideBar categories={items?.topics} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        <ItemPage items={items?.collection} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
                     </div>
 				</div>
 			</section>

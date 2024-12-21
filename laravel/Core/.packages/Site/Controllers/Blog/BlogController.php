@@ -30,9 +30,10 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = Blog::with('keywords', 'subject')->find($id);
+        $blog = Blog::with('subject')->find($id);
+        $subjects = \Models\Content\BlogSubject::active()->get();
 
-        $result = ['blog' => $blog];
+        $result = ['blog' => $blog , 'topics' => $subjects];
 
         return response()->json($result);
 

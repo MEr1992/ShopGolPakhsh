@@ -10,7 +10,7 @@ class BlogController extends BaseAbstract
 {
     protected $model = 'Models\Content\Blog';
     protected $request = 'Publics\Requests\Content\BlogRequest';
-    // protected $with = ["activeStatus","creator","editor"];
+    protected $with = ["activeStatus","creator","editor"];
     protected $searchFilter = ['title'];
     protected $files = ["thumb"];
 
