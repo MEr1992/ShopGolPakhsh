@@ -35,4 +35,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'parent_category');
     }
+    public function keywords()
+    {
+        return $this->belongsToMany(\Models\Base\Keyword::class, 'product_keyword', 'product_id', 'keyword_id');
+    }
 }

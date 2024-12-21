@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->text('review')->nullable()->comment("نقد وبررسی");
             $table->text('usage')->nullable()->comment("نحوه استفاده و مصرف");
             $table->text('description')->nullable()->comment("توضیحات");
+            $table->text('summary')->nullable()->comment("خلاصه");
             $table->integer('count_view')->default(0)->comment("تعداد بازدید");
             $table->integer('count_sell')->default(0)->comment("تعداد فروش");
             $table->integer('count_like')->default(0)->comment("تعداد علاقه مندی");

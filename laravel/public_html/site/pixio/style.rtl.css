@@ -210,3 +210,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 #lg-content-1{
 	direction: ltr !important;
 }
+.save-text span{
+	margin-left: auto;
+	margin-right: 10px;
+}

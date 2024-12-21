@@ -84,6 +84,14 @@ $lang = [
     'share'=>'اشتراک گذاری',
     'reviews'=>'بررسی ها',
     'usage'=>'استفاده',
+    'sale'=>'فروش',
+    'code_product'=>'SKU',
+    'title_cart_detail_box_1'=>'Bank Offer 5% Cashback',
+    'title_cart_detail_box_2'=>'مرجوعی آسان',
+    'text_cart_detail_box_2'=>'30 روزه',
+    'title_cart_detail_box_3'=>'لذّت یک خرید',
+    'text_cart_detail_box_3'=>'مطمئن و آسان و سریع خرید کنید',
+    'text_cart_detail'=>'You will save ₹504 on this order',
 ];
 
 $menus = include(__DIR__.'/./menus.php');

@@ -98,6 +98,7 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
 			$(this).find('.mfp-link i').css({ opacity: 0, zIndex: 1 })
 		});
 	}
+    let displayDiscount = (item?.discount>0)? <span className="badge bg-secondary mb-2">{Lang("public.sale")+" "+item?.discount+"% "+Lang("public.off")}</span> : "";
 
     return(
 		<>
@@ -158,9 +159,9 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                         <div className="dz-content">
                                             <div className="dz-content-footer">
                                                 <div className="dz-content-start">
-                                                    <span className="badge bg-secondary mb-2">SALE 20% Off</span>
+                                                    {displayDiscount}
                                                     <h4 className="title mb-1">{item?.name}</h4>
-                                                    <div className="review-num">
+                                                    {/* <div className="review-num">
                                                         <ul className="dz-rating me-2">
                                                             <li className="star-fill">
                                                                 <i className="flaticon-star-1"></i>
@@ -180,11 +181,11 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                         </ul>
                                                         <span className="text-secondary me-2">4.7 Rating</span>
                                                         <a href="javascript:void(0);">(5 customer reviews)</a>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
-                                            <p className="para-text">{item?.description}</p>
-                                            <div className="meta-content m-b20 d-flex align-items-end">
+                                            <p className="para-text">{item?.summary}</p>
+                                            {/* <div className="meta-content m-b20 d-flex align-items-end">
                                                 <div className="btn-quantity quantity-sm light d-xl-none d-blcok d-sm-block">
                                                     <label className="form-label">Quantity</label>
                                                     <input  type="text" value="1" name="demo_vertical2"/>
@@ -230,10 +231,10 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="dz-info">
                                                 <ul>
-                                                    <li><strong>SKU:</strong></li>
+                                                    <li><strong>{Lang("public.code_product")+":"}</strong></li>
                                                     <li>PRT584E63A</li>
                                                 </ul>
                                                 <ul>
@@ -243,12 +244,14 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                 </ul>
                                                 <ul>
                                                     <li><strong>{Lang("public.tags")+":"}</strong></li>
-                                                    <li><a href="shop-standard.html">Casual,</a></li>												
-                                                    <li><a href="shop-standard.html">Athletic,</a></li>												
-                                                    <li><a href="shop-standard.html">Workwear,</a></li>												
-                                                    <li><a href="shop-standard.html">Accessories,</a></li>												
+                                                    {(item?.keywords)?.map((keyword, i)=>{
+                                                        return(
+                                                            <li><a href="shop-standard.html">{(i==0)? "" : ","}{keyword?.title}</a></li>												
+                                                            // <li><a href="shop-standard.html">Casual,</a></li>												
+                                                        );
+                                                    })}												
                                                 </ul>
-                                                <ul className="social-icon">
+                                                {/* <ul className="social-icon">
                                                     <li><strong>{Lang("public.share")+":"}</strong></li>
                                                     <li>
                                                         <a href="../../https@www.facebook.com/dexignzone" target="_blank">
@@ -270,7 +273,7 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                             <i className="fa-brands fa-twitter"></i>
                                                         </a>
                                                     </li>
-                                                </ul>
+                                                </ul> */}
                                             </div>
                                         </div>
                                         <div className="banner-social-media">
@@ -290,14 +293,14 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                 </div>
                                 <div className="col-xl-5">
                                     <div className="cart-detail">
-                                        <a href="javascript:void(0);" className="btn btn-outline-secondary w-100 m-b20">Bank Offer 5% Cashback</a>
+                                        <a href="javascript:void(0);" className="btn btn-outline-secondary w-100 m-b20">{Lang("public.title_cart_detail_box_1")}</a>
                                         <div className="icon-bx-wraper style-4 m-b15">
                                             <div className="icon-bx">
                                                 <i className="flaticon flaticon-ship"></i>
                                             </div>
                                             <div className="icon-content">
-                                                <span className=" font-14">Easy Returns</span>
-                                                <h6 className="dz-title">30 Days</h6>
+                                                <span className=" font-14">{Lang("public.title_cart_detail_box_2")}</span>
+                                                <h6 className="dz-title">{Lang("public.text_cart_detail_box_2")}</h6>
                                             </div>
                                         </div>
                                         <div className="icon-bx-wraper style-4 m-b30">
@@ -305,13 +308,13 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                 <img src={assetsPath+"/pixio/images/shop/shop-cart/icon-box/pic2.png"} alt="/" />
                                             </div>
                                             <div className="icon-content">
-                                                <h6 className="dz-title">Enjoy The Product</h6>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                                                <h6 className="dz-title">{Lang("public.title_cart_detail_box_3")}</h6>
+                                                <p>{Lang("public.text_cart_detail_box_3")}</p>
                                             </div>
                                         </div>
                                         <div className="save-text">
                                             <i className="icon feather icon-check-circle"></i>
-                                            <span className="m-l10">You will save ₹504 on this order</span>
+                                            <span className="m-l10">{Lang("public.text_cart_detail")}</span>
                                         </div>
                                         <table>
                                             <tbody>
