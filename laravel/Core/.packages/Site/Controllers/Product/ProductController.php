@@ -38,6 +38,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::active()->find($id);
+        $product = Product::with("category","categoryParent")->active()->find($id);
+        $products = Product::where("id", "!=", $id)->where("category_id", $product->category_id)->active()->get();
+        $data = [
+            'product'=>$product,
+            'products'=>$products,
+        ];
+        return $data;
     }
 }

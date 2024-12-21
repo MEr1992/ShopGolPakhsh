@@ -4,9 +4,9 @@ import { useEffect,useState } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
-import { Banner } from "@/app/(site)/[lang]/(Shop)/products/[id]/Banner";
-import { Index } from "@/app/(site)/[lang]/(Shop)/products/[id]/Index";
-import { SideBar } from "@/app/(site)/[lang]/(Shop)/products/[id]/SideBar";
+import { GalleryProduct,InfoProduct,RelatedProduct,StepProduct,TabsProduct } from "@/app/(site)/[lang]/(Shop)/products/[id]/ProductComponent";
+import { BreadCrumb } from "@/Theme/Site/Components/Public/BreadCrumb";
+import { Error404 } from "@/Theme/Site/Components/Public/Error404";
 
 export default function Page({ params }) {
     const { Lang } = useLang();
@@ -18,21 +18,32 @@ export default function Page({ params }) {
     const formUrl = "/products"; 
     const laralelUrl = "/products"; 
 
-    // useEffect(() => {
-    //     getNeedles(local+laralelUrl+"/"+id, setItems);
-    // }, []);
+    useEffect(() => {
+        getNeedles(local+laralelUrl+"/"+id, setItems);
+    }, []);
+    // console.log('items');
+    // console.log(items);
 
     return(
-        <>11
-            {/* <Banner Lang={Lang} />
-			<section className="content-inner-3 pt-3 z-index-unset">
-				<div className="container">
-					<div className="row">
-                        <SideBar />
-                        <Index />
+        <>
+            {(items==undefined)?
+                <Error404 />
+            :
+                <div className="page-content bg-light">
+                    <div className="d-sm-flex justify-content-between container-fluid py-3">
+                        {/* <nav aria-label="breadcrumb" className="breadcrumb-row">
+                            <ul className="breadcrumb mb-0">
+                                <li className="breadcrumb-item"><a href="index.html"> Home</a></li>
+                                <li className="breadcrumb-item">Product Default</li>
+                            </ul>
+                        </nav> */}
+                        <BreadCrumb />
                     </div>
-				</div>
-			</section> */}
+                    <InfoProduct item={items?.product} assetsPath={assetsPath} Lang={Lang} local={local} />
+                    <TabsProduct item={items?.product} assetsPath={assetsPath} Lang={Lang} local={local} />
+                    <RelatedProduct items={items} assetsPath={assetsPath} />
+                </div>
+            }
         </>
     );
 }

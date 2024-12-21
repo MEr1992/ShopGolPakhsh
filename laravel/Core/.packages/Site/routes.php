@@ -28,8 +28,8 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
     // Route::get('/about', 'Home\HomeController@about');
     // Route::get('/contact', 'Home\HomeController@contact');
 
-    Route::get('/products', 'Product\ProductController@index');
     Route::get('/products/{id}', 'Product\ProductController@show');
+    Route::get('/products', 'Product\ProductController@index');
 
     // Route::get('/blogs', 'Blog\BlogController@index');
     // Route::get('/blogs/{id}', 'Blog\BlogController@show');

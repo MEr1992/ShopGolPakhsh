@@ -1,4 +1,4 @@
-export const Section1 = () => {
+export const ShopList = () => {
     return(
 		<>
 			{/* Banner Start */}

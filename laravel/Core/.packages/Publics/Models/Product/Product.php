@@ -33,6 +33,6 @@ class Product extends Model
     }  
     function categoryParent()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'parent_category');
     }
 }

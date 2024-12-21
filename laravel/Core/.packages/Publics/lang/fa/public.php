@@ -81,6 +81,9 @@ $lang = [
     'results'=>'Results',
     'search_product'=>'جستجو محصول',
     // 'search_product'=>'Search Product',
+    'share'=>'اشتراک گذاری',
+    'reviews'=>'بررسی ها',
+    'usage'=>'استفاده',
 ];
 
 $menus = include(__DIR__.'/./menus.php');

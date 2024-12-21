@@ -8,7 +8,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .section-head h1, .section-head .h1, .section-head h2, .section-head .h2, .section-head h3, .section-head .h3, .section-head h4, .section-head .h4, .section-head h5, .section-head .h5, .section-head h6, .section-head .h6,
 .shop-card .product-tag .badge, p,
 .header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title,
-.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num {
+.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num,.dz-product-detail .dz-info ul li strong,.dz-tabs .nav-tabs .nav-link {
 	font-family: "YekanBakh";
 }
 /* Style For Section Header */
@@ -206,3 +206,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 	margin-left: -0.9375rem;
 	margin-right: -0.9375rem !important;
 } */
+
+#lg-content-1{
+	direction: ltr !important;
+}

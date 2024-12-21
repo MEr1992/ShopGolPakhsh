@@ -5,11 +5,37 @@ import { List,Column,Grid } from "@/app/(site)/[lang]/(Shop)/products/ProductCom
 
 export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 	useEffect(() => {
-		setTimeout(()=>{
-			masonryBox();
+		// setTimeout(()=>{
+			console.log("useEffect");
+			handleLightgallery();
 			// items?.length > 0 && handleIsotope();
-		}, 1000)
-	}, [items]);
+		// }, 4000)
+	}, []);
+	const handleLightgallery = ()=>{
+		if(window.jQuery('#lightgallery').length > 0 && jQuery('#lightgallery2').length > 0){
+			console.log("handleLightgallery first");
+			if (jQuery('#lightgallery').length > 0) {
+				lightGallery(document.getElementById('lightgallery'), {
+					plugins: [lgThumbnail, lgZoom],
+					selector: '.lg-item',
+					thumbnail: true,
+					exThumbImage: 'data-src'
+				});
+			}
+			if (jQuery('#lightgallery2').length > 0) {
+				lightGallery(document.getElementById('lightgallery2'), {
+					plugins: [lgThumbnail, lgZoom],
+					selector: '.lg-item',
+					thumbnail: true,
+					exThumbImage: 'data-src'
+				});
+			}
+		}else{
+			console.log("handleLightgallery setTimeout");
+			setTimeout(() => handleLightgallery(), 1000);
+		}
+	
+	}
 	const masonryBox = ()=>{
 		console.log("cusotm");
 		/* masonry by  = bootstrap-select.min.js */
