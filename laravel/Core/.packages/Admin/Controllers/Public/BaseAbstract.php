@@ -3,18 +3,17 @@ namespace Admin\Controllers\Public;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use Publics\Controllers\BaseTrait;
+use Publics\Controllers\SMSIR\SMSIR_SendMessage;
 use Publics\Controllers\Tools;
 use Publics\Traits\FileTrait;
+use Models\Person\Role;
 use \DB;
 
 // !!!!!! Comments and examples are important !!!!!!!!!!!
 
 abstract class BaseAbstract extends Controller
 {
-    // use BaseTrait;
     use FileTrait;
-
 
     protected $local; //Model file address
     protected $model; //Model file address
@@ -95,6 +94,8 @@ abstract class BaseAbstract extends Controller
     public $is_admin;
     public $role_id;
     public $lang;
+    
+    protected $roleStu=false;
 
     // For Laravel 10, 9, ...
     // public function __construct()
@@ -402,36 +403,67 @@ abstract class BaseAbstract extends Controller
         return response()->json($id);
     }
 
-    public function getNeedles($needle=[])
+    public function getNeedles($needle = [])
     {
-        
         global $modelObj;
-        $info=[];
-        if(count($needle)==0) $needle = $this->needles;
-        foreach ($needle as $key => $value)
-        {
-            if(\is_integer($key)){
-                $className = 'Models\\' . $value;
-                $modelObj =  new $className;
-                $index = explode('\\',$value);
-                $attr = strtolower($index[count($index)-1]);
-                $info[$attr] = $modelObj->get();
-                // $info[$attr] = $modelObj->active()->get();
-            }
-            else if($value instanceof \Closure){
-                $className = 'Models\\' . $key; // in this case $key is a class address
-                $modelObj  = $className::query();
-                $closure = $value;
-                $closure($GLOBALS['modelObj']); // in this case $value is a closure
-                $index = explode('\\',$key);
-                $attr = strtolower($index[count($index)-1]);
-                $info[$attr] = $modelObj->get();
-                // $info[$attr] = $modelObj->active()->get();
+        $info = [];
+
+        // اگر هیچ داده‌ای در آرایه $needle نباشد، از مقدار پیش‌فرض استفاده می‌کنیم
+        if (count($needle) == 0) {
+            $needle = $this->needles;
+        }
+
+        foreach ($needle as $key => $value) {
+            // شرط بررسی برای 'group'
+            if ($value == 'group' || $key == 'group') {
+                $info['group'] = Tools::userGroup(request()->course, $this->user_id);
+            } else {
+                if (\is_integer($key)) {
+                    // ساخت نام کلاس
+                    $className = 'Models\\' . $value;
+                    $modelObj = new $className;
+
+                    // به دست آوردن نام attribute با توجه به نام کلاس
+                    $index = explode('\\', $value);
+                    $attr = strtolower($index[count($index) - 1]);
+
+                    if($value=="Person\Promoter") $info[$attr] = $modelObj->get();
+                    // دریافت داده‌ها با متد active
+                    else $info[$attr] = $modelObj->active()->get();
+                } else if ($value instanceof \Closure) {
+                    // وقتی $value یک Closure باشد
+                    $className = 'Models\\' . $key; // در این حالت $key آدرس کلاس است
+                    $modelObj = $className::query();
+                    $closure = $value;
+                    
+                    // فراخوانی Closure با استفاده از $modelObj
+                    $closure($modelObj);
+
+                    // به دست آوردن نام attribute
+                    $index = explode('\\', $key);
+                    $attr = strtolower($index[count($index) - 1]);
+
+                    // دریافت داده‌ها با متد active
+                    if($value=="Person\Promoter") $info[$attr] = $modelObj->get();
+
+                    $info[$attr] = $modelObj->active()->get();
+                }
             }
         }
+
+        // بازگشت اطلاعات به صورت JSON
         return response()->json($info);
     }
 
+    public function sendMessage($userId, $messages)
+    {
+        $user = \Models\User::find($userId);
+        $mobileNumbers = $user->mobile;
+
+        $sms = new SMSIR_SendMessage;
+        $send = $sms->sendSMS($mobileNumbers,$messages);
+        return $send;
+    }
     private function processExcept($except){
         $newExcept = [];
         foreach($except as $item){
@@ -461,7 +493,6 @@ abstract class BaseAbstract extends Controller
         return $array;
 
     }
-
     public function getRepeatValues($values){
         $data = [];
         // dd($values);
@@ -481,7 +512,6 @@ abstract class BaseAbstract extends Controller
         }
         return $data;
     }
-
     public function saveFiles($files, $dataInsert, $request)
     {
         foreach ($files as $key => $value) {
@@ -520,7 +550,6 @@ abstract class BaseAbstract extends Controller
 
         return $dataInsert;
     }
-
     public function grid($modelObject, $searchTerm=['name'], $resultCallback = null,$searchCondition=[]){
         $request = request();
         $number = $request->number;
@@ -585,97 +614,42 @@ abstract class BaseAbstract extends Controller
         else return false;
     }
     public function plusCount($field){
-        return \Models\Base\TotalCount::where('title',$field)->increment("count");
+
+         \Models\Base\TotalCount::where('title',$field)->increment("count");
     }
     public function minusCount($field){
-        return \Models\Base\TotalCount::where('title',$field)->decrement("count");
+        \Models\Base\TotalCount::where('title',$field)->decrement("count");
     }
-    public function userInCourse($course,$user_id=null)
-    {
-        if($user_id==null) $user_id = $this->user_id;
-        return \Models\Edu\Register::where("user_id", $user_id)->where('code', $course)->pluck('role_id')->first();
-    }
-
     /**
-     * Filters collection based on user role and request parameters.
-     *
-     * @param int $course The course ID to filter by.
-     * @param int $role_id The role ID of the user.
-     * @param int $user_id The user ID for filtering.
-     * @param string $model The model class to use for the query.
-     * @param \Illuminate\Http\Request $request The request instance containing filter parameters.
-     * @param array $relations The relationships to load.
-     * @param bool $active Whether to filter by active status.
-     * @return \Illuminate\Database\Eloquent\Builder The filtered collection.
+     * get role of User Logined For Check access in Operation
      */
-    protected function filterCollection(int $course, array $relations = [], $whereQuery = null)
+    public function setAccessOperation($course,$data)
     {
-        $request = request();
-
-        $isStudent = $this->role_id == 2;
-        $isTeacherOrStudent = in_array($this->role_id, [1, 2]);
-
-        // Initialize collection with course filter and related data
-        $collection = $this->model::with($relations)->where('course_id', $course);
-        if($whereQuery instanceof \Closure){
-            $whereQuery($collection);
+        $data['accessOperation'] = true;
+        
+        if(in_array($this->role_id, Role::NONPERSONNEL))
+        {
+            $userInCourse = $this->userInCourse($course);
+            if($userInCourse == null || $userInCourse == 2)
+                $data['accessOperation'] = false;
         }
 
-        // Load additional relationships and status if the user is not a student
-        if (!$isStudent) {
-            $collection = $collection->with("activeStatus");
-        }
-
-        // Apply group-based filtering for teachers or students
-        if ($isTeacherOrStudent) {
-            $group = Tools::userGroup($course, $this->user_id);
-            $collection = Tools::conditionGroup(["group" => $group, "collection" => $collection]);
-        }
-
-        // Filter for active records if the user is a student
-        if ($isStudent) {
-            $collection = $collection->active();
-        }
-
-        // Apply additional filters if the user is neither a teacher nor a student
-        if (!$isTeacherOrStudent) {
-            if ($request->has('semester')) {
-                $semester = $request->semester;
-                $group = $request->has('group') ? $semester . $request->group : $semester . '%';
-                $collection->where('group', 'LIKE', $group);
-            }
-            if ($request->has('type')) {
-                $collection->where('question_type_id', $request->type);
-            }
-            if ($request->has('correcting')) {
-                $op = $request->correcting === "uncorrected" ? "<>" : "=";
-                $collection->where('answer_count', $op, "answer_correcting_count");
-            }
-        }
-
-        return $collection;
+        return $data;
     }
-    public function getCourse($code)
+    public function setOperator($query)
     {
-        $sessionKey = 'course-' . $code;
+        $method = request()->method();
 
-        // اگر دوره قبلاً در سشن بود، آن را بازگردان
-        if (session()->has($sessionKey)) {
-            return session($sessionKey);
+        if ($method === 'PUT' || $method === 'PATCH') {
+            $query->editor_id = $this->user_id;
+        } else {
+            $query->creator_id = $this->user_id;
         }
 
-        // جستجوی دوره بر اساس code و انتخاب فقط فیلدهای مورد نظر
-        $course = \Models\Edu\Course::select('system_id', 'code', 'less_id', 'category_id', 'title','thumbnail')
-                    ->firstWhere('code', $code);
-
-        // اگر دوره پیدا شد، ذخیره فیلدهای انتخاب‌شده در سشن و بازگرداندن آن
-        if ($course) {
-            session([$sessionKey => $course->only(['system_id', 'code', 'less_id', 'category_id', 'title','thumbnail'])]);
-            return $course;
-        }
-
-        return null; // اگر دوره پیدا نشد
+        return $query;
     }
-
-
+    public function getIdFromUrl(){
+        $id = (int) filter_var(request()->path(), FILTER_SANITIZE_NUMBER_INT);
+        return $id;
+    }
 }

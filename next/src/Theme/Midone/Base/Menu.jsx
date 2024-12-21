@@ -1,24 +1,29 @@
 'use client'
 
 import {config, useConfig} from '@/lib/config';
-// import {icons} from '@/lib/icons';
-import Link from 'next/link';
+import tippy, { roundArrow } from "tippy.js";
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react';
 import * as Icon from 'react-feather';
 import { useLang } from "@/lib/lang";
-import { useEffect } from 'react';
-// import cash from "cash-dom";
-// import Velocity from "velocity-animate";
-import tippy, { roundArrow } from "tippy.js";
+import Link from 'next/link';
 
 export function Menu({prefix, menus})
 {
-    const {Lang} = useLang();
-    let {adminMenuType} = useConfig();
-    if(adminMenuType == "" || !adminMenuType) adminMenuType = "side";
+    let { Lang } = useLang();
+    let { adminMenuType } = useConfig();
+    if ( adminMenuType == "" || !adminMenuType ) 
+        adminMenuType = "side";
+    let pathname = usePathname();
+    let [ active, setActive ] = useState(-1);
 
-    useEffect(()=>{                
+    useEffect(()=>{
         initMenu();
-    }, [])
+    }, []);
+
+    useEffect(()=>{
+        getActiveMenu(pathname);
+    }, [pathname]);
 
     const initMenu = async () => {
         const cash = (await import('cash-dom')).default;
@@ -92,6 +97,25 @@ export function Menu({prefix, menus})
         });
     }
 
+    const getActiveMenu = (pathname) => {
+        let path;
+        menus.map((menu, index) => {
+            path = prefix + menu.href;
+            // console.log("childs: ", menu.childs?.length);
+            if(!menu.childs?.length) {
+                if(pathname.lastIndexOf(path) == 0) 
+                    setActive(index);
+            }else{
+                menu.childs?.map((child, cindex)=>{
+                    path = prefix + child.href;
+                    if(pathname.lastIndexOf(path) == 0){
+                        setActive(`${index}-${cindex}`);
+                    }
+                });
+            }
+        })
+    }
+
     return(
         <nav className={adminMenuType +'-nav'} key={adminMenuType +'-nav'}>
             <ul>
@@ -100,7 +124,8 @@ export function Menu({prefix, menus})
                         let ICN = Icon[item.icon];
                         if(item.childs?.length > 0)
                             return (<li key={index}>
-                                        <a href='#' className={adminMenuType+"-menu"+(item.open?adminMenuType+'-menu--open': '')}>
+                                        <a href='#' onClick={(e)=>e.preventDefault() } 
+                                            className={adminMenuType+"-menu "+(item.open && adminMenuType+'-menu--open ')+" "+(active.toString().indexOf(index+"-") > -1  && adminMenuType+"-menu--active")}>
                                             <div className={adminMenuType+'-menu__icon'}> 
                                                 <ICN className="px-auto inline" />
                                             </div>
@@ -111,12 +136,13 @@ export function Menu({prefix, menus})
                                                 </div>
                                             </div> 
                                         </a>
-                                        <ul className={item.open?adminMenuType+'-menu__sub-open': ''}>
-                                            {item.childs.map((child, index)=>{
+                                        <ul className={item.open?adminMenuType+'-menu__sub-open ': ''}>
+                                            {item.childs.map((child, cindex)=>{
                                                 let CICN = Icon[child.icon];
-                                                // console.log(child.icon);
-                                                return <li key={index}>
-                                                    <Link href={config.front()+prefix+child.href} className={adminMenuType+'-menu'}>
+                                                return <li key={cindex}>
+                                                    <Link href={config.front()+prefix+child.href} 
+                                                        onClick={()=>setActive(index+"-"+cindex)}
+                                                        className={adminMenuType+'-menu '+(active == index+"-"+cindex && adminMenuType+"-menu--active")}>
                                                         <div className={adminMenuType+'-menu__icon'}>
                                                             <CICN className="px-auto inline" />
                                                         </div>
@@ -128,7 +154,9 @@ export function Menu({prefix, menus})
                                     </li>);
                         else{
                             return <li key={index}>
-                                        <Link href={config.front()+prefix+item.href} className={adminMenuType+'-menu'}>
+                                        <Link href={config.front()+prefix+item.href} 
+                                            onClick={()=>setActive(index)}
+                                            className={adminMenuType+'-menu '+(active == index && adminMenuType+"-menu--active")}>
                                             <div className={adminMenuType+'-menu__icon'}>
                                                 <ICN className="px-auto inline" />
                                             </div>

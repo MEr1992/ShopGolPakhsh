@@ -74,6 +74,20 @@ $lang = [
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
     // Words Of Site
+    
+    
+    // admin
+    'line'=>'لاین',
+    'brand'=>'برند',
+    'product'=>'محصول',
+    'price'=>'قیمت',
+    'discount'=>'درصد تخفیف',
+    'usage'=>'نحوه استفاده و مصرف',
+    'review'=>'نقد وبررسی',
+    'select_option'=>'انتخاب گزینه',
+    'main_cat'=>'دسته اصلی',
+
+
 ];
 
 $menus = include(__DIR__.'/./menus.php');

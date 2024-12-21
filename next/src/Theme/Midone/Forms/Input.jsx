@@ -6,7 +6,7 @@ import { useFormElement } from './Element';
 import { useState, useEffect } from 'react';
 
 export function Input(props) {
-    let { refItem, className, inputClassName, type, options, disabled, name, value, checked, max, min, maxlength, dir, onEnter } = props;
+    let { refItem, className, inputClassName, type, options, disabled, name, value, checked, max, min, maxlength, dir, onEnter,note } = props;
     // value used for checkbox or radio value
     let Element = useFormElement(props);
     let { id, rand, label, helpDiv, divError, requiredDiv, placeholder, defaultValue } = Element.init();
@@ -42,6 +42,38 @@ export function Input(props) {
         keyUp = options.onKeyUp;
         delete options.onKeyUp;
     }
+    if (type == "number" || type == "mobile") {
+        const numberKeyDownHandler = (e) => {
+            // لیست کلیدهای مجاز
+            const allowedKeys = [
+                "Backspace",
+                "Tab",
+                "ArrowLeft",
+                "ArrowRight",
+                "Delete",
+                "Home",
+                "End",
+                "Enter",
+            ];
+    
+            // بررسی اعداد انگلیسی و فارسی
+            const englishNumbers = e.key >= "0" && e.key <= "9";
+            const persianNumbers = e.key >= "۰" && e.key <= "۹";
+    
+            // اجازه ورود فقط اعداد و کلیدهای ضروری
+            if (!allowedKeys.includes(e.key) && !englishNumbers && !persianNumbers) {
+                e.preventDefault();
+            }
+        };
+    
+        keyUp = keyUp || (() => {}); // اگر keyUp مقدار پیش‌فرض دارد حفظ شود
+        options = {
+            ...(options || {}),
+            onKeyDown: numberKeyDownHandler,
+        };
+    }
+    
+    
 
     const handleChange = (e) => {
         const newValue = e.target.value;
@@ -66,7 +98,7 @@ export function Input(props) {
         <div className={className || "mb-3 col-span-12 md:col-span-6"}>
             <label htmlFor={id} className="form-label font-bold">{label} {requiredDiv}</label>
             <input
-                dir={dir || 'rtl'}
+                dir = {dir || 'rtl'}
                 className={inputClassName ? inputClassName + " form-control" : "form-control"}
                 id={id}
                 name={name}
@@ -94,12 +126,14 @@ export function Input(props) {
             {type == "password" && (
                 <FeatherIcon 
                     name={state.currentType == "password" ? "Eye" : "EyeOff"} 
-                    spanWrapperclassName="show-password relative top-1/2 left-1 float-left transform -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800" 
+                    spanWrapperClass="show-password relative top-1/2 left-1 float-left transform -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800" 
                     onClick={showHidePassword} 
                 /> 
             )}
             {helpDiv}
             {divError}
+            {note ? <small id={id + "-note"} className="form-text text-muted">{note}</small> : ""}
         </div>
+            
     );
 }

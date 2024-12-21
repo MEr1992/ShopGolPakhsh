@@ -1,8 +1,9 @@
 'use client';
 // docs: https://www.cssscript.com/single-multiple-select-tail/
-import {useEffect, useState} from 'react';
-import {Tools} from '../Utils/Tools';
-import {useFormElement} from './Element';
+import { useLang } from '@/lib';
+import { Tools } from '../Utils/Tools';
+import { useFormElement } from './Element';
+import { useEffect, useState } from 'react';
 
 const SelectTail = (props)=>{      
 
@@ -13,6 +14,8 @@ const SelectTail = (props)=>{
     
     if(!titleKey) titleKey = 'title';
     if(!valueKey) valueKey = 'id';
+
+    const {Lang} = useLang();
     
     let [state, setState] = useState({
         value: defaultValue,
@@ -70,7 +73,9 @@ const SelectTail = (props)=>{
             // cbEmpty: undefined,         // [0.5.0]      Function
             // cbLoopItem: ()=>console.log('cbLoopItem'),      // [0.4.0]      Function
             // cbLoopGroup: ()=>console.log('cbLoopGroup'),      // [0.4.0]      Function
-        });
+        }).on('change', (e) => {
+            // const mySelectField = document.querySelector('#'+id);
+        });;
 
     }
 
@@ -91,23 +96,47 @@ const SelectTail = (props)=>{
         state.value = defaultValue;
         window?.$('#'+id+'').val(defaultValue);        
         state.instance?.reload();
-        Element.removeError();
-    }, [refItem[0].state.info, defaultValue])
+        if(defaultValue != "")
+            Element.removeError();
+    }, [defaultValue])
 
+    useEffect(function(){
+        state.value && window?.$('#'+id+'').val(state.value);
+        state.instance?.reload();
+        if(state.value && state.value != "")
+            Element.removeError();
+    }, [data, children])
+    
     return(
-        <div className={className?className+' mb-3 col-span-12 md:col-span-6':' mb-3 col-span-12 md:col-span-6'} >
+        <div className={className?className+' mb-3':' mb-3 col-span-12 md:col-span-6'} >
             <label htmlFor={id} className='form-label font-bold'>{label} {requiredDiv}</label>
-            <select
+            {/* <select
                 id = {id}
                 ref={Element.createRef(refItem)}
                 className='tail-select w-full'
                 tabIndex='-1'
                 multiple={Boolean(multiple)}
             >
+                { !Boolean(multiple) && (placeholder !== false) && <option key={-1} value="" >{Lang('public.select_option')}</option>}
                 { children }
                 {
                     Tools.getArray(data).map((item, key)=><option key={key} value={item[valueKey]}>{item[titleKey]}</option>)
                 }
+            </select> */}
+             <select
+                id={id}
+                ref={Element.createRef(refItem)}
+                className='tail-select w-full'
+                tabIndex='-1'
+                multiple={multiple} // یا !!multiple
+            >
+                {!multiple && (placeholder !== false) && <option key={-1} value="">{Lang('public.select_option')}</option>}
+                {children}
+                {Tools.getArray(data).map((item, key) => (
+                    <option key={key} value={item[valueKey]}>
+                        {item[titleKey]}
+                    </option>
+                ))}
             </select>
             <span>
                 {helpDiv}

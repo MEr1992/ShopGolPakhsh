@@ -7,16 +7,12 @@ use Models\Person\Role;
 
 class PersonnelController extends UserController
 {
-    protected $model = "Models\Person\Personnel";
-    
-    public function init()
-    {
-        Parent::init();
-        
-        $this->indexQuery = function ($query)
-        {            
-            $query->whereIn('role_id', Role::ISPERSONNEL)->whereNot("id", 1);
-        };
-    }
+    protected $model = 'Models\Person\Personnel';
+    protected $request = "Publics\Requests\PersonnelRequest";
+    // protected $with = ["role","gender", "activeStatus","cityUser",'level',"education"];
+    // protected $showWith = ["role", "gender", "activeStatus","cityUser",'level',"education"];
+    protected $needles = ['Base\Status'];
+    protected $searchFilter = ["firstname", "lastname", "mobile"];
+    protected $files = ["photo"];
 }
 
