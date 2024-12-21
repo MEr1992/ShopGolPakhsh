@@ -1,4 +1,15 @@
 <?php return array (
+  'darkaonline/l5-swagger' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'L5Swagger\\L5SwaggerServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'L5Swagger' => 'L5Swagger\\L5SwaggerFacade',
+    ),
+  ),
   'hekmatinasser/verta' => 
   array (
     'providers' => 
@@ -10,15 +21,15 @@
       'Verta' => 'Hekmatinasser\\Verta\\Verta',
     ),
   ),
-  'ipe/smsir-php' => 
+  'joisarjignesh/bigbluebutton' => 
   array (
     'providers' => 
     array (
-      0 => 'Ipe\\Sdk\\SmsIrServiceProvider',
+      0 => 'JoisarJignesh\\Bigbluebutton\\BigbluebuttonServiceProvider',
     ),
     'aliases' => 
     array (
-      'SmsIr' => 'Ipe\\Sdk\\Facades\\SmsIr',
+      'Bigbluebutton' => 'JoisarJignesh\\Bigbluebutton\\Facades\\Bigbluebutton',
     ),
   ),
   'laravel/sail' => 
