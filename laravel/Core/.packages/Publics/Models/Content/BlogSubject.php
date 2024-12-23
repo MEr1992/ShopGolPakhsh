@@ -1,20 +1,29 @@
 <?php
+
 namespace Models\Content;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Models\Traits\Base;
 
 class BlogSubject extends Model
 {
-    use Base;
-
+    use HasFactory,Base;
     protected $guarded = ['created_at', 'updated_at', 'deleted_at', 'id'];
-    protected $hidden  = ['created_at', 'updated_at', 'deleted_at'];
-    protected $dates   = ['deleted_at'];
     protected $table   = 'blog_subjects';
 
-    function blogs()
+    protected static function booted(): void
     {
-        return $this->hasMany(Blog::class, 'blog_id');
+        static::deleting(function(BlogSubject $subject) { // before delete() method call this
+            $subject->blogs()->delete();
+        });
+    }
+    /**
+     * Get the blogs for the subject.
+     */
+    public function blogs(): HasMany
+    {
+        return $this->hasMany(Blog::class);
     }
 }

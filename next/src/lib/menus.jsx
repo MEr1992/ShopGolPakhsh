@@ -5,15 +5,15 @@ export const getMenus = (user) => {
 
     const commonMenus = [
         { title: "dashboard", icon: "Home", href: "/dashboard" },
-        { title: "products", icon: "Book", href: "/products" },
-        { title: "brand", icon: "Calendar", href: "/brands" },
-        { title: "category", icon: "List", href: "/categories" },
-        { title: "line", icon: "Layers", href: "/lines" },
+        { title: "products", icon: "ShoppingBag", href: "/products" },
+        { title: "brand", icon: "Star", href: "/brands" },
+        { title: "category", icon: "Slack", href: "/categories" },
+        { title: "blogs", icon: "Pocket", href: "/blogs" },
     ];
 
     const commonMenus2 = [
-        { title: "edit_profile", icon: "User", href: "/editProfile" },
-        { title: "change_password", icon: "Lock", href: "/changePassword" },
+        { title: "edit_profile", icon: "User", href: "/profile" },
+        { title: "change_password", icon: "Lock", href: "/change-password" },
     ];
 
     return [...commonMenus,...commonMenus2];

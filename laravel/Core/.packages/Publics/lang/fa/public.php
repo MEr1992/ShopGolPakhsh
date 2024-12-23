@@ -101,6 +101,20 @@ $lang = [
     // 'cart_detail_step_1'=>'به آسانی انتخاب کنید',
     // 'cart_detail_step_2'=>'به سرعت سفارش دهید',
     // 'cart_detail_step_3'=>'با اطمینان خرید کنید',
+    
+    
+    // admin
+    'line'=>'لاین',
+    'brand'=>'برند',
+    'product'=>'محصول',
+    'price'=>'قیمت',
+    'discount'=>'درصد تخفیف',
+    'usage'=>'نحوه استفاده و مصرف',
+    'review'=>'نقد وبررسی',
+    'select_option'=>'انتخاب گزینه',
+    'main_cat'=>'دسته اصلی',
+
+
 ];
 
 $menus = include(__DIR__.'/./menus.php');

@@ -11,7 +11,7 @@ export const BackBtn = (props) => {
 
   return(
     <Link className="btn bg-blue-700 text-white font-medium hover:bg-blue-800 hover:text-yellow-400 leading-6 w-20 mr-1 ml-1" href={"#"} onClick={onClick}>
-      <FeatherIcon name="CornerUpRight" size = "17" spanWrapperclassName="ml-1" />
+      <FeatherIcon name="CornerUpRight" size = "17" spanWrapperClass="ml-1" />
       {Lang(["back"])}
   </Link>
   );

@@ -31,8 +31,8 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
     Route::get('/products/{id}', 'Product\ProductController@show');
     Route::get('/products', 'Product\ProductController@index');
 
-    // Route::get('/blogs', 'Blog\BlogController@index');
-    // Route::get('/blogs/{id}', 'Blog\BlogController@show');
+    Route::get('/blog/{id}', 'Blog\BlogController@show');
+    Route::get('/blog', 'Blog\BlogController@index');
     // Route::resource('contact-us', 'ContactController');
     // Route::resource('about-us', 'AboutController');
     // Route::post('send-message', 'ContactController@comment');
