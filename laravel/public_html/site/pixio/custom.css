@@ -15,5 +15,6 @@
 /* Custom Stylesheet */
  @import url(css/style.css);
  @import url(css/skin/skin-1.css);
+ @import url(./style.ltr.css);
 /* GOOGLE FONTS */
  /* @import url(https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap); */

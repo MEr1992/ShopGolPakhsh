@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Cart } from "@/Theme/Site/Components/Public/Cart";
 import { Like } from "@/Theme/Site/Components/Public/Like";
 import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
+import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
 
 export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
 	let delay = ["0.6s","0.8s","1.0s","1.2s","0.2s","0.4s","0.6s","2.0s"];
@@ -74,30 +75,13 @@ export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
 					</div>
 					<div className="clearfix">
 						<ul id="masonry" className="row g-xl-4 g-3">
-							{items?.map((item, index)=>{
+							{items?.map((item,index)=>{
 								let delayNew = delay[index];
 								let classLiNew = classLi[index];
-								let displayPrice = (item?.discount>0)? "$"+item?.discount_price : "$"+item?.price
 
 								return(
-									<li className={"card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp "+classLiNew} data-wow-delay={delayNew}>
-										<div className="shop-card">
-											<div className="dz-media">
-												<img src={mediaPath+"/product/"+item?.image} alt="image"/>
-												<div className="shop-meta">
-													<QuickView Lang={Lang} />
-													<Like Lang={Lang} />
-													<Cart Lang={Lang} />
-												</div>							
-											</div>
-											<div className="dz-content">
-												<h5 className="title"><a href="shop-list.html">{item?.name}</a></h5>
-												<h5 className="price">{displayPrice}</h5>
-											</div>
-											<div className="product-tag">
-												<span className="badge ">{item?.category?.["title_"+local]}</span>
-											</div>
-										</div>
+									<li className={"card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp "+classLiNew} data-wow-delay={delayNew} key={index}>
+										<ProductGrid item={item} mediaPath={mediaPath} local={local} Lang={Lang} calssParent="" />
 									</li>
 								);
 							})}

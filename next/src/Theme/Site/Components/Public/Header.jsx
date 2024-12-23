@@ -43,7 +43,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 					<div className="main-bar clearfix">
 						<div className="container-fluid clearfix d-lg-flex d-block">
 							<div className="logo-header logo-dark me-md-5">
-								<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></a>
+								<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
 							</div>
 							<button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 								<span></span>
@@ -56,21 +56,21 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<Link href={`/${local}`}><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
 										<a href="#!"><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
-												{parentCategories?.map((category,i)=>{
+												{parentCategories?.map((category,index)=>{
 													return(
-														<li className="post-menu">
+														<li className="post-menu" key={index}>
 															<a href="#!" className="menu-title">{category?.["title_"+local]}</a>
 															<div className="widget widget_post pt-2">
 																<ul>
 																	{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
 																		return(
-																			<li>
+																			<li key={i}>
 																				<div className="dz-media">
 																					<img src={mediaPath+"/category/"+child?.image} alt=""/>
 																				</div>
@@ -95,9 +95,9 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 											<ul>
 												<li className="side-left">
 													<ul className="portfolio-nav-link">
-														{subjects?.map((subject,i)=>{
+														{subjects?.map((subject,index)=>{
 															return(
-																<li>
+																<li key={index}>
 																	<a href="portfolio-tiles.html">
 																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
 																		<span>{subject?.["title_"+local]}</span>
@@ -114,9 +114,9 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
-												{subjects?.map((subject,i)=>{
+												{subjects?.map((subject,index)=>{
 													return(
-														<li>
+														<li key={index}>
 															<a href="#!" className="menu-title">Blog Dark Style</a>
 															<ul>
 																<li><a href="blog-dark-2-column.html">{subject?.["title_"+local]}</a></li>
@@ -128,10 +128,10 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<Link href={`/${local}/AboutUs`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
+										<Link href={`/${local}/contactUs`}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 								</ul>
 								<div className="dz-social-icon">

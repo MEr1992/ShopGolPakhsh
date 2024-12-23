@@ -1,14 +1,38 @@
 "use client"
-import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
+import {useEffect} from "react"
 
 export const TabsProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
-	
+    useEffect(() => {
+        // setTimeout(() => {
+            loadTab();
+        // }, 700);
+	}, []);
+    const loadTab = ()=>{
+        
+	// $('a[data-bs-toggle="tab"]').click(function () {
+	// 	$('a[data-bs-toggle="tab"]').click(function () {
+	// 		$($(this).attr('href')).show().addClass('show active').siblings().hide();
+	// 	})
+	// });
+        if(item){
+            jQuery('.wishlist-link').on('click', function () {
+                jQuery('.product-description .nav-tabs button[data-bs-target="#wishlist-pane"]').tab('show');
+            })
+            jQuery('.cart-btn').on('click', function () {
+                jQuery('.product-description .nav-tabs button[data-bs-target="#shopping-cart-pane"]').tab('show');
+            })
+        }
+        else{
+			setTimeout(() => loadTab(), 1000);
+		}
+    }
+
     return(
 		<>
-           <section className="content-inner-3 pb-0"> 
+            <section className="content-inner-3 pb-0">
                 <div className="container">
                     <div className="product-description">
-                        <div className="dz-tabs">					
+                        <div className="dz-tabs">
                             <ul className="nav nav-tabs center" id="myTab1" role="tablist">
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane" type="button" role="tab" aria-controls="description-tab-pane" aria-selected="true">{Lang("public.description")}</button>
@@ -19,63 +43,30 @@ export const TabsProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">{Lang("public.reviews")}</button>
                                 </li>
-                                <li className="nav-item" role="presentation">
+                                {/* <li className="nav-item" role="presentation">
                                     <button className="nav-link" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false">{Lang("public.comments")+"(12)"}</button>
-                                </li>
+                                </li> */}
                             </ul>
                             <div className="tab-content" id="myTabContent">
-                                <div className="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
-                                    <div className="detail-bx text-center">
-                                        <h5 className="title">Flawless Denim Delights</h5>
-                                        <p className="para-text">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                        </p>
-                                        <ul className="feature-detail">
-                                            <li>
-                                                <i className="icon feather icon-check"></i>
-                                                <h5>Versatile, enduring style for all occasions</h5>
-                                            </li>
-                                            <li>
-                                                <i className="icon feather icon-check"></i>
-                                                <h5>Handcrafted Elegance, Comfort</h5>
-                                            </li>
-                                            <li>
-                                                <i className="icon feather icon-check"></i>
-                                                <h5>Versatile, enduring style for all occasions</h5>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="row g-lg-4 g-3">
-                                        <div className="col-xl-4 col-md-4 col-sm-4 col-6">
-                                            <div className="related-img dz-media">
-                                                <img src={assetsPath+"/pixio/images/feature/product-feature/1.png"} alt="/" />
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-4 col-md-4 col-sm-4 col-6">
-                                            <div className="related-img dz-media">
-                                                <img src={assetsPath+"/pixio/images/feature/product-feature/2.png"} alt="/" />
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-4 col-md-4 col-sm-4">
-                                            <div className="related-img dz-media">
-                                                <img src={assetsPath+"/pixio/images/feature/product-feature/3.png"} alt="/" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="tab-pane fade" id="usage-tab-pane" role="tabpanel" aria-labelledby="usage-tab" tabindex="0">
+                                <div className="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="description-tab" tabIndex="0">
                                     <div className="detail-bx text-center">
                                         <h5 className="title">{Lang("public.Flawless Denim Delights")}</h5>
-                                        <p className="para-text">{item?.usage}</p>
+                                        <p className="para-text" dangerouslySetInnerHTML={{__html: item?.description}}></p>
                                     </div>
                                 </div>
-                                <div className="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
+                                <div className="tab-pane fade" id="usage-tab-pane" role="tabpanel" aria-labelledby="usage-tab" tabIndex="0">
                                     <div className="detail-bx text-center">
                                         <h5 className="title">{Lang("public.Flawless Denim Delights")}</h5>
-                                        <p className="para-text">{item?.review}</p>
+                                        <p className="para-text" dangerouslySetInnerHTML={{__html: item?.usage}}></p>
                                     </div>
                                 </div>
-                                <div className="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabindex="0">
+                                <div className="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabIndex="0">
+                                    <div className="detail-bx text-center">
+                                        <h5 className="title">{Lang("public.Flawless Denim Delights")}</h5>
+                                        <p className="para-text" dangerouslySetInnerHTML={{__html: item?.review}}></p>
+                                    </div>
+                                </div>
+                                <div className="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabIndex="0">
                                     <div className="clear" id="comment-list">
                                         <div className="post-comments comments-area style-1 clearfix">
                                             <h4 className="comments-title mb-2">{Lang("public.comments")+"(02)"}</h4>

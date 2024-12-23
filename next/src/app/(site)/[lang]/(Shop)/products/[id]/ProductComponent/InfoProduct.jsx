@@ -4,102 +4,63 @@ import {useEffect} from "react"
 import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
 
 export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
-	
-    
 	useEffect(() => {
-		// setTimeout(()=>{
-			console.log("useEffect");
-			handleLightgallery();
-			// items?.length > 0 && handleIsotope();
-		// }, 4000)
+        loadInfo();
 	}, []);
+    const loadInfo = ()=>{
+        if(window.jQuery('#lightgallery').length > 0 || jQuery('#lightgallery2').length > 0){
+            handleLightgallery();
+            ProductGallerySwiper1();
+        }
+        else{
+			setTimeout(() => loadInfo(), 1000);
+		}
+    }
 	const ProductGallerySwiper1 = ()=>{
-            if(jQuery('.product-gallery-swiper').length > 0){
-                var swiper = new Swiper(".product-gallery-swiper", {
-                    spaceBetween: 10,
-                    slidesPerView: 2,
-                    //freeMode: true,
-                    //watchSlidesProgress: true,
-                    pagination: {
-                        el: ".swiper-pagination-trading",
-                    },
-                });
-                var swiper2 = new Swiper(".product-gallery-swiper2", {
-                  spaceBetween: 0,
-                  updateOnWindowResize: true,	
-                  navigation: {
-                    nextEl: ".gallery-button-next",
-                    prevEl: ".gallery-button-prev",
-                  },
-                  thumbs: {
-                    swiper: swiper,
-                  },
-                });
-            }
+        if(jQuery('.product-gallery-swiper').length > 0){
+            var swiper = new Swiper(".product-gallery-swiper", {
+                spaceBetween: 10,
+                slidesPerView: 2,
+                //freeMode: true,
+                //watchSlidesProgress: true,
+                pagination: {
+                    el: ".swiper-pagination-trading",
+                },
+            });
+            var swiper2 = new Swiper(".product-gallery-swiper2", {
+                spaceBetween: 0,
+                updateOnWindowResize: true,	
+                navigation: {
+                nextEl: ".gallery-button-next",
+                prevEl: ".gallery-button-prev",
+                },
+                thumbs: {
+                swiper: swiper,
+                },
+            });
+        }
     }
 	const handleLightgallery = ()=>{
-		if(window.jQuery('#lightgallery').length > 0 || jQuery('#lightgallery2').length > 0){
-			// console.log("handleLightgallery first");
-			if (jQuery('#lightgallery').length > 0) {
-				lightGallery(document.getElementById('lightgallery'), {
-					plugins: [lgThumbnail, lgZoom],
-					selector: '.lg-item',
-					thumbnail: true,
-					exThumbImage: 'data-src'
-				});
-			}
-			if (jQuery('#lightgallery2').length > 0) {
-				lightGallery(document.getElementById('lightgallery2'), {
-					plugins: [lgThumbnail, lgZoom],
-					selector: '.lg-item',
-					thumbnail: true,
-					exThumbImage: 'data-src'
-				});
-			}
-            ProductGallerySwiper1();
-		}else{
-			console.log("handleLightgallery setTimeout");
-			setTimeout(() => handleLightgallery(), 1000);
-		}
-	
-	}
-
-	const handleMultipleImageSize = ()=>{
-		jQuery('.smart-product-details .dz-media img').removeAttr('style');
-
-		setTimeout(function () {
-			jQuery('.smart-product-details .dz-content').each(function () {
-				var ch = Math.ceil(jQuery(this).outerHeight());
-				jQuery(this).parent().find('.dz-media img').css('--static-height', ch + 'px');
-			});
-		}, 500);
-	}
-	const handleMagnifyGallery = ()=>{
-        console.log($('.DZoomImage'));
-		const imageSelector = $('.DZoomImage');
-
-		imageSelector.on('mousemove', function (t) {
-			let e = $(this).offset();
-			var i = (t.pageX - e.left) / $(this).width() * 100 <= 100 ? (t.pageX - e.left) / $(this).width() * 100 : 100;
-			var c = (t.pageY - e.top) / $(this).height() * 100 <= 100 ? (t.pageY - e.top) / $(this).height() * 100 : 100;
-
-			$(this).find('img').css("transform-origin", i + "% " + c + "%");
-		})
-		imageSelector.on('mouseenter', function (t) {
-			let n = $(this).find('img');
-			n.css("cursor", "pointer"),
-				n.css("transition", "0.1s"),
-				n.css("transform", "scale(" + 1.5 + ")"),
-				$(this).find('.mfp-link i').css({ opacity: 1, zIndex: 1 })
-		});
-		imageSelector.on('mouseleave', function (t) {
-			let n = $(this).find('img');
-			n.css("transition", "0.1s"), n.css("transform", "scale(1)")
-			$(this).find('.mfp-link i').css({ opacity: 0, zIndex: 1 })
-		});
+        if (jQuery('#lightgallery').length > 0) {
+            lightGallery(document.getElementById('lightgallery'), {
+                plugins: [lgThumbnail, lgZoom],
+                selector: '.lg-item',
+                thumbnail: true,
+                exThumbImage: 'data-src'
+            });
+        }
+        if (jQuery('#lightgallery2').length > 0) {
+            lightGallery(document.getElementById('lightgallery2'), {
+                plugins: [lgThumbnail, lgZoom],
+                selector: '.lg-item',
+                thumbnail: true,
+                exThumbImage: 'data-src'
+            });
+        }
 	}
     let displayDiscount = (item?.discount>0)? <span className="badge bg-secondary mb-2">{Lang("public.sale")+" "+item?.discount+"% "+Lang("public.off")}</span> : "";
-
+    let attachments = (item?.img)? item?.img?.split("###") : [];
+    
     return(
 		<>
 			<section className="content-inner py-0">
@@ -112,41 +73,38 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                         <div className="swiper-wrapper" id="lightgallery2">
                                             <div className="swiper-slide">
                                                 <div className="dz-media DZoomImage">
-                                                    <a className="mfp-link lg-item" href={assetsPath+"/pixio/images/products/product-detail2/product1.png"} data-src={assetsPath+"/pixio/images/products/product-detail2/product1.png"}>
+                                                    <a className="mfp-link lg-item" href={mediaPath+"/product/"+item?.image} data-src={mediaPath+"/product/"+item?.image}>
                                                         <i className="feather icon-maximize dz-maximize top-left"></i>
                                                     </a>
-                                                    <img src={assetsPath+"/pixio/images/products/product-detail2/product1.png"} alt="image" />
+                                                    <img src={mediaPath+"/product/"+item?.image} alt="image" />
                                                 </div>
                                             </div>
-                                            <div className="swiper-slide">
-                                                <div className="dz-media DZoomImage">
-                                                    <a className="mfp-link lg-item" href={assetsPath+"/pixio/images/products/product-detail2/product2.png"} data-src={assetsPath+"/pixio/images/products/product-detail2/product2.png"}>
-                                                        <i className="feather icon-maximize dz-maximize top-left"></i>
-                                                    </a>
-                                                    <img src={assetsPath+"/pixio/images/products/product-detail2/product2.png"} alt="image" />
-                                                </div>
-                                            </div>
-                                            <div className="swiper-slide">
-                                                <div className="dz-media DZoomImage">
-                                                    <a className="mfp-link lg-item" href={assetsPath+"/pixio/images/products/product-detail2/product3.png"} data-src={assetsPath+"/pixio/images/products/product-detail2/product3.png"}>
-                                                        <i className="feather icon-maximize dz-maximize top-left"></i>
-                                                    </a>
-                                                    <img src={assetsPath+"/pixio/images/products/product-detail2/product3.png"} alt="image" />
-                                                </div>
-                                            </div>
+                                            {attachments?.map((attachment,index)=>{
+                                                return(
+                                                    <div className="swiper-slide" key={index}>
+                                                        <div className="dz-media DZoomImage">
+                                                            <a className="mfp-link lg-item" href={mediaPath+"/productGallery/"+attachment} data-src={mediaPath+"/productGallery/"+attachment}>
+                                                                <i className="feather icon-maximize dz-maximize top-left"></i>
+                                                            </a>
+                                                            <img src={mediaPath+"/productGallery/"+attachment} alt="image" />
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                     <div className="swiper product-gallery-swiper thumb-swiper-lg">
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
-                                                <img src={assetsPath+"/pixio/images/products/product-detail2/thumb-img/1.png"} alt="image" />
+                                                <img src={mediaPath+"/product/"+item?.image} alt="image" />
                                             </div>
-                                            <div className="swiper-slide">
-                                                <img src={assetsPath+"/pixio/images/products/product-detail2/thumb-img/2.png"} alt="image" />
-                                            </div>
-                                            <div className="swiper-slide">
-                                                <img src={assetsPath+"/pixio/images/products/product-detail2/thumb-img/3.png"} alt="image" />
-                                            </div>
+                                            {attachments?.map((attachment,index)=>{
+                                                return(
+                                                    <div className="swiper-slide">
+                                                        <img src={mediaPath+"/productGallery/"+attachment} alt="image" />
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 </div>							
@@ -244,9 +202,9 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                 </ul>
                                                 <ul>
                                                     <li><strong>{Lang("public.tags")+":"}</strong></li>
-                                                    {(item?.keywords)?.map((keyword, i)=>{
+                                                    {(item?.keywords)?.map((keyword,index)=>{
                                                         return(
-                                                            <li><a href="shop-standard.html">{(i==0)? "" : ","}{keyword?.title}</a></li>												
+                                                            <li key={index}><a href="shop-standard.html">{(index==0)? "" : ","}{keyword?.title}</a></li>												
                                                             // <li><a href="shop-standard.html">Casual,</a></li>												
                                                         );
                                                     })}												
@@ -276,7 +234,7 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                 </ul> */}
                                             </div>
                                         </div>
-                                        <div className="banner-social-media">
+                                        {/* <div className="banner-social-media">
                                             <ul>
                                                 <li>
                                                     <a href="../../https@www.instagram.com/dexignzone/default.htm">Instagram</a>
@@ -288,7 +246,7 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                     <a href="../../https@twitter.com/dexignzones">twitter</a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="col-xl-5">
@@ -320,10 +278,10 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                             <tbody>
                                                 <tr className="total">
                                                     <td>
-                                                        <h6 className="mb-0">Total</h6>
+                                                        <h6 className="mb-0">{Lang("public.price_cart_detail")}</h6>
                                                     </td>
                                                     <td className="price">
-                                                        $125.75
+                                                        {item?.price}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -332,9 +290,9 @@ export const InfoProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                             <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M9.24805 16.9986C8.99179 16.9986 8.74474 16.9058 8.5522 16.7371C7.82504 16.1013 7.12398 15.5038 6.50545 14.9767L6.50229 14.974C4.68886 13.4286 3.12289 12.094 2.03333 10.7794C0.815353 9.30968 0.248047 7.9162 0.248047 6.39391C0.248047 4.91487 0.755203 3.55037 1.67599 2.55157C2.60777 1.54097 3.88631 0.984375 5.27649 0.984375C6.31552 0.984375 7.26707 1.31287 8.10464 1.96065C8.52734 2.28763 8.91049 2.68781 9.24805 3.15459C9.58574 2.68781 9.96875 2.28763 10.3916 1.96065C11.2292 1.31287 12.1807 0.984375 13.2197 0.984375C14.6098 0.984375 15.8885 1.54097 16.8202 2.55157C17.741 3.55037 18.248 4.91487 18.248 6.39391C18.248 7.9162 17.6809 9.30968 16.4629 10.7792C15.3733 12.094 13.8075 13.4285 11.9944 14.9737C11.3747 15.5016 10.6726 16.1001 9.94376 16.7374C9.75136 16.9058 9.50417 16.9986 9.24805 16.9986ZM5.27649 2.03879C4.18431 2.03879 3.18098 2.47467 2.45108 3.26624C1.71033 4.06975 1.30232 5.18047 1.30232 6.39391C1.30232 7.67422 1.77817 8.81927 2.84508 10.1066C3.87628 11.3509 5.41011 12.658 7.18605 14.1715L7.18935 14.1743C7.81021 14.7034 8.51402 15.3033 9.24654 15.9438C9.98344 15.302 10.6884 14.7012 11.3105 14.1713C13.0863 12.6578 14.6199 11.3509 15.6512 10.1066C16.7179 8.81927 17.1938 7.67422 17.1938 6.39391C17.1938 5.18047 16.7858 4.06975 16.045 3.26624C15.3152 2.47467 14.3118 2.03879 13.2197 2.03879C12.4197 2.03879 11.6851 2.29312 11.0365 2.79465C10.4585 3.24179 10.0558 3.80704 9.81975 4.20255C9.69835 4.40593 9.48466 4.52733 9.24805 4.52733C9.01143 4.52733 8.79774 4.40593 8.67635 4.20255C8.44041 3.80704 8.03777 3.24179 7.45961 2.79465C6.811 2.29312 6.07643 2.03879 5.27649 2.03879Z" fill="black"></path>
                                             </svg>
-                                            Add To Wishlist
+                                            {Lang("public.cart_detail_btn_2")}
                                         </a>
-                                        <a href="shop-cart.html" className="btn btn-secondary w-100">ADD TO CART</a>
+                                        <a href="shop-cart.html" className="btn btn-secondary w-100">{Lang("public.cart_detail_btn_2")}</a>
                                     </div>	
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 					</div>
 					<div className="swiper swiper-four swiper-visible">
 						<div className="swiper-wrapper">
-							{items?.map((item, i)=>{
+							{items?.map((item,index)=>{
 								delay = parseFloat(delay+0.2);
 								let delayNew = delay+"s";
 								let classSpan = "text-success";
@@ -34,7 +34,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 									</>
 								}
 								return(
-									<div className="swiper-slide">
+									<div className="swiper-slide" key={index}>
 										<div className="shop-card style-2 wow fadeInUp" data-wow-delay={delayNew}>
 											<div className="dz-media">
 												<img src={mediaPath+"/product/"+item?.image} alt="image"/>

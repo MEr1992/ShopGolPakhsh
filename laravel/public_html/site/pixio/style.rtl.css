@@ -214,3 +214,17 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 	margin-left: auto;
 	margin-right: 10px;
 }
+.detail-bx .feature-detail li i {
+	margin-right: auto;
+	margin-left: 10px;
+}
+.detail-bx .feature-detail li {
+	padding: 10px 0 10px 40px;
+	text-align: right;
+}
+.wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
+	padding-right: 1.125rem;
+}
+.widget_categories ul ul {
+	margin-left: -15px !important;
+}

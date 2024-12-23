@@ -1,163 +1,71 @@
 "use client"
+import {useEffect} from "react";
+import Link from "next/link";
 import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
 
 export const RelatedProduct = ({ items,assetsPath,mediaPath,local,Lang }) => {
-	
+	useEffect(() => {
+        handleSwiperFour();
+	}, []);
+    const handleSwiperFour = ()=>{
+		if(jQuery('.swiper-four').length > 0){
+			var swiper = new Swiper( '.swiper-four', {
+				speed: 1000,
+				loop: true,
+				parallax: true,
+				slidesPerView: 4,
+				spaceBetween: 30,
+				autoplay: {
+					delay: 2500,
+				},
+				navigation: {
+					nextEl: ".tranding-button-next",
+					prevEl: ".tranding-button-prev",
+				},	
+				breakpoints: {
+					1200: {
+						slidesPerView: 4,
+					},
+					1024: {
+						slidesPerView: 4,
+					},
+					991: {
+						slidesPerView: 3,
+					},
+					591: {
+						slidesPerView: 2,
+						spaceBetween: 20,
+					},
+					340: {
+						slidesPerView: 1,
+						spaceBetween: 15,
+					},
+				}
+			});
+		}
+	}
     return(
 		<>
             <section className="content-inner-1  overflow-hidden">
                 <div className="container">
                     <div className="section-head style-2 d-md-flex justify-content-between align-items-center">
                         <div className="left-content">
-                            <h2 className="title mb-0">Related products</h2>
+                            <h2 className="title mb-0">{Lang("public.related_products")}</h2>
                         </div>
-                        <a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">See all products
+                        <Link href={`/${local}/products`} className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.see_all")}
                             <i className="icon feather icon-chevron-right font-18"></i>
-                        </a>			
+                        </Link>			
                     </div>
                     <div className="swiper-btn-center-lr">
                         <div className="swiper swiper-four">
                             <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <div className="shop-card style-1">
-                                        <div className="dz-media">
-                                            <img src={assetsPath+"/pixio/images/shop/product/1.png"} alt="image" />
-                                            <div className="shop-meta">
-                                                            <a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i className="fa-solid fa-eye d-md-none d-block"></i>
-                                                                <span className="d-md-block d-none">Quick View</span>
-                                                            </a>
-                                                            <div className="btn btn-primary meta-icon dz-wishicon">
-                                                                <i className="icon feather icon-heart dz-heart"></i>
-                                                                <i className="icon feather icon-heart-on dz-heart-fill"></i>
-                                                            </div>
-                                                            <div className="btn btn-primary meta-icon dz-carticon">
-                                                                <i className="flaticon flaticon-basket"></i>
-                                                                <i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-                                                            </div>
-                                                        </div>								
+                                {items?.map((item,index)=>{
+                                    return(
+                                        <div className="swiper-slide" key={index}>
+                                            <ProductGrid item={item} mediaPath={mediaPath} local={local} Lang={Lang} />
                                         </div>
-                                        <div className="dz-content">
-                                            <h5 className="title"><a href="shop-list.html">Cozy Knit Cardigan Sweater</a></h5>
-                                            <h5 className="price">$80</h5>
-                                        </div>
-                                        <div className="product-tag">
-                                            <span className="badge ">Get 20% Off</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="swiper-slide">
-                                    <div className="shop-card style-1">
-                                        <div className="dz-media">
-                                            <img src={assetsPath+"/pixio/images/shop/product/2.png"} alt="image" />
-                                            <div className="shop-meta">
-                                                            <a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i className="fa-solid fa-eye d-md-none d-block"></i>
-                                                                <span className="d-md-block d-none">Quick View</span>
-                                                            </a>
-                                                            <div className="btn btn-primary meta-icon dz-wishicon">
-                                                                <i className="icon feather icon-heart dz-heart"></i>
-                                                                <i className="icon feather icon-heart-on dz-heart-fill"></i>
-                                                            </div>
-                                                            <div className="btn btn-primary meta-icon dz-carticon">
-                                                                <i className="flaticon flaticon-basket"></i>
-                                                                <i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-                                                            </div>
-                                                        </div>								
-                                        </div>
-                                        <div className="dz-content">
-                                            <h5 className="title"><a href="shop-list.html">Sophisticated Swagger Suit</a></h5>
-                                            <h5 className="price">$80</h5>
-                                        </div>
-                                        <div className="product-tag">
-                                            <span className="badge ">Get 20% Off</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="swiper-slide">
-                                    <div className="shop-card style-1">
-                                        <div className="dz-media">
-                                            <img src={assetsPath+"/pixio/images/shop/product/3.png"} alt="image" />
-                                            <div className="shop-meta">
-                                                            <a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i className="fa-solid fa-eye d-md-none d-block"></i>
-                                                                <span className="d-md-block d-none">Quick View</span>
-                                                            </a>
-                                                            <div className="btn btn-primary meta-icon dz-wishicon">
-                                                                <i className="icon feather icon-heart dz-heart"></i>
-                                                                <i className="icon feather icon-heart-on dz-heart-fill"></i>
-                                                            </div>
-                                                            <div className="btn btn-primary meta-icon dz-carticon">
-                                                                <i className="flaticon flaticon-basket"></i>
-                                                                <i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-                                                            </div>
-                                                        </div>								
-                                        </div>
-                                        <div className="dz-content">
-                                            <h5 className="title"><a href="shop-list.html">Classic Denim Skinny Jeans</a></h5>
-                                            <h5 className="price">$80</h5>
-                                        </div>
-                                        <div className="product-tag">
-                                            <span className="badge ">Get 20% Off</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="swiper-slide">
-                                    <div className="shop-card style-1">
-                                        <div className="dz-media">
-                                            <img src={assetsPath+"/pixio/images/shop/product/4.png"} alt="image" />
-                                            <div className="shop-meta">
-                                                            <a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i className="fa-solid fa-eye d-md-none d-block"></i>
-                                                                <span className="d-md-block d-none">Quick View</span>
-                                                            </a>
-                                                            <div className="btn btn-primary meta-icon dz-wishicon">
-                                                                <i className="icon feather icon-heart dz-heart"></i>
-                                                                <i className="icon feather icon-heart-on dz-heart-fill"></i>
-                                                            </div>
-                                                            <div className="btn btn-primary meta-icon dz-carticon">
-                                                                <i className="flaticon flaticon-basket"></i>
-                                                                <i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-                                                            </div>
-                                                        </div>								
-                                        </div>
-                                        <div className="dz-content">
-                                            <h5 className="title"><a href="shop-list.html">Athletic Mesh Sports Leggings</a></h5>
-                                            <h5 className="price">$80</h5>
-                                        </div>
-                                        <div className="product-tag">
-                                            <span className="badge ">Get 20% Off</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="swiper-slide">
-                                    <div className="shop-card style-1">
-                                        <div className="dz-media">
-                                            <img src={assetsPath+"/pixio/images/shop/product/5.png"} alt="image" />
-                                            <div className="shop-meta">
-                                                            <a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <i className="fa-solid fa-eye d-md-none d-block"></i>
-                                                                <span className="d-md-block d-none">Quick View</span>
-                                                            </a>
-                                                            <div className="btn btn-primary meta-icon dz-wishicon">
-                                                                <i className="icon feather icon-heart dz-heart"></i>
-                                                                <i className="icon feather icon-heart-on dz-heart-fill"></i>
-                                                            </div>
-                                                            <div className="btn btn-primary meta-icon dz-carticon">
-                                                                <i className="flaticon flaticon-basket"></i>
-                                                                <i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-                                                            </div>
-                                                        </div>								
-                                        </div>
-                                        <div className="dz-content">
-                                            <h5 className="title"><a href="shop-list.html">Vintage Denim Overalls Shorts</a></h5>
-                                            <h5 className="price">$80</h5>
-                                        </div>
-                                        <div className="product-tag">
-                                            <span className="badge ">Get 20% Off</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    );
+                                })}
                             </div>
                         </div>
                         <div className="pagination-align">

@@ -9,9 +9,9 @@ export const Slider = ({ items,mediaPath,Lang }) => {
 							<div className="col-lg-6 col-md-12">
 								<div className="swiper-container main-swiper h-100">
 									<div className="swiper-wrapper">
-										{items?.map((item, i)=>{
+										{items?.map((item,index)=>{
 											return(
-												<div className="swiper-slide">
+												<div className="swiper-slide" key={index}>
 													<div className="swiper-content">
 														<div className="content-info">
 															<h1 className="title  wow fadeInUp" data-wow-delay="0.2s">{item?.title}</h1>
@@ -36,9 +36,9 @@ export const Slider = ({ items,mediaPath,Lang }) => {
 							<div className="col-lg-6 col-md-12">
 								<div className="swiper-container main-swiper-thumb">
 									<div className="swiper-wrapper">
-										{items?.map((item, i)=>{
+										{items?.map((item,index)=>{
 											return(
-												<div className="swiper-slide">
+												<div className="swiper-slide" key={index}>
 													<div className="banner-media" data-name="Winter">
 														<div className="img-preview">
 															<img src={mediaPath+"/slider/"+item?.image} alt="banner-media"/>

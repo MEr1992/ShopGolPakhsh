@@ -4,14 +4,14 @@ import { useEffect,useState } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
-import { GalleryProduct,InfoProduct,RelatedProduct,StepProduct,TabsProduct } from "@/app/(site)/[lang]/(Shop)/products/[id]/ProductComponent";
+import { GalleryProduct,InfoProduct,RelatedProduct,StepProduct,TabsProduct,AttachmentProduct } from "@/app/(site)/[lang]/(Shop)/products/[id]/ProductComponent";
 import { BreadCrumb } from "@/Theme/Site/Components/Public/BreadCrumb";
 import { Error404 } from "@/Theme/Site/Components/Public/Error404";
 
 export default function Page({ params }) {
     const { Lang } = useLang();
     const { mediaPath,assetsPath } = useConfig();
-    let {getNeedles} = useData();
+    let {getNeedles,getInfoSite} = useData();
     let [items, setItems] = useState();
     const id = params?.id;
     const local = params?.lang ? params?.lang : 'en';
@@ -20,6 +20,7 @@ export default function Page({ params }) {
 
     useEffect(() => {
         getNeedles(local+laralelUrl+"/"+id, setItems);
+        // getInfoSite(local+laralelUrl+"/"+id, setItems);
     }, []);
     // console.log('items');
     // console.log(items);
@@ -27,7 +28,8 @@ export default function Page({ params }) {
     return(
         <>
             {(items==undefined)?
-                <Error404 />
+                // <Error404 assetsPath={assetsPath} />
+                <span>Load...</span>
             :
                 <div className="page-content bg-light">
                     <div className="d-sm-flex justify-content-between container-fluid py-3">
@@ -39,9 +41,10 @@ export default function Page({ params }) {
                         </nav> */}
                         <BreadCrumb />
                     </div>
-                    <InfoProduct item={items?.product} assetsPath={assetsPath} Lang={Lang} local={local} />
-                    <TabsProduct item={items?.product} assetsPath={assetsPath} Lang={Lang} local={local} />
-                    <RelatedProduct items={items} assetsPath={assetsPath} />
+                    <InfoProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
+                    <TabsProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
+                    <AttachmentProduct item={items?.product} assetsPath={assetsPath} mediaPath={mediaPath} Lang={Lang} local={local} />
+                    <RelatedProduct items={items?.products} mediaPath={mediaPath} Lang={Lang} local={local} />
                 </div>
             }
         </>

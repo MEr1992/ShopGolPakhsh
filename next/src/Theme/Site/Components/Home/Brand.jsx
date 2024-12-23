@@ -26,9 +26,9 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 				<div className="container-fluid" style={{direction:"ltr"}}>
 					<div className="tag-slider style-1 wow fadeInUp" data-wow-delay="0.2s" id="tagSlider">
 						<div className="item-wrap">
-							{items?.map((item, i)=>{
+							{items?.map((item,index)=>{
 								return(
-									<div className="item">
+									<div className="item" key={index}>
 										<a href="javascript:void(0);" className="companies-wrapper">
 											<div className="companies-media">
 												<img src={mediaPath+"/brand/"+item?.logo} alt=""/> 
@@ -41,9 +41,9 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 					</div>
 					<div className="tag-slider wow fadeInUp" data-wow-delay="0.4s" id="tagSlider2">
 						<div className="item-wrap">
-							{items?.map((item, i)=>{
+							{items?.map((item,index)=>{
 								return(
-									<div className="item">
+									<div className="item" key={index}>
 										<a href="javascript:void(0);" className="companies-wrapper">
 											<div className="companies-media">
 												<img src={mediaPath+"/brand/"+item?.logo} alt=""/> 
