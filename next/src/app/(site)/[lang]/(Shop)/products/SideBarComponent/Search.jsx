@@ -1,10 +1,10 @@
 "use client"
 export const Search = ({ assetsPath,mediaPath,local,Lang }) => {
-	let [search, setSearch] = useState();
-	const searchKeyUp = (event) => { 
-		if(event.keyCode == 13)
-			router.push("/"+local+"/courses?search="+search) 
-	}
+	// let [search, setSearch] = useState();
+	// const searchKeyUp = (event) => { 
+	// 	if(event.keyCode == 13)
+	// 		router.push("/"+local+"/courses?search="+search) 
+	// }
 
     return(
 		<>
@@ -12,8 +12,8 @@ export const Search = ({ assetsPath,mediaPath,local,Lang }) => {
 				<div className="form-group">
 					<div className="input-group">
 						<input name="dzSearch" required="required" type="search" className="form-control" placeholder={Lang("public.search_product")}
-							onChange={(e) => setSearch(e.target.value)} 
-							onKeyUp={(e)=>searchKeyUp(e)}
+							// onChange={(e) => setSearch(e.target.value)} 
+							// onKeyUp={(e)=>searchKeyUp(e)}
 						/>
 						<div className="input-group-addon">
 							<button name="submit" value="Submit" type="submit" className="btn">
