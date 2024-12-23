@@ -131,7 +131,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 										<Link href={`/${local}/AboutUs`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={`/${local}/contactUs`}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={`/${local}/contact`}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 								</ul>
 								<div className="dz-social-icon">
