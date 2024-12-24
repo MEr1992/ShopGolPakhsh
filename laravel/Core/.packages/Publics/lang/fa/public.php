@@ -48,7 +48,7 @@ $lang = [
     'count'=>'تعداد',
     'report'=>'گزارش',
     'more_detail'=>'جزییات بیشتر',
-    // Wors Of Site
+    // Words Of Site For Home
     'tilte_slider'=>'مجموعه تابستانی',
     'text_slider'=>'مد روز و کلاسیک برای فصل جدید',
     'rotating_slider'=>'محصولات خاص فروشگاه',
@@ -73,6 +73,34 @@ $lang = [
     'text_brand'=>'ما با 6.3 هزار شرکت قابل اعتماد به رشد خود ادامه می دهیم',
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
+    'see_all'=>'مشاهده همه',
+    // Words Of Site
+    'filter' => 'فیلتر',
+    'showing'=>'نمایش',
+    'of'=>'از',
+    'results'=>'Results',
+    'search_product'=>'جستجو محصول',
+    // 'search_product'=>'Search Product',
+    'related_products'=>'محصولات مرتبط',
+    'share'=>'اشتراک گذاری',
+    'reviews'=>'بررسی ها',
+    'usage'=>'استفاده',
+    'sale'=>'فروش',
+    'code_product'=>'SKU',
+    'title_cart_detail_box_1'=>'Bank Offer 5% Cashback',
+    'title_cart_detail_box_2'=>'مرجوعی آسان',
+    'text_cart_detail_box_2'=>'30 روزه',
+    'title_cart_detail_box_3'=>'لذّت یک خرید',
+    'text_cart_detail_box_3'=>'مطمئن و آسان و سریع خرید کنید',
+    'text_cart_detail'=>'میتونی چشم گیر در این سفارش خرید کنی',
+    'price_cart_detail'=>'قیمت',
+    'cart_detail_btn_1'=>'Add To Wishlist',
+    'cart_detail_btn_2'=>'ADD TO CART',
+    'cart_detail_document'=>'فایل را به آسانی دانلود کنید',
+    'cart_detail_video'=>'ویدئو را به آسانی دانلود کنید',
+    // 'cart_detail_step_1'=>'به آسانی انتخاب کنید',
+    // 'cart_detail_step_2'=>'به سرعت سفارش دهید',
+    // 'cart_detail_step_3'=>'با اطمینان خرید کنید',
     
     
     // admin

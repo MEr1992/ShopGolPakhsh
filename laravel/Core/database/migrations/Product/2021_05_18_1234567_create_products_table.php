@@ -22,6 +22,10 @@ class CreateProductsTable extends Migration
             $table->integer('discount')->nullable()->comment("درصد تخفیف");
             $table->integer('discount_price')->nullable()->comment("قیمت تخفیف خورده");
             $table->string('image')->nullable()->comment("تصویر");
+            $table->string('img')->nullable()->comment('چندین عکس');
+            $table->string('video')->nullable()->comment('چندین ویدئو');
+            $table->string('document')->nullable()->comment('چندین فایل داکیومنت');
+            $table->text('summary')->nullable()->comment("خلاصه");
             $table->text('review')->nullable()->comment("نقد وبررسی");
             $table->text('usage')->nullable()->comment("نحوه استفاده و مصرف");
             $table->text('description')->nullable()->comment("توضیحات");

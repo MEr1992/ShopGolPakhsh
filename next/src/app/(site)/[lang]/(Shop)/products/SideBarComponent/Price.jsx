@@ -3,8 +3,8 @@ export const Price = ({ assetsPath,mediaPath,local,Lang }) => {
 	
     return(
 		<>
-			<div className="widget">
-				<h6 className="widget-title">Price</h6>
+			<div className="widget" style={{direction:"ltr"}}>
+				<h6 className="widget-title">{Lang("public.price")}</h6>
 				<div className="price-slide range-slider">
 					<div className="price">
 						<div className="range-slider style-1">

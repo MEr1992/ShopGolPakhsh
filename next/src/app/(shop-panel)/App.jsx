@@ -24,7 +24,6 @@ export function App({children, load}){
     useEffect(()=>{
         fetchLangs();
     }, []);
-    
     if(loading){
         const LoadingComponent = load? load : Loading;
         return <><LoadingComponent key={"App_loading"} /></>;

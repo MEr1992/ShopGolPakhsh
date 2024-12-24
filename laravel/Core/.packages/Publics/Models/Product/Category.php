@@ -33,7 +33,7 @@ class Category extends Model
     }
     function parentProducts()
     {
-        return $this->hasMany(Product::class, 'parent_category');
+        return $this->hasMany(Product::class);
     }
     /**
      * Scopes
