@@ -18,15 +18,15 @@ export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang }) => {
 							<div className="d-flex align-items-center justify-content-between m-b30">
 								<h6 className="title mb-0 fw-normal d-flex">
 									<i className="flaticon-filter me-3"></i>
-									{Lang("public.Filter")}
+									{Lang("public.filter")}
 								</h6>
 							</div>
-							<Search />
-							<Price />
+							<Search Lang={Lang} />
+							<Price Lang={Lang} />
 							{/* <Color />
 							<Size /> */}
 							<Category items={categories} local={local} Lang={Lang} />
-							<Keywords />
+							<Keywords items={categories} Lang={Lang} />
 							<a href="javascript:void(0);" className="btn btn-sm font-14 btn-secondary btn-sharp">RESET</a>
 						</aside>
 					</div>

@@ -9,7 +9,7 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 					<div className="row ">
 						<div className="col-lg-6 col-md-12 align-self-center">
 							<div className="row">
-								{items?.map((item, i)=>{
+								{items?.map((item,index)=>{
 									let classSpan = "text-success";
 									let displayDiscount = Lang("public.free_delivery");
 									let displayPrice = <> {"$"+item?.price} </>
@@ -23,7 +23,7 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 										</>
 									}
 									return(
-										<div className="col-lg-6 col-md-6 col-sm-6 m-b30">
+										<div className="col-lg-6 col-md-6 col-sm-6 m-b30" key={index}>
 											<div className="shop-card style-3 wow fadeInUp" data-wow-delay={delay}>
 												<div className="dz-media">
 													<img src={mediaPath+"/product/"+item?.image} alt="image"/>

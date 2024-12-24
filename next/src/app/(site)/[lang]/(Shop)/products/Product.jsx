@@ -1,8 +1,127 @@
 "use client"
+import {useEffect} from "react"
+
 import { List,Column,Grid } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
 
 export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
+	useEffect(() => {
+		// setTimeout(()=>{
+			console.log("useEffect");
+			handleLightgallery();
+			// items?.length > 0 && handleIsotope();
+		// }, 4000)
+	}, []);
+	const handleLightgallery = ()=>{
+		if(window.jQuery('#lightgallery').length > 0 && jQuery('#lightgallery2').length > 0){
+			console.log("handleLightgallery first");
+			if (jQuery('#lightgallery').length > 0) {
+				lightGallery(document.getElementById('lightgallery'), {
+					plugins: [lgThumbnail, lgZoom],
+					selector: '.lg-item',
+					thumbnail: true,
+					exThumbImage: 'data-src'
+				});
+			}
+			if (jQuery('#lightgallery2').length > 0) {
+				lightGallery(document.getElementById('lightgallery2'), {
+					plugins: [lgThumbnail, lgZoom],
+					selector: '.lg-item',
+					thumbnail: true,
+					exThumbImage: 'data-src'
+				});
+			}
+		}else{
+			console.log("handleLightgallery setTimeout");
+			setTimeout(() => handleLightgallery(), 1000);
+		}
 	
+	}
+	const masonryBox = ()=>{
+		console.log("cusotm");
+		/* masonry by  = bootstrap-select.min.js */
+		if (jQuery('#masonry, .masonry').length > 0) {
+			jQuery('.filters li').removeClass('active');
+			jQuery('.filters li:first').addClass('active');
+			var self = jQuery("#masonry, .masonry");
+			var filterValue = "";
+
+			if (jQuery('.card-container').length > 0) {
+				var gutterEnable = self.data('gutter');
+
+				var gutter = (self.data('gutter') === undefined) ? 0 : self.data('gutter');
+				gutter = parseInt(gutter);
+
+
+				var columnWidthValue = (self.attr('data-column-width') === undefined) ? '' : self.attr('data-column-width');
+				if (columnWidthValue != '') { columnWidthValue = parseInt(columnWidthValue); }
+
+				self.imagesLoaded(function () {
+					filter: filterValue,
+						self.masonry({
+							gutter: gutter,
+							columnWidth: columnWidthValue,
+							//columnWidth:3, 
+							//gutterWidth: 15,
+							isAnimated: true,
+							itemSelector: ".card-container",
+							//gutterWidth: 15,
+							//horizontalOrder: true,
+							//fitWidth: true,
+							//stagger: 30
+							//containerStyle: null
+							//percentPosition: true
+						});
+
+				});
+			}
+		}
+
+		if (jQuery('.filters').length > 0) {
+
+			jQuery(".filters li:first").addClass('active');
+
+			jQuery(".filters li").on('click', function () {
+
+				jQuery('.filters li').removeClass('active');
+				jQuery(this).addClass('active');
+
+				var filterValue = $(this).attr("data-filter");
+
+				self.isotope({
+					filter: filterValue,
+				});
+			});
+		}
+		/* masonry by  = bootstrap-select.min.js end */
+	}
+
+
+	const handleIsotope = ()=>{
+		/* masonry by  = bootstrap-select.min.js */
+		if (jQuery('#Isotope, .isotope').length > 0) {
+			var self = jQuery('#Isotope, .isotope');
+			self.isotope({
+				itemSelector: '.card-container',
+				layoutMode: 'fitRows',
+			})
+		}
+
+		if (jQuery('.filter-isotope').length > 0) {
+			jQuery(".filter-isotope li:first").addClass('active');
+			jQuery(".filter-isotope li").on('click', function () {
+
+				jQuery('.filter-isotope li').removeClass('active');
+				jQuery(this).addClass('active');
+
+				var filterValue = $(this).attr("data-filter");
+
+				self.isotope({
+					filter: filterValue,
+				});
+			});
+		}
+		/* masonry by  = bootstrap-select.min.js end */
+	}
     return(
 		<>
 			<div className="col-xl-9 col-lg-12">
@@ -20,12 +139,12 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 								</a>
 							</li>
 						</ul>
-						<span>Showing 1–5 Of 50 Results</span>
+						<span>{Lang("public.showing")} 1–5 {Lang("public.of")} 50 {Lang("public.results")}</span>
 					</div>
 					<div className="filter-right-area">
 						<a href="javascript:void(0);" className="panel-btn">
 							<svg className="me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="20" height="20"><g id="Layer_28" data-name="Layer 28"><path d="M2.54,5H15v.5A1.5,1.5,0,0,0,16.5,7h2A1.5,1.5,0,0,0,20,5.5V5h2.33a.5.5,0,0,0,0-1H20V3.5A1.5,1.5,0,0,0,18.5,2h-2A1.5,1.5,0,0,0,15,3.5V4H2.54a.5.5,0,0,0,0,1ZM16,3.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path><path d="M22.4,20H18v-.5A1.5,1.5,0,0,0,16.5,18h-2A1.5,1.5,0,0,0,13,19.5V20H2.55a.5.5,0,0,0,0,1H13v.5A1.5,1.5,0,0,0,14.5,23h2A1.5,1.5,0,0,0,18,21.5V21h4.4a.5.5,0,0,0,0-1ZM17,21.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5Z"></path><path d="M8.5,15h2A1.5,1.5,0,0,0,12,13.5V13H22.45a.5.5,0,1,0,0-1H12v-.5A1.5,1.5,0,0,0,10.5,10h-2A1.5,1.5,0,0,0,7,11.5V12H2.6a.5.5,0,1,0,0,1H7v.5A1.5,1.5,0,0,0,8.5,15ZM8,11.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path></g></svg>
-							Filter
+							{Lang("public.filter")}
 						</a>
 						<div className="form-group">
 							<select className="default-select">

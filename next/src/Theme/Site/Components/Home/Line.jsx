@@ -31,12 +31,12 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 									</span>
 								</a>
 								<div className="row">
-									{items?.filter(item=>item?.id>1)?.map((item, i)=>{
+									{items?.filter(item=>item?.id>1)?.map((item,index)=>{
 										delay = parseFloat(delay+0.2);
 										let delayNew = delay+"s";
 
 										return(
-											<div className="col-lg-6 col-md-6 col-sm-6">
+											<div className="col-lg-6 col-md-6 col-sm-6" key={index}>
 												<div className="shop-card style-6 wow fadeInUp" data-wow-delay={delayNew}>
 													<div className="dz-media">
 														<img src={mediaPath+"/category/"+item?.image} alt="image"/>

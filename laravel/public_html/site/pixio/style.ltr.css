@@ -1,0 +1,16 @@
+
+/* .widget_categories ul ul {
+	margin-left: 10px !important;
+} */
+.color-discount {
+	color: var(--primary);
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+.shop-card .color-discount .price del {
+	font-size: 12px;
+	font-weight: 400;
+	display: block;
+	margin: 0;
+}

@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function products()
     {
-        return Product::active()->orderByDesc("id")->paginate(9);
+        return Product::with("category")->active()->orderByDesc("id")->paginate(9);
     }
     /**
      * get All Categories
@@ -38,6 +38,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::active()->find($id);
+        $product = Product::with("category","categoryParent","keywords")->active()->find($id);
+        $products = Product::where("id", "!=", $id)->where("category_id", $product->category_id)->active()->get();
+        $data = [
+            'product'=>$product,
+            'products'=>$products,
+        ];
+        return $data;
     }
 }

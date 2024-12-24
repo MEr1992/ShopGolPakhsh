@@ -37,11 +37,11 @@ export const Category = ({ items,mediaPath,local,Lang }) => {
 						<div className="col-lg-8 left-box">
 							<div className="swiper swiper-shop">
 								<div className="swiper-wrapper">
-									{items?.map((item, i)=>{
+									{items?.map((item,index)=>{
 										delay = parseInt(delay+2);
 										let delayNew = delay/10+"s";
 										return(
-											<div className="swiper-slide">
+											<div className="swiper-slide" key={index}>
 												<div className="shop-box style-1 wow fadeInUp" data-wow-delay={delayNew}>
 													<div className="dz-media">
 														<img src={mediaPath+"/category/"+item?.image} alt="image"/>
