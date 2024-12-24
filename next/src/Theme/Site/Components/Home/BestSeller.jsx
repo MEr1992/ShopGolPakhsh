@@ -1,4 +1,4 @@
-export const BestSeller = ({ items,mediaPath,Lang }) => {
+export const BestSeller = ({ items,mediaPath,Lang,local }) => {
 	let delay = ["0.2s","0.3s","0.4s","0.6s"];
 
     return(
@@ -31,7 +31,7 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 												<div className="dz-content">
 													<div>
 														<span className={"sale-title "+classSpan}>{displayDiscount}</span>
-														<h6 className="title"><a href="shop-list.html">{item?.name}</a></h6>
+														<h6 className="title"><a href={`/${local}/products/${item.id}`}>{item?.name}</a></h6>
 													</div>
 													<h6 className="price">{displayPrice}</h6>
 												</div>
@@ -48,7 +48,7 @@ export const BestSeller = ({ items,mediaPath,Lang }) => {
 									<div className="media-contant">
 									<h2 className="title">{Lang("public.tilte_best")}</h2> 
 										<h5 className="sub-title">{Lang("public.text_best")}</h5>
-										<a href="shop-list.html" className="btn btn-white btn-lg">{Lang("public.see_all")}</a>
+										<a href={`/${local}/products`} className="btn btn-white btn-lg">{Lang("public.see_all")}</a>
 									</div>
 									<svg className="title animation-text" viewBox="0 0 1320 300">
 										<text x="0" y="">{Lang("public.animate_best")}</text>

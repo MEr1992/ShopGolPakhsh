@@ -12,7 +12,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 							<h2 className="title">{Lang("public.most_visited_products")}</h2>
 						</div>
 						{/* <a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.See all deals")}  */}
-						<a href="shop-list.html" className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.see_all")} 
+						<a href={`/${local}/products`} className="text-secondary font-14 d-flex align-items-center gap-1">{Lang("public.see_all")} 
 							<i className="icon feather icon-chevron-right font-18"></i>
 						</a>			
 					</div>
@@ -42,7 +42,7 @@ export const MostVisited = ({ items,mediaPath,local,Lang }) => {
 											<div className="dz-content">
 												<div>
 													<span className="sale-title">{item?.category?.["title_"+local]}</span>
-													<h5 className="title"><a href="shop-list.html">{item?.name}</a></h5>
+													<h5 className="title"><a href={`/${local}/products/${item.id}`}>{item?.name}</a></h5>
 												</div>
 												<h6 className="price">{displayPrice}</h6>
 											</div>

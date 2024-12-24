@@ -46,14 +46,14 @@ export const Category = ({ items,mediaPath,local,Lang }) => {
 													<div className="dz-media">
 														<img src={mediaPath+"/category/"+item?.image} alt="image"/>
 													</div>
-													<h6 className="product-name"><a href="shop-with-category.html">{item?.["title_"+local]}</a></h6>
+													<h6 className="product-name"><a href={`/${local}/products?category=${item.id}`}>{item?.["title_"+local]}</a></h6>
 												</div>
 											</div>
 										);
 									})}
 								</div>
 							</div>
-							<a className="icon-button" href="shop-standard.html">
+							<a className="icon-button" href={`/${local}/products`}>
 								<div className="text-row word-rotate-box c-black border-secondary">
 									<span className="word-rotate">{Lang("public.rotating_cat")} </span>
 									<svg className="badge__emoji" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35" fill="none">
@@ -79,7 +79,7 @@ export const Category = ({ items,mediaPath,local,Lang }) => {
 									</div>
 								</div>
 							</div>
-							<a className="icon-button" href="shop-standard.html">
+							<a className="icon-button" href={`/${local}/products`}>
 								<div className="text-row word-rotate-box c-black border-white">
 									<span className="word-rotate">{Lang("public.rotating_cat")} </span>
 									<svg className="badge__emoji" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 35" fill="none">

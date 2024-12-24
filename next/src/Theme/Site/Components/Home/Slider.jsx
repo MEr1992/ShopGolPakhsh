@@ -1,4 +1,4 @@
-export const Slider = ({ items,mediaPath,Lang }) => {
+export const Slider = ({ items,mediaPath,Lang,local }) => {
 		
     return(
 		<>
@@ -22,8 +22,8 @@ export const Slider = ({ items,mediaPath,Lang }) => {
 																</div>
 															</div>
 															<div className="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-																<a href="shop-wishlist.html" className="btn btn-secondary me-xl-3 me-2 btnhover20">{item?.btn}</a>
-																<a href="product-default.html" className="btn btn-outline-secondary btnhover20">{item?.btn_2}</a>
+																<a href={`/${local}/products`} className="btn btn-secondary me-xl-3 me-2 btnhover20">{item?.btn}</a>
+																<a href={`/${local}/products`} className="btn btn-outline-secondary btnhover20">{item?.btn_2}</a>
 															</div>
 														</div>
 													</div>

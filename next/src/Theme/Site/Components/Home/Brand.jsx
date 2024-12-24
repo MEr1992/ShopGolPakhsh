@@ -1,4 +1,4 @@
-export const Brand = ({ items,mediaPath,Lang }) => {
+export const Brand = ({ items,mediaPath,Lang,local }) => {
 
     return(
 		<>
@@ -12,7 +12,7 @@ export const Brand = ({ items,mediaPath,Lang }) => {
 							</div>	
 						</div>
 						<div className="col-lg-4 col-md-4 col-sm-12 text-md-center m-b30 wow fadeInUp" data-wow-delay="0.2s">	
-							<a className="icon-button d-md-inline-block d-none" href="blog-tag.html">
+							<a className="icon-button d-md-inline-block d-none" href={`/${local}/products`}>
 								<div className="text-row word-rotate-box c-black border-secondary bg-secondary">
 									<span className="word-rotate">{Lang("public.rotating_brand")}</span>
 									<svg className="badge__emoji" xmlns="http://www.w3.org/2000/svg" width="86" height="86" viewBox="0 0 86 86" fill="none">
