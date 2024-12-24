@@ -6,8 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useEffect,useState } from "react";
 import { useConfig } from "@/lib/config";
-// import { config } from "@/lib";
-import { useLang } from "@/lib/lang";
+import { config } from "@/lib";
 import { usePathname } from 'next/navigation';
 import { Header,Footer } from '@/Theme/Site';
 const StoreProvider = dynamic(() => import("@/redux/StoreProvider"))
@@ -17,21 +16,20 @@ const Loading = dynamic(() => import('./Loading'))
 // import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default function RootLayout({ children }) {
-	// const { Lang } = useLang();
 	const pathname = usePathname();
 	const pathParams = pathname.split("/")
 	const local = (pathParams.length > 1) ? pathParams[1]: "fa";
 	const { assetsPath,mediaPath } = useConfig();
-    let [menus, setMenus] = useState();
-    useEffect(() => {
-		fetchMenus();
-	}, []);
-	const fetchMenus = async()=>{
-        let response = await fetch(`${config.host()}/${local}/get-menus`, {mode: "cors"});
-        const menuResponse = await response.json();
-		setMenus(menuResponse);
-    }
-	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
+    // let [menus, setMenus] = useState();
+    // useEffect(() => {
+	// 	fetchMenus();
+	// }, []);
+	// const fetchMenus = async()=>{
+    //     let response = await fetch(`${config.host()}/${local}/get-menus`, {mode: "cors"});
+    //     const menuResponse = await response.json();
+	// 	setMenus(menuResponse);
+    // }
+	// // const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
 	// const HeaderComp = Header;
 
 	return (
@@ -76,11 +74,11 @@ export default function RootLayout({ children }) {
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
-								<Header menus={menus} mediaPath={mediaPath} local={local} />
+								<Header mediaPath={mediaPath} local={local} />
 								<div className="page-content bg-light">
 									{children}
 								</div>
-								<Footer mediaPath={mediaPath} local={local} />
+								<Footer mediaPath={mediaPath} local={local}  />
 							</App>
 						</StoreProvider>
 					</div>

@@ -8,6 +8,7 @@ use \Models\Product\Category;
 use \Models\Product\Brand;
 use \Models\Product\Product;
 use \Models\Content\BlogSubject;
+use \Models\Content\Blog;
 
 class HomeController extends Controller
 {
@@ -52,6 +53,10 @@ class HomeController extends Controller
     {
         return BlogSubject::active()->get();
     }
+    public function blog()
+    {
+        return Blog::active()->limit(5)->get();
+    }
     /**
      * get data menu
      */
@@ -60,6 +65,15 @@ class HomeController extends Controller
         $items = [
             'categories' => $this->category(),
             'subjects' => $this->subject(),
+        ];
+        return response()->json($items);
+    }
+    public function footer()
+    {
+        $items = [
+            'categories' => $this->category(),
+            'subjects' => $this->subject(),
+            'blogs' => $this->blog(),
         ];
         return response()->json($items);
     }

@@ -3,19 +3,28 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Tools, useData } from "@/Theme/Midone";
 import Script from 'next/script'
+import { useLang } from "@/lib";
 
-export const Footer = ({ menus,mediaPath,local,Lang }) => {
+export const Footer = ({ mediaPath,local }) => {
 	// console.log(params);
 	const {assetsPath } = useConfig();
+	const { Lang } = useLang();
+
 	// let { getNeedles } = useData();
     // let [needles, setNeedles] = useState({});
-    const formUrl = "/footer";
-
+    // const formUrl = "/footer";
+	// console.log(data);
+	const [footerDatas, setFooterDatas] = useState(null);
+	let {getNeedles} = useData();
+  
+	
 	useEffect(() => {
-		// getNeedles(local + formUrl, setNeedles);
-		// console.log("useEffect footer");
-		// window.jQuery = window.$;
-    }, []);
+		getNeedles(local+"/footer-data", setFooterDatas);
+	}, []);
+	// console.log(footerDatas);
+	let parentCategories = footerDatas?.categories?.filter((category)=>category?.parent_id==0);
+	let subjects = footerDatas?.subjects;
+	let blogs = footerDatas?.blogs;
 
     return(
 		<>
@@ -25,22 +34,20 @@ export const Footer = ({ menus,mediaPath,local,Lang }) => {
 				<div className="footer-top">
 					<div className="container">
 						<div className="row">
-							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.1s">
 								<div className="widget widget_about me-2">
 									<div className="footer-logo logo-white">
-										<a href="index.html">
-											<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
-										</a> 
+										<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
 									</div>
 									<ul className="widget-address">
 										<li>
-											<p><span>Address</span> : 451 Wall Street, UK, London</p>
+											<p><span>{Lang('public.address')}</span> : {Lang('public.address_info')}</p>
 										</li>
 										<li>
-											<p><span>E-mail</span> : example@info.com</p>
+											<p><span>{Lang('public.email')}</span> : {Lang('public.email_info')}</p>
 										</li>
 										<li>
-											<p><span>Phone</span> : (064) 332-1233</p>
+											<p><span>{Lang('public.tel')}</span> : {Lang('public.tel_info')}</p>
 										</li>
 									</ul>
 									{/* <div className="subscribe_widget">
@@ -61,53 +68,43 @@ export const Footer = ({ menus,mediaPath,local,Lang }) => {
 									</div> */}
 								</div>
 							</div>
-							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
-								<div className="widget widget_post">
-									<h5 className="footer-title">Recent Posts</h5>
-									<ul>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Cozy Knit Cardigan Sweater</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/2.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Sophisticated Swagger Suit</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Athletic Mesh Sports Leggings</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
+							<div className="col-xl-4 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
 								<div className="widget widget_services">
-									<h5 className="footer-title">Our Stores</h5>
+									<h5 className="footer-title">{Lang('public.shop')}</h5>
 									<ul>
-										<li><a href="#!">New York</a></li>
-										<li><a href="#!">London SF</a></li>
-										<li><a href="#!">Edinburgh</a></li>
-										<li><a href="#!">Los Angeles</a></li>
-										<li><a href="#!">Chicago</a></li>
-										<li><a href="#!">Las Vegas</a></li>
+										{parentCategories?.map((item,index)=>{ return <li>
+												<Link href={`/${local}/products?category=${item.id}`}>
+												{item?.["title_"+local]}
+														</Link>
+											</li>
+										})}
 									</ul>   
 								</div>
 							</div>
+							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.2s">
+								<div className="widget widget_post">
+									<h5 className="footer-title">{Lang('public.last')} {Lang('public.blog')}</h5>
+									<ul>
+										{blogs?.map((blog , item)=>{return <li>
+												<div className="dz-media">
+													<img src={`${mediaPath}/blogs/${blog?.thumb}`} alt={blog?.title}/>
+												</div>
+												<div className="dz-content">
+													<h6 className="name">
+														<Link href={`/${local}/blog/${blog?.id}`}>
+															{blog?.title}
+														</Link>
+													</h6>
+													<span className="time">{blog?.created_at}</span>
+												</div>
+											</li>
+
+										})}
+										
+									</ul>
+								</div>
+							</div>
+							
 							{/* <div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Useful Links</h5>
@@ -121,7 +118,7 @@ export const Footer = ({ menus,mediaPath,local,Lang }) => {
 									</ul>
 								</div>
 							</div> */}
-							<div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
+							{/* <div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Footer Menu</h5>
 									<ul>
@@ -132,7 +129,7 @@ export const Footer = ({ menus,mediaPath,local,Lang }) => {
 										<li><a href="#!">Latest News</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -142,7 +139,8 @@ export const Footer = ({ menus,mediaPath,local,Lang }) => {
 					<div className="container">
 						<div className="row fb-inner wow fadeInUp" data-wow-delay="0.1s">
 							<div className="col-lg-12 col-md-12 text-center"> 
-								<p className="copyright-text">© <span className="current-year">1403</span> <a href="/">DexignZone</a> Theme. All Rights Reserved.</p>
+								<p className="copyright-text">© <span className="current-year">1403</span> 
+								<a href="/">{Lang('public.main_title_info')}</a> {Lang('public.copyright')}</p>
 							</div>
 							{/* <div className="col-lg-6 col-md-12 text-end"> 
 								<div className="d-flex align-items-center justify-content-center justify-content-md-center justify-content-xl-end">

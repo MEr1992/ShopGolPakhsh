@@ -19679,7 +19679,9 @@ ul.grid-2 {
   height: 60px;
   min-width: 60px;
   border-radius: 0;
-  margin-right: 15px; }
+  /* margin-right: 15px;  */
+  margin-left: 15px; 
+}
   .widget_post ul .dz-media img {
     border-radius: 10px; }
 

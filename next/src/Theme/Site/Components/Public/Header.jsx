@@ -9,27 +9,27 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 export const Header = ({ params,menus,mediaPath,local }) => {
 	// const { logout, user, mutate } = useAuth({ middleware: 'guest' })
-	// const { logout, user, mutate } = {};
+	const { logout, user, mutate } = {};
 	const { assetsPath } = useConfig();
 	const pathname = usePathname();
-	// const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
 	// useEffect(()=>{
 	// 	(window.jQuery, window, document), window.$(document).ready(function() {
 	// 		window.$ && window.$("#navigation").navigation()
 	// 	});
 	// }, []);
-	// const handleLang = (target) => {
-	// 	let url = config.front() + pathname
+	const handleLang = (target) => {
+		let url = config.front() + pathname
 
-	// 	let newRelativePathQuery = url.replace(new RegExp(config.front() + "/[a-z]{2}"), config.front() + '/' + target) + '?' + searchParams.toString();
-	// 	location.href = newRelativePathQuery;
-	// }
+		let newRelativePathQuery = url.replace(new RegExp(config.front() + "/[a-z]{2}"), config.front() + '/' + target) + '?' + searchParams.toString();
+		location.href = newRelativePathQuery;
+	}
 
 	let classHeader = (pathname=="/"+local)? " header-transparent" : "";
 	let parentCategories = menus?.categories?.filter((category)=>category?.parent_id==0);
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
-	// let subjects = menus?.subjects;
+	let subjects = menus?.subjects;
 	let listMenus = [];
 	let hrefMenus = [`/${local}`,`/${local}/products`,`/${local}/blog`,`/${local}/contact`];
 	(local=="en")?
@@ -139,7 +139,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 										<Link href={`/${local}/AboutUs`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li> */}
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={`/${local}/contact`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
