@@ -31,9 +31,9 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
 	let subjects = menus?.subjects;
 	let listMenus = [];
-	let hrefMenus = [`/${local}`,`/${local}/products`,`/${local}/blog`,`/${local}/contact`,];
+	let hrefMenus = [`/${local}`,`/${local}/products`,`/${local}/blog`,`/${local}/contact`];
 	(local=="en")?
-		listMenus = ['Home','Shop','Blog','About us','Contact us']
+		listMenus = ['Home','Shop','Blog','About us']
 	:
 		// listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
 		listMenus = ['خانه','فروشگاه','بلاگ','ارتباط با ما']
@@ -135,11 +135,11 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 											<i className="fas fa-chevron-down tabIndex" ></i>
 										</a>
 									</li>
-									<li className="has-mega-menu sub-menu-down auto-width menu-left">
+									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<Link href={`/${local}/AboutUs`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
-									</li>
+									</li> */}
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={`/${local}/contact`}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={`/${local}/contact`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
