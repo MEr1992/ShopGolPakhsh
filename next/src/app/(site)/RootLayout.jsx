@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useEffect,useState } from "react";
 import { useConfig } from "@/lib/config";
-import { config } from "@/lib";
+// import { config } from "@/lib";
+import { useLang } from "@/lib/lang";
 import { usePathname } from 'next/navigation';
 import { Header,Footer } from '@/Theme/Site';
 const StoreProvider = dynamic(() => import("@/redux/StoreProvider"))
@@ -16,6 +17,7 @@ const Loading = dynamic(() => import('./Loading'))
 // import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default function RootLayout({ children }) {
+	// const { Lang } = useLang();
 	const pathname = usePathname();
 	const pathParams = pathname.split("/")
 	const local = (pathParams.length > 1) ? pathParams[1]: "fa";
@@ -30,7 +32,7 @@ export default function RootLayout({ children }) {
 		setMenus(menuResponse);
     }
 	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
-	const HeaderComp = Header;
+	// const HeaderComp = Header;
 
 	return (
 		<>
@@ -78,7 +80,7 @@ export default function RootLayout({ children }) {
 								<div className="page-content bg-light">
 									{children}
 								</div>
-								<Footer />
+								<Footer mediaPath={mediaPath} local={local} />
 							</App>
 						</StoreProvider>
 					</div>

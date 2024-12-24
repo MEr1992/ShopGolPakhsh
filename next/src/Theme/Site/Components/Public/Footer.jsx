@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 import { Tools, useData } from "@/Theme/Midone";
 import Script from 'next/script'
 
-export const Footer = ({ params="" }) => {
+export const Footer = ({ menus,mediaPath,local,Lang }) => {
 	// console.log(params);
 	const {assetsPath } = useConfig();
 	// let { getNeedles } = useData();
     // let [needles, setNeedles] = useState({});
     const formUrl = "/footer";
-    const local = "fa";
-    // const local = params?.lang ?  params?.lang : "en" ;
 
 	useEffect(() => {
 		// getNeedles(local + formUrl, setNeedles);
@@ -45,7 +43,7 @@ export const Footer = ({ params="" }) => {
 											<p><span>Phone</span> : (064) 332-1233</p>
 										</li>
 									</ul>
-									<div className="subscribe_widget">
+									{/* <div className="subscribe_widget">
 										<h6 className="title fw-medium text-capitalize">subscribe to our newsletter</h6>	
 										<form className="dzSubscribe style-1" action="script/mailchamp.php" method="post">
 											<div className="dzSubscribeMsg"></div>
@@ -60,7 +58,7 @@ export const Footer = ({ params="" }) => {
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> */}
 								</div>
 							</div>
 							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
@@ -110,7 +108,7 @@ export const Footer = ({ params="" }) => {
 									</ul>   
 								</div>
 							</div>
-							<div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
+							{/* <div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Useful Links</h5>
 									<ul>
@@ -122,7 +120,7 @@ export const Footer = ({ params="" }) => {
 										<li><a href="#!">Our Sitemap</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> */}
 							<div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Footer Menu</h5>
@@ -143,15 +141,15 @@ export const Footer = ({ params="" }) => {
 				<div className="footer-bottom">
 					<div className="container">
 						<div className="row fb-inner wow fadeInUp" data-wow-delay="0.1s">
-							<div className="col-lg-6 col-md-12 text-start"> 
-								<p className="copyright-text">© <span className="current-year">2024</span> <a href="../../https@www.dexignzone.com/default.htm">DexignZone</a> Theme. All Rights Reserved.</p>
+							<div className="col-lg-12 col-md-12 text-center"> 
+								<p className="copyright-text">© <span className="current-year">1403</span> <a href="/">DexignZone</a> Theme. All Rights Reserved.</p>
 							</div>
-							<div className="col-lg-6 col-md-12 text-end"> 
+							{/* <div className="col-lg-6 col-md-12 text-end"> 
 								<div className="d-flex align-items-center justify-content-center justify-content-md-center justify-content-xl-end">
 									<span className="me-3">We Accept: </span>
 									<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
