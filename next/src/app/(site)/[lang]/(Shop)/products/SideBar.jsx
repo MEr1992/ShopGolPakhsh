@@ -1,7 +1,7 @@
 "use client"
-import { Category,Color,Keywords,Price,Search,Size } from "@/app/(site)/[lang]/(Shop)/products/SideBarComponent";
+import { Category,Color,Keywords,Price,Search,Size,Reset } from "@/app/(site)/[lang]/(Shop)/products/SideBarComponent";
 
-export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang }) => {
+export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang,dispatch }) => {
 	
     return(
 		<>
@@ -21,13 +21,13 @@ export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang }) => {
 									{Lang("public.filter")}
 								</h6>
 							</div>
-							<Search Lang={Lang} />
-							<Price Lang={Lang} />
+							<Search Lang={Lang} dispatch={dispatch} />
+							<Price Lang={Lang} dispatch={dispatch} />
 							{/* <Color />
 							<Size /> */}
-							<Category items={categories} local={local} Lang={Lang} />
+							<Category items={categories} local={local} Lang={Lang} dispatch={dispatch} />
 							<Keywords items={categories} Lang={Lang} />
-							<a href="javascript:void(0);" className="btn btn-sm font-14 btn-secondary btn-sharp">RESET</a>
+							<Reset Lang={Lang} dispatch={dispatch} />
 						</aside>
 					</div>
 				</div>

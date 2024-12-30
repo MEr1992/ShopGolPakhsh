@@ -4,3 +4,4 @@ export * from './Keywords';
 export * from './Price';
 export * from './Search';
 export * from './Size';
+export * from './Reset';

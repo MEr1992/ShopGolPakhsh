@@ -13,30 +13,16 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 	const { assetsPath } = useConfig();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-
-	// useEffect(()=>{
-	// 	(window.jQuery, window, document), window.$(document).ready(function() {
-	// 		window.$ && window.$("#navigation").navigation()
-	// 	});
-	// }, []);
-	const handleLang = (target) => {
-		let url = config.front() + pathname
-
-		let newRelativePathQuery = url.replace(new RegExp(config.front() + "/[a-z]{2}"), config.front() + '/' + target) + '?' + searchParams.toString();
-		location.href = newRelativePathQuery;
-	}
-
 	let classHeader = (pathname=="/"+local)? " header-transparent" : "";
 	let parentCategories = menus?.categories?.filter((category)=>category?.parent_id==0);
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
 	let subjects = menus?.subjects;
 	let listMenus = [];
-	let hrefMenus = [`/${local}`,`/${local}/products`,`/${local}/blog`,`/${local}/contact`];
+	let hrefMenus = [`/${local}`,`"#!"`,`"#!"`,`/${local}/about`,`/${local}/contact`];
 	(local=="en")?
-		listMenus = ['Home','Shop','Blog','About us']
+		listMenus = ['Home','Shop','Blog','About us','Contact us']
 	:
-		// listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
-		listMenus = ['خانه','فروشگاه','بلاگ','ارتباط با ما']
+		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
 
 	return(
 		<>
@@ -54,11 +40,11 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 							</button>
 							<div className="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 								<div className="logo-header logo-dark">
-									<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
+									<a href={hrefMenus[0]}><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={`/${local}`}><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={hrefMenus[0]}><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
 										<a href={hrefMenus[1]}><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
@@ -67,7 +53,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 												{parentCategories?.map((category,index)=>{
 													return(
 														<li className="post-menu" key={index}>
-															<a href="#!" className="menu-title">{category?.["title_"+local]}</a>
+															<a href={`/${local}/products?line=${category?.id}`} className="menu-title">{category?.["title_"+local]}</a>
 															<div className="widget widget_post pt-2">
 																<ul>
 																	{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
@@ -77,7 +63,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 																					<img src={mediaPath+"/category/"+child?.image} alt=""/>
 																				</div>
 																				<div className="dz-content">
-																					<h6 className="name"><a href="post-standard.html">{child?.["title_"+local]}</a></h6>
+																					<h6 className="name"><a href={`/${local}/products?category=${child?.id}`}>{child?.["title_"+local]}</a></h6>
 																					<span className="time">{"("+child?.count_product+")"}</span>
 																				</div>
 																			</li>
@@ -91,8 +77,8 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 											</ul>
 										</div>
 									</li>
-									{/* <li className="has-mega-menu sub-menu-down">
-										<a href="#!"><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
+									<li className="has-mega-menu sub-menu-down">
+										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu portfolio-menu">
 											<ul>
 												<li className="side-left">
@@ -100,7 +86,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 														{subjects?.map((subject,index)=>{
 															return(
 																<li key={index}>
-																	<a href="portfolio-tiles.html">
+																	<a href={`/${local}/blogs?subject=${subject?.id}`}>
 																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
 																		<span>{subject?.["title_"+local]}</span>
 																	</a>
@@ -111,7 +97,7 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 												</li>
 											</ul>
 										</div>
-									</li> */}
+									</li>
 									{/* <li className="has-mega-menu sub-menu-down auto-width">
 										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
@@ -129,21 +115,12 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 											</ul>
 										</div>
 									</li> */}
-									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href={hrefMenus[2]}>
-											<span>{listMenus[2]}</span>
-											<i className="fas fa-chevron-down tabIndex" ></i>
-										</a>
-									</li>
 									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={`/${local}/AboutUs`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li> */}
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={`/${local}/contact`}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
-									</li>
-									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
-									</li> */}
+									</li>
 								</ul>
 								{/* <div className="dz-social-icon">
 									<ul>
@@ -168,7 +145,6 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 						</div>
 					</div>
 				</div>
-				
 				<div className="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabIndex="-1" id="offcanvasTop">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -303,7 +279,6 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 						</div>
 					</div>
 				</div>
-				
 				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasRight">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -471,7 +446,6 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 						</div>
 					</div>
 				</div>
-
 				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasLeft">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -611,7 +585,6 @@ export const Header = ({ params,menus,mediaPath,local }) => {
 						</div>
 					</div>
 				</div>
-				
 			</header>
 		</>
 	);

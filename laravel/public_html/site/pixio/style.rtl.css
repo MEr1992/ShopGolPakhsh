@@ -159,14 +159,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 	border-right: 1px solid var(--border-color);
 }
 .filter-wrapper .filter-right-area .form-group .default-select .dropdown-toggle::after, .filter-wrapper .filter-right-area .form-group .bootstrap-select .dropdown-toggle::after {
-	/* content: "\f107";
-	font-family: "Font Awesome 6 free";
-	border: 0;
-	font-weight: 700; */
 	margin-left: 0px;
 	margin-right: 18px;
-	/* font-size: 14px;
-	color: var(--title); */
 }
 .bootstrap-select > .dropdown-toggle {
 	/* text-align: right; */
@@ -183,33 +177,27 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 }
 .widget_archive li a, .wp-block-latest-posts li a, .wp-block-categories-list li a, .wp-block-archives-list li a, .widget_categories li a {
 	/* float: left;
-	text-transform: capitalize;
 	text-align: left; */
 	float: right;
 	text-align: right;
 }
 .widget_archive ul li, .wp-block-categories-list li, .wp-block-archives-list li, .wp-block-latest-posts li, .widget_categories ul li {
 	text-align: left;
-	/* display: table;
-	width: 100%;
-	padding: 0.625rem 0rem 0.625rem 1rem !important;
-	line-height: 1.3 !important; */
 }
-/* .widget_categories ul ul {
-	margin-left: auto !important;
-	margin-right: 10px;
-} */
-/* .wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
-	padding-left: 1.125rem;
-	padding-right: 1.125rem !important;
-	margin-top: 0.5rem;
-	margin-left: -0.9375rem;
-	margin-right: -0.9375rem !important;
-} */
-
+.wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
+	padding-right: 1.125rem;
+}
+.widget_categories ul ul {
+	margin-left: -15px !important;
+}
+.range-slider.style-1 span {
+	margin-right: auto;
+	margin-left: 30px;
+}
 #lg-content-1{
 	direction: ltr !important;
 }
+/* Style For Section Detail Of Product */
 .save-text span{
 	margin-left: auto;
 	margin-right: 10px;
@@ -222,9 +210,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 	padding: 10px 0 10px 40px;
 	text-align: right;
 }
-.wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
-	padding-right: 1.125rem;
-}
-.widget_categories ul ul {
-	margin-left: -15px !important;
+.range-slider.style-1 .noUi-horizontal .noUi-handle {
+	right: auto;
+	left: 0;
 }

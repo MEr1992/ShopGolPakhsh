@@ -1,19 +1,18 @@
 "use client"
 import {useEffect} from "react"
-
 import { List,Column,Grid } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
 
-export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
+export const Product = ({ items,assetsPath,mediaPath,local,Lang,loadMore }) => {
 	useEffect(() => {
 		// setTimeout(()=>{
-			console.log("useEffect");
-			handleLightgallery();
+			// console.log("useEffect");
+			// handleLightgallery();
 			// items?.length > 0 && handleIsotope();
 		// }, 4000)
 	}, []);
 	const handleLightgallery = ()=>{
 		if(window.jQuery('#lightgallery').length > 0 && jQuery('#lightgallery2').length > 0){
-			console.log("handleLightgallery first");
+			// console.log("handleLightgallery first");
 			if (jQuery('#lightgallery').length > 0) {
 				lightGallery(document.getElementById('lightgallery'), {
 					plugins: [lgThumbnail, lgZoom],
@@ -31,13 +30,13 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 				});
 			}
 		}else{
-			console.log("handleLightgallery setTimeout");
+			// console.log("handleLightgallery setTimeout");
 			setTimeout(() => handleLightgallery(), 1000);
 		}
 	
 	}
 	const masonryBox = ()=>{
-		console.log("cusotm");
+		// console.log("cusotm");
 		/* masonry by  = bootstrap-select.min.js */
 		if (jQuery('#masonry, .masonry').length > 0) {
 			jQuery('.filters li').removeClass('active');
@@ -94,8 +93,6 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 		}
 		/* masonry by  = bootstrap-select.min.js end */
 	}
-
-
 	const handleIsotope = ()=>{
 		/* masonry by  = bootstrap-select.min.js */
 		if (jQuery('#Isotope, .isotope').length > 0) {
@@ -122,6 +119,7 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 		}
 		/* masonry by  = bootstrap-select.min.js end */
 	}
+
     return(
 		<>
 			<div className="col-xl-9 col-lg-12">
@@ -232,6 +230,10 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 					</div>
 					<div className="col-md-6">
 						<nav aria-label="Blog Pagination">
+							{/* {hasMore && !loading && ( */}
+							{1 && (
+								<button onClick={loadMore}>Load More</button>
+							)}
 							<ul className="pagination style-1">
 								<li className="page-item"><a className="page-link active" href="javascript:void(0);">1</a></li>
 								<li className="page-item"><a className="page-link" href="javascript:void(0);">2</a></li>
@@ -240,6 +242,16 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 							</ul>
 						</nav>
 					</div>
+					{/* <div className="col-md-6">
+						<nav aria-label="Blog Pagination">
+							<ul className="pagination style-1">
+								<li className="page-item"><a className="page-link active" href="javascript:void(0);">1</a></li>
+								<li className="page-item"><a className="page-link" href="javascript:void(0);">2</a></li>
+								<li className="page-item"><a className="page-link" href="javascript:void(0);">3</a></li>
+								<li className="page-item"><a className="page-link next" href="javascript:void(0);">Next</a></li>
+							</ul>
+						</nav>
+					</div> */}
 				</div>
 			</div>		
     	</>

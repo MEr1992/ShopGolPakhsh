@@ -22,8 +22,8 @@ export const Slider = ({ items,mediaPath,Lang,local }) => {
 																</div>
 															</div>
 															<div className="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-																<a href={`/${local}/products`} className="btn btn-secondary me-xl-3 me-2 btnhover20">{item?.btn}</a>
-																<a href={`/${local}/products`} className="btn btn-outline-secondary btnhover20">{item?.btn_2}</a>
+																<a href={`/${local}${item?.link}`} className="btn btn-secondary me-xl-3 me-2 btnhover20">{item?.btn}</a>
+																<a href={`/${local}${item?.link_2}`} className="btn btn-outline-secondary btnhover20">{item?.btn_2}</a>
 															</div>
 														</div>
 													</div>

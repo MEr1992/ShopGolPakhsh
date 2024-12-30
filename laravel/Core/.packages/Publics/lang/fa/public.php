@@ -80,6 +80,7 @@ $lang = [
     'of'=>'از',
     'results'=>'Results',
     'search_product'=>'جستجو محصول',
+    'reset_title_btn'=>'حذف فیلتر',
     // 'search_product'=>'Search Product',
     'related_products'=>'محصولات مرتبط',
     'share'=>'اشتراک گذاری',
@@ -102,6 +103,8 @@ $lang = [
     // 'cart_detail_step_2'=>'به سرعت سفارش دهید',
     // 'cart_detail_step_3'=>'با اطمینان خرید کنید',
     'last'=>'آخرین',
+    'min_price'=>'کمترین قیمت',
+    'max_price'=>'بیشترین قیمت',
     
     
     // admin

@@ -21,7 +21,7 @@ export const ProductGrid = ({ item,mediaPath,local,Lang,calssParent=" style-1" }
 				<div className="dz-media">
 					<img src={mediaPath+"/product/"+item?.image} alt="image"/>
 					<div className="shop-meta">
-						<QuickView local={local} Lang={Lang} />
+						<QuickView productId={item?.id} local={local} Lang={Lang} />
 						<Like Lang={Lang} />
 						<Cart Lang={Lang} />
 					</div>							

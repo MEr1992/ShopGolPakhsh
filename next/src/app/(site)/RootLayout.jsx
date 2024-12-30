@@ -20,17 +20,17 @@ export default function RootLayout({ children }) {
 	const pathParams = pathname.split("/")
 	const local = (pathParams.length > 1) ? pathParams[1]: "fa";
 	const { assetsPath,mediaPath } = useConfig();
-    // let [menus, setMenus] = useState();
-    // useEffect(() => {
-	// 	fetchMenus();
-	// }, []);
-	// const fetchMenus = async()=>{
-    //     let response = await fetch(`${config.host()}/${local}/get-menus`, {mode: "cors"});
-    //     const menuResponse = await response.json();
-	// 	setMenus(menuResponse);
-    // }
-	// // const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
-	// const HeaderComp = Header;
+    let [menus, setMenus] = useState();
+    useEffect(() => {
+		fetchMenus();
+	}, []);
+	const fetchMenus = async()=>{
+        let response = await fetch(`${config.host()}/${local}/get-menus`, {mode: "cors"});
+        const menuResponse = await response.json();
+		setMenus(menuResponse);
+    }
+	// const HeaderComp = (pathname == "/en" || pathname == "/fa" || pathname == "/ar") ? Header : HeaderLight;
+	const HeaderComp = Header;
 
 	return (
 		<>
@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
-								<Header mediaPath={mediaPath} local={local} />
+								<Header menus={menus} mediaPath={mediaPath} local={local} />
 								<div className="page-content bg-light">
 									{children}
 								</div>

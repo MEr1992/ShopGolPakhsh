@@ -13,7 +13,7 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 									<img src={mediaPath+"/category/"+items?.[0]?.image} alt=""/>
 									{/* <img src={assetsPath+"/pixio/images/women.png"} alt=""/> */}
 								</div>	
-								<a href={`/${local}/products?category=${items?.[0]?.id}`} className="btn btn-outline-secondary btn-light btn-xl">{items?.[0]?.["title_"+local]}</a>	
+								<a href={`/${local}/products?line=${items?.[0]?.id}`} className="btn btn-outline-secondary btn-light btn-xl">{items?.[0]?.["title_"+local]}</a>	
 							</div>
 						</div>
 						<div className="col-lg-6 col-md-12 align-self-center">
@@ -42,7 +42,7 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 														<img src={mediaPath+"/category/"+item?.image} alt="image"/>
 													</div>
 													<div className="dz-content">
-														<a href={`/${local}/products?category=${item?.id}`} className="btn btn-outline-secondary btn-light btn-md">{item?.["title_"+local]}</a>
+														<a href={`/${local}/products?line=${item?.id}`} className="btn btn-outline-secondary btn-light btn-md">{item?.["title_"+local]}</a>
 													</div>
 												</div>
 											</div>);
