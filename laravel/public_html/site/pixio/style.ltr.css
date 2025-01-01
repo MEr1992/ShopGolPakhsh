@@ -17,7 +17,7 @@
 /* For Loading */
 .loading-container {
 	position: absolute;
-	top: 20%;
+	top: 30%;
 	left: 40%;
 	transform: translate(-50%, -50%);
 	text-align: center;

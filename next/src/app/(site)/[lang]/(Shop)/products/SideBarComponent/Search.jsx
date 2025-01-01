@@ -1,13 +1,13 @@
 "use client"
 
 import React, { useContext } from 'react';
-import { ProductContext } from '@/app/(site)/[lang]/PageTools/Context/ProductContext';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 
-export const Search = ({ assetsPath,mediaPath,local,Lang }) => {
-	const { search } = useContext(ProductContext);
+export const Search = ({ Lang }) => {
+	const { dispatch } = useContext(ProductContext);
 	const handleFilter = (e) => {
 		if (e.key === 'Enter') {
-			search(e.target.value)
+			dispatch('SET_SEARCH', { filter: e.target.value });
 		}
     };
 

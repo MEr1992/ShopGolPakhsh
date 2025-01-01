@@ -1,7 +1,9 @@
 "use client"
-import { useEffect } from "react";
 
-export const Price = ({ assetsPath,mediaPath,local,Lang }) => {
+import React, { useContext,useEffect } from 'react';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+
+export const Price = ({ Lang }) => {
 	useEffect(() => {
 		// loadPriceslider()
 	}, []);
@@ -77,6 +79,13 @@ export const Price = ({ assetsPath,mediaPath,local,Lang }) => {
 			});
 		}
 	}
+	const { dispatch } = useContext(ProductContext);
+	// const handleFilter = (e) => {
+	// 	if (e.key === 'Enter') {
+	// 		dispatch('SET_MIN', { filter: e.target.value });
+	// 		dispatch('SET_MAX', { filter: e.target.value });
+	// 	}
+	// };
 
     return(
 		<>

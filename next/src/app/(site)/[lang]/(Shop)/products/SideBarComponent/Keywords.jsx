@@ -1,5 +1,10 @@
 "use client"
-export const Keywords = ({ items,assetsPath,mediaPath,local,Lang }) => {
+
+import React, { useContext } from 'react';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+
+export const Keywords = ({ Lang }) => {
+	const { state,dispatch } = useContext(ProductContext);
 	
     return(
 		<>

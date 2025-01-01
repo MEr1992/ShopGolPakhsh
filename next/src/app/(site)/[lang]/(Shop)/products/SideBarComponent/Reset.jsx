@@ -1,12 +1,12 @@
 "use client"
-import React, { useReducer } from 'react';
-import { initialState, reducer } from '@/app/(site)/[lang]/PageTools/Reducer/ProductReducer';
 
-export const Reset = ({ Lang,dispatch }) => {
-	const [state, localDispatch] = useReducer(reducer, initialState);
+import React, { useContext } from 'react';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+
+export const Reset = ({ Lang }) => {
+	const { dispatch } = useContext(ProductContext);
 	const handleReset = () => {
-		localDispatch({ type: 'RESET' });
-		dispatch({ type: 'RESET' });
+		dispatch('RESET');
 	};
 
     return(

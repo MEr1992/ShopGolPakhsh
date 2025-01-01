@@ -2,7 +2,7 @@
 
 import { Category,Color,Keywords,Price,Search,Size,Reset } from "@/app/(site)/[lang]/(Shop)/products/SideBarComponent";
 
-export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang }) => {
+export const SideBar = ({ local, Lang }) => {
 	
     return(
 		<>
@@ -26,8 +26,8 @@ export const SideBar = ({ categories,assetsPath,mediaPath,local,Lang }) => {
 							<Price Lang={Lang} />
 							{/* <Color />
 							<Size /> */}
-							<Category items={categories} local={local} Lang={Lang} />
-							<Keywords items={categories} Lang={Lang} />
+							<Category local={local} Lang={Lang} />
+							<Keywords Lang={Lang} />
 							<Reset Lang={Lang} />
 						</aside>
 					</div>

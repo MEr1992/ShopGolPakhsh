@@ -1,5 +1,6 @@
 export const initialState = {
     loading: false,
+    status: "",
     products: [],
     categories: [],
     filters: {
@@ -8,7 +9,7 @@ export const initialState = {
         line: "",
         min: "",
         max: "",
-    }
+    },
 };
 
 export const reducer = (state, action) => {
@@ -26,17 +27,17 @@ export const reducer = (state, action) => {
             return { ...state, products: [...state.products, ...action.products], offset: state.offset + action.limit };
 
         case 'SET_FILTER':
-            return { ...state, filters: {...state.filters, ...action.data} };
+            return { ...state, filters: {...state.filters, ...action.data}, status: "FIRST" };
         case 'SET_SEARCH':
-            return { ...state, filters: {...state.filters, search: action.filter} };
+            return { ...state, filters: {...state.filters, search: action.filter}, status: "NEXT" };
         case 'SET_LINE':
-            return { ...state, filters: {...state.filters, line: action.filter, category: ""} };
+            return { ...state, filters: {...state.filters, line: action.filter, category: ""}, status: "NEXT" };
         case 'SET_CATEGORY':
-            return { ...state, filters: {...state.filters, category: action.filter, line: ""} };
+            return { ...state, filters: {...state.filters, category: action.filter, line: ""}, status: "NEXT" };
         case 'SET_MIN':
-            return { ...state, filters: {...state.filters, min: action.filter} };
+            return { ...state, filters: {...state.filters, min: action.filter}, status: "NEXT" };
         case 'SET_MAX':
-            return { ...state, filters: {...state.filters, max: action.filter} };
+            return { ...state, filters: {...state.filters, max: action.filter}, status: "NEXT" };
             
         case 'RESET':
             return initialState;

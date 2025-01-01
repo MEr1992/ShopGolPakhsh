@@ -1,129 +1,38 @@
 "use client"
 
-import React, { useContext,useEffect } from 'react';
-import { ProductContext } from '@/app/(site)/[lang]/PageTools/Context/ProductContext';
+import React, { useContext, useEffect } from 'react';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 import { List,Column,Grid } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
-import LoadingPage from '@/app/(site)/[lang]/PageTools/LoadingPage';
+import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
+import { useData } from "@/Theme/Midone/Utils/Data";
 
-export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
-	const { state } = useContext(ProductContext);
-	
+export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
+	let { getNeedles } = useData();
+    let laralelUrl = "/products";
+	const { state, dispatch } = useContext(ProductContext);
+	const titleFilters = ["Dresses","Tops","تی شرت"];
+
 	useEffect(() => {
-		// setTimeout(()=>{
-			// console.log("useEffect");
-			// handleLightgallery();
-			// items?.length > 0 && handleIsotope();
-		// }, 4000)
-	}, []);
-	const handleLightgallery = ()=>{
-		if(window.jQuery('#lightgallery').length > 0 && jQuery('#lightgallery2').length > 0){
-			// console.log("handleLightgallery first");
-			if (jQuery('#lightgallery').length > 0) {
-				lightGallery(document.getElementById('lightgallery'), {
-					plugins: [lgThumbnail, lgZoom],
-					selector: '.lg-item',
-					thumbnail: true,
-					exThumbImage: 'data-src'
-				});
-			}
-			if (jQuery('#lightgallery2').length > 0) {
-				lightGallery(document.getElementById('lightgallery2'), {
-					plugins: [lgThumbnail, lgZoom],
-					selector: '.lg-item',
-					thumbnail: true,
-					exThumbImage: 'data-src'
-				});
-			}
-		}else{
-			// console.log("handleLightgallery setTimeout");
-			setTimeout(() => handleLightgallery(), 1000);
-		}
-	
-	}
-	const masonryBox = ()=>{
-		// console.log("cusotm");
-		/* masonry by  = bootstrap-select.min.js */
-		if (jQuery('#masonry, .masonry').length > 0) {
-			jQuery('.filters li').removeClass('active');
-			jQuery('.filters li:first').addClass('active');
-			var self = jQuery("#masonry, .masonry");
-			var filterValue = "";
-
-			if (jQuery('.card-container').length > 0) {
-				var gutterEnable = self.data('gutter');
-
-				var gutter = (self.data('gutter') === undefined) ? 0 : self.data('gutter');
-				gutter = parseInt(gutter);
-
-
-				var columnWidthValue = (self.attr('data-column-width') === undefined) ? '' : self.attr('data-column-width');
-				if (columnWidthValue != '') { columnWidthValue = parseInt(columnWidthValue); }
-
-				self.imagesLoaded(function () {
-					filter: filterValue,
-						self.masonry({
-							gutter: gutter,
-							columnWidth: columnWidthValue,
-							//columnWidth:3, 
-							//gutterWidth: 15,
-							isAnimated: true,
-							itemSelector: ".card-container",
-							//gutterWidth: 15,
-							//horizontalOrder: true,
-							//fitWidth: true,
-							//stagger: 30
-							//containerStyle: null
-							//percentPosition: true
-						});
-
-				});
-			}
-		}
-
-		if (jQuery('.filters').length > 0) {
-
-			jQuery(".filters li:first").addClass('active');
-
-			jQuery(".filters li").on('click', function () {
-
-				jQuery('.filters li').removeClass('active');
-				jQuery(this).addClass('active');
-
-				var filterValue = $(this).attr("data-filter");
-
-				self.isotope({
-					filter: filterValue,
-				});
-			});
-		}
-		/* masonry by  = bootstrap-select.min.js end */
-	}
-	const handleIsotope = ()=>{
-		/* masonry by  = bootstrap-select.min.js */
-		if (jQuery('#Isotope, .isotope').length > 0) {
-			var self = jQuery('#Isotope, .isotope');
-			self.isotope({
-				itemSelector: '.card-container',
-				layoutMode: 'fitRows',
-			})
-		}
-
-		if (jQuery('.filter-isotope').length > 0) {
-			jQuery(".filter-isotope li:first").addClass('active');
-			jQuery(".filter-isotope li").on('click', function () {
-
-				jQuery('.filter-isotope li').removeClass('active');
-				jQuery(this).addClass('active');
-
-				var filterValue = $(this).attr("data-filter");
-
-				self.isotope({
-					filter: filterValue,
-				});
-			});
-		}
-		/* masonry by  = bootstrap-select.min.js end */
-	}
+		if(state.status == "FIRST") 
+			return;
+        
+		dispatch('START_LOADING');
+        const query = new URLSearchParams();
+        Object.keys(state.filters).map((key)=>{
+            if(state.filters[key] != "") query.set(key, state.filters[key]);
+        });
+        getNeedles(`${local}${laralelUrl}?${query.toString()}&type=${state.status == "" && "first"}`, (items)=>
+            {
+				if(state.status == ""){
+					dispatch('SET_INFO', { products: items.products, categories: items.categories});
+				}else{
+					dispatch('SET_PRODUCTS', { products: items.products });
+				}
+                dispatch('STOP_LOADING');
+            }
+        );
+        window.history.replaceState({}, '', `?${query.toString()}`);
+    }, [state.filters]);
 
     return(
 		<>
@@ -134,16 +43,15 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 					<div className="filter-wrapper">
 						<div className="filter-left-area">								
 							<ul className="filter-tag">
-								<li>
-									<a href="javascript:void(0);" className="tag-btn">Dresses 
-										<i className="icon feather icon-x tag-close"></i>
-									</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" className="tag-btn">Tops 
-										<i className="icon feather icon-x tag-close"></i>
-									</a>
-								</li>
+								{titleFilters?.map((title, index)=>
+									{
+										return <li key={index}>
+											<a href="javascript:void(0);" className="tag-btn">{title} 
+												<i className="icon feather icon-x tag-close"></i>
+											</a>
+										</li>
+									})
+								}
 							</ul>
 							<span>{Lang("public.showing")} 1–5 {Lang("public.of")} 50 {Lang("public.results")}</span>
 						</div>
@@ -229,7 +137,7 @@ export const Product = ({ items,assetsPath,mediaPath,local,Lang }) => {
 						<div className="col-12 tab-content shop-" id="pills-tabContent">
 							{/* <List assetsPath={assetsPath}/>
 							<Column assetsPath={assetsPath}/> */}
-							<Grid items={items?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+							<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 						</div>
 					</div>
 					<div className="row page mt-0">

@@ -14,7 +14,6 @@ const store = dynamic(() => import("@/redux/store"))
 const App = dynamic(() => import("@/app/(shop-panel)/App").then((module) => module.App));
 const Loading = dynamic(() => import('./Loading'))
 // import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ProductProvider } from '@/app/(site)/[lang]/PageTools/Context/ProductContext';
 
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
@@ -75,13 +74,11 @@ export default function RootLayout({ children }) {
 					<div className="page-wraper">
 						<StoreProvider store={store}>
 							<App load={() => <Loading assetsPath={assetsPath} />} key={Math.random()}>
-								<ProductProvider>
-									<Header menus={data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} />
-									<div className="page-content bg-light">
-										{children}
-									</div>
-									<Footer data={data} assetsPath={assetsPath} mediaPath={mediaPath} local={local}  />
-								</ProductProvider>
+								<Header menus={data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} />
+								<div className="page-content bg-light">
+									{children}
+								</div>
+								<Footer data={data} assetsPath={assetsPath} mediaPath={mediaPath} local={local}  />
 							</App>
 						</StoreProvider>
 					</div>
