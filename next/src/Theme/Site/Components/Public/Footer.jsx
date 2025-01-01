@@ -1,32 +1,15 @@
-import { useConfig } from "@/lib/config";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Tools, useData } from "@/Theme/Midone";
 import Script from 'next/script'
 import { useLang } from "@/lib";
 
-export const Footer = ({ mediaPath,local }) => {
-	// console.log(params);
-	const {assetsPath } = useConfig();
+export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 	const { Lang } = useLang();
 
-	// let { getNeedles } = useData();
-    // let [needles, setNeedles] = useState({});
-    // const formUrl = "/footer";
-	// console.log(data);
-	const [footerDatas, setFooterDatas] = useState(null);
-	let {getNeedles} = useData();
-  
-	
-	useEffect(() => {
-		getNeedles(local+"/footer-data", setFooterDatas);
-	}, []);
-	// console.log(footerDatas);
-	let parentCategories = footerDatas?.categories?.filter((category)=>category?.parent_id==0);
-	let subjects = footerDatas?.subjects;
-	let blogs = footerDatas?.blogs;
+	let parentCategories = data?.categories?.filter((category)=>category?.parent_id==0);
+	let subjects = data?.subjects;
+	let blogs = data?.blogs;
 
-    return(
+	return(
 		<>
 			{/* Footer */}
 			<footer className="site-footer style-1">

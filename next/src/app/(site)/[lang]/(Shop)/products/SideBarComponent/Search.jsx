@@ -1,14 +1,13 @@
 "use client"
-import React, { useReducer } from 'react';
-import { initialState, reducer } from '@/app/(site)/[lang]/(Shop)/Reducer/ReducerProduct';
 
-export const Search = ({ assetsPath,mediaPath,local,Lang,dispatch }) => {
-	const [state, localDispatch] = useReducer(reducer, initialState);
+import React, { useContext } from 'react';
+import { ProductContext } from '@/app/(site)/[lang]/PageTools/Context/ProductContext';
+
+export const Search = ({ assetsPath,mediaPath,local,Lang }) => {
+	const { search } = useContext(ProductContext);
 	const handleFilter = (e) => {
 		if (e.key === 'Enter') {
-			const search = e.target.value;
-			localDispatch({ type: 'SET_SEARCH', filter: search });
-			dispatch({ type: 'SET_SEARCH', filter: search });
+			search(e.target.value)
 		}
     };
 

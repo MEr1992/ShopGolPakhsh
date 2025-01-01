@@ -1,16 +1,13 @@
 "use client"
 
-import { useEffect } from "react";
-import { config, useConfig } from "@/lib/config";
 import Link from "next/link";
 // import { useAuth } from "../Auth/auth";
 import Img from "@/Theme/Site/Utils";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export const Header = ({ params,menus,mediaPath,local }) => {
+export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 	// const { logout, user, mutate } = useAuth({ middleware: 'guest' })
 	const { logout, user, mutate } = {};
-	const { assetsPath } = useConfig();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	let classHeader = (pathname=="/"+local)? " header-transparent" : "";

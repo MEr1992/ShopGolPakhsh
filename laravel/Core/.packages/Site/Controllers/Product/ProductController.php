@@ -35,7 +35,7 @@ class ProductController extends Controller
         {
             $items = [
                 'products' => $this->filterProducts(),
-                'categories' => $this->category(),
+                // 'categories' => $this->category(),
             ];
         }
         return response()->json($items);
@@ -63,7 +63,7 @@ class ProductController extends Controller
         if($this->search)
         {
             $search_like = $this->search;
-            $products = $products->where("name", "LIKE", "%".$search_like."%")->orWhere(function ($q) use($search_like) { $q->where("summary", "LIKE", "%".$search_like."%"); });
+            $products = $products->where(function ($q) use($search_like) { $q->where("name", "LIKE", "%".$search_like."%")->orWhere("summary", "LIKE", "%".$search_like."%"); });
         }
         if($this->line_id)
         {

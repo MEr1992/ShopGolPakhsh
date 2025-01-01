@@ -60,15 +60,7 @@ class HomeController extends Controller
     /**
      * get data menu
      */
-    public function getMenus()
-    {
-        $items = [
-            'categories' => $this->category(),
-            'subjects' => $this->subject(),
-        ];
-        return response()->json($items);
-    }
-    public function footer()
+    public function getDataPublic()
     {
         $items = [
             'categories' => $this->category(),

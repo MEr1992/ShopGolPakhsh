@@ -1,6 +1,6 @@
 "use client"
 import React, { useReducer } from 'react';
-import { initialState, reducer } from '@/app/(site)/[lang]/(Shop)/Reducer/ReducerProduct';
+import { initialState, reducer } from '@/app/(site)/[lang]/PageTools/Reducer/ProductReducer';
 
 export const Reset = ({ Lang,dispatch }) => {
 	const [state, localDispatch] = useReducer(reducer, initialState);

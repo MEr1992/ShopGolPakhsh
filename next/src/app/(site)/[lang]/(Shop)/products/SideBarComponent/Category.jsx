@@ -1,12 +1,16 @@
 "use client"
 
-export const Category = ({ items, assetsPath, mediaPath, local, Lang, dispatch, state }) => {
+import React, { useContext } from 'react';
+import { ProductContext } from '@/app/(site)/[lang]/PageTools/Context/ProductContext';
+
+export const Category = ({ items, assetsPath, mediaPath, local, Lang }) => {
 	const counter = [26,36,43,27,40,40,40,43,36];
+	const { category,line } = useContext(ProductContext);
 	const handleFilterLine = (lineId) => {
-        dispatch({ type: 'SET_LINE', filter: lineId });
+		line(lineId)
     };
 	const handleFilterCategory = (categoryId) => {
-        dispatch({ type: 'SET_CATEGORY', filter: categoryId });
+		category(categoryId)
     };
 	
     return(
