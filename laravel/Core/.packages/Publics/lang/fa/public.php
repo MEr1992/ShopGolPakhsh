@@ -76,9 +76,12 @@ $lang = [
     'see_all'=>'مشاهده همه',
     // Words Of Site
     'filter' => 'فیلتر',
-    'showing'=>'نمایش',
-    'of'=>'از',
-    'results'=>'Results',
+    'showing_1'=>'نمایش',
+    'showing_2'=>'از',
+    'showing_3'=>'رکورد',
+    // 'showing'=>'نمایش',
+    // 'of'=>'از',
+    // 'results'=>'رکورد',
     'search_product'=>'جستجو محصول',
     'reset_title_btn'=>'حذف فیلتر',
     // 'search_product'=>'Search Product',
@@ -105,6 +108,11 @@ $lang = [
     'last'=>'آخرین',
     'min_price'=>'کمترین قیمت',
     'max_price'=>'بیشترین قیمت',
+    'latest'=>'جدیدترین',
+    'most_visited'=>'پربازدیدترین',
+    'best_seller'=>'پرفروش ترین',
+    'cheapest'=>'ارزان ترین',
+    'most_expensive'=>'گران ترین',
     
     
     // admin

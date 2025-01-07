@@ -16,6 +16,9 @@ class ProductController extends Controller
     public $cat_id;
     public $min;
     public $max;
+    public $sort;
+    public $display;
+    public $limit;
 
     public function index()
     {
@@ -24,6 +27,9 @@ class ProductController extends Controller
         $this->cat_id = request()->category;
         $this->min = request()->min;
         $this->max = request()->max;
+        $this->sort = request()->sort;
+        $this->display = request()->display;
+        $this->limit = 9;
         if(request()->type == "first")
         {
             $items = [
@@ -45,7 +51,7 @@ class ProductController extends Controller
      */
     public function products()
     {
-        return Product::with("category")->active()->orderByDesc("id")->paginate(9);
+        return Product::with("category")->active()->orderByDesc("id")->paginate($this->limit);
     }
     /**
      * get All Categories
@@ -59,7 +65,9 @@ class ProductController extends Controller
      */
     public function filterProducts()
     {
+        $this->setLimit();
         $products = Product::with("category")->active();
+        $this->setLimit($products);
         if($this->search)
         {
             $search_like = $this->search;
@@ -73,8 +81,56 @@ class ProductController extends Controller
         {
             $filter_products = $products->where("category_id", $this->cat_id);
         }
-        $filter_products = $products->orderByDesc("id")->paginate(9);
+        $filter_products = $products->orderByDesc("id")->paginate($this->limit);
         return $filter_products;
+    }
+    /**
+     * set Limit For display Produts
+     */
+    public function setLimit()
+    {
+        switch($this->display)
+        {
+            case "list":
+                $this->limit=4;
+                break;
+            case "column":
+                $this->limit=8;
+                break;
+            case "grid":
+                $this->limit=9;
+                break;
+            default:
+                $this->limit=9;
+        }
+    }
+    /**
+     * set Sort For display Produts
+     */
+    public function setSort($products)
+    {
+        switch($this->sort)
+        {
+            case "Newest":
+                $products->latest();
+                break;
+            case "MostVisited":
+                $products->orderByDesc("count_view")->latest();
+                break;
+            case "Bestseller":
+                $products->orderByDesc("count_sell")->latest();
+                break;
+            case "Cheapest":
+                $products->orderByDesc("price")->latest();
+                break;
+            case "MostExpensive":
+                $products->orderBy("price","ASC")->latest();
+                break;
+            default:
+                $products;
+        }
+        return $products;
+        // discount  discount_price  price
     }
     /**
      * get Info a Product By $id

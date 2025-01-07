@@ -23,12 +23,12 @@ export const SideBar = ({ local, Lang }) => {
 								</h6>
 							</div>
 							<Search Lang={Lang} />
-							<Price Lang={Lang} />
-							{/* <Color />
+							{/* <Price Lang={Lang} />
+							<Color />
 							<Size /> */}
 							<Category local={local} Lang={Lang} />
-							<Keywords Lang={Lang} />
-							<Reset Lang={Lang} />
+							{/* <Keywords Lang={Lang} />
+							<Reset Lang={Lang} /> */}
 						</aside>
 					</div>
 				</div>

@@ -11,7 +11,7 @@ export const Keywords = ({ Lang }) => {
 			<div className="widget widget_tag_cloud">
 				<h6 className="widget-title">{Lang("public.tags")}</h6>
 				<div className="tagcloud">
-					{items?.map((item,index)=>{
+					{state.categories?.map((item,index)=>{
 						return(
 							<a href="blog-tag.html" key={index}>Vintage </a>
 						);

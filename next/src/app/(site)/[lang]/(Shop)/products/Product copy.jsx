@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
-import { List,Column,Grid,Paging,RightFilter } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
+import { List,Column,Grid,Paging,TopFilter } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
 import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 import { useData } from "@/Theme/Midone/Utils/Data";
 
@@ -22,6 +22,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 			let value= state.filters[key];
             if(value != "") query.set(key, value);
         });
+        // getNeedles(`${local}${laralelUrl}?${query.toString()}&sort=${sortFilter}&type=${state.status == "" && "first"}`, (items)=>
         getNeedles(`${local}${laralelUrl}?${query.toString()}&type=${state.status == "" && "first"}`, (items)=>
             {
 				if(state.status == ""){
@@ -43,21 +44,6 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
         filterDispatch("Remove_FILTER");
     };
 
-	const sortBy = [
-		{ key:"Newest", value:"latest" },
-		{ key:"MostVisited", value:"most_visited" },
-		{ key:"Bestseller", value:"best_seller" },
-		{ key:"Cheapest", value:"cheapest" },
-		{ key:"MostExpensive", value:"most_expensive" },
-	];
-	const handleSortBy = (e) => {
-		dispatch('SET_SORT', { filter: e.target.value });
-	};
-	const handleDisplay = (display) => {
-		console.log(display);
-		dispatch('SET_DISPLAY', { filter: display });
-	};
-
 	return(
 		<>
 			{(state.loading)?
@@ -69,31 +55,28 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 							<ul className="filter-tag">
 								{Object.keys(state.filters).map((key)=>
 									{
-										if(key!="sort" && key!="display")
+										let value= state.filters[key];
+										let titleFilter = value;
+										if(value!= "") 
 										{
-											let value= state.filters[key];
-											let titleFilter = value;
-											if(value!= "") 
-											{
-												if(key=="line") titleFilter = state?.categories?.find((line)=>line?.id==value)?.["title_"+local];
-												if(key=="category") titleFilter = state?.categories.map((category) => category.childs).flat().find((child)=>child.id==value)?.["title_"+local];
-												return(
-													<li key={key}>
-														<a href="javascript:void(0);" className="tag-btn" onClick={()=>handleFilterRemove(key)}>{titleFilter} 
-															<i className="icon feather icon-x tag-close"></i>
-														</a>
-													</li>
-												);
-											}
+											if(key=="line") titleFilter = state?.categories?.find((line)=>line?.id==value)?.["title_"+local];
+											if(key=="category") titleFilter = state?.categories.map((category) => category.childs).flat().find((child)=>child.id==value)?.["title_"+local];
+											return(
+												<li key={key}>
+													<a href="javascript:void(0);" className="tag-btn" onClick={()=>handleFilterRemove(key)}>{titleFilter} 
+														<i className="icon feather icon-x tag-close"></i>
+													</a>
+												</li>
+											);
 										}
 									})
 								}
 							</ul>
 							{/* <span>{Lang("public.showing")} 1–5 {Lang("public.of")} 50 {Lang("public.results")}</span> */}
-							{/* <span>{Lang("public.showing_1")} 1–5 {Lang("public.showing_2")} 50 {Lang("public.showing_3")}</span> */}
+							<span>{Lang("public.showing_1")} 1–5 {Lang("public.showing_2")} 50 {Lang("public.showing_3")}</span>
 						</div>
 						<div className="filter-right-area">
-							<RightFilter Lang={Lang} />
+							<TopFilter Lang={Lang} />
 							{/* <a href="javascript:void(0);" className="panel-btn">
 								<svg className="me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="20" height="20"><g id="Layer_28" data-name="Layer 28"><path d="M2.54,5H15v.5A1.5,1.5,0,0,0,16.5,7h2A1.5,1.5,0,0,0,20,5.5V5h2.33a.5.5,0,0,0,0-1H20V3.5A1.5,1.5,0,0,0,18.5,2h-2A1.5,1.5,0,0,0,15,3.5V4H2.54a.5.5,0,0,0,0,1ZM16,3.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path><path d="M22.4,20H18v-.5A1.5,1.5,0,0,0,16.5,18h-2A1.5,1.5,0,0,0,13,19.5V20H2.55a.5.5,0,0,0,0,1H13v.5A1.5,1.5,0,0,0,14.5,23h2A1.5,1.5,0,0,0,18,21.5V21h4.4a.5.5,0,0,0,0-1ZM17,21.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5Z"></path><path d="M8.5,15h2A1.5,1.5,0,0,0,12,13.5V13H22.45a.5.5,0,1,0,0-1H12v-.5A1.5,1.5,0,0,0,10.5,10h-2A1.5,1.5,0,0,0,7,11.5V12H2.6a.5.5,0,1,0,0,1H7v.5A1.5,1.5,0,0,0,8.5,15ZM8,11.5a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5v2a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1-.5-.5Z"></path></g></svg>
 								{Lang("public.filter")}
@@ -107,12 +90,15 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 									})}
 								</select>
 							</div>
+							<div className="form-group Category">
+								<select className="default-select">
+									<option>{Lang("public.test")}</option>
+								</select>
+							</div>
 							<div className="shop-tab">
 								<ul className="nav" role="tablist" id="dz-shop-tab">
 									<li className="nav-item" role="presentation">
-										<a href="javascript:void(0);" className="nav-link active" id="tab-list-list-btn" data-bs-toggle="pill"
-											data-bs-target="#tab-list-list" role="tab" aria-controls="tab-list-list" aria-selected="true" onClick={()=>handleDisplay("list")}
-										>
+										<a href="#tab-list-list" className="nav-link active" id="tab-list-list-btn" data-bs-toggle="pill" data-bs-target="#tab-list-list" role="tab" aria-controls="tab-list-list" aria-selected="true">
 											<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g clip-path="url(#clip0_121_190)">
 												<path d="M42.667 373.333H96C119.564 373.333 138.667 392.436 138.667 416V469.333C138.667 492.898 119.564 512 96 512H42.667C19.103 512 0 492.898 0 469.333V416C0 392.436 19.103 373.333 42.667 373.333Z" fill="black"></path>
@@ -131,9 +117,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 										</a>
 									</li>
 									<li className="nav-item" role="presentation">
-										<a href="javascript:void(0);" className="nav-link" id="tab-list-column-btn" data-bs-toggle="pill"
-											data-bs-target="#tab-list-column" role="tab" aria-controls="tab-list-column" aria-selected="false" onClick={()=>handleDisplay("column")}
-										>
+										<a href="#tab-list-column" className="nav-link" id="tab-list-column-btn" data-bs-toggle="pill" data-bs-target="#tab-list-column" role="tab" aria-controls="tab-list-column" aria-selected="false">
 											<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}} xmlSpace="preserve" width="512" height="512">
 												<g>
 													<path d="M85.333,0h64c47.128,0,85.333,38.205,85.333,85.333v64c0,47.128-38.205,85.333-85.333,85.333h-64   C38.205,234.667,0,196.462,0,149.333v-64C0,38.205,38.205,0,85.333,0z"></path>
@@ -145,9 +129,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 										</a>
 									</li>
 									<li className="nav-item" role="presentation">
-										<a href="javascript:void(0);" className="nav-link" id="tab-list-grid-btn" data-bs-toggle="pill"
-											data-bs-target="#tab-list-grid" role="tab" aria-controls="tab-list-grid" aria-selected="false" onClick={()=>handleDisplay("grid")}
-										>
+										<a href="#tab-list-grid" className="nav-link" id="tab-list-grid-btn" data-bs-toggle="pill" data-bs-target="#tab-list-grid" role="tab" aria-controls="tab-list-grid" aria-selected="false">
 											<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_2" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}} xmlSpace="preserve" width="512" height="512"><g>
 												<path d="M42.667,373.333H96c23.564,0,42.667,19.103,42.667,42.667v53.333C138.667,492.898,119.564,512,96,512H42.667   C19.103,512,0,492.898,0,469.333V416C0,392.436,19.103,373.333,42.667,373.333z"></path>
 												<path d="M416,373.333h53.333C492.898,373.333,512,392.436,512,416v53.333C512,492.898,492.898,512,469.333,512H416   c-23.564,0-42.667-19.102-42.667-42.667V416C373.333,392.436,392.436,373.333,416,373.333z"></path>
@@ -163,23 +145,14 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 										</a>
 									</li>
 								</ul>
-							</div>	 */}
+							</div> */}
 						</div>
 					</div>
 					<div className="row">
 						<div className="col-12 tab-content shop-" id="pills-tabContent">
-							{/* <Column assetsPath={assetsPath}/> */}
-							{(state.filters.display=="" || state.filters.display=="grid")?
-								<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
-							:
-								(state.filters.display=="column")?
-									<Column assetsPath={assetsPath}/>
-								:
-									<List assetsPath={assetsPath}/>
-							}
 							{/* <List assetsPath={assetsPath}/>
-							<Column assetsPath={assetsPath}/>
-							<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} /> */}
+							<Column assetsPath={assetsPath}/> */}
+							<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 						</div>
 					</div>
 					{/* <Paging /> */}

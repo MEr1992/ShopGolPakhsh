@@ -2,7 +2,6 @@
 import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
 
 export const Grid = ({ items,mediaPath,local,Lang }) => {
-	
     return(
 		<>
 			<div className="tab-pane fade show active" id="tab-list-grid" role="tabpanel" aria-labelledby="tab-list-grid-btn">

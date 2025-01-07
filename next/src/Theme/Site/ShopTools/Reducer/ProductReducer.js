@@ -9,6 +9,8 @@ export const initialState = {
         line: "",
         min: "",
         max: "",
+        sort: "",
+        display: "grid",
     },
 };
 
@@ -26,6 +28,8 @@ export const reducer = (state, action) => {
         case 'LOAD_MORE_PRODUCTS':
             return { ...state, products: [...state.products, ...action.products], offset: state.offset + action.limit };
 
+        case 'Remove_FILTER':
+            return { ...state, filters: action.data, status: "Remove" };
         case 'SET_FILTER':
             return { ...state, filters: {...state.filters, ...action.data}, status: "FIRST" };
         case 'SET_SEARCH':
@@ -38,6 +42,10 @@ export const reducer = (state, action) => {
             return { ...state, filters: {...state.filters, min: action.filter}, status: "NEXT" };
         case 'SET_MAX':
             return { ...state, filters: {...state.filters, max: action.filter}, status: "NEXT" };
+        case 'SET_SORT':
+            return { ...state, filters: {...state.filters, sort: action.filter}, status: "NEXT" };
+        case 'SET_DISPLAY':
+            return { ...state, filters: {...state.filters, display: action.filter}, status: "NEXT" };
             
         case 'RESET':
             return initialState;

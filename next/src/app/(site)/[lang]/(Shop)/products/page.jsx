@@ -12,12 +12,11 @@ export default function Page({ params }) {
     const { Lang } = useLang();
     const { mediaPath,assetsPath } = useConfig();
     const local = params?.lang ? params?.lang : 'en';
-    const { dispatch, filter } = useContext(ProductContext);
+    const { dispatch, filterDispatch } = useContext(ProductContext);
 
     useEffect(() => {
-        dispatch('START_LOADING')
-        const urlParams = new URLSearchParams(window.location.search);
-        filter(urlParams);
+        dispatch('START_LOADING');
+        filterDispatch("SET_FILTER");
     }, []);
 
     return(

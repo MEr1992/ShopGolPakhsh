@@ -23,12 +23,13 @@ const ProductProvider = ({ children }) => {
       baseDispatch({ type: type, ...data });
   }
 
-  const filter = (urlParams) => {
-    dispatch({ type:'SET_FILTER', data: getQueryParams(urlParams) });
-  };
+  const filterDispatch = (type, urlParams="") => {
+    urlParams = new URLSearchParams(window.location.search);
+    baseDispatch({ type: type, data: getQueryParams(urlParams) });
+  }
 
     return (
-      <ProductContext.Provider value={{ state, dispatch, filter }}>
+      <ProductContext.Provider value={{ state, dispatch, filterDispatch }}>
         {children}
       </ProductContext.Provider>
     );

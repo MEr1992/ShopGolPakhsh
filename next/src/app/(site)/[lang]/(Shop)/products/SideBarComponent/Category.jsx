@@ -2,7 +2,6 @@
 
 import React, { useContext } from 'react';
 import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
-import { useContext } from 'react';
 
 export const Category = ({ local, Lang }) => {
 	const counter = [26,36,43,27,40,40,40,43,36];
