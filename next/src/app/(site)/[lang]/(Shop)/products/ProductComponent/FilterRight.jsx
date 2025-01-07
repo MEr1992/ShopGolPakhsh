@@ -2,7 +2,7 @@
 import React, { useContext,useEffect } from 'react';
 import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 
-export const RightFilter = ({ Lang }) => {
+export const FilterRight = ({ Lang }) => {
 	const { state,dispatch } = useContext(ProductContext);
 	const sortBy = [
 		{ key:"Newest", value:"latest" },

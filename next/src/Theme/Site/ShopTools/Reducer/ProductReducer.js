@@ -10,7 +10,7 @@ export const initialState = {
         min: "",
         max: "",
         sort: "",
-        display: "grid",
+        display: "",
     },
 };
 
