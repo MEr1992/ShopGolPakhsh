@@ -12,6 +12,7 @@ export const initialState = {
         sort: "",
         display: "",
     },
+    laralelUrl: "/products",
 };
 
 export const reducer = (state, action) => {

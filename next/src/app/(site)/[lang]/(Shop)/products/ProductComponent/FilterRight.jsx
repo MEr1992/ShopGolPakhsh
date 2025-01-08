@@ -20,8 +20,11 @@ export const FilterRight = ({ Lang }) => {
 	};
 
 	useEffect(() => {
-		typeof window != "undefined" && window?.$(`.nav-link`).removeClass("active");
-		typeof window != "undefined" && window?.$(`#tab-list-${state.filters.display}-btn`).addClass("active");
+		if(state.filters.display!="")
+		{
+			typeof window != "undefined" && window?.$(`.nav-link`).removeClass("active");
+			typeof window != "undefined" && window?.$(`#tab-list-${state.filters.display}-btn`).addClass("active");
+		}
 	}, [state.filters.display]);
 
     return(

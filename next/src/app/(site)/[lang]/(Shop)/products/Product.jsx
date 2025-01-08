@@ -8,7 +8,7 @@ import { useData } from "@/Theme/Midone/Utils/Data";
 
 export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	let { getNeedles } = useData();
-    let laralelUrl = "/products";
+    // let laralelUrl = "/products";
 	const {state, dispatch } = useContext(ProductContext);
 
 	useEffect(() => {
@@ -22,7 +22,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 			let value= state.filters[key];
             if(value != "") query.set(key, value);
         });
-        getNeedles(`${local}${laralelUrl}?${query.toString()}&type=${state.status == "" && "first"}`, (items)=>
+        getNeedles(`${local}${state.laralelUrl}?${query.toString()}&type=${state.status == "" && "first"}`, (items)=>
             {
 				if(state.status == ""){
 					dispatch('SET_INFO', { products: items.products, categories: items.categories});
@@ -52,12 +52,12 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 					<div className="row">
 						<div className="col-12 tab-content shop-" id="pills-tabContent">
 							{(state.filters.display=="" || state.filters.display=="grid")?
-								<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+								<Grid assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 							:
 								(state.filters.display=="column")?
-									<Column items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+									<Column assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 								:
-									<List items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+									<List assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 							}
 						</div>
 					</div>
