@@ -8,7 +8,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .section-head h1, .section-head .h1, .section-head h2, .section-head .h2, .section-head h3, .section-head .h3, .section-head h4, .section-head .h4, .section-head h5, .section-head .h5, .section-head h6, .section-head .h6,
 .shop-card .product-tag .badge, p,
 .header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title,
-.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num,.dz-product-detail .dz-info ul li strong,.dz-tabs .nav-tabs .nav-link {
+.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num,.dz-product-detail .dz-info ul li strong,.dz-tabs .nav-tabs .nav-link,
+input,.widget_categories.style-1 .cat-item {
 	font-family: "YekanBakh";
 }
 /* Style For Section Header */
@@ -137,7 +138,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .section-head i {
     transform: rotate(180deg);
 }
-/* Style For Section ShopSidBar */
+/* Style For Section ShopSidBar Of Product */
 .breadcrumb-row ul .breadcrumb-item + .breadcrumb-item::before {
 	/* float: left; */
 	float: right;
@@ -221,4 +222,29 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .range-slider.style-1 .noUi-horizontal .noUi-handle {
 	right: auto;
 	left: 0;
+}
+/* Style For Section ShopSidBar Of Blog */
+.search-bx button {
+	right: auto;
+	left: 5px;
+}
+.widget_categories.style-1 .cat-item {
+	padding: 10px 26px 10px 0 !important;
+}
+.widget_categories.style-1 .cat-item::before {
+	left: auto;
+	right: 0;
+    transform: rotate(180deg);
+}
+.recent-posts-entry .widget-post-bx .widget-post .dz-info {
+	margin-left: auto;
+	margin-right: 18px;
+}
+.dz-card .read-btn i {
+    transform: rotate(180deg);
+}
+/* Style For Section Detail Of Blog */
+.about-style2 .about-thumb {
+	margin-right: auto;
+	margin-left: 40px;
 }

@@ -55,7 +55,7 @@ class HomeController extends Controller
     }
     public function blog()
     {
-        return Blog::active()->limit(5)->get();
+        return Blog::active()->orderByDesc("id")->limit(5)->get();
     }
     /**
      * get data menu

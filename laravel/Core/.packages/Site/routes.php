@@ -13,7 +13,6 @@ Route::middleware(['auth:web'])->get('/user', function () {
 });
 
 Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($lang) {
-    // dd($lang);
     // Authentication routes...
     Route::get('/login/google', 'Auth\GoogleController@redirectToGoogle')->name('auth.google');
 
@@ -35,12 +34,6 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
 
     Route::get('/blog/{id}', 'Blog\BlogController@show');
     Route::get('/blog', 'Blog\BlogController@index');
-    // Route::resource('contact-us', 'ContactController');
-    // Route::resource('about-us', 'AboutController');
-    // Route::post('send-message', 'ContactController@comment');
-
-    //footer
-    Route::get('/footer', 'PublicController@footer');
 });
 
 require __DIR__ . '/auth.php';

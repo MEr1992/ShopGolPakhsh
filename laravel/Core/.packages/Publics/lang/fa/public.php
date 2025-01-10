@@ -48,7 +48,7 @@ $lang = [
     'count'=>'تعداد',
     'report'=>'گزارش',
     'more_detail'=>'جزییات بیشتر',
-    // Words Of Site For Home
+    // Words Of Site For Home ================================================
     'tilte_slider'=>'مجموعه تابستانی',
     'text_slider'=>'مد روز و کلاسیک برای فصل جدید',
     'rotating_slider'=>'محصولات خاص فروشگاه',
@@ -74,7 +74,7 @@ $lang = [
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
     'see_all'=>'مشاهده همه',
-    // Words Of Site
+    // Words Of Site ================================================
     'filter' => 'فیلتر',
     'showing_1'=>'نمایش',
     'showing_2'=>'از',
@@ -84,6 +84,8 @@ $lang = [
     // 'results'=>'رکورد',
     'search_product'=>'جستجو محصول',
     'reset_title_btn'=>'حذف فیلتر',
+    'load_more'=>'بیشتر',
+    'read_more'=>'ادامه مطلب',
     // 'search_product'=>'Search Product',
     'related_products'=>'محصولات مرتبط',
     'share'=>'اشتراک گذاری',
@@ -113,6 +115,8 @@ $lang = [
     'best_seller'=>'پرفروش ترین',
     'cheapest'=>'ارزان ترین',
     'most_expensive'=>'گران ترین',
+    'search_title'=>'جستجو',
+    'search_blog'=>'جستجو بلاگ',
     
     
     // admin

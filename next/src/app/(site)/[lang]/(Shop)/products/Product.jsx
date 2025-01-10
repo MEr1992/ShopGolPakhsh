@@ -3,12 +3,12 @@
 import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 import { List,Column,Grid,Paging,FilterRight,FilterLeft } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
-import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 import { useData } from "@/Theme/Midone/Utils/Data";
+import { LoadMore } from "@/Theme/Site/Components/Public/LoadMore";
+import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 
 export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	let { getNeedles } = useData();
-    // let laralelUrl = "/products";
 	const {state, dispatch } = useContext(ProductContext);
 
 	useEffect(() => {
@@ -61,6 +61,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 							}
 						</div>
 					</div>
+					<LoadMore Lang={Lang} />
 					{/* <Paging /> */}
 				</div>
 			}		

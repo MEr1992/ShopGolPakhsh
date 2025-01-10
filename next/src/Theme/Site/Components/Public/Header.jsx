@@ -83,7 +83,7 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 														{subjects?.map((subject,index)=>{
 															return(
 																<li key={index}>
-																	<a href={`/${local}/blogs?subject=${subject?.id}`}>
+																	<a href={`/${local}/blog?subject=${subject?.id}`}>
 																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
 																		<span>{subject?.["title_"+local]}</span>
 																	</a>

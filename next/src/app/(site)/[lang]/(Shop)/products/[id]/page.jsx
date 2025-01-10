@@ -20,10 +20,7 @@ export default function Page({ params }) {
 
     useEffect(() => {
         getNeedles(local+laralelUrl+"/"+id, setItems);
-        // getInfoSite(local+laralelUrl+"/"+id, setItems);
     }, []);
-    // console.log('items');
-    // console.log(items);
 
     return(
         <>

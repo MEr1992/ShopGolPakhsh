@@ -1,4 +1,5 @@
 export const initialState = {
+    laralelUrl: "/products",
     loading: false,
     status: "",
     products: [],
@@ -12,7 +13,6 @@ export const initialState = {
         sort: "",
         display: "",
     },
-    laralelUrl: "/products",
 };
 
 export const reducer = (state, action) => {
