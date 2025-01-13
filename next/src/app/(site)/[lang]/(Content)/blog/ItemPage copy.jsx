@@ -16,18 +16,22 @@ export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
     const [newBlogs, setNewBlogs] = useState([]);
 
     useEffect(() => {
+        // console.log('status');
+        // console.log(status);
+        // console.log('loadmore');
+        // console.log(loadmore);
+        
         if(status == "FIRST") 
             return;
 
         dispatch('START_LOADING');
+        console.log(status);
+        
         const query = (status == "")? new URLSearchParams(window.location.search) : new URLSearchParams();
         Object.keys(filters).map((key)=>{
             let value= filters[key];
             if(value != "") query.set(key, value);
         });
-        // console.log('query.toString()');
-        // console.log(!(query.toString()!="" && pageInfo>1));
-           
         // const url = `${local}${laralelUrl}?${query.toString()}&type=${status == "" && "first"}`;
         const url = `${local}${laralelUrl}?${query.toString()}`;
             getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
@@ -36,6 +40,8 @@ export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
                     dispatch('SET_INFO', { blogs: items.blogs, mostVisitedBlogs: items.mostVisitedBlogs, subjects: items.subjects, url: url });
                 }else{
                     dispatch('SET_BLOGS', { blogs: items.blogs, url: url });
+                    setLoadmore(false);
+                    pageInfo="1";
                 }
                 dispatch('STOP_LOADING');
             }
@@ -56,7 +62,7 @@ export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
         if(!hasAnyValue)
         {
             if(pageInfo > 1){
-                // setLoadmore("loading");
+                setLoadmore("loading");
                 // getNeedles(`${url}&type=${status == "NEXT"}&page=${pageInfo}`, (items)=> {
                 getNeedles(`${url}&page=${pageInfo}`, (items)=> {
                     setNewBlogs(items.blogs);
@@ -72,8 +78,6 @@ export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
             setLoadmore("end");
         }
     }, [newBlogs]);
-// console.log("loadmore");
-// console.log(loadmore);
 
     return (
         (loading)?
@@ -114,7 +118,6 @@ export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
                     : loadmore === false ? 
                         <LoadMore onClick={()=>setLoadmore(true)} Lang={Lang} />
                     :
-                        // <ItemPage pageInfo={(status == false || status == "" || status == "first")?1:++pageInfo} mediaPath={mediaPath} local={local} Lang={Lang} />
                         <ItemPage pageInfo={++pageInfo} mediaPath={mediaPath} local={local} Lang={Lang} />
                 }
             </>	

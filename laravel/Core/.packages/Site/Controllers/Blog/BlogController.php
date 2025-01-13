@@ -5,38 +5,37 @@ namespace Site\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use \Models\Content\Blog;
 use \Models\Content\BlogSubject;
-use \Models\Base\Keyword;
-use \Models\Base\Country;
 
 class BlogController extends Controller
 {
+    public $list_blogs;
     public $search;
     public $subject_id;
-    public $sort;
     public $limit;
     public $limit_most;
+    public $page;
 
     public function index()
     {
         $this->search = request()->search;
         $this->subject_id = request()->subject;
-        $this->sort = request()->sort;
-        $this->limit = 6;
+        $this->limit = 2;
         $this->limit_most = 4;
+        $this->page = request()->page;
+        $items = [];
+
+        $this->list_blogs = Blog::with("subject")->active();
+        
         if(request()->type == "first")
         {
-            $items = [
-                'blogs' => $this->blogs(),
-                'mostVisitedBlogs' => $this->mostVisitedBlogs(),
-                'subjects' => $this->subject(),
-            ];
+            $items['mostVisitedBlogs'] = $this->mostVisitedBlogs();
+            $items['subjects'] = $this->subject();
         }
-        else
-        {
-            $items = [
-                'blogs' => $this->filterBlogs(),
-            ];
-        }
+
+        if(request()->filled('search') || request()->filled('subject'))
+            $items ['blogs'] = $this->filterBlogs();
+        else $items ['blogs'] = $this->blogs();
+
         return response()->json($items);
     }
     /**
@@ -44,14 +43,14 @@ class BlogController extends Controller
      */
     public function blogs()
     {
-        return Blog::with("subject")->active()->orderByDesc("id")->paginate($this->limit);
+        return $this->list_blogs->orderByDesc("id")->paginate($this->limit);
     }
     /**
      * get All Blogs
      */
     public function mostVisitedBlogs()
     {
-        return Blog::active()->orderByDesc("count_view")->latest()->limit($this->limit_most)->get();
+        return $this->list_blogs->orderByDesc("count_view")->latest()->limit($this->limit_most)->get();
     }
     /**
      * get All Subjects
@@ -65,7 +64,7 @@ class BlogController extends Controller
      */
     public function filterBlogs()
     {
-        $blogs = Blog::with("subject")->active();
+        $blogs = $this->list_blogs;
         if($this->search)
         {
             $search_like = $this->search;

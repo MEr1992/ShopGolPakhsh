@@ -11,6 +11,7 @@ export const SideBar = ({ assetsPath, mediaPath, local, Lang }) => {
                     <Subject local={local} Lang={Lang} />
                     <SideBlog mediaPath={mediaPath} assetsPath={assetsPath} local={local} Lang={Lang} />
                     {/* <Keywords Lang={Lang} /> */}
+                    <Reset Lang={Lang} resetFor="blog" />
                 </aside>
             </div>
         </>

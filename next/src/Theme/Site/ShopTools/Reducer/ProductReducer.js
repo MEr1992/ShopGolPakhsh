@@ -1,5 +1,7 @@
 export const initialState = {
     laralelUrl: "/products",
+    url: "",
+    page: 1,
     loading: false,
     status: "",
     products: [],
@@ -23,11 +25,9 @@ export const reducer = (state, action) => {
             return { ...state, loading: false };
     
         case 'SET_INFO':
-            return { ...state, products: action.products, categories: action.categories };
+            return { ...state, products: action.products, categories: action.categories, url: action.url };
         case 'SET_PRODUCTS':
-            return { ...state, products: action.products };
-        case 'LOAD_MORE_PRODUCTS':
-            return { ...state, products: [...state.products, ...action.products], offset: state.offset + action.limit };
+            return { ...state, products: action.products, url: action.url };
 
         case 'Remove_FILTER':
             return { ...state, filters: action.data, status: "Remove" };

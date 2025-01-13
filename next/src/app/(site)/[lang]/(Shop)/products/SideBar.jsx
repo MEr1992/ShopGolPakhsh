@@ -3,7 +3,6 @@
 import { Category,Color,Keywords,Price,Search,Size,Reset } from "@/app/(site)/[lang]/(Shop)/products/SideBarComponent";
 
 export const SideBar = ({ local, Lang }) => {
-	
     return(
 		<>
 			<div className="col-xl-3 col-lg-12">
@@ -27,8 +26,8 @@ export const SideBar = ({ local, Lang }) => {
 							<Color />
 							<Size /> */}
 							<Category local={local} Lang={Lang} />
-							{/* <Keywords Lang={Lang} />
-							<Reset Lang={Lang} /> */}
+							{/* <Keywords Lang={Lang} /> */}
+							<Reset Lang={Lang} resetFor="product" />
 						</aside>
 					</div>
 				</div>

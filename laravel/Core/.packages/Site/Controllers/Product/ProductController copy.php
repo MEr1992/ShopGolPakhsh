@@ -33,17 +33,24 @@ class ProductController extends Controller
         $this->display = request()->display;
         $this->limit = 9;
         $this->page = request()->page;
-        $items = [];
         
         $this->setLimit();
         $this->list_products = Product::with("category","categoryParent")->active();
-        
-        if(request()->type == "first") $items['categories']=$this->category();
+        $items = [];
 
-        if(request()->filled('search') || request()->filled('line') || request()->filled('category') || request()->filled('sort') || request()->filled('display'))
-            $items ['products'] = $this->filterProducts();
-        else $items ['products'] = $this->products();
-
+        if(request()->type == "first")
+        {
+            $items = [
+                'products' => $this->products(),
+                'categories' => $this->category(),
+            ];
+        }
+        else
+        {
+            $items = [
+                'products' => $this->filterProducts(),
+            ];
+        }
         return response()->json($items);
     }
     /**
@@ -98,10 +105,10 @@ class ProductController extends Controller
                 $this->limit=8;
                 break;
             case "grid":
-                $this->limit=3;
+                $this->limit=9;
                 break;
             default:
-                $this->limit=3;
+                $this->limit=9;
         }
     }
     /**

@@ -29,7 +29,11 @@ export default function Page({ params }) {
                 <div className="container">
                     <div className="row">
                         <SideBar assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
-                        <ItemPage assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        <div className="col-xl-8 col-lg-8">
+                            <div className="row">
+                                <ItemPage assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
