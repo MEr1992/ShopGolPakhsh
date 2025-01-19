@@ -6,7 +6,7 @@ export const Slider = ({ items,mediaPath,Lang,local }) => {
 				<div className="container-fluid">
 					<div className="banner-content">
 						<div className="row">
-							<div className="col-lg-6 col-md-12">
+							<div className="col-lg-6">
 								<div className="swiper-container main-swiper h-100">
 									<div className="swiper-wrapper">
 										{items?.map((item,index)=>{
@@ -33,7 +33,7 @@ export const Slider = ({ items,mediaPath,Lang,local }) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-lg-6 col-md-12">
+							<div className="col-lg-6">
 								<div className="swiper-container main-swiper-thumb">
 									<div className="swiper-wrapper">
 										{items?.map((item,index)=>{

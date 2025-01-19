@@ -1,11 +1,11 @@
 "use client"
-import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+// import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 import React, { useContext } from 'react';
 import { useData } from "@/Theme/Midone/Utils/Data";
 
 export const Cart = ({ productId,assetsPath,mediaPath,local,Lang,type="Icon" }) => {
 	let { getNeedles } = useData();
-	const {state} = useContext(ProductContext);
+	// const {state} = useContext(ProductContext);
 	const addToCart = (id)=>{		
 		// بررسی وجود کلاس active
 		if($('#cart-active-'+id).hasClass('active'))
@@ -14,7 +14,8 @@ export const Cart = ({ productId,assetsPath,mediaPath,local,Lang,type="Icon" }) 
 		}
 		else
 		{
-			getNeedles(`${local}${state.laralelUrl}/add-to-cart/${id}`, "");
+			// getNeedles(`${local}${state.laralelUrl}/add-to-cart/${id}`, "");
+			getNeedles(`${local}/products/add-to-cart/${id}`, "");
 			jQuery('#cart-active-'+id).toggleClass('active');
 		}
 	}

@@ -1,11 +1,11 @@
 "use client"
-import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+// import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
 import React, { useContext } from 'react';
 import { useData } from "@/Theme/Midone/Utils/Data";
 
 export const Like = ({ productId,assetsPath,mediaPath,local,Lang,type="Icon" }) => {
 	let { getNeedles } = useData();
-	const {state} = useContext(ProductContext);
+	// const {state} = useContext(ProductContext);
 
 	const addToFavorites = (id)=>{	
 		// بررسی وجود کلاس active
@@ -15,8 +15,8 @@ export const Like = ({ productId,assetsPath,mediaPath,local,Lang,type="Icon" }) 
 		}
 		else
 		{
-			getNeedles(`${local}${state.laralelUrl}/add-to-favorites/${id}`, "");
 			jQuery('#like-active-'+id).toggleClass('active');
+			getNeedles(`${local}/products/add-to-favorites/${id}`, "");
 		}
 	}
 	let display = <div className="btn btn-primary meta-icon dz-wishicon" id={"like-active-"+productId} onClick={()=>addToFavorites(productId)}>

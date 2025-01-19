@@ -22,7 +22,7 @@ export const Line = ({ items,mediaPath,assetsPath,local,Lang }) => {
 									<h3 className="title ">{Lang("public.tilte_line")}</h3>
 									<p>{Lang("public.text_line")}</p>
 								</div>
-								<a className="service-btn-2 wow fadeInUp" data-wow-delay="0.6s" href={`/${local}/contact`} >
+								<a className="service-btn-2 wow fadeInUp" data-wow-delay="0.6s" href={`/${local}/products`} >
 									<span className="icon-wrapper">
 										<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M12.832 31.1663L31.1654 12.833" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
