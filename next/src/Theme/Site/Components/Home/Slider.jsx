@@ -39,7 +39,8 @@ export const Slider = ({ items,mediaPath,Lang,local }) => {
 										{items?.map((item,index)=>{
 											return(
 												<div className="swiper-slide" key={index}>
-													<div className="banner-media" data-name="Winter">
+													{/* <div className="banner-media" data-name="Winter"> */}
+													<div className="banner-media" data-name={item?.title_2}>
 														<div className="img-preview">
 															<img src={mediaPath+"/slider/"+item?.image} alt="banner-media"/>
 														</div>
