@@ -135,6 +135,24 @@ $lang = [
     'main_title_info'=>"گل پخش",
     'copyright'=>"تمامی حقوق محقوظ است",
 
+    'add_new_address'=>'افزودن آدرس جدید',
+    'account_settings'=>'تنظیمات حساب',
+    'orders'=>'سفارشات',
+    'opration'=>'عملیات',
+    'price'=>'قیمت',
+    'completed'=>'تایید شده',
+    'pending'=>'درانتظار',
+    'cancelled'=>'لغو شده',
+    'order_number'=>'شماره سفارش',
+    'firstname'=>'نام',
+    'lastname'=>'نام خانوادگی',
+    'newpassword'=>'پسورد جدید',
+    'confirmpassword'=>'تایید پسورد',
+    'newsletter'=>'خبرنامه',
+    'updateprofile'=>'به روزرسانی پروفایل',
+    'wishlist'=>'علاقه مندی ها',
+    'total'=>'کل',
+
 ];
 
 $menus = include(__DIR__.'/./menus.php');
