@@ -72,3 +72,10 @@
 	font-weight: bold;
 	color: #333;
   }
+
+  @media only screen and (max-width: 600px) {
+	.filter-wrapper .shop-tab {
+	  margin-right: auto;
+	  margin-left: 0px;
+	}
+  }

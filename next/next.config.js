@@ -5,7 +5,7 @@ const nextConfig = {
     // useFileSystemPublicRoutes: false,
     // experimental: { esmExternals: true },
     images: {
-        domains: ['127.0.0.1']
+        domains: ['127.0.0.1', '192.168.240.111']
     },
     webpack: (config) => {
         config.resolve.alias.canvas = false;
