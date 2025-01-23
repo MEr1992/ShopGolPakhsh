@@ -11,7 +11,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	const { state, dispatch } = useContext(ProductContext);
 	const { status, filters, laralelUrl, loading, page } = state;
 
-	useEffect(() => {		
+	useEffect(() => {
 		if(status == "FIRST") 
 			return;
         
@@ -26,15 +26,17 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 		const url = `${local}${laralelUrl}?${query.toString()}`;
         getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
             {
-				if(status == ""){
-					dispatch('SET_INFO', { products: items.products, categories: items.categories, url: url });
-				}else{
-					dispatch('SET_PRODUCTS', { products: items.products, url: url });
-				}
+                if(status == ""){
+                    dispatch('SET_INFO', { blogs: items.blogs, mostVisitedBlogs: items.mostVisitedBlogs, subjects: items.subjects, url: url });
+                }else{
+                    dispatch('SET_BLOGS', { blogs: items.blogs, url: url });
+                }
                 dispatch('STOP_LOADING');
             }
         );
         window.history.replaceState({}, '', `?${query.toString()}`);
+		
+		dispatch('DEACTIVE_FILTER_MOBILE');
     }, [filters]);
 	
 	return(

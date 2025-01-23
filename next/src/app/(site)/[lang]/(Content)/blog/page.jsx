@@ -13,12 +13,42 @@ export default function Page({ params }) {
     const { Lang } = useLang();
     const { mediaPath,assetsPath } = useConfig();
     const local = params?.lang ? params?.lang : 'en';
-    const { dispatch, filterDispatch } = useContext(BlogContext);
+    let { getNeedles } = useData();
+    const { state, dispatch, filterDispatch } = useContext(BlogContext);
+	const { status, filters, laralelUrl, loading, page } = state;
 
     useEffect(() => {
         dispatch('START_LOADING');
         filterDispatch("SET_FILTER");
     }, []);
+
+    useEffect(() => {
+        if(status == "FIRST") 
+            return;
+        
+        dispatch('START_LOADING');
+        // const query = new URLSearchParams();
+        const query = (status == "")? new URLSearchParams(window.location.search) : new URLSearchParams();
+        Object.keys(filters).map((key)=>{
+            let value= filters[key];
+            if(value != "") query.set(key, value);
+        });
+        // const url = `${local}${laralelUrl}?${query.toString()}&type=${status == "" && "first"}`;
+        const url = `${local}${laralelUrl}?${query.toString()}`;
+        getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
+            {
+                if(status == ""){
+                    dispatch('SET_INFO', { blogs: items.blogs, mostVisitedBlogs: items.mostVisitedBlogs, subjects: items.subjects, url: url });
+                }else{
+                    dispatch('SET_BLOGS', { blogs: items.blogs, url: url });
+                }
+                dispatch('STOP_LOADING');
+            }
+        );
+        window.history.replaceState({}, '', `?${query.toString()}`);
+        
+        dispatch('DEACTIVE_FILTER_MOBILE');
+    }, [filters]);
 
     return(
         <>
@@ -31,7 +61,7 @@ export default function Page({ params }) {
                         <SideBar assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
                         <div className="col-xl-8 col-lg-8">
                             <div className="row">
-                                <ItemPage assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                                <ItemPage mediaPath={mediaPath} local={local} Lang={Lang} />
                             </div>
                         </div>
                     </div>

@@ -8,31 +8,72 @@ import { useData } from "@/Theme/Midone/Utils/Data";
 import { LoadMore } from "@/Theme/Site/Components/Public/LoadMore";
 import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 
-export const ItemPage = ({ mediaPath, local, Lang, page = "1" }) => {
-    const {state} = useContext(BlogContext);
-    const { blogs, url, status, filters, laralelUrl, loading } = state;
+export const ItemPage = ({ mediaPath, local, Lang, pageInfo = "1" }) => {
+    let { getNeedles } = useData();
+    const { state, dispatch } = useContext(BlogContext);
+	const { blogs, url, status, filters, laralelUrl, loading, page } = state;
     const [loadmore, setLoadmore] = useState(false);
     const [newBlogs, setNewBlogs] = useState([]);
-    let { getNeedles } = useData();
+
+    useEffect(() => {
+        if(status == "FIRST") 
+            return;
+
+        dispatch('START_LOADING');
+        const query = (status == "")? new URLSearchParams(window.location.search) : new URLSearchParams();
+        Object.keys(filters).map((key)=>{
+            let value= filters[key];
+            if(value != "") query.set(key, value);
+        });
+        // console.log('query.toString()');
+        // console.log(!(query.toString()!="" && pageInfo>1));
+           
+        // const url = `${local}${laralelUrl}?${query.toString()}&type=${status == "" && "first"}`;
+        const url = `${local}${laralelUrl}?${query.toString()}`;
+            getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
+            {
+                if(status == ""){
+                    dispatch('SET_INFO', { blogs: items.blogs, mostVisitedBlogs: items.mostVisitedBlogs, subjects: items.subjects, url: url });
+                }else{
+                    dispatch('SET_BLOGS', { blogs: items.blogs, url: url });
+                }
+                dispatch('STOP_LOADING');
+            }
+        );
+        window.history.replaceState({}, '', `?${query.toString()}`);
+    }, [filters]);
+
     useEffect(()=>{
-        page == 1 && setNewBlogs(blogs);
+        pageInfo == 1 && setNewBlogs(blogs);
     }, [blogs])
 
     useEffect(()=>{
-        if(page > 1){
-            setLoadmore("loading");
-            getNeedles(`${url}&page=${page}`, (items)=> {
-                setNewBlogs(items.blogs);
-                setLoadmore(false);
-            });
+        const hasAnyValue = Object.keys(filters).some(key => filters[key]);
+        // console.log(hasAnyValue);
+
+        // console.log(filters && filters.trim() !== '');
+        // console.log(!filters);
+        if(!hasAnyValue)
+        {
+            if(pageInfo > 1){
+                // setLoadmore("loading");
+                // getNeedles(`${url}&type=${status == "NEXT"}&page=${pageInfo}`, (items)=> {
+                getNeedles(`${url}&page=${pageInfo}`, (items)=> {
+                    setNewBlogs(items.blogs);
+                    setLoadmore(false);
+                });
+            }
         }
-    }, [page]);
+        // else if(hasAnyValue)  pageInfo="1";
+    }, [pageInfo]);
 
     useEffect(()=>{
-        if(newBlogs?.last_page <= page) {
+        if(newBlogs?.last_page <= pageInfo) {
             setLoadmore("end");
         }
     }, [newBlogs]);
+// console.log("loadmore");
+// console.log(loadmore);
 
     return (
         (loading)?
@@ -73,7 +114,8 @@ export const ItemPage = ({ mediaPath, local, Lang, page = "1" }) => {
                     : loadmore === false ? 
                         <LoadMore onClick={()=>setLoadmore(true)} Lang={Lang} />
                     :
-                        <ItemPage page={++page} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        // <ItemPage pageInfo={(status == false || status == "" || status == "first")?1:++pageInfo} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        <ItemPage pageInfo={++pageInfo} mediaPath={mediaPath} local={local} Lang={Lang} />
                 }
             </>	
 	);

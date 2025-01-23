@@ -15,6 +15,7 @@ export const initialState = {
         sort: "",
         display: "",
     },
+    filterMobile: "",
 };
 
 export const reducer = (state, action) => {
@@ -47,6 +48,11 @@ export const reducer = (state, action) => {
             return { ...state, filters: {...state.filters, sort: action.filter}, status: "NEXT" };
         case 'SET_DISPLAY':
             return { ...state, filters: {...state.filters, display: action.filter}, status: "NEXT" };
+
+        case 'ACTIVE_FILTER_MOBILE':
+            return { ...state, filterMobile: " active" };
+        case 'DEACTIVE_FILTER_MOBILE':
+            return { ...state, filterMobile: "" };
             
         case 'RESET':
             return initialState;
