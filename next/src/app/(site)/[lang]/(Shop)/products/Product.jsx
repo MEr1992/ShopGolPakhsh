@@ -12,6 +12,8 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	const { status, filters, laralelUrl, loading, page } = state;
 
 	useEffect(() => {
+		console.log("status is: ", status, "filters is: ", filters.display);
+		
 		if(status == "FIRST") 
 			return;
         
@@ -56,7 +58,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 					<div className="row">
 						<div className="col-12 tab-content shop-" id="pills-tabContent">
 							{/* {(filters.display=="" || filters.display=="grid")? */}
-							{(!filters.display || filters.display=="grid")?
+							{(!filters.display || filters.display=="" || filters.display=="grid")?
 								<Grid assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 							:
 								(filters.display=="column")?

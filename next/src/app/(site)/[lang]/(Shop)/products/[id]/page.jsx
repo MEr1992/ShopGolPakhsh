@@ -30,13 +30,7 @@ export default function Page({ params }) {
             :
                 <div className="page-content bg-light">
                     <div className="d-sm-flex justify-content-between container-fluid py-3">
-                        {/* <nav aria-label="breadcrumb" className="breadcrumb-row">
-                            <ul className="breadcrumb mb-0">
-                                <li className="breadcrumb-item"><a href="index.html"> Home</a></li>
-                                <li className="breadcrumb-item">Product Default</li>
-                            </ul>
-                        </nav> */}
-                        <BreadCrumb />
+						<BreadCrumb brName={items?.product?.name} local={local} />
                     </div>
                     <InfoProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
                     <TabsProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />

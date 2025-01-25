@@ -1,7 +1,7 @@
 "use client"
 import { BreadCrumb } from "@/Theme/Site/Components/Public/BreadCrumb";
 
-export const Banner = ({ assetsPath,mediaPath,local,Lang }) => {
+export const Banner = ({ assetsPath,local,Lang }) => {
 	
     return(
 		<>
@@ -10,7 +10,7 @@ export const Banner = ({ assetsPath,mediaPath,local,Lang }) => {
 				<div className="container">
 					<div className="dz-bnr-inr-entry">
 						<h1>{Lang("public.blogs")}</h1>
-						<BreadCrumb />
+						<BreadCrumb local={local} />
 					</div>
 				</div>	
 			</div>

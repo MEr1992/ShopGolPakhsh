@@ -53,7 +53,7 @@ export default function Page({ params }) {
     return(
         <>
             <div className="page-content bg-light">
-                <Banner assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                <Banner assetsPath={assetsPath} local={local} Lang={Lang} />
             </div>
             <section className="content-inner-1 z-index-unset">
                 <div className="container">
