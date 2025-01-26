@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
 
 	return (
 		<>
-			<html lang="en">
+			<html lang="en" dir='rtl'>
 				<head>
 					{/* Title */}
 					<title>Gol: Shop & Online sales of cosmetic products</title>
