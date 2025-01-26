@@ -10,7 +10,9 @@ export function middleware(req) {
     font-src 'self' https://fonts.gstatic.com http://127.0.0.1:8000 http://localhost:8000 http://127.0.0.1:3000; 
   `
 
-  const ContentSecurityPolicy = `font-src 'self' data: http://127.0.0.1:8000 https://fonts.gstatic.com http://localhost:8000 http://127.0.0.1:3000 `
+  const ContentSecurityPolicy = `
+    font-src 'self' http://127.0.0.1:8000 https://fonts.gstatic.com http://localhost:8000 http://127.0.0.1:3000 data:;
+  `
   const response = NextResponse.next();
   // console.log("middleware!!");
 

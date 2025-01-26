@@ -1,25 +1,15 @@
-import { useConfig } from "@/lib/config";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Tools, useData } from "@/Theme/Midone";
 import Script from 'next/script'
+import { useLang } from "@/lib";
 
-export const Footer = ({ params="" }) => {
-	// console.log(params);
-	const {assetsPath } = useConfig();
-	// let { getNeedles } = useData();
-    // let [needles, setNeedles] = useState({});
-    const formUrl = "/footer";
-    const local = "fa";
-    // const local = params?.lang ?  params?.lang : "en" ;
+export const Footer = ({ data,assetsPath,mediaPath,local }) => {
+	const { Lang } = useLang();
 
-	useEffect(() => {
-		// getNeedles(local + formUrl, setNeedles);
-		// console.log("useEffect footer");
-		// window.jQuery = window.$;
-    }, []);
+	let parentCategories = data?.categories?.filter((category)=>category?.parent_id==0);
+	let subjects = data?.subjects;
+	let blogs = data?.blogs;
 
-    return(
+	return(
 		<>
 			{/* Footer */}
 			<footer className="site-footer style-1">
@@ -27,25 +17,23 @@ export const Footer = ({ params="" }) => {
 				<div className="footer-top">
 					<div className="container">
 						<div className="row">
-							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.1s">
 								<div className="widget widget_about me-2">
 									<div className="footer-logo logo-white">
-										<a href="index.html">
-											<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
-										</a> 
+										<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
 									</div>
 									<ul className="widget-address">
 										<li>
-											<p><span>Address</span> : 451 Wall Street, UK, London</p>
+											<p><span>{Lang('public.address')}</span> : {Lang('public.address_info')}</p>
 										</li>
 										<li>
-											<p><span>E-mail</span> : example@info.com</p>
+											<p><span>{Lang('public.email')}</span> : {Lang('public.email_info')}</p>
 										</li>
 										<li>
-											<p><span>Phone</span> : (064) 332-1233</p>
+											<p><span>{Lang('public.tel')}</span> : {Lang('public.tel_info')}</p>
 										</li>
 									</ul>
-									<div className="subscribe_widget">
+									{/* <div className="subscribe_widget">
 										<h6 className="title fw-medium text-capitalize">subscribe to our newsletter</h6>	
 										<form className="dzSubscribe style-1" action="script/mailchamp.php" method="post">
 											<div className="dzSubscribeMsg"></div>
@@ -60,57 +48,47 @@ export const Footer = ({ params="" }) => {
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> */}
 								</div>
 							</div>
-							<div className="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
-								<div className="widget widget_post">
-									<h5 className="footer-title">Recent Posts</h5>
-									<ul>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Cozy Knit Cardigan Sweater</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/2.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Sophisticated Swagger Suit</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-										<li>
-											<div className="dz-media">
-												<img src={assetsPath+"/pixio/images/shop/product/small/3.png"} alt=""/>
-											</div>
-											<div className="dz-content">
-												<h6 className="name"><a href="post-standard.html">Athletic Mesh Sports Leggings</a></h6>
-												<span className="time">July 23, 2023</span>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
+							<div className="col-xl-4 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
 								<div className="widget widget_services">
-									<h5 className="footer-title">Our Stores</h5>
+									<h5 className="footer-title">{Lang('public.shop')}</h5>
 									<ul>
-										<li><a href="#!">New York</a></li>
-										<li><a href="#!">London SF</a></li>
-										<li><a href="#!">Edinburgh</a></li>
-										<li><a href="#!">Los Angeles</a></li>
-										<li><a href="#!">Chicago</a></li>
-										<li><a href="#!">Las Vegas</a></li>
+										{parentCategories?.map((item,index)=>{ return <li>
+												<Link href={`/${local}/products?category=${item.id}`}>
+												{item?.["title_"+local]}
+														</Link>
+											</li>
+										})}
 									</ul>   
 								</div>
 							</div>
-							<div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
+							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.2s">
+								<div className="widget widget_post">
+									<h5 className="footer-title">{Lang('public.last')} {Lang('public.blog')}</h5>
+									<ul>
+										{blogs?.map((blog , item)=>{return <li>
+												<div className="dz-media">
+													<img src={`${mediaPath}/blogs/${blog?.thumb}`} alt={blog?.title}/>
+												</div>
+												<div className="dz-content">
+													<h6 className="name">
+														<Link href={`/${local}/blog/${blog?.id}`}>
+															{blog?.title}
+														</Link>
+													</h6>
+													<span className="time">{blog?.created_at}</span>
+												</div>
+											</li>
+
+										})}
+										
+									</ul>
+								</div>
+							</div>
+							
+							{/* <div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Useful Links</h5>
 									<ul>
@@ -122,8 +100,8 @@ export const Footer = ({ params="" }) => {
 										<li><a href="#!">Our Sitemap</a></li>
 									</ul>
 								</div>
-							</div>
-							<div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
+							</div> */}
+							{/* <div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Footer Menu</h5>
 									<ul>
@@ -134,7 +112,7 @@ export const Footer = ({ params="" }) => {
 										<li><a href="#!">Latest News</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -143,15 +121,16 @@ export const Footer = ({ params="" }) => {
 				<div className="footer-bottom">
 					<div className="container">
 						<div className="row fb-inner wow fadeInUp" data-wow-delay="0.1s">
-							<div className="col-lg-6 col-md-12 text-start"> 
-								<p className="copyright-text">© <span className="current-year">2024</span> <a href="../../https@www.dexignzone.com/default.htm">DexignZone</a> Theme. All Rights Reserved.</p>
+							<div className="col-lg-12 col-md-12 text-center"> 
+								<p className="copyright-text">© <span className="current-year">1403</span> 
+								<a href="/">{Lang('public.main_title_info')}</a> {Lang('public.copyright')}</p>
 							</div>
-							<div className="col-lg-6 col-md-12 text-end"> 
+							{/* <div className="col-lg-6 col-md-12 text-end"> 
 								<div className="d-flex align-items-center justify-content-center justify-content-md-center justify-content-xl-end">
 									<span className="me-3">We Accept: </span>
 									<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
@@ -176,9 +155,9 @@ export const Footer = ({ params="" }) => {
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/lightgallery.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js`} strategy='afterInteractive' />
+			<Script src={`${assetsPath}/pixio/vendor/group-slide/group-loop.js`} strategy='afterInteractive' />
 			<Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
-			{/* <Script src={`${assetsPath}/pixio/js/dz.carousel.js`} strategy='afterInteractive' />
-			<Script src={`${assetsPath}/pixio/js/dz.ajax.js`} strategy='afterInteractive' /> */}
+			{/* <Script src={`${assetsPath}/pixio/js/dz.ajax.js`} strategy='afterInteractive' /> */}
 			<Script src={`${assetsPath}/pixio/js/custom.js`} strategy='afterInteractive' />
 		</>
 	);

@@ -1,37 +1,42 @@
 "use client"
-export const ProductGrid = ({ item,assetsPath,mediaPath,local,Lang }) => {
-		// 9
+import { Cart } from "@/Theme/Site/Components/Public/Cart";
+import { Like } from "@/Theme/Site/Components/Public/Like";
+import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
+
+export const ProductGrid = ({ item,mediaPath,local,Lang,calssParent=" style-1" }) => {
+	let displayPrice = <> {"$"+item?.price} </>
+	let displayDiscount = "";
+	if(item?.discount>0)
+	{
+		displayDiscount = <>{Lang("public.up_to")+" "+item?.discount+"%"+Lang("public.off")}</>;
+		displayPrice = <>
+			{"$"+item?.discount_price}
+			<del>{"$"+item?.price}</del>
+		</>
+	}
 
     return(
 		<>
-			<div className="col-6 col-xl-4 col-lg-4 col-md-4 col-sm-4 m-md-b15 m-sm-b0 m-b30">
-				<div className="shop-card style-1">
-					<div className="dz-media">
-						<img src={mediaPath+"/product/"+item?.image} alt="image"/>
-						<div className="shop-meta">
-							<a href="javascript:void(0);" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-								<i className="fa-solid fa-eye d-md-none d-block"></i>
-								<span className="d-md-block d-none">{Lang("public.Quick View")}</span>
-							</a>
-							<div className="btn btn-primary meta-icon dz-wishicon">
-								<i className="icon feather icon-heart dz-heart"></i>
-								<i className="icon feather icon-heart-on dz-heart-fill"></i>
-							</div>
-							<div className="btn btn-primary meta-icon dz-carticon">
-								<i className="flaticon flaticon-basket"></i>
-								<i className="flaticon flaticon-shopping-basket-on dz-heart-fill"></i>
-							</div>
-						</div>							
-					</div>
-					<div className="dz-content">
-						<h5 className="title"><a href="shop-list.html">{item?.name}</a></h5>
-						<h5 className="price">{item?.price}</h5>
-					</div>
-					<div className="product-tag">
-						<span className="badge ">Get {item?.discount+"%"} Off</span>
-					</div>
+			<div className={"shop-card"+calssParent}>
+				<div className="dz-media">
+					<img src={mediaPath+"/product/"+item?.image} alt="image"/>
+					<div className="shop-meta">
+						<QuickView productId={item?.id} local={local} Lang={Lang} />
+						<Like Lang={Lang} />
+						<Cart Lang={Lang} />
+					</div>							
 				</div>
-			</div>	
+				<div className="dz-content color-discount">
+					<div>
+						<span className="sale-title">{displayDiscount}</span>
+						<h5 className="title"><a href={`/${local}/products/${item?.id}`}>{item?.name}</a></h5>
+					</div>
+					<h6 className="price">{displayPrice}</h6>
+				</div>
+				<div className="product-tag">
+					<span className="badge ">{item?.category?.["title_"+local]}</span>
+				</div>
+			</div>
     	</>
 	);
 }

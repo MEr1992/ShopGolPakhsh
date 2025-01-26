@@ -1,4 +1,8 @@
 import { useEffect } from "react";
+import { Cart } from "@/Theme/Site/Components/Public/Cart";
+import { Like } from "@/Theme/Site/Components/Public/Like";
+import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
+import { ProductGrid } from "@/Theme/Site/Components/Cards/ProductGrid";
 
 export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
 	let delay = ["0.6s","0.8s","1.0s","1.2s","0.2s","0.4s","0.6s","2.0s"];
@@ -43,14 +47,13 @@ export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
 				<div className="container">
 					<div className=" row justify-content-md-between align-items-start">
 						<div className="col-lg-6 col-md-12">
-							<div className="section-head style-1 m-b30  wow fadeInUp" data-wow-delay="0.2s">
+							<div className="section-head style-1 m-b30 wow fadeInUp" data-wow-delay="0.2s">
 								<div className="left-content">
-									{/* <h2 className="title">Most popular products</h2> */}
-									<h2 className="title">{Lang("public.Last products")}</h2>
+									<h2 className="title">{Lang("public.last_products")}</h2>
 								</div>
 							</div>	
 						</div>
-						<div className="col-lg-6 col-md-12">
+						{/* <div className="col-lg-6 col-md-12">
 							<div className="site-filters clearfix style-1 align-items-center wow fadeInUp ms-lg-auto" data-wow-delay="0.4s">
 								<ul className="filters" data-bs-toggle="buttons">
 									<li className="btn active">
@@ -68,42 +71,17 @@ export const LastProducts = ({ items,categories,mediaPath,local,Lang }) => {
 									})}
 								</ul>			
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<div className="clearfix">
 						<ul id="masonry" className="row g-xl-4 g-3">
-							{items?.map((item, index)=>{
+							{items?.map((item,index)=>{
 								let delayNew = delay[index];
 								let classLiNew = classLi[index];
 
 								return(
-									<li className={"card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp "+classLiNew} data-wow-delay={delayNew}>
-										<div className="shop-card">
-											<div className="dz-media">
-												<img src={mediaPath+"/product/"+item?.image} alt="image"/>
-												<div className="shop-meta">
-													<a href="#!" className="btn btn-secondary btn-md btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
-														<i className="fa-solid fa-eye d-md-none d-block"></i>
-														<span className="d-md-block d-none">{Lang("public.Quick View")}</span>
-													</a>
-													<div className="btn btn-primary meta-icon dz-wishicon">
-														<i className="icon feather icon-heart dz-heart"></i>
-														<i className="icon feather icon-heart-on dz-heart-fill"></i>
-													</div>
-													<div className="btn btn-primary meta-icon dz-carticon">
-														<i className="flaticon flaticon-basket"></i>
-														<i className="flaticon flaticon-basket-on dz-heart-fill"></i>
-													</div>
-												</div>							
-											</div>
-											<div className="dz-content">
-												<h5 className="title"><a href="shop-list.html">Cozy Knit Cardigan Sweater</a></h5>
-												<h5 className="price">$80</h5>
-											</div>
-											<div className="product-tag">
-												<span className="badge ">Get 20% Off</span>
-											</div>
-										</div>
+									<li className={"card-container col-6 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp "+classLiNew} data-wow-delay={delayNew} key={index}>
+										<ProductGrid item={item} mediaPath={mediaPath} local={local} Lang={Lang} calssParent="" />
 									</li>
 								);
 							})}

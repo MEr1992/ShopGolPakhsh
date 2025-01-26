@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useRouter } from 'next/navigation';
-import { useData,useFormRefs,Input,Button,ButtonContainer,CheckBox,Box } from "@/Theme/Midone/Forms";
+import { useData,useFormRefs,Input,Button,ButtonContainer,CheckBox,Box, Frame } from "@/Theme/Midone/Forms";
 import { Dropzone } from "@/Theme/Midone/Forms/Dropzone";
 
 export default function Form({ id }){
@@ -29,11 +29,13 @@ export default function Form({ id }){
 
     return(
         <>
+        <Frame>
             <Box>     
                 <Input label="name" refItem={[component, "name_"+local]} required="true" />
                 <Dropzone refItem={[component, "logo"]} uploadUrl={uploadUrl} deleteUrl={deleteUrl+"/"} uploadDir={uploadDir} required="true" />
                 <CheckBox label="status" name={Lang('public.active')} refItem={[component, "status_id"]} />        
             </Box>
+            </Frame>
             <ButtonContainer>
                 <Button label="save" onClick={saveItem} />
                 <Button label="back" onClick={back} />

@@ -1,10 +1,10 @@
 "use client";
-import Form from '@/app/(lms-panel)/panel/(system)/(Users)/users/form';
+import Form from '@/app/(panel)/panel/(system)/(admin)/(Users)/personnels/(form)/form';
 
 export default function New(){
     return(
         <div>
-            <Form title="personnel" titleFrame="personnels" link="/personnels" roleFilter="0"></Form>
+            <Form />
         </div>
     );
 }

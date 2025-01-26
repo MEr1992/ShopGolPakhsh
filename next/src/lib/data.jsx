@@ -7,10 +7,18 @@ import { useConfig } from '@/lib/config';
 import { useRouter, usePathname } from 'next/navigation';
 import { useUtility } from '@/lib/utility';
 // import tinymce from 'tinymce/tinymce';
+import dynamic from 'next/dynamic';
+import { axiosLoading } from "@/Theme/site/Utils/axiosLoading";
+const Loading = dynamic(() => import('@/app/(site)/Loading'), {
+    // loading: () => <p>در حال بارگذاری...</p>, // کامپوننت بارگذاری
+    ssr: false, // غیرفعال کردن رندر در سرور
+});
+// const Loading = dynamic(() => import('@/app/(site)/Loading'))
 
 const Data = {
     getRefValue(ref, parent) {
         const refs = parent.current;
+        
         if(!refs) return "";
         const element = refs[ref];
         let value = '';
@@ -62,6 +70,10 @@ const Data = {
             }
         });
 
+        setState((oldState)=>{
+            return {...oldState, errors:[], status: "loading"}
+        });
+
         state.errors = [];
         axios.post(url, data)
             .then(response => {
@@ -69,7 +81,9 @@ const Data = {
                 const message = Lang('public.save_message');
 
                 if (result) {
-                    setState({ ...state, lastId: response.data });
+                    setState((oldState)=>{
+                        return {...oldState, errors:[], status: "success", lastId: response.data}
+                    });
                 }
 
                 Toast.success(message, Lang('public.dear_user'), 3000);
@@ -88,22 +102,27 @@ const Data = {
 
                     switch (error.response.status) {
                         case 422:
-                            setState({ ...state, errors: error.response.data.errors });
                             message = Lang('public.error-422');
                             break;
                         case 401:
-                            setState({ ...state, errors: error.response.data.errors });
                             message = Lang('public.error-401');
                             break;
                         case 403:
-                            setState({ ...state, errors: error.response.data.errors });
                             message = Lang('public.error-403');
                             break;
                         case 501:
                             message = Lang('public.error-501');
                             method = 'error';
                             break;
+                        case 500:
+                            message = Lang('public.error-500');
+                            method = 'error';
+                            break;
                     }
+
+                    setState((oldState)=>{
+                        return {...oldState, errors: error.response?.data?.errors, status: "error"}
+                    });
 
                     Toast[method](message, title, 3000);
                 } else {
@@ -159,9 +178,6 @@ const Data = {
                 if (nextUrl) {
                     router.push(Data.getSystemPrefix() + nextUrl);
                 }
-                // console.log("router.push(Data.getSystemPrefix() + nextUrl)");
-                // console.log(router);
-                // console.log(router.push(Data.getSystemPrefix() + nextUrl));
 
                 callback(data, response.data);
             })
@@ -182,6 +198,10 @@ const Data = {
                             break;
                         case 501:
                             message = Lang('public.error-501');
+                            method = 'error';
+                            break;
+                        case 500:
+                            message = Lang('public.error-500');
                             method = 'error';
                             break;
                     }
@@ -213,6 +233,60 @@ const Data = {
 
     getInfo(url, component, itemName = 'info', callback = null, Lang) {
         document.getElementById('#loader')?.classList.remove('d-none');
+        const { assetsPath,mediaPath } = useConfig();
+        <Loading assetsPath={assetsPath} />
+        axios.get(url, { headers: { 'content-type': 'application/json' } })
+            .then(response => {
+                if (typeof component?.setState === 'function') {
+                    component.setState({ ...component.state, [itemName]: response.data });
+                }
+                if (callback) {
+                    callback(response.data);
+                }
+            })
+            .catch(error => {
+                if (error.response) {
+                    let message = '';
+                    switch (error.response.status) {
+                        case 422:
+                            message = Lang('public.error-422');
+                            break;
+                        case 401:
+                            message = Lang('public.error-401');
+                            break;
+                        default:
+                            message = Lang('public.error-info');
+                    }
+                    Toast.error(message, Lang('public.dear_user'), 3000);
+                }
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    window?.$('#loader').addClass('d-none');
+                }, 400);
+            });
+    },
+
+    needles(url, setNeedleFunc, Lang) {
+        Data.getInfo(url, '', '', data => setNeedleFunc(data), Lang);
+    },
+
+    getInfoSite0(url, setNeedleFunc, Lang) {
+        Data.getInfo(url, '', '', data => setNeedleFunc(data), Lang);
+        console.log("info");
+        console.log(Data.getInfo(url, '', '', data => setNeedleFunc(data), Lang));
+    },
+    
+    getInfoSite(url, component='', itemName = '', callback = null, Lang) {
+        document.getElementById('#loader')?.classList.remove('d-none');
+        const { assetsPath,mediaPath } = useConfig();
+
+        // const {adding_loading, remove_loading} = axiosLoading();
+        // let loadingContainer = ".loading-container";
+        // adding_loading(loadingContainer)
+        // () => <Loading assetsPath={assetsPath} />
+        // <Loading assetsPath={assetsPath} />
+        // axiosLoading(assetsPath);
 
         axios.get(url, { headers: { 'content-type': 'application/json' } })
             .then(response => {
@@ -241,13 +315,10 @@ const Data = {
             })
             .finally(() => {
                 setTimeout(() => {
+                    // remove_loading(loadingContainer)
                     window.$ && window?.$('#loader').addClass('d-none');
                 }, 400);
             });
-    },
-
-    needles(url, setNeedleFunc, Lang) {
-        Data.getInfo(url, '', '', data => setNeedleFunc(data), Lang);
     },
 
     prepareUrl(url) {
@@ -272,6 +343,7 @@ const useData = () => {
         getValue: Data.getRefValue,
         getRefValue: Data.getRefValue,
         getNeedles: (url, setNeedleFunc) => Data.needles(url, setNeedleFunc, Lang),
+        getInfoSite: (url, setNeedleFunc) => Data.getInfoSite(url, setNeedleFunc, Lang),
         resetForm: parent => Data.resetForm(parent),
     };
 };

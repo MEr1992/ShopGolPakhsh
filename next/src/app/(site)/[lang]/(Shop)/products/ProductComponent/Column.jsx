@@ -1,10 +1,9 @@
 "use client"
 export const Column = ({ assetsPath,mediaPath,local,Lang }) => {
-	
     return(
 		<>
-			<div className="tab-pane fade" id="tab-list-column" role="tabpanel" aria-labelledby="tab-list-column-btn">
-				<div className="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">
+			<div className="tab-pane fade show active" id="tab-list-column" role="tabpanel" aria-labelledby="tab-list-column-btn">
+				<div className="row gx-xl-4 g-3 mb-xl-0 mb-md-0 mb-3">Column
 					<div className="col-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 m-md-b15 m-sm-b0 m-b30">
 						<div className="shop-card style-1">
 							<div className="dz-media">

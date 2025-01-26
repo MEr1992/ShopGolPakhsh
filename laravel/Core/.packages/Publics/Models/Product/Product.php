@@ -13,6 +13,10 @@ class Product extends Model
     protected $dates   = ['deleted_at'];
     protected $table   = 'products';
 
+    public function newQuery($excludeDeleted = true)
+    {
+        return parent::newQuery($excludeDeleted)->where($this->table.'.lang', \App::getLocale());
+    }
     protected static function booted(): void
     {
         static::deleting(function(Product $product) { // before delete() method call this 
@@ -29,6 +33,10 @@ class Product extends Model
     }  
     function categoryParent()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'parent_category');
+    }
+    public function keywords()
+    {
+        return $this->belongsToMany(\Models\Base\Keyword::class, 'product_keyword', 'product_id', 'keyword_id');
     }
 }

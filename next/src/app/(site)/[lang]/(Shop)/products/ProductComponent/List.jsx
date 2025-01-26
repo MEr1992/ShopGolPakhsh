@@ -1,10 +1,9 @@
 "use client"
 export const List = ({ assetsPath,mediaPath,local,Lang }) => {
-	
     return(
 		<>
-			<div className="tab-pane fade" id="tab-list-list" role="tabpanel" aria-labelledby="tab-list-list-btn">
-				<div className="row">
+			<div className="tab-pane fade show active" id="tab-list-list" role="tabpanel" aria-labelledby="tab-list-list-btn">
+				<div className="row">List
 					<div className="col-md-12 col-sm-12">
 						<div className="dz-shop-card style-2">
 							<div className="dz-media">

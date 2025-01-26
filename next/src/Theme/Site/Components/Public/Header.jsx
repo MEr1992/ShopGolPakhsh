@@ -1,495 +1,147 @@
 "use client"
 
-import { config, useConfig } from "@/lib/config";
 import Link from "next/link";
 // import { useAuth } from "../Auth/auth";
 import Img from "@/Theme/Site/Utils";
 import { usePathname, useSearchParams } from "next/navigation";
-import { local, useLang } from "@/lib";
-import { useEffect } from "react";
 
-const { assetsPath } = useConfig();
-
-export const Header = ({ params }) => {
+export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 	// const { logout, user, mutate } = useAuth({ middleware: 'guest' })
 	const { logout, user, mutate } = {};
-
-	const pathname = usePathname()
+	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	const { Lang, local } = useLang();
-
-	useEffect(()=>{
-		// (window.jQuery, window, document), window.$(document).ready(function() {
-			// console.log(window.$);
-			// console.log(window.jQuery);
-			// window.$ && window.$("#navigation").navigation()
-		// });
-	}, []);
-
-	const handleLang = (target) => {
-		let url = config.front() + pathname
-
-		let newRelativePathQuery = url.replace(new RegExp(config.front() + "/[a-z]{2}"), config.front() + '/' + target) + '?' + searchParams.toString();
-		location.href = newRelativePathQuery;
-	}
+	let classHeader = (pathname=="/"+local)? " header-transparent" : "";
+	let parentCategories = menus?.categories?.filter((category)=>category?.parent_id==0);
+	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
+	let subjects = menus?.subjects;
+	let listMenus = [];
+	let hrefMenus = [`/${local}`,`"#!"`,`"#!"`,`/${local}/about`,`/${local}/contact`];
+	(local=="en")?
+		listMenus = ['Home','Shop','Blog','About us','Contact us']
+	:
+		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
 
 	return(
 		<>
-			<header id="top-menu" className="site-header mo-left header style-1 header-transparent">		
+			<header id="top-menu" className={"site-header mo-left header style-1"+classHeader}>		
 				<div className="sticky-header main-bar-wraper navbar-expand-lg">
 					<div className="main-bar clearfix">
 						<div className="container-fluid clearfix d-lg-flex d-block">
-							
 							<div className="logo-header logo-dark me-md-5">
-								<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></a>
+								<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
 							</div>
-							
 							<button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 								<span></span>
 								<span></span>
 								<span></span>
 							</button>
-						
 							<div className="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 								<div className="logo-header logo-dark">
-									<a href="index.html"><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
+									<a href={hrefMenus[0]}><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
 								</div>
 								<ul className="nav navbar-nav">
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<a href="#!"><span>Home</span><i className="fas fa-chevron-down tabIndex" ></i></a>
-										<div className="mega-menu ">
-											<ul className="demo-menu mb-0">
-												<li>
-													<a href="index.html">
-														<img src={`${assetsPath}/pixio/images/demo/demo-1.png`} alt="/"/>
-														<span className="menu-title">01 Home Page</span>
-													</a>
-												</li>
-												<li>
-													<a href="index-2.html">
-														<img src={`${assetsPath}/pixio/images/demo/demo-2.png`} alt="/"/>
-														<span className="menu-title">02 Home Page</span>
-													</a>
-												</li>
-												<li>
-													<a href="index-3.html">
-														<img src={`${assetsPath}/pixio/images/demo/demo-3.png`} alt="/"/>
-														<span className="menu-title">03 Home Page</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li className="has-mega-menu sub-menu-down">
-										<a href="#!"><span>Shop</span><i className="fas fa-chevron-down tabIndex" ></i></a>
-										<div className="mega-menu shop-menu">
-											<ul>
-												<li className="side-left">
-													<ul>
-														<li><a href="#!" className="menu-title">Shop Structure</a>
-															<ul>
-																<li><a href="shop-standard.html">Shop Standard</a></li>
-																<li><a href="shop-list.html">Shop List</a></li>
-																<li><a href="shop-with-category.html">Shop With Category</a></li>
-																<li><a href="shop-filters-top-bar.html">Shop Filters Top Bar</a></li>
-																<li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-																<li><a href="shop-style-1.html">Shop Style 1</a></li>
-																<li><a href="shop-style-2.html">Shop Style 2</a></li>
-															</ul>
-														</li>
-														<li><a href="#!" className="menu-title">Product Structure</a>
-															<ul>
-																<li><a href="product-default.html">Default</a></li>
-																<li><a href="product-thumbnail.html">Thumbnail</a></li>
-																<li><a href="product-grid-media.html">Grid Media</a></li>
-																<li><a href="product-carousel.html">Carousel</a></li>
-																<li><a href="product-full-width.html">Full Width</a></li>
-															</ul>
-														</li>
-														<li><a href="#!" className="menu-title">Shop Pages</a>
-															<ul>						
-																<li><a href="shop-wishlist.html">Wishlist</a></li>
-																<li><a href="shop-cart.html">Cart</a></li>
-																<li><a href="shop-checkout.html">Checkout</a></li>
-																<li><a href="shop-compare.html">Compare</a></li>
-																<li><a href="shop-order-tracking.html">Order Tracking</a></li>
-																<li><a href="login.html">Login</a></li>
-																<li><a href="registration.html">Registration</a></li>
-															<li><a href="forget-password.html">Forget Password <div className="badge badge-sm rounded badge-animated">New</div></a></li>
-															</ul>
-														</li>
-														<li className="month-deal">
-															<div className="clearfix me-3">
-																<h3>Deal of the month</h3>
-																<p className="mb-0">Yes! Send me exclusive offers, personalised, and unique gift ideas, tips for shopping on Pixio <a href="shop-standard.html" className="dz-link-2">View All Products</a></p>
-															</div>
-															<div className="sale-countdown">
-																<div className="countdown text-center">
-																	<div className="date">
-																		<span className="time days text-primary"></span>
-																		<span className="work-time">Days</span>
-																	</div>
-																	<div className="date">
-																		<span className="time hours text-primary"></span>
-																		<span className="work-time">Hours</span>
-																	</div>
-																	<div className="date">
-																		<span className="time mins text-primary"></span>
-																		<span className="work-time">Minutess</span>
-																	</div>
-																	<div className="date">
-																		<span className="time secs text-primary"></span>
-																		<span className="work-time">Second</span>
-																	</div>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</li>
-												<li className="side-right">
-													<div className="adv-media">
-														<img src={`${assetsPath}/pixio/images/adv-1.png`} alt="/"/>
-													</div>
-												</li>
-											</ul>
-										</div>
+										<Link href={hrefMenus[0]}><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width">
-										<a href="#!"><span>Blog</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<a href={hrefMenus[1]}><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
-												<li>
-													<a href="#!" className="menu-title">Blog Dark Style</a>
-													<ul>
-														<li><a href="blog-dark-2-column.html">Blog 2 Column</a></li>
-														<li><a href="blog-dark-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
-														<li><a href="blog-dark-3-column.html">Blog 3 Column</a></li>
-														<li><a href="blog-dark-half-image.html">Blog Half Image</a></li>
-													</ul>
-													<a href="#!" className="menu-title">Blog Light Style</a>
-													<ul>
-														<li><a href="blog-light-2-column.html">Blog 2 Column</a></li>
-														<li><a href="blog-light-2-column-sidebar.html">Blog 2 Column Sidebar</a></li>
-														<li><a href="blog-light-half-image.html">Blog Half Image</a></li>
-														<li><a href="blog-exclusive.html">Blog Exclusive</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Blog Sidebar</a>
-													<ul>
-														<li><a href="blog-left-sidebar.html">Blog left Sidebar</a></li>
-														<li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-														<li><a href="blog-both-sidebar.html">Blog Both Sidebar</a></li>
-														<li><a href="blog-wide-sidebar.html">Blog Wide Sidebar</a></li>
-													</ul>
-													<a href="#!" className="menu-title">Blog Page</a>
-													<ul>
-														<li><a href="blog-archive.html">Blog Archive</a></li>
-														<li><a href="blog-author.html">Author</a></li>
-														<li><a href="blog-category.html">Blog Category</a></li>
-														<li><a href="blog-tag.html">Blog Tag</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Blog Details</a>
-													<ul>	
-														<li><a href="post-standard.html">Post Standard</a></li>
-														<li><a href="post-left-sidebar.html">Post Left Sidebar</a></li>
-														<li><a href="post-header-image.html">Post Header Image</a></li>
-														<li><a href="post-slide-show.html">Post Slide Show</a></li>
-														<li><a href="post-side-image.html">Post Side Image</a></li>
-														<li><a href="post-gallery.html">Post Gallery</a></li>
-														<li><a href="post-gallery-alternative.html">Post Gallery Alternative</a></li>
-														<li><a href="post-open-gutenberg.html">Post Open Gutenberg</a></li>
-														<li><a href="post-link.html">Post Link</a></li>
-														<li><a href="post-audio.html">Post Audio</a></li>
-														<li><a href="post-video.html">Post Video</a></li>
-													</ul>
-												</li>
-												<li className="post-menu">
-													<a href="#!" className="menu-title">Recent Posts</a>
-													<div className="widget widget_post pt-2">
-														<ul>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/1.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Cozy Knit Cardigan Sweater</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/2.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Sophisticated Swagger Suit</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/3.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Athletic Mesh Sports Leggings</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-															<li>
-																<div className="dz-media">
-																	<img src={`${assetsPath}/pixio/images/shop/product/small/4.png`} alt=""/>
-																</div>
-																<div className="dz-content">
-																	<h6 className="name"><a href="post-standard.html">Satin Wrap Party Blouse</a></h6>
-																	<span className="time">July 23, 2023</span>
-																</div>
-															</li>
-														</ul>
-													</div>
-												</li>
+												{parentCategories?.map((category,index)=>{
+													return(
+														<li className="post-menu" key={index}>
+															<a href={`/${local}/products?line=${category?.id}`} className="menu-title">{category?.["title_"+local]}</a>
+															<div className="widget widget_post pt-2">
+																<ul>
+																	{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
+																		return(
+																			<li key={i}>
+																				<div className="dz-media">
+																					<img src={mediaPath+"/category/"+child?.image} alt=""/>
+																				</div>
+																				<div className="dz-content">
+																					<h6 className="name"><a href={`/${local}/products?category=${child?.id}`}>{child?.["title_"+local]}</a></h6>
+																					<span className="time">{"("+child?.count_product+")"}</span>
+																				</div>
+																			</li>
+																		);
+																	})}
+																</ul>
+															</div>
+														</li>
+													);
+												})}
 											</ul>
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
-										<a href="#!"><span>Portfolio</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu portfolio-menu">
 											<ul>
 												<li className="side-left">
 													<ul className="portfolio-nav-link">
-														<li>
-															<a href="portfolio-tiles.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/portfolio-tiles.svg`} alt="/"/>
-																<span>Portfolio Tiles</span>
-															</a>
-														</li>
-														<li>
-															<a href="collage-style-1.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/collage-style-1.svg`} alt="/"/>
-																<span>Collage Style 1</span>
-															</a>
-														</li>
-														<li>
-															<a href="collage-style-2.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/collage-style-2.svg`} alt="/"/>
-																<span>Collage Style 2</span>
-															</a>
-														</li>
-														<li>
-															<a href="masonry-grid.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/masonry-grid.svg`} alt="/"/>
-																<span>Masonry Grid</span>
-															</a>
-														</li>
-														<li>
-															<a href="cobble-style-1.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/cobble-style-1.svg`} alt="/"/>
-																<span>Cobble Style 1</span>
-															</a>
-														</li>
-														<li>
-															<a href="cobble-style-2.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/cobble-style-2.svg`} alt="/"/>
-																<span>Cobble Style 2</span>
-															</a>
-														</li>
-														<li>
-															<a href="portfolio-thumbs-slider.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/portfolio-thumbs-slider.svg`} alt="/"/>
-																<span>Portfolio Thumbs Slider</span>
-															</a>
-														</li>
-														<li>
-															<a href="portfolio-film-strip.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/portfolio-film-strip.svg`} alt="/"/>
-																<span>Portfolio Film Strip</span>
-															</a>
-														</li>
-														<li>
-															<a href="carousel-showcase.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/carousel-showcase.svg`} alt="/"/>
-																<span>Carousel Showcase</span>
-															</a>
-														</li>
-														<li>
-															<a href="portfolio-split-slider.html">
-																<img src={`${assetsPath}/pixio/images/portfolio/icons/portfolio-split-slider.svg`} alt="/"/>
-																<span>Portfolio Split Slider</span>
-															</a>
-														</li>
-													</ul>
-												</li>
-												<li className="side-right line-left">
-													<a href="#!" className="menu-title">Portfolio Details</a>
-													<ul>
-														<li><a href="portfolio-details-1.html">Portfolio Details 1</a></li>
-														<li><a href="portfolio-details-2.html">Portfolio Details 2</a></li>
-														<li><a href="portfolio-details-3.html">Portfolio Details 3</a></li>
-														<li><a href="portfolio-details-4.html">Portfolio Details 4</a></li>
-														<li><a href="portfolio-details-5.html">Portfolio Details 5</a></li>
+														{subjects?.map((subject,index)=>{
+															return(
+																<li key={index}>
+																	<a href={`/${local}/blogs?subject=${subject?.id}`}>
+																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
+																		<span>{subject?.["title_"+local]}</span>
+																	</a>
+																</li>
+															);
+														})}
 													</ul>
 												</li>
 											</ul>
 										</div>
 									</li>
-									<li className="has-mega-menu sub-menu-down wide-width">
-										<a href="#!"><span>Pages</span><i className="fas fa-chevron-down tabIndex"></i></a>
+									{/* <li className="has-mega-menu sub-menu-down auto-width">
+										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
 										<div className="mega-menu">
 											<ul>
-												<li>
-													<a href="#!" className="menu-title">Pages</a>
-													<ul>
-														<li><a href="about-us.html">About Us</a></li>
-														<li><a href="about-me.html">About Me</a></li>
-														<li><a href="pricing-table.html">Pricing Table</a></li>
-														<li><a href="our-gift-vouchers.html">Our Gift Vouchers</a></li>
-														<li><a href="what-we-do.html">What We Do</a></li>
-														<li><a href="faqs-1.html">Faqs 1</a></li>
-														<li><a href="faqs-2.html">Faqs 2</a></li>
-														<li><a href="our-team.html">Our Team</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Contact Us</a>
-													<ul>
-														<li><a href="contact-us-1.html">Contact Us 1</a></li>
-														<li><a href="contact-us-2.html">Contact Us 2</a></li>
-														<li><a href="contact-us-3.html">Contact Us 3</a></li>
-													</ul>
-													<a href="#!" className="menu-title">Web Pages</a>
-													<ul>
-														<li><a href="error-1.html">Error 404 1</a></li>
-														<li><a href="error-2.html">Error 404 2</a></li>
-														<li><a href="coming-soon.html">Coming Soon</a></li>
-														<li><a href="under-construction.html">Under Construction</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Banner Style</a>
-													<ul>						
-														<li><a href="banner-with-bg-color.html">Banner with BG Color</a></li>
-														<li><a href="banner-with-image.html">Banner with Image</a></li>
-														<li><a href="banner-with-video.html">Banner with Video</a></li>
-														<li><a href="banner-with-kanbern.html">Banner with Kanbern</a></li>
-														<li><a href="banner-small.html">Banner Small</a></li>
-														<li><a href="banner-medium.html">Banner Medium</a></li>
-														<li><a href="banner-large.html">Banner Large</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Header Style</a>
-													<ul>
-														<li><a href="header-style-1.html">Header Style 1</a></li>
-														<li><a href="header-style-2.html">Header Style 2</a></li>
-														<li><a href="header-style-3.html">Header Style 3</a></li>
-														<li><a href="header-style-4.html">Header Style 4</a></li>
-														<li><a href="header-style-5.html">Header Style 5</a></li>
-														<li><a href="header-style-6.html">Header Style 6</a></li>
-														<li><a href="header-style-7.html">Header Style 7</a></li>
-														<li className="w3menulink"><a href="w3menu.html">Menu Styles</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Footer Style</a>
-													<ul>
-														<li><a href="footer-style-1.html">Footer Style 1</a></li>
-														<li><a href="footer-style-2.html">Footer Style 2</a></li>
-														<li><a href="footer-style-3.html">Footer Style 3</a></li>
-														<li><a href="footer-style-4.html">Footer Style 4</a></li>
-														<li><a href="footer-style-5.html">Footer Style 5</a></li>
-														<li><a href="footer-style-6.html">Footer Style 6</a></li>
-														<li><a href="footer-style-7.html">Footer Style 7</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="#!" className="menu-title">Dashboard</a>
-													<ul>
-														<li><a href="account-dashboard.html">Dashboard</a></li>
-														<li><a href="account-orders.html">Orders</a></li>
-														<li><a href="account-order-details.html">Orders Details</a></li>
-														<li><a href="account-order-confirmation.html">Orders Confirmation</a></li>
-														<li><a href="account-downloads.html">Downloads</a></li>
-														<li><a href="account-return-request.html">Return Request</a></li>
-														<li><a href="account-return-request-detail.html">Return Request Detail</a></li>
-														<li><a href="account-refund-requests-confirmed.html">Return Request Confirmed</a></li>
-													</ul>
-												</li>
+												{subjects?.map((subject,index)=>{
+													return(
+														<li key={index}>
+															<a href="#!" className="menu-title">Blog Dark Style</a>
+															<ul>
+																<li><a href="blog-dark-2-column.html">{subject?.["title_"+local]}</a></li>
+															</ul>
+														</li>
+													);
+												})}
 											</ul>
 										</div>
-									</li>
-									<li className="sub-menu-down">
-										<a href="#!"><span>My Account</span> <div className="badge badge-sm rounded badge-animated">New</div><i className="fas fa-chevron-down tabIndex"></i></a>
-										<ul className="sub-menu">						
-											<li><a href="account-dashboard.html">Dashboard</a></li>
-											<li><a href="account-orders.html">Orders</a></li>
-											<li><a href="account-order-details.html">Orders Details</a></li>
-											<li><a href="account-order-confirmation.html">Orders Confirmation</a></li>
-											<li><a href="account-downloads.html">Downloads</a></li>
-											<li><a href="account-return-request.html">Return Request</a></li>
-											<li><a href="account-return-request-detail.html">Return Request Detail</a></li>
-											<li><a href="account-refund-requests-confirmed.html">Return Request Confirmed</a></li>
-											<li><a href="account-profile.html">Profile</a></li>
-											<li><a href="account-address.html">Address</a></li>
-											<li><a href="account-shipping-methods.html">Shipping methods</a></li>
-											<li><a href="account-payment-methods.html">Payment Methods</a></li>
-											<li><a href="account-review.html">Review</a></li>
-											<li><a href="account-billing-address.html">Billing address</a></li>
-											<li><a href="account-shipping-address.html">Shipping address</a></li>
-											<li><a href="account-cancellation-requests.html">Cancellation Requests</a></li>
-										</ul>
+									</li> */}
+									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
+										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+									</li> */}
+									<li className="has-mega-menu sub-menu-down auto-width menu-left">
+										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>
 								</ul>
-								<div className="dz-social-icon">
+								{/* <div className="dz-social-icon">
 									<ul>
 										<li><a className="fab fa-facebook-f" target="_blank" href="../../https@www.facebook.com/dexignzone"></a></li>
 										<li><a className="fab fa-twitter" target="_blank" href="../../https@twitter.com/dexignzones"></a></li>
 										<li><a className="fab fa-linkedin-in" target="_blank" href="../../https@www.linkedin.com/showcase/3686700/admin/default.htm"></a></li>
 										<li><a className="fab fa-instagram" target="_blank" href="../../https@www.instagram.com/dexignzone/default.htm"></a></li>
 									</ul>
-								</div>
+								</div> */}
 							</div>
-						
-							<div className="extra-nav">
+							{/* <div className="extra-nav">
 								<div className="extra-cell">						
 									<ul className="header-right">
-										<li className="nav-item login-link">
-											<a className="nav-link" href="login.html">
-												Login / Register
-											</a>
-										</li>
 										<li className="nav-item search-link">
 											<a className="nav-link" href="#!" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
 												<i className="iconly-Light-Search"></i>
 											</a>
 										</li>
-										<li className="nav-item wishlist-link">
-											<a className="nav-link" href="#!" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-												<i className="iconly-Light-Heart2"></i>
-											</a>
-										</li>
-										<li className="nav-item cart-link">
-											<a href="#!" className="nav-link cart-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-												<i className="iconly-Broken-Buy"></i>
-												<span className="badge badge-circle">5</span>
-											</a>
-										</li>
-										<li className="nav-item filte-link">
-											<a href="#!" className="nav-link filte-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
-												<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 13" fill="none">
-													<rect y="11" width="30" height="2" fill="black"/>
-													<rect width="30" height="2" fill="black"/>
-												</svg>
-											</a>
-										</li>
 									</ul>
 								</div>
-							</div>
-							
+							</div> */}
 						</div>
 					</div>
 				</div>
-				
 				<div className="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabIndex="-1" id="offcanvasTop">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -624,7 +276,6 @@ export const Header = ({ params }) => {
 						</div>
 					</div>
 				</div>
-				
 				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasRight">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -792,7 +443,6 @@ export const Header = ({ params }) => {
 						</div>
 					</div>
 				</div>
-
 				<div className="offcanvas dz-offcanvas offcanvas offcanvas-end " tabIndex="-1" id="offcanvasLeft">
 					<button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
 						&times;
@@ -932,7 +582,6 @@ export const Header = ({ params }) => {
 						</div>
 					</div>
 				</div>
-				
 			</header>
 		</>
 	);

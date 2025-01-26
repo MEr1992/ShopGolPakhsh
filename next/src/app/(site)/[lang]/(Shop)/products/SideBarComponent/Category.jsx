@@ -1,20 +1,37 @@
 "use client"
-export const Category = ({ items,assetsPath,mediaPath,local,Lang }) => {
+
+import React, { useContext } from 'react';
+import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
+
+export const Category = ({ local, Lang }) => {
 	const counter = [26,36,43,27,40,40,40,43,36];
-    return(
+	const { state,dispatch } = useContext(ProductContext);
+	const handleFilterLine = (lineId) => {
+		dispatch('SET_LINE', { filter: lineId });
+    };
+	const handleFilterCategory = (categoryId) => {
+		dispatch('SET_CATEGORY', { filter: categoryId });
+    };
+
+	return(
 		<>
 			<div className="widget widget_categories">
-				<h6 className="widget-title">Category</h6>
+				<h6 className="widget-title">{Lang("public.category")}</h6>
 				<ul>
-					{items?.map((item, index)=>{
+					{state.categories?.map((item,index)=>{
 						return(
 							<>
-							
-								<li className={"cat-item cat-item-"+counter[index]}><a href="blog-category.html">{item?.["title_"+local]}</a> {"("+item?.count_product+")"}</li>	
-								<ul style={{marginLeft: "10px"}}>
+								<li className={"title cat-item cat-item-"+counter[index]}>
+									<a href="javascript:void(0);" onClick={()=>handleFilterLine(item?.id)}>{item?.["title_"+local]}</a>
+									{"("+item?.count_product+")"}
+								</li>		
+								<ul style={{marginLeft: "10px"}} key={index}>
 									{item?.childs?.map((child,i)=>{
 										return(
-											<li className={"cat-item cat-item-"+counter[index]}><a href="blog-category.html">{child?.["title_"+local]}</a> {"("+child?.count_product+")"}</li>
+											<li className={"cat-item cat-item-"+counter[index]} key={i}>
+												<a href="javascript:void(0);" onClick={()=>handleFilterCategory(child?.id)} >{child?.["title_"+local]}</a>
+												{"("+child?.count_product+")"}
+											</li>
 										);
 									})}
 									
@@ -22,17 +39,8 @@ export const Category = ({ items,assetsPath,mediaPath,local,Lang }) => {
 							</>
 						);
 					})}
-					{/* <li className="cat-item cat-item-26"><a href="blog-category.html">Dresses</a> (10)</li>
-					<li className="cat-item cat-item-36"><a href="blog-category.html">Top &amp; Blouses</a> (5)</li>
-					<li className="cat-item cat-item-43"><a href="blog-category.html">Boots</a> (17)</li>
-					<li className="cat-item cat-item-27"><a href="blog-category.html">Jewelry</a> (13)</li>
-					<li className="cat-item cat-item-40"><a href="blog-category.html">Makeup</a> (06)</li> 
-					<li className="cat-item cat-item-40"><a href="blog-category.html">Fragrances</a> (17)</li> 
-					<li className="cat-item cat-item-40"><a href="blog-category.html">Shaving &amp; Grooming</a> (13)</li> 
-					<li className="cat-item cat-item-43"><a href="blog-category.html">Jacket</a> (06)</li> 
-					<li className="cat-item cat-item-36"><a href="blog-category.html">Coat</a> (22)</li>  */}
 				</ul>
 			</div>
     	</>
 	);
-}
+};

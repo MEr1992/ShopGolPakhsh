@@ -35,22 +35,38 @@ Route::put("users/change-password", "Person\UserController@changePassword");
 Route::get("users/show-info/{id}", "Person\UserController@showInfo");
 Route::get("users/get-needles", "Person\UserController@getNeedles");
 Route::resource("users", "Person\UserController");
+
+Route::get("personnels/get-needles", "Person\PersonnelController@getNeedles");
 Route::resource("personnels", "Person\PersonnelController");
 
 Route::resource("roles", "Person\RoleController");
 // ================ End Routes Users =============================================
 
-// ================ Start Routes Content =========================================
-Route::resource("blogs","Content\BlogController");
-Route::resource("blog-subjects","Content\BlogSubjectController");
-// ================ End Routes Content ===========================================
+// ======================================== Start Routes Content ======================================================
+Route::get("blogs/get-needles", "Content\BlogController@getNeedles");
+Route::get("blogs/details/{id}", "Content\BlogController@details");
+Route::resource("blogs", "Content\BlogController");
+Route::post("blog-comments/send", "Content\BlogCommentController@sendComment");
+Route::put("blog-comments/delete/{id}", "Content\BlogCommentController@deleteComment");
+Route::get("blog-comments/details/{id}", "Content\BlogCommentController@details");
+Route::resource("/blog-comments", "Content\BlogCommentController");
+// ======================================== End Routes Content ======================================================
+
+Route::resource("sliders", "Content\SliderController");
 
 // ================ Start Routes Product =========================================
+Route::get("products/get-needles", "Product\ProductController@getNeedles");
 Route::resource("products","Product\ProductController");
+
+Route::get("categories/get-needles", "Product\ProductCategoryController@getNeedles");
 Route::resource("categories","Product\ProductCategoryController");
+
 Route::resource("brands","Product\ProductBrandController");
 Route::resource("lines","Product\ProductLineController");
 // ================ End Routes Product ===========================================
+
+Route::post('/breadcrumb', 'Public\Breadcrumb@getItems');
+
 
 use Faker\Generator;
 
