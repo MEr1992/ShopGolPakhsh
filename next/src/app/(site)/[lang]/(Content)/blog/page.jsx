@@ -8,6 +8,7 @@ import { useData } from "@/Theme/Midone/Utils/Data";
 import { Banner } from "@/app/(site)/[lang]/(Content)/blog/Banner";
 import { SideBar } from "@/app/(site)/[lang]/(Content)/blog/SideBar";
 import { ItemPage } from "@/app/(site)/[lang]/(Content)/blog/ItemPage";
+import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 
 export default function Page({ params }) {
     const { Lang } = useLang();
@@ -45,9 +46,7 @@ export default function Page({ params }) {
                 dispatch('STOP_LOADING');
             }
         );
-        window.history.replaceState({}, '', `?${query.toString()}`);
-        
-        dispatch('DEACTIVE_FILTER_MOBILE');
+        window.history.replaceState({}, '', `?${query.toString()}`);        
     }, [filters]);
 
     return(
@@ -61,7 +60,11 @@ export default function Page({ params }) {
                         <SideBar assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
                         <div className="col-xl-8 col-lg-8">
                             <div className="row">
-                                <ItemPage mediaPath={mediaPath} local={local} Lang={Lang} />
+                                
+                                {(loading)?
+                                    <LoadingPage />
+                                :
+                                <ItemPage mediaPath={mediaPath} local={local} Lang={Lang} />}
                             </div>
                         </div>
                     </div>

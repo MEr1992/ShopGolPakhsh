@@ -35,9 +35,9 @@ export const ItemPage = ({ mediaPath, local, Lang, page = "1" }) => {
     }, [newBlogs]);
 
     return (
-        (loading)?
-            <LoadingPage />
-        :
+        // (loading)?
+        //     <LoadingPage />
+        // :
             <>
                 {(newBlogs?.data)?.map((item,index)=>{
                     return (
@@ -56,6 +56,7 @@ export const ItemPage = ({ mediaPath, local, Lang, page = "1" }) => {
                                         <h4 className="dz-title">
                                             <Link href={`/${local}/blog/${item?.id}`}>{item?.title}</Link>
                                         </h4>
+                                        <span className="font-28">{Lang("public.subject")+" : "+item?.subject?.["title_"+local]}</span>
                                         <Link href={`/${local}/blog/${item?.id}`} className="font-14 read-btn">{Lang("public.read_more")}
                                             <i className="icon feather icon-chevron-right"></i>
                                         </Link>

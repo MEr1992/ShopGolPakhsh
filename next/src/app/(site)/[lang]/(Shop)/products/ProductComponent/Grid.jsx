@@ -12,9 +12,6 @@ export const Grid = ({ mediaPath,local,Lang,page = "1" }) => {
 	const { products, url } = state;
 	const [loadmore, setLoadmore] = useState(false);
 	const [newProducts, setNewProducts] = useState([]);
-
-	console.log("products", products);
-	
 	
 	useEffect(()=>{
 		page == 1 && setNewProducts(products);

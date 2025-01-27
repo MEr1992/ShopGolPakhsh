@@ -98,10 +98,10 @@ class ProductController extends Controller
                 $this->limit=8;
                 break;
             case "grid":
-                $this->limit=3;
+                $this->limit=9;
                 break;
             default:
-                $this->limit=3;
+                $this->limit=9;
         }
     }
     /**

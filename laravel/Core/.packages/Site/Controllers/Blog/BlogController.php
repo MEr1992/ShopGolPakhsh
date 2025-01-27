@@ -19,7 +19,7 @@ class BlogController extends Controller
     {
         $this->search = request()->search;
         $this->subject_id = request()->subject;
-        $this->limit = 2;
+        $this->limit = 6;
         $this->limit_most = 4;
         $this->page = request()->page;
         $items = [];

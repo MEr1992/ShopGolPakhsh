@@ -29,11 +29,11 @@ export const reducer = (state, action) => {
         // case 'Remove_FILTER':
         //     return { ...state, filters: action.data, status: "Remove" };
         case 'SET_FILTER':
-            return { ...state, filters: {...state.filters, ...action.data}, status: "FIRST", page: 1 };
+            return { ...state, filters: {...state.filters, ...action.data}, status: "FIRST" };
         case 'SET_SEARCH':
-            return { ...state, filters: {...state.filters, search: action.filter}, status: "NEXT", page: 1 };
+            return { ...state, filters: {...state.filters, search: action.filter}, status: "NEXT" };
         case 'SET_SUBJECT':
-            return { ...state, filters: {...state.filters, subject: action.filter}, status: "NEXT", page: 1 };
+            return { ...state, filters: {...state.filters, subject: action.filter}, status: "NEXT" };
             
         case 'RESET':
             return initialState;

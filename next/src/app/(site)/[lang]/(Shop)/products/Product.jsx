@@ -11,9 +11,7 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	const { state, dispatch } = useContext(ProductContext);
 	const { status, filters, laralelUrl, loading, page } = state;
 
-	useEffect(() => {
-		console.log("status is: ", status, "filters is: ", filters.display);
-		
+	useEffect(() => {		
 		if(status == "FIRST") 
 			return;
         
@@ -28,11 +26,11 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 		const url = `${local}${laralelUrl}?${query.toString()}`;
         getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
             {
-                if(status == ""){
-                    dispatch('SET_INFO', { blogs: items.blogs, mostVisitedBlogs: items.mostVisitedBlogs, subjects: items.subjects, url: url });
-                }else{
-                    dispatch('SET_BLOGS', { blogs: items.blogs, url: url });
-                }
+				if(state.status == ""){
+					dispatch('SET_INFO', { products: items.products, categories: items.categories, url: url });
+				}else{
+					dispatch('SET_PRODUCTS', { products: items.products, url: url });
+				}
                 dispatch('STOP_LOADING');
             }
         );
