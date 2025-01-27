@@ -4,9 +4,9 @@ import { useEffect,useState } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
-import { Banner } from "@/app/(site)/[lang]/(Shop)/blog/Banner";
-import { SideBar } from "@/app/(site)/[lang]/(Shop)/blog/SideBar";
-import { ItemPage } from "./ItemPage";
+import { Banner } from "@/app/(site)/[lang]/(Shop)/blogZR/Banner";
+import { SideBar } from "@/app/(site)/[lang]/(Shop)/blogZR/SideBar";
+import { Index } from "./Index";
 
 export default function Page({ params }) {
     const { Lang } = useLang();
@@ -14,7 +14,7 @@ export default function Page({ params }) {
     let {getNeedles} = useData();
     let [items, setItems] = useState();
     const local = params?.lang ? params?.lang : 'en';
-    let laralelUrl = "/blog";
+    let laralelUrl = "/blog/"+params?.id;
 
     useEffect(() => {
         getNeedles(local+laralelUrl, setItems);
@@ -28,7 +28,7 @@ export default function Page({ params }) {
 				<div className="container">
 					<div className="row">
                         <SideBar categories={items?.topics} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
-                        <ItemPage items={items?.collection} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+                        <Index items={items?.blog} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
                     </div>
 				</div>
 			</section>

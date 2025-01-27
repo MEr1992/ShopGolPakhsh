@@ -13,7 +13,6 @@ Route::middleware(['auth:web'])->get('/user', function () {
 });
 
 Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($lang) {
-    // dd($lang);
     // Authentication routes...
     Route::get('/login/google', 'Auth\GoogleController@redirectToGoogle')->name('auth.google');
 
@@ -28,17 +27,13 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
     // Route::get('/about', 'Home\HomeController@about');
     // Route::get('/contact', 'Home\HomeController@contact');
 
+    Route::get('/products/add-to-cart/{id}', 'Product\ProductController@addToCart');
+    Route::get('/products/add-to-favorites/{id}', 'Product\ProductController@addToFavorites');
     Route::get('/products/{id}', 'Product\ProductController@show');
     Route::get('/products', 'Product\ProductController@index');
 
     Route::get('/blog/{id}', 'Blog\BlogController@show');
     Route::get('/blog', 'Blog\BlogController@index');
-    // Route::resource('contact-us', 'ContactController');
-    // Route::resource('about-us', 'AboutController');
-    // Route::post('send-message', 'ContactController@comment');
-
-    //footer
-    Route::get('/footer', 'PublicController@footer');
 });
 
 require __DIR__ . '/auth.php';

@@ -1,4 +1,7 @@
 export const initialState = {
+    laralelUrl: "/products",
+    url: "",
+    page: 1,
     loading: false,
     status: "",
     products: [],
@@ -12,6 +15,7 @@ export const initialState = {
         sort: "",
         display: "",
     },
+    filterMobile: "",
 };
 
 export const reducer = (state, action) => {
@@ -22,11 +26,9 @@ export const reducer = (state, action) => {
             return { ...state, loading: false };
     
         case 'SET_INFO':
-            return { ...state, products: action.products, categories: action.categories };
+            return { ...state, products: action.products, categories: action.categories, url: action.url };
         case 'SET_PRODUCTS':
-            return { ...state, products: action.products };
-        case 'LOAD_MORE_PRODUCTS':
-            return { ...state, products: [...state.products, ...action.products], offset: state.offset + action.limit };
+            return { ...state, products: action.products, url: action.url };
 
         case 'Remove_FILTER':
             return { ...state, filters: action.data, status: "Remove" };
@@ -46,6 +48,11 @@ export const reducer = (state, action) => {
             return { ...state, filters: {...state.filters, sort: action.filter}, status: "NEXT" };
         case 'SET_DISPLAY':
             return { ...state, filters: {...state.filters, display: action.filter}, status: "NEXT" };
+
+        case 'ACTIVE_FILTER_MOBILE':
+            return { ...state, filterMobile: " active" };
+        case 'DEACTIVE_FILTER_MOBILE':
+            return { ...state, filterMobile: "" };
             
         case 'RESET':
             return initialState;

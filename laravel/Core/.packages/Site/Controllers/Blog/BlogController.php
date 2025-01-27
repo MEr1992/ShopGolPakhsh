@@ -5,73 +5,98 @@ namespace Site\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use \Models\Content\Blog;
 use \Models\Content\BlogSubject;
-use \Models\Base\Keyword;
-use \Models\Base\Country;
 
 class BlogController extends Controller
 {
+    public $list_blogs;
+    public $search;
+    public $subject_id;
+    public $limit;
+    public $limit_most;
+    public $page;
 
     public function index()
-    {   
-       
-        $collection = Blog::active()->with('subject')->orderBy('id','desc');
+    {
+        $this->search = request()->search;
+        $this->subject_id = request()->subject;
+        $this->limit = 6;
+        $this->limit_most = 4;
+        $this->page = request()->page;
+        $items = [];
 
-        $collection = $this->filter($collection);
+        $this->list_blogs = Blog::with("subject")->active();
         
-        $collection = $collection->paginate(6);
-        
-        $subjects = \Models\Content\BlogSubject::active()->get();
+        if(request()->type == "first")
+        {
+            $items['mostVisitedBlogs'] = $this->mostVisitedBlogs();
+            $items['subjects'] = $this->subject();
+        }
 
-        $result = ['collection' => $collection, 'topics' => $subjects        ];
+        if(request()->filled('search') || request()->filled('subject'))
+            $items ['blogs'] = $this->filterBlogs();
+        else $items ['blogs'] = $this->blogs();
 
-        return response()->json($result);
-
+        return response()->json($items);
     }
-
+    /**
+     * get All Blogs
+     */
+    public function blogs()
+    {
+        return $this->list_blogs->orderByDesc("id")->paginate($this->limit);
+    }
+    /**
+     * get All Blogs
+     */
+    public function mostVisitedBlogs()
+    {
+        return $this->list_blogs->orderByDesc("count_view")->latest()->limit($this->limit_most)->get();
+    }
+    /**
+     * get All Subjects
+     */
+    public function subject()
+    {
+        return BlogSubject::active()->get();
+    }
+    /**
+     * get filter In Blogs By $search || $subject_id
+     */
+    public function filterBlogs()
+    {
+        $blogs = $this->list_blogs;
+        if($this->search)
+        {
+            $search_like = $this->search;
+            $blogs = $blogs->where(function ($q) use($search_like) { $q->where("title", "LIKE", "%".$search_like."%")->orWhere("summary", "LIKE", "%".$search_like."%"); });
+        }
+        if($this->subject_id)
+        {
+            $filter_blogs = $blogs->where("subject_id", $this->subject_id);
+        }
+        $filter_blogs = $blogs->orderByDesc("id")->paginate($this->limit);
+        return $filter_blogs;
+    }
+    /**
+     * get Info a Blog By $id
+     */
     public function show($id)
     {
-        $blog = Blog::with('subject')->find($id);
-        $subjects = \Models\Content\BlogSubject::active()->get();
+        $blog = Blog::with("subject")->active()->find($id);
+        
+        $this->incrementCount(["blog"=>$blog,"field"=>"count_view"]);
 
-        $result = ['blog' => $blog , 'topics' => $subjects];
-
-        return response()->json($result);
-
+        $data = [
+            'blog'=>$blog,
+        ];
+        return $data;
     }
-   
-    public function filter($items)
+    /**
+     * Plus Count For Field (view,like,sell,...)
+     */
+    public function incrementCount($info)
     {
-        $items = $items->orderBy('id', 'DESC');
-
-        if (request()->has('sort')) {
-            $items = $items->orderBy('id', request()->sort);
-        }
-
-        if (request()->has('search')) {
-            $items = $items->where('title', 'like', "%" . request()->search . "%");
-        }
-
-        if (request()->has('topics')) {
-            $items = $items->where('subject_id', request()->topics);
-        }
-
-        if (request()->has('lang')) {
-            $items = $items->where('lang', request()->lang);
-        }
-
-        return $items;
+        if(isset($info["id"]) && $info["id"] > 0) $info["blog"] = Blog::find($info["id"]);
+        $info["blog"]->increment($info["field"]);
     }
-    public function saveComment(Request $request)
-    {
-        $this->validate($request, [
-            'sender_name' => 'required|string',
-            'comment' => 'required',
-        ]);
-        $comment = BlogComment::create($request->all());
-        // $message = 'نظر شما با موفقیت ثبت شد!';
-        $message = trans('Lang::messages.comment_success');
-        if ($comment) {
-            return response()->json(['message' => $message, 'status' => 200]);
-        }
-    }   
 }

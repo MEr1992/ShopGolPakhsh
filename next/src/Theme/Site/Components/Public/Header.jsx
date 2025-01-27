@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect,useState } from "react";
 import Link from "next/link";
 // import { useAuth } from "../Auth/auth";
 import Img from "@/Theme/Site/Utils";
@@ -20,6 +21,29 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 		listMenus = ['Home','Shop','Blog','About us','Contact us']
 	:
 		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
+		
+	const [isOpen, setIsOpen] = useState(false);
+	useEffect(() => {
+		handleMenu()
+	}, [isOpen]);
+	const toggleMenu = ()=>{
+		setIsOpen(!isOpen); // تغییر وضعیت منو
+	}
+	const handleMenu = ()=>{
+		if(isOpen)
+		{
+			// jQuery('.navicon').toggleClass('open');
+			// jQuery('#navbarNavDropdown').toggleClass('show');
+			typeof window != "undefined" && window?.$('.navicon').addClass('open');
+			typeof window != "undefined" && window?.$('#navbarNavDropdown').addClass('show');
+		}
+		else if(!isOpen && $('#navbarNavDropdown').hasClass('show'))
+		{
+        	typeof window != "undefined" && window?.$('.navicon').removeClass('open');
+        	typeof window != "undefined" && window?.$('#navbarNavDropdown').removeClass('show');
+		}
+	}
+	
 
 	return(
 		<>
@@ -30,11 +54,17 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 							<div className="logo-header logo-dark me-md-5">
 								<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
 							</div>
-							<button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							{/* <!-- Nav Toggle Button --> */}
+							{/* <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> */}
+							<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+							 onClick={toggleMenu}
+							>
 								<span></span>
 								<span></span>
 								<span></span>
 							</button>
+							{/* <!-- Main Nav --> */}
+							{/* <div className="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown"> */}
 							<div className="header-nav w3menu navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
 								<div className="logo-header logo-dark">
 									<a href={hrefMenus[0]}><img src={`${assetsPath}/pixio/images/logo.svg`} alt=""/></a>
@@ -83,7 +113,7 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 														{subjects?.map((subject,index)=>{
 															return(
 																<li key={index}>
-																	<a href={`/${local}/blogs?subject=${subject?.id}`}>
+																	<a href={`/${local}/blog?subject=${subject?.id}`}>
 																		<img src={mediaPath+"/subject/"+subject?.image} alt=""/>
 																		<span>{subject?.["title_"+local]}</span>
 																	</a>

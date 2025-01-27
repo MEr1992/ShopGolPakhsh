@@ -21,7 +21,7 @@ export default function Page({ params }) {
 
     return(
         <>
-            <Banner assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+            <Banner assetsPath={assetsPath} local={local} Lang={Lang} />
             <section className="content-inner-3 pt-3 z-index-unset">
                 <div className="container">
                     <div className="row">

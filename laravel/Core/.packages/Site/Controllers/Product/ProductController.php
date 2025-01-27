@@ -11,6 +11,7 @@ use \Models\Product\Product;
 
 class ProductController extends Controller
 {
+    public $list_products;
     public $search;
     public $line_id;
     public $cat_id;
@@ -19,6 +20,7 @@ class ProductController extends Controller
     public $sort;
     public $display;
     public $limit;
+    public $page;
 
     public function index()
     {
@@ -30,20 +32,18 @@ class ProductController extends Controller
         $this->sort = request()->sort;
         $this->display = request()->display;
         $this->limit = 9;
-        if(request()->type == "first")
-        {
-            $items = [
-                'products' => $this->products(),
-                'categories' => $this->category(),
-            ];
-        }
-        else
-        {
-            $items = [
-                'products' => $this->filterProducts(),
-                // 'categories' => $this->category(),
-            ];
-        }
+        $this->page = request()->page;
+        $items = [];
+        
+        $this->setLimit();
+        $this->list_products = Product::with("category","categoryParent")->active();
+        
+        if(request()->type == "first") $items['categories']=$this->category();
+
+        if(request()->filled('search') || request()->filled('line') || request()->filled('category') || request()->filled('sort') || request()->filled('display'))
+            $items ['products'] = $this->filterProducts();
+        else $items ['products'] = $this->products();
+
         return response()->json($items);
     }
     /**
@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function products()
     {
-        return Product::with("category")->active()->orderByDesc("id")->paginate($this->limit);
+        return $this->list_products->orderByDesc("id")->paginate($this->limit);
     }
     /**
      * get All Categories
@@ -65,9 +65,9 @@ class ProductController extends Controller
      */
     public function filterProducts()
     {
-        $this->setLimit();
-        $products = Product::with("category")->active();
-        $this->setLimit($products);
+        $products = $this->list_products;
+        // $this->setLimit($products);
+        $this->setSort($products);
         if($this->search)
         {
             $search_like = $this->search;
@@ -130,7 +130,6 @@ class ProductController extends Controller
                 $products;
         }
         return $products;
-        // discount  discount_price  price
     }
     /**
      * get Info a Product By $id
@@ -139,10 +138,35 @@ class ProductController extends Controller
     {
         $product = Product::with("category","categoryParent","keywords")->active()->find($id);
         $products = Product::where("id", "!=", $id)->where("category_id", $product->category_id)->active()->get();
+        
+        $this->incrementCount(["product"=>$product,"field"=>"count_view"]);
+
         $data = [
             'product'=>$product,
             'products'=>$products,
         ];
         return $data;
+    }
+    /**
+     * Plus Count For Field (view,like,sell,...)
+     */
+    public function incrementCount($info)
+    {
+        if(isset($info["id"]) && $info["id"] > 0) $info["product"] = Product::find($info["id"]);
+        $info["product"]->increment($info["field"]);
+    }
+    /**
+     * post Info For Like a Product $id
+     */
+    public function addToFavorites($id)
+    {
+        $this->incrementCount(["id"=>$id,"field"=>"count_like"]);
+    }
+    /**
+     * post Info For Cart a Product $id
+     */
+    public function addToCart($id)
+    {
+        $this->incrementCount(["id"=>$id,"field"=>"count_sell"]);
     }
 }
