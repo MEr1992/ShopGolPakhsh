@@ -254,7 +254,19 @@ input,.widget_categories.style-1 .cat-item {
 	margin-right: auto;
 	margin-left: 40px;
 }
-
+/* Style For Section Contact Us */
+.text-start {
+	/* text-align: left !important; */
+	text-align: right !important;
+}
+.contact-info.style-1 .contact-bottom .contact-left {
+	/* margin-right: auto; */
+	margin-left: 190px;
+}
+.contact-area1.style-1 {
+	/* margin: 0 0 -215px auto; */
+	margin: 0 auto -215px 0;
+}
 /* screen Responsive OF Slider */
 @media only screen and (max-width: 1680px) {
 	.main-slider.style-1 .banner-media::after {

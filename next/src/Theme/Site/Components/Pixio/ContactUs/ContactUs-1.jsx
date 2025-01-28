@@ -1,23 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useLang } from "@/lib/lang";
-import { useConfig } from "@/lib/config";
-import { useData } from "@/Theme/Midone/Utils/Data";
-
-export default function Page({ params }) {
-    const { Lang } = useLang();
-    const { mediaPath, assetsPath } = useConfig();
-    let { getNeedles } = useData();
-    let [items, setItems] = useState();
-    const local = params?.lang ? params?.lang : "en";
-    let laralelUrl = "/products";
-
-    useEffect(() => {
-        getNeedles(local + laralelUrl, setItems);
-    }, [local, laralelUrl]);
-
-    return (
+export const ContactUs1 = () => {
+    return(
         <>
             <div className="page-content bg-light">   
                 {/* banner */}
@@ -26,14 +8,11 @@ export default function Page({ params }) {
                         <div className="row">
                             <div className="col-lg-6">
                                 <div className="contact-info style-1 text-start text-white">
-                                    <h2 className="title wow fadeInUp" data-wow-delay="0.1s">{Lang("public.title_contact_1")}</h2>
-                                    <p className="text wow fadeInUp" data-wow-delay="0.2s">
-                                        <span className="text-decoration-underline"><a  href="our-team.html">{Lang("public.text_contact_1")}</a></span>
-                                        <br/>{Lang("public.text_contact_2")}
-                                    </p>
+                                    <h2 className="title wow fadeInUp" data-wow-delay="0.1s">DISCOVER US</h2>
+                                    <p className="text wow fadeInUp" data-wow-delay="0.2s"><span className="text-decoration-underline"><a  href="our-team.html">Pixio is here to help you;</a></span> <br> Our experts are available to answer any questions you might have. We’ve got the answers.</p>
                                     <div className="contact-bottom wow fadeInUp" data-wow-delay="0.3s">
                                         <div className="contact-left">
-                                            <h3>{Lang("public.title_contact_2")}</h3>
+                                            <h3>Call Us</h3>
                                             <ul>
                                                 <li>+01-123-456-7890</li>
                                                 <li>+01-123-456-7890</li>
@@ -66,7 +45,7 @@ export default function Page({ params }) {
                                         </div>
                                         <div className="input-recaptcha m-b30">
                                             <div className="g-recaptcha" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                                            <input className="form-control d-none" style={{display:"none"}} data-recaptcha="true" required data-error="Please complete the Captcha"/>
+                                            <input className="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha"/>
                                         </div>
                                         <div>
                                             <button name="submit" type="submit" value="submit" className="btn w-100 btn-white btnhover">SUBMIT</button>
@@ -79,7 +58,7 @@ export default function Page({ params }) {
                 </div>
                 <div className="content-inner-2 pt-0">
                     <div className="map-iframe map">
-                        <iframe src="../../https@www.google.com/maps/embed@pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!004187594F" style={{border:"0", width:"100%", minHeight:"100%", marginBottom: "-8px"}} allowfullscreen></iframe>
+                        <iframe src="../../https@www.google.com/maps/embed@pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!004187594F" style="border:0; width:100%; min-height:100%; margin-bottom: -8px;" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

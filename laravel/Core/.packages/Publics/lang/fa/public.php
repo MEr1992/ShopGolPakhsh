@@ -117,6 +117,10 @@ $lang = [
     'most_expensive'=>'گران ترین',
     'search_title'=>'جستجو',
     'search_blog'=>'جستجو بلاگ',
+    'title_contact_1'=>'ما را کشف کنید',
+    'text_contact_1'=>'Pixio اینجاست تا به شما کمک کند.',
+    'text_contact_2'=>'کارشناسان ما آماده پاسخگویی به سوالات شما هستند. ما جواب ها را داریم',
+    'title_contact_2'=>'با ما تماس بگیرید',
     
     
     // admin
