@@ -60,11 +60,7 @@ export default function Page({ params }) {
                         <SideBar assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
                         <div className="col-xl-8 col-lg-8">
                             <div className="row">
-                                
-                                {(loading)?
-                                    <LoadingPage />
-                                :
-                                <ItemPage mediaPath={mediaPath} local={local} Lang={Lang} />}
+                                {(loading)? <LoadingPage /> : <ItemPage mediaPath={mediaPath} local={local} Lang={Lang} />}
                             </div>
                         </div>
                     </div>

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
     Route::get('/get-data-public', 'Home\HomeController@getDataPublic');
     // Route::get('/about', 'Home\HomeController@about');
     // Route::get('/contact', 'Home\HomeController@contact');
+    Route::post('/contact/save', 'Home\HomeController@contactSave');
 
     Route::get('/products/add-to-cart/{id}', 'Product\ProductController@addToCart');
     Route::get('/products/add-to-favorites/{id}', 'Product\ProductController@addToFavorites');

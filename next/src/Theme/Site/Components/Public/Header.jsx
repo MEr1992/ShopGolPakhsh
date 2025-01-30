@@ -142,9 +142,9 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 											</ul>
 										</div>
 									</li> */}
-									{/* <li className="has-mega-menu sub-menu-down auto-width menu-left">
+									<li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
-									</li> */}
+									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<a href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></a>
 									</li>

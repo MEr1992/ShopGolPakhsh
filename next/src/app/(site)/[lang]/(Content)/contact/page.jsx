@@ -1,21 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useLang } from "@/lib/lang";
-import { useConfig } from "@/lib/config";
-import { useData } from "@/Theme/Midone/Utils/Data";
+import { useData,useFormRefs } from "@/Theme/Midone/Utils";
 
 export default function Page({ params }) {
     const { Lang } = useLang();
-    const { mediaPath, assetsPath } = useConfig();
-    let { getNeedles } = useData();
-    let [items, setItems] = useState();
-    const local = params?.lang ? params?.lang : "en";
-    let laralelUrl = "/products";
+    let { save } = useData();
+    const local = params?.lang ? params?.lang : "en"; 
+    let component = useFormRefs();
+    let url = "/contact/save", method = "new";
 
-    useEffect(() => {
-        getNeedles(local + laralelUrl, setItems);
-    }, [local, laralelUrl]);
+    const saveItem = ()=>save(`${local}${url}`, component, method, "");
 
     return (
         <>
@@ -48,19 +43,19 @@ export default function Page({ params }) {
                                         <input type="hidden" className="form-control" name="dzToDo" value="Contact"/>
                                         <input type="hidden" className="form-control" name="reCaptchaEnable" value="0"/>
                                         <div className="dzFormMsg"></div>
-                                        <label className="form-label">Your Name</label>
+                                        <label className="form-label">{Lang("public.your_name")}</label>
                                         <div className="input-group">
                                             <input required type="text" className="form-control" name="dzName"/>
                                         </div>
-                                        <label className="form-label">Email Address</label>
+                                        <label className="form-label">{Lang("public.email_address")}</label>
                                         <div className="input-group">
                                             <input required type="text" className="form-control" name="dzEmail"/>
                                         </div>
-                                        <label className="form-label">Phone Number</label>
+                                        <label className="form-label">{Lang("public.phone_number")}</label>
                                         <div className="input-group">
                                             <input required type="text" className="form-control" name="dzPhoneNumber"/>
                                         </div>
-                                        <label className="form-label">Massage</label>
+                                        <label className="form-label">{Lang("public.massage")}</label>
                                         <div className="input-group m-b30">
                                             <textarea name="dzMessage" rows="4" required className="form-control m-b10"></textarea>
                                         </div>
@@ -69,7 +64,9 @@ export default function Page({ params }) {
                                             <input className="form-control d-none" style={{display:"none"}} data-recaptcha="true" required data-error="Please complete the Captcha"/>
                                         </div>
                                         <div>
-                                            <button name="submit" type="submit" value="submit" className="btn w-100 btn-white btnhover">SUBMIT</button>
+                                            <button name="submit" type="submit" value="submit" className="btn w-100 btn-white btnhover" onClick={saveItem} >
+                                                {Lang("public.submit")}
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -83,7 +80,6 @@ export default function Page({ params }) {
                     </div>
                 </div>
             </div>
-            <button className="scroltop" type="button"><i className="fas fa-arrow-up"></i></button>	
         </>
     );
 }

@@ -3,6 +3,7 @@ const getBrItems = (local) => {
         'fa': [ `/${local}`, 'home' ],
         'products': [ `/${local}/products`, 'products' ],
         'blog': [ `/${local}/blog`, 'blogs' ],
+        'about': [ `/${local}/about`, 'about_us' ],
     }
     return items;
 }

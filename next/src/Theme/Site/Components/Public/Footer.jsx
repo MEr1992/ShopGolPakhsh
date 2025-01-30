@@ -11,6 +11,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 
 	return(
 		<>
+		    <button className="scroltop" type="button"><i className="fas fa-arrow-up"></i></button>	
 			{/* Footer */}
 			<footer className="site-footer style-1">
 				{/* Footer Top */}

@@ -1,6 +1,7 @@
 <?php
 
 $lang = [
+    'name_website' => 'گل پخش',
     // ******************* Products *************************
     'count_product' => 'تعداد محصول',
     'thumbnail' => 'تصویر بندانگشتی',
@@ -117,11 +118,16 @@ $lang = [
     'most_expensive'=>'گران ترین',
     'search_title'=>'جستجو',
     'search_blog'=>'جستجو بلاگ',
+    'related_blogs'=>'بلاگ مرتبط',
     'title_contact_1'=>'ما را کشف کنید',
     'text_contact_1'=>'Pixio اینجاست تا به شما کمک کند.',
     'text_contact_2'=>'کارشناسان ما آماده پاسخگویی به سوالات شما هستند. ما جواب ها را داریم',
     'title_contact_2'=>'با ما تماس بگیرید',
-    
+    'your_name'=>'نام شما',
+    'email_address'=>'آدرس ایمیل',
+    'phone_number'=>'شماره تماس',
+    'massage'=>'پیام',
+    'submit'=>'ارسال',
     
     // admin
     'line'=>'لاین',

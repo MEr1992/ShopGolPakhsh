@@ -82,12 +82,15 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $blog = Blog::with("subject")->active()->find($id);
+
+        $blog = Blog::with("subject","keywords")->active()->find($id);
+        $blogs = Blog::where("id", "!=", $id)->where("subject_id", $blog->subject_id)->active()->get();
         
         $this->incrementCount(["blog"=>$blog,"field"=>"count_view"]);
 
         $data = [
             'blog'=>$blog,
+            'blogs'=>$blogs,
         ];
         return $data;
     }

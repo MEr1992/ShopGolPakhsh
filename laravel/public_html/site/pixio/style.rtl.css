@@ -9,9 +9,12 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .
 .shop-card .product-tag .badge, p,
 .header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title,
 .main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num,.dz-product-detail .dz-info ul li strong,.dz-tabs .nav-tabs .nav-link,
-input,.widget_categories.style-1 .cat-item {
+input,.widget_categories.style-1 .cat-item, .contact-info.style-1 .text, .form-label, .dz-page-text p, .dz-blog.blog-single .dz-post-text p  {
 	font-family: "YekanBakh";
 }
+/* .contact-info.style-1 .contact-bottom ul li {
+	font-family: "YekanBakh";
+} */
 /* Style For Section Header */
 .post-menu {
     text-align: right;
@@ -250,9 +253,55 @@ input,.widget_categories.style-1 .cat-item {
     transform: rotate(180deg);
 }
 /* Style For Section Detail Of Blog */
+.blog-single.style-1 .dz-meta li {
+	margin-right: 0px;
+	margin-left: 30px;
+}
+.blog-single.style-1 .dz-meta li::after {
+	right: auto;
+	left: -17px;
+	/* transform: translate(0%, -50%); */
+}
+.wp-block-quote.is-large, .wp-block-quote.is-style-large, blockquote.wp-block-quote, blockquote.wp-block-pullquote, blockquote.wp-block-pullquote.alignright, blockquote.wp-block-pullquote.alignleft, blockquote {
+	/* padding: 1.25rem 2rem 1.25rem 1.875rem; */
+	padding: 1.25rem 1.875rem 1.25rem 2rem;
+	/* font-family: "YekanBakh"; */
+}
+.wp-block-quote.is-large cite::before, .wp-block-quote.is-style-large cite::before, blockquote.wp-block-quote cite::before, blockquote.wp-block-pullquote cite::before, blockquote.wp-block-pullquote.alignright cite::before, blockquote.wp-block-pullquote.alignleft cite::before, blockquote cite::before {
+	/* margin-right: 0.625rem; */
+	margin-left: 0.625rem;
+}
+.wp-block-quote.is-large i, .wp-block-quote.is-large svg, .wp-block-quote.is-style-large i, .wp-block-quote.is-style-large svg, blockquote.wp-block-quote i, blockquote.wp-block-quote svg, blockquote.wp-block-pullquote i, blockquote.wp-block-pullquote svg, blockquote.wp-block-pullquote.alignright i, blockquote.wp-block-pullquote.alignright svg, blockquote.wp-block-pullquote.alignleft i, blockquote.wp-block-pullquote.alignleft svg, blockquote i, blockquote svg {
+	right: auto;
+	left: 24px;
+	transform: rotate(180deg);
+}
+.wp-block-quote.is-large::after, .wp-block-quote.is-style-large::after, blockquote.wp-block-quote::after, blockquote.wp-block-pullquote::after, blockquote.wp-block-pullquote.alignright::after, blockquote.wp-block-pullquote.alignleft::after, blockquote::after {
+	/* left: 0; */
+	right: 0;
+}
+/* Style For Section About Us */
+.about-banner .about-info {
+	/* padding: 24px 33px 30px 30px; */
+	padding: 24px 30px 30px 33px;
+	right: auto;
+	left: 16%;
+}
 .about-style2 .about-thumb {
 	margin-right: auto;
 	margin-left: 40px;
+}
+.about-style2 .about-bx-detail .about-bx-pic {
+	margin-right: 0;
+	margin-left: 15px;
+}
+.get-in-touch span {
+	margin-left: 0;
+	margin-right: 18px;
+}
+.m-r100 {
+	margin-right: 0;
+	margin-left: 100px;
 }
 /* Style For Section Contact Us */
 .text-start {

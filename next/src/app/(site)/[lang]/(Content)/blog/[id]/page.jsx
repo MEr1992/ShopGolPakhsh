@@ -4,7 +4,7 @@ import { useEffect,useState } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
-import { Banner } from "@/app/(site)/[lang]/(Content)/blog/Banner";
+import { Banner,Info,RelatedBlogs } from "@/app/(site)/[lang]/(Content)/blog/[id]/DetailComponent";
 
 export default function Page({ params }) {
     const { Lang } = useLang();
@@ -20,33 +20,32 @@ export default function Page({ params }) {
         getNeedles(local+laralelUrl+"/"+id, setItems);
     }, []);
     let blog = items?.blog;
+    let blogs = items?.blogs;
 
     return(
         <>
             <div className="page-content bg-light">
-                <Banner assetsPath={assetsPath} local={local} Lang={Lang} />
-            </div>
-            <section className="content-inner">
-                <div className="container">
-                    <div className="row about-style2 align-items-center">
-                        <div className="col-lg-6 col-md-12 col-sm-12 m-b30">
-                            <div className="about-thumb">
-                                <img src={mediaPath+"/blog/"+blog?.thumb} alt="" />
-                            </div>
-                        </div>
-                        <div className="col-lg-6 col-md-12 col-sm-12">
-                            <div className="about-content">
-                                <div className="section-head style-1 d-block">
-                                    <h3 className="title">{blog?.title}</h3>
-                                    <h6 className="name">{blog?.subject?.["title_"+local]}</h6> 
-                                    <span className="position">{blog?.created_at}</span> 
-                                    <p dangerouslySetInnerHTML={{ __html: blog?.text }}></p>
+            {/* Banner Start */}
+                <Banner brName={blog?.title} assetsPath={assetsPath} local={local} Lang={Lang} />
+            {/* Banner End */}
+                <section className="content-inner-1 z-index-unset">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-12 col-xl-6 mb-xl-0 mb-4"> 
+                                <div className="corner-media">
+                                    <img src={mediaPath+"/blog/"+blog?.thumb} alt="" className="rounded"/>
                                 </div>
+                            </div>
+                            <div className="col-12 col-xl-6">
+                            {/* blog start  */}
+                                <Info blog={blog} Lang={Lang} local={local} />
+                                <RelatedBlogs blogs={blogs} mediaPath={mediaPath} Lang={Lang} local={local} />
+                            {/* blog END */}
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </>
     );
 }

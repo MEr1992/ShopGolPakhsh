@@ -9,6 +9,7 @@ use \Models\Product\Brand;
 use \Models\Product\Product;
 use \Models\Content\BlogSubject;
 use \Models\Content\Blog;
+use \Models\Content\ContactUs;
 
 class HomeController extends Controller
 {
@@ -68,5 +69,21 @@ class HomeController extends Controller
             'blogs' => $this->blog(),
         ];
         return response()->json($items);
+    }
+    /**
+     * post Message For Insert
+     */
+    public function contactSave()
+    {
+        $record = new ContactUs();
+        $record->sender_name = request()->sender_name;
+        $record->sender_email = request()->sender_email;
+        // $record->subject = request()->subject;
+        $record->comment = request()->comment;
+        $record->lang = fa;
+        $record->save();
+
+        $result = ['message' => "Your message was successful", 'status' => 'successful'];
+        return response()->json($result);
     }
 }
