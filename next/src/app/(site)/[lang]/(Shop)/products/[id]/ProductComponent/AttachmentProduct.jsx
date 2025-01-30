@@ -18,7 +18,7 @@ export const AttachmentProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                                 return(
                                                     <li key={index}>
                                                         <i className="icon feather icon-check"></i>
-                                                        <h5><a href={mediaPath+"/productGallery/"+document} target="_blank">{Lang("public.cart_detail_document")}</a></h5>
+                                                        <h5><a href={mediaPath+"/productGallery/"+document} target="_blank" rel="noopener noreferrer">{Lang("public.cart_detail_document")}</a></h5>
                                                     </li>
                                                 );
                                             })}
@@ -29,7 +29,7 @@ export const AttachmentProduct = ({ item,assetsPath,mediaPath,local,Lang }) => {
                                             return(
                                                 <div className="col-xl-4 col-md-4 col-sm-4 col-6" key={index}>
                                                     <div className="related-img dz-media">
-                                                        <a href={mediaPath+"/productGallery/"+video} target="_blank">{Lang("public.cart_detail_video")}</a>
+                                                        <a href={mediaPath+"/productGallery/"+video} target="_blank" rel="noopener noreferrer">{Lang("public.cart_detail_video")}</a>
                                                     </div>
                                                 </div>
                                             );

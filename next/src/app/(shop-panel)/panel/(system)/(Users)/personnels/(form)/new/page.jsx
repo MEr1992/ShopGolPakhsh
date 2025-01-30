@@ -1,5 +1,5 @@
 "use client";
-import Form from '@/app/(panel)/panel/(system)/(admin)/(Users)/personnels/(form)/form';
+import Form from '@/app/(shop-panel)/panel/(system)/(Users)/personnels/(form)/form';
 
 export default function New(){
     return(

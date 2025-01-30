@@ -9,7 +9,7 @@ export const ContactUs1 = () => {
                             <div className="col-lg-6">
                                 <div className="contact-info style-1 text-start text-white">
                                     <h2 className="title wow fadeInUp" data-wow-delay="0.1s">DISCOVER US</h2>
-                                    <p className="text wow fadeInUp" data-wow-delay="0.2s"><span className="text-decoration-underline"><a  href="our-team.html">Pixio is here to help you;</a></span> <br> Our experts are available to answer any questions you might have. We’ve got the answers.</p>
+                                    <p className="text wow fadeInUp" data-wow-delay="0.2s"><span className="text-decoration-underline"><a  href="our-team.html">Pixio is here to help you;</a></span> <br/> Our experts are available to answer any questions you might have. We’ve got the answers.</p>
                                     <div className="contact-bottom wow fadeInUp" data-wow-delay="0.3s">
                                         <div className="contact-left">
                                             <h3>Call Us</h3>

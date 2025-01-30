@@ -118,22 +118,22 @@ export const PostSide = () => {
                                             <p>We were making our way to the Rila Mountains, where we were visiting the Rila Monastery where we enjoyed scrambled eggs.</p>
                                             <ul class="social-icon m-b0">
                                                 <li>
-                                                    <a href="https://www.facebook.com/dexignzone" target="_blank">
+                                                    <a href="https://www.facebook.com/dexignzone" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-facebook-f"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="https://www.instagram.com/dexignzone/" target="_blank">
+                                                    <a href="https://www.instagram.com/dexignzone/" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-instagram"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="https://twitter.com/dexignzones" target="_blank">
+                                                    <a href="https://twitter.com/dexignzones" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-twitter"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="https://www.behance.net/dexignzone" target="_blank">
+                                                    <a href="https://www.behance.net/dexignzone" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-behance"></i>
                                                     </a>
                                                 </li>
