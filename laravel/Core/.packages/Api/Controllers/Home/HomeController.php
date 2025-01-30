@@ -1,15 +1,14 @@
 <?php
 
-namespace Site\Controllers\Home;
+namespace Api\Controllers\Home;
 
-use App\Http\Controllers\Controller;
+use Api\Http\Controllers\Controller;
 use \Models\Content\Slider;
 use \Models\Product\Category;
 use \Models\Product\Brand;
 use \Models\Product\Product;
 use \Models\Content\BlogSubject;
 use \Models\Content\Blog;
-use \Models\Content\ContactUs;
 
 class HomeController extends Controller
 {
@@ -42,18 +41,6 @@ class HomeController extends Controller
     {
         return Product::with("category")->active()->orderByDesc("id")->limit(8)->get();
     }
-    public function lastProductApi()
-    {
-        return response()->json(
-            Product::with('category') // انتخاب فیلدهای لازم از دسته‌بندی
-                ->active() // شرط فعال بودن محصولات
-                ->orderByDesc('id') // مرتب‌سازی بر اساس id
-                ->limit(8) // محدود کردن تعداد محصولات
-                ->get(),
-            200
-        );
-    }
-
     public function bestSellerProduct()
     {
         return Product::active()->orderByDesc("count_sell")->limit(4)->get();
@@ -68,7 +55,7 @@ class HomeController extends Controller
     }
     public function blog()
     {
-        return Blog::active()->orderByDesc("id")->limit(5)->get();
+        return Blog::active()->limit(5)->get();
     }
     /**
      * get data menu
@@ -81,21 +68,5 @@ class HomeController extends Controller
             'blogs' => $this->blog(),
         ];
         return response()->json($items);
-    }
-    /**
-     * post Message For Insert
-     */
-    public function contactSave()
-    {
-        $record = new ContactUs();
-        $record->sender_name = request()->sender_name;
-        $record->sender_email = request()->sender_email;
-        // $record->subject = request()->subject;
-        $record->comment = request()->comment;
-        $record->lang = fa;
-        $record->save();
-
-        $result = ['message' => "Your message was successful", 'status' => 'successful'];
-        return response()->json($result);
     }
 }

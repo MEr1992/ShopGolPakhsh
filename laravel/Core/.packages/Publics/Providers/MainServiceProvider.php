@@ -15,6 +15,7 @@ class MainServiceProvider extends ServiceProvider
     {        
         $this->app->register('Admin\AdminServiceProvider');
         $this->app->register('Site\SiteServiceProvider');
+        $this->app->register('Api\ApiServiceProvider');
         $this->app->register('Publics\Providers\EventServiceProvider');
 
         $router = $this->app['router'];
