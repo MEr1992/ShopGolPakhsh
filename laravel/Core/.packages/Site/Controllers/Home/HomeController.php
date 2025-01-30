@@ -41,6 +41,18 @@ class HomeController extends Controller
     {
         return Product::with("category")->active()->orderByDesc("id")->limit(8)->get();
     }
+    public function lastProductApi()
+    {
+        return response()->json(
+            Product::with('category') // انتخاب فیلدهای لازم از دسته‌بندی
+                ->active() // شرط فعال بودن محصولات
+                ->orderByDesc('id') // مرتب‌سازی بر اساس id
+                ->limit(8) // محدود کردن تعداد محصولات
+                ->get(),
+            200
+        );
+    }
+
     public function bestSellerProduct()
     {
         return Product::active()->orderByDesc("count_sell")->limit(4)->get();
