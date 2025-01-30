@@ -11,6 +11,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 
 	return(
 		<>
+		    <button className="scroltop" type="button"><i className="fas fa-arrow-up"></i></button>	
 			{/* Footer */}
 			<footer className="site-footer style-1">
 				{/* Footer Top */}
@@ -55,11 +56,13 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 								<div className="widget widget_services">
 									<h5 className="footer-title">{Lang('public.shop')}</h5>
 									<ul>
-										{parentCategories?.map((item,index)=>{ return <li>
-												<Link href={`/${local}/products?category=${item.id}`}>
-												{item?.["title_"+local]}
-														</Link>
-											</li>
+										{parentCategories?.map((item,index)=>
+										{
+											return(
+												<li key={index}>
+													<Link href={`/${local}/products?line=${item.id}`}>{item?.["title_"+local]}</Link>
+												</li>
+											);
 										})}
 									</ul>   
 								</div>
@@ -68,26 +71,27 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 								<div className="widget widget_post">
 									<h5 className="footer-title">{Lang('public.last')} {Lang('public.blog')}</h5>
 									<ul>
-										{blogs?.map((blog , item)=>{return <li>
-												<div className="dz-media">
-													<img src={`${mediaPath}/blogs/${blog?.thumb}`} alt={blog?.title}/>
-												</div>
-												<div className="dz-content">
-													<h6 className="name">
-														<Link href={`/${local}/blog/${blog?.id}`}>
-															{blog?.title}
-														</Link>
-													</h6>
-													<span className="time">{blog?.created_at}</span>
-												</div>
-											</li>
-
+										{blogs?.map((blog, index)=>
+										{
+											return(
+												<li key={index}>
+													<div className="dz-media">
+														<img src={mediaPath+"/blog/"+blog?.thumb} alt={blog?.title}/>
+													</div>
+													<div className="dz-content">
+														<h6 className="name">
+															<Link href={`/${local}/blog/${blog?.id}`}>
+																{blog?.title}
+															</Link>
+														</h6>
+														<span className="time">{blog?.created_at}</span>
+													</div>
+												</li>
+											);
 										})}
-										
 									</ul>
 								</div>
 							</div>
-							
 							{/* <div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
 								<div className="widget widget_services">
 									<h5 className="footer-title">Useful Links</h5>

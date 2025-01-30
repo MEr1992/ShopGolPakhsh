@@ -1,0 +1,289 @@
+@import url(./fonts.rtl/YekanBakh/style.css);
+body{
+	font-family: "YekanBakh";
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .h6,.btn, .wp-block-button__link, .woocommerce .widget_shopping_cart .buttons a,
+.woocommerce.widget_shopping_cart .buttons a, .woocommerce #review_form #respond .form-submit input, .woocommerce-cart-form .table tr .button, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce #place_order,
+.header-nav.w3menu .nav > li > a,
+.section-head h1, .section-head .h1, .section-head h2, .section-head .h2, .section-head h3, .section-head .h3, .section-head h4, .section-head .h4, .section-head h5, .section-head .h5, .section-head h6, .section-head .h6,
+.shop-card .product-tag .badge, p,
+.header-nav.w3menu .nav > li .mega-menu li a.menu-title, .header-nav.w3menu .nav > li .sub-menu li a.menu-title,
+.main-slider.style-1 .banner-content .swiper-meta-items .meta-content .price-num,.dz-product-detail .dz-info ul li strong,.dz-tabs .nav-tabs .nav-link,
+input,.widget_categories.style-1 .cat-item {
+	font-family: "YekanBakh";
+}
+/* Style For Section Header */
+.post-menu {
+    text-align: right;
+}
+.post-menu .dz-content {
+    margin-right: 5%;
+}
+/* Style For Section Slider */
+.main-slider .banner-media .img-preview::after {
+    right: auto;
+    left: 0;
+    transform: rotate(180deg);
+}
+.animation-btn {
+	left: auto;
+	right: 39%;
+}
+.pagination-align.style-1 {
+	left: auto;
+	right: 70%;
+	transform: rotate(180deg);
+}
+.main-slider.style-1 .banner-media .img-preview::after {
+    right: auto;
+    left: 0;
+}
+.main-slider.style-1 .star-1 {
+	top: 70px;
+	/* left: 45%; */
+	right: auto;
+	left: 46%;
+    z-index: 1;
+}
+.main-slider.star-1, .main-slider.star-2 {
+	position: absolute;
+	z-index: 1;
+}
+.main-slider.style-1 .star-2 {
+	top: 105px;
+	/* right: 13%; */
+	right: auto;
+	left: 10%;
+}
+.me-xl-3{
+    margin-left: 1rem !important;
+    margin-right: auto;
+}
+/* Style For Section Categoty */
+.shop-section .left-box::after {
+	left: auto;
+	right: 5%;
+}
+.shop-section .left-box .icon-button {
+	position: absolute;
+	/* right: -75px; */
+	right: 950px;
+	top: 50%;
+	transform: translate(-8%, -50%);
+}
+.shop-section .right-box .icon-button {
+	position: absolute;
+	/* left: -65px; */
+	right: -91px;
+	top: 50%;
+	transform: translate(-10%, -50%);
+}
+.shop-button-prev{
+    transform: rotate(180deg);
+}
+.shop-button-next{
+    transform: rotate(180deg);
+}
+.badge__emoji {
+	display: block;
+	/* margin: 0; */
+	animation: identifier 20s linear infinite;
+	animation-direction: reverse;
+	transition: all 0.3s;
+}
+.badge__emoji::after {
+    transform: rotate(180deg);
+}
+.shop-card .product-tag{
+    right: 5px;
+}
+/* Style For Section BestProducts */
+.about-box.style-1.right {
+	padding-left: 0px;
+	padding-right: 8rem;
+}
+.about-box.style-1.right .dz-media {
+	float: right;
+}
+.about-box.style-1.right .dz-media img {
+	mask-position: right;
+}
+.about-box.style-1 .dz-media .media-contant {
+	right: 50%;
+	transform: translate(50%, -50%);
+}
+.about-box.style-1.right .animation-text {
+	left: 0;
+	transform: translate(90%, 90%);
+}
+/* Style For Section Line */
+.service-btn-2{
+    left: 0;
+    right: auto;
+    transform: rotate(-90deg);
+}
+.companies-section::before {
+	right: auto;
+	left: -4%;
+}
+.companies-section::after {
+	left: auto;
+    right: -4%;
+}
+.companies-section .icon-button::after {
+	/* left: -3px; */
+	right: -3px;
+}
+/* Style For Section MostVisitedProducts */
+.section-head i {
+    transform: rotate(180deg);
+}
+/* Style For Section ShopSidBar Of Product */
+.breadcrumb-row ul .breadcrumb-item + .breadcrumb-item::before {
+	/* float: left; */
+	float: right;
+	transform: rotate(180deg);
+}
+.breadcrumb-row ul li {
+	margin-left: 3px;
+}
+.filter-tag li:last-child {
+	margin-right: auto;
+	margin-left: 30px;
+}
+.filter-wrapper .filter-right-area > div:nth-child(3n-1) {
+	/* border-left: 0 !important; */
+	border-right: 0 !important;
+}
+.filter-wrapper .filter-right-area > div {
+	border-left: 0px solid var(--border-color);
+	border-right: 1px solid var(--border-color);
+}
+.filter-wrapper .filter-right-area .form-group .default-select .dropdown-toggle::after, .filter-wrapper .filter-right-area .form-group .bootstrap-select .dropdown-toggle::after {
+	margin-left: 0px;
+	margin-right: 18px;
+}
+.bootstrap-select > .dropdown-toggle {
+	/* text-align: right; */
+	text-align: left;
+	white-space: nowrap;
+}
+.me-3 {
+	margin-right: 0rem !important;
+	margin-left: 1rem !important;
+}
+.widget_search .form-group .input-group-addon {
+	right: auto;
+	left: 15px;
+}
+.widget_archive li a, .wp-block-latest-posts li a, .wp-block-categories-list li a, .wp-block-archives-list li a, .widget_categories li a {
+	/* float: left;
+	text-align: left; */
+	float: right;
+	text-align: right;
+}
+.widget_archive ul li, .wp-block-categories-list li, .wp-block-archives-list li, .wp-block-latest-posts li, .widget_categories ul li {
+	text-align: left;
+}
+.wp-block-latest-posts ul, .wp-block-categories-list ul, .wp-block-archives-list ul, .widget_categories ul ul, .widget_archive ul ul, .widget_meta ul ul, .widget_pages ul ul, .widget_recent_comments ul ul, .widget_nav_menu ul ul, .widget_recent_entries ul ul, .widget_services ul ul {
+	padding-right: 1.125rem;
+}
+.widget_categories ul ul {
+	margin-left: -15px !important;
+}
+.range-slider.style-1 span {
+	margin-right: auto;
+	margin-left: 30px;
+}
+.bookmark-btn.style-1 .form-check-label {
+	margin-left: 0px;
+	margin-right: 10px;
+}
+.dz-shop-card.style-2 .dz-media {
+	margin-right: 0px;
+	margin-left: 30px;
+}
+#lg-content-1{
+	direction: ltr !important;
+}
+/* Style For Section Detail Of Product */
+.save-text span{
+	margin-left: auto;
+	margin-right: 10px;
+}
+.detail-bx .feature-detail li i {
+	margin-right: auto;
+	margin-left: 10px;
+}
+.detail-bx .feature-detail li {
+	padding: 10px 0 10px 40px;
+	text-align: right;
+}
+.range-slider.style-1 .noUi-horizontal .noUi-handle {
+	right: auto;
+	left: 0;
+}
+/* Style For Section ShopSidBar Of Blog */
+.search-bx button {
+	right: auto;
+	left: 5px;
+}
+.widget_categories.style-1 .cat-item {
+	padding: 10px 26px 10px 0 !important;
+}
+.widget_categories.style-1 .cat-item::before {
+	left: auto;
+	right: 0;
+    transform: rotate(180deg);
+}
+.recent-posts-entry .widget-post-bx .widget-post .dz-info {
+	margin-left: auto;
+	margin-right: 18px;
+}
+.dz-card .read-btn i {
+    transform: rotate(180deg);
+}
+/* Style For Section Detail Of Blog */
+.about-style2 .about-thumb {
+	margin-right: auto;
+	margin-left: 40px;
+}
+
+/* screen Responsive */
+@media only screen and (max-width: 575px) {
+	.pagination-align.style-1 {
+		/* bottom: 88px; */
+		right: 52% !important;
+		/* width: 50px; */
+		/* height: 50px; */
+	}
+}
+@media only screen and (max-width: 1199px) {
+	.pagination-align.style-1 {
+		right: 51%;
+	}
+	.main-slider.style-1 .main-swiper-thumb .swiper-slide {
+		padding-right: auto;
+		padding-left: 40px;
+	}
+}
+@media only screen and (max-width: 1680px) {
+	.pagination-align.style-1 {
+		right: 55%;
+	}
+}
+.main-slider.style-1 .main-swiper-thumb .swiper-slide {
+	width: 500px !important;
+	margin-left: auto !important;
+	padding-left: 80px;
+}
+@media only screen and (max-width: 1680px) {
+	.main-slider.style-1 .banner-media::after {
+		font-size: 80px;
+		left: auto;
+		right: -50px;
+	}
+}
+.main-slider.style-1 .main-swiper-thumb .swiper-slide.swiper-slide-active::after {
+	opacity: 1;
+}

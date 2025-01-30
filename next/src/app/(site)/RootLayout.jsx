@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
 		fetchData();
 	}, []);
 	const fetchData = async()=>{
+		// alert(`${config.host()}/${local}/get-data-public`);
         let response = await fetch(`${config.host()}/${local}/get-data-public`, {mode: "cors"});
         const menuResponse = await response.json();
 		setData(menuResponse);

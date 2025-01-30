@@ -2,42 +2,46 @@
 
 import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '@/Theme/Site/ShopTools/Context/ProductContext';
-import { List,Column,Grid,Paging,FilterRight,FilterLeft } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
-import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
+import { List,Column,Grid,FilterRight,FilterLeft } from "@/app/(site)/[lang]/(Shop)/products/ProductComponent";
 import { useData } from "@/Theme/Midone/Utils/Data";
+import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 
 export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 	let { getNeedles } = useData();
-    let laralelUrl = "/products";
-	const {state, dispatch } = useContext(ProductContext);
+	const { state, dispatch } = useContext(ProductContext);
+	const { status, filters, laralelUrl, loading, page } = state;
 
-	useEffect(() => {
-		if(state.status == "FIRST") 
+	useEffect(() => {		
+		if(status == "FIRST") 
 			return;
         
 		dispatch('START_LOADING');
         // const query = new URLSearchParams();
-		const query = (state.status == "")? new URLSearchParams(window.location.search) : new URLSearchParams();
-        Object.keys(state.filters).map((key)=>{
-			let value= state.filters[key];
+		const query = (status == "")? new URLSearchParams(window.location.search) : new URLSearchParams();
+        Object.keys(filters).map((key)=>{
+			let value= filters[key];
             if(value != "") query.set(key, value);
         });
-        getNeedles(`${local}${laralelUrl}?${query.toString()}&type=${state.status == "" && "first"}`, (items)=>
+		// const url = `${local}${laralelUrl}?${query.toString()}&type=${status == "" && "first"}`;
+		const url = `${local}${laralelUrl}?${query.toString()}`;
+        getNeedles(url+`&type=${status == "" && "first"}&page=${page}`, (items)=>
             {
 				if(state.status == ""){
-					dispatch('SET_INFO', { products: items.products, categories: items.categories});
+					dispatch('SET_INFO', { products: items.products, categories: items.categories, url: url });
 				}else{
-					dispatch('SET_PRODUCTS', { products: items.products });
+					dispatch('SET_PRODUCTS', { products: items.products, url: url });
 				}
                 dispatch('STOP_LOADING');
             }
         );
         window.history.replaceState({}, '', `?${query.toString()}`);
-    }, [state.filters]);
-
+		
+		dispatch('DEACTIVE_FILTER_MOBILE');
+    }, [filters]);
+	
 	return(
 		<>
-			{(state.loading)?
+			{(loading)?
 				<LoadingPage />
 			:
 				<div className="col-xl-9 col-lg-12">
@@ -51,17 +55,17 @@ export const Product = ({ assetsPath, mediaPath, local, Lang }) => {
 					</div>
 					<div className="row">
 						<div className="col-12 tab-content shop-" id="pills-tabContent">
-							{(state.filters.display=="" || state.filters.display=="grid")?
-								<Grid items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+							{/* {(filters.display=="" || filters.display=="grid")? */}
+							{(!filters.display || filters.display=="" || filters.display=="grid")?
+								<Grid assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 							:
-								(state.filters.display=="column")?
-									<Column items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+								(filters.display=="column")?
+									<Column assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 								:
-									<List items={state?.products?.data} assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
+									<List assetsPath={assetsPath} mediaPath={mediaPath} local={local} Lang={Lang} />
 							}
 						</div>
 					</div>
-					{/* <Paging /> */}
 				</div>
 			}		
     	</>

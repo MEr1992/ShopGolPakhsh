@@ -4,7 +4,7 @@ import { useEffect,useState } from "react";
 import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
-import { Banner } from "@/app/(site)/[lang]/(Shop)/blog/Banner";
+import { Banner } from "@/app/(site)/[lang]/(Content)/blog/Banner";
 import { ProfileBox } from "../ProfileBox";
 import Link from "next/link";
 

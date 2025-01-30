@@ -4,7 +4,7 @@ import { useLang } from "@/lib/lang";
 import { useConfig } from "@/lib/config";
 import { useData,useFormRefs,Frame } from "@/Theme/Midone/Forms";
 import { Loading } from "@/Theme/Midone/Utils";
-import { Comments,BlogInfo } from '@/Components/Blog/CommentDetails';
+import { Comments,BlogInfo } from '@/Components/Admin/Blog/CommentDetails';
 
 export default function View({ id }){
     const {Lang,local} = useLang();

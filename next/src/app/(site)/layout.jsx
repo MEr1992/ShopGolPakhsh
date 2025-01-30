@@ -17,8 +17,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
     metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
   }
 }
-// console.log('params');
-// console.log(params);
+
 export default function({children}){
  return <RootLayout>{children}</RootLayout>
 }
