@@ -8,6 +8,10 @@ Route::get('/clear-cache', function() {
     return $exitCode;
 });
 
+Route::get('/test', function(){
+    dd("test api");
+});
+
 Route::middleware(['auth:web'])->get('/user', function () {
     return request()->user();
 });
