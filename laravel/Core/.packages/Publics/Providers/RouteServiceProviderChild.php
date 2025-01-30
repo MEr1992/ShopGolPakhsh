@@ -12,6 +12,7 @@ class RouteServiceProviderChild
     {
         self::mapAdminRoutes();
         self::mapWebRoutes();
+        self::mapApiRoutes();
         self::mapSAdminRoutes();
     }
 
