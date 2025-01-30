@@ -8,7 +8,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useUtility } from '@/lib/utility';
 // import tinymce from 'tinymce/tinymce';
 import dynamic from 'next/dynamic';
-import { axiosLoading } from "@/Theme/site/Utils/axiosLoading";
+// import { axiosLoading } from "@/Theme/site/Utils/axiosLoading";
 const Loading = dynamic(() => import('@/app/(site)/Loading'), {
     // loading: () => <p>در حال بارگذاری...</p>, // کامپوننت بارگذاری
     ssr: false, // غیرفعال کردن رندر در سرور
