@@ -34,17 +34,21 @@ export default function Form({id}){
             <Box>     
                 <Input label="product" className="col-span-12" refItem={[component, "name"]} required="true" />
                 <Input type="price"  refItem={[component, "price"]} required="true" />
-                <Input refItem={[component, "discount"]} />
-                <SelectTail label="category" refItem={[component, "category_id"]} 
-                            required="true"
-                            data={needles?.category}
-                            titleKey="title_fa"
-                        />                
+                <Input refItem={[component, "discount"]} />              
                 <SelectTail label="brand" refItem={[component, "brand_id"]} 
-                            required="true"
-                            data={needles?.brand} 
-                            titleKey="name_fa"
-                        />                
+                    required="true"
+                    data={needles?.brand} 
+                    titleKey={"name_"+local}
+                />
+                <SelectTail label="category" refItem={[component, "category_id"]} titleKey={`title_${local}`} required="true">
+                    {needles?.category?.map((parent, i) => (
+                        <optgroup key={i} label={`${Lang("public.category")} ${parent[`title_${local}`]}`}>
+                            {parent?.childs?.map((child, j) => (
+                                <option key={j} value={child.id}> {child[`title_${local}`]} </option>
+                            ))}
+                        </optgroup>
+                    ))};
+                </SelectTail>
                 <Textarea  refItem={[component, "usage"]} required="true"/>
                 <Textarea  refItem={[component, "description"]} required="true"/>
                 <Textarea  refItem={[component, "review"]} required="true"/>
