@@ -2,7 +2,7 @@
 
 namespace Api\Controllers\Auth;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

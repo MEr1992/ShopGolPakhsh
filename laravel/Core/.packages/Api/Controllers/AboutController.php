@@ -2,7 +2,7 @@
 
 namespace Api\Controllers;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Models\Content\ContactUs;
 use Models\Content\ApiText;

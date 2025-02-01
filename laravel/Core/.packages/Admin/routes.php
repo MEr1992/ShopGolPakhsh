@@ -1,6 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Response;
+
+Route::get('/clear-cache', function() {
+    $commands = [
+        'cache:clear',
+        'config:clear',
+        'route:clear',
+        'view:clear',
+        'optimize:clear',
+    ];
+
+    $results = [];
+
+    foreach ($commands as $command) {
+        $results[$command] = Artisan::call($command) === 0 ? 'Success' : 'Failed';
+    }
+
+    return Response::json([
+        'message' => 'Cache cleared successfully!',
+        'results' => $results
+    ]);
+});
 
 Route::get('/user',"Auth\UserInfo@getInfo");
 Route::post('/login',"Auth\AuthenticatedController@store");
