@@ -8,26 +8,18 @@ class ProductCategoryController extends BaseAbstract
 {
     protected $model = "Models\Product\Category";
     protected $request = "Publics\Requests\Product\CategoryRequest";
-    // protected $needles = ["Product\Category"];
-
     protected $with = ["activeStatus","parent"];
     protected $showWith = ["activeStatus","parent"];
-    // protected $searchFilter = ["name"];
-    // protected $files = ["image"];
+    protected $searchFilter = ["title_fa"];
+    protected $files = ["image"];
 
     public function init()
     {
-        // $this->storeQuery = function ($query) {
-        //     if (request()->_method != "PUT") {
-        //         $query->password = bcrypt(request()->email);
-        //     }
-        //     $query->save();
-        // };
-
+        $this->indexQuery = function ($query) {
+            $query->CatChild();
+        };
         $this->needles = [
-            \Product\Category::class => fn($query) => $query->catParent(),
+            \Product\Category::class => function($query){ $query->catParent()->active(); },
         ];
     }
-
-  
 }
