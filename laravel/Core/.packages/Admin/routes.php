@@ -83,9 +83,9 @@ Route::resource("products","Product\ProductController");
 
 Route::get("categories/get-needles", "Product\ProductCategoryController@getNeedles");
 Route::resource("categories","Product\ProductCategoryController");
+Route::resource("lines","Product\ProductLineController");
 
 Route::resource("brands","Product\ProductBrandController");
-Route::resource("lines","Product\ProductLineController");
 // ================ End Routes Product ===========================================
 
 Route::post('/breadcrumb', 'Public\Breadcrumb@getItems');

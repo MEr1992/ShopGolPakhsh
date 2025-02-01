@@ -34,10 +34,11 @@ export default function Form({ id }){
         <Frame>
             <Box>     
                 <Input label="name" refItem={[component, "title_"+local]} required="true" />
-                <SelectTail label="main_cat" refItem={[component, "parent_id"]} 
+                {/* <SelectTail label="main_cat" refItem={[component, "parent_id"]}  */}
+                <SelectTail label="line" refItem={[component, "parent_id"]} 
                     required="true"
                     data={needles?.category}
-                    titleKey="title_fa"
+                    titleKey={"title_"+local}
                 />    
                 <Dropzone refItem={[component, "image"]} uploadUrl={uploadUrl} deleteUrl={deleteUrl+"/"} uploadDir={uploadDir} required="true" />
                 <CheckBox label="status" name={Lang('public.active')} refItem={[component, "status_id"]} />        

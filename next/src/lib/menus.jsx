@@ -7,6 +7,7 @@ export const getMenus = (user) => {
         { title: "dashboard", icon: "Home", href: "/dashboard" },
         { title: "products", icon: "ShoppingBag", href: "/products" },
         { title: "brand", icon: "Star", href: "/brands" },
+        { title: "line", icon: "Slack", href: "/lines" },
         { title: "category", icon: "Slack", href: "/categories" },
         { title: "blogs", icon: "Pocket", href: "/blogs" },
         { title: "sliders", icon: "List", href: "/sliders" },
