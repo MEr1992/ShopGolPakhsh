@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
 			<html lang="en" dir={local=="fa"?"rtl":"ltr"}>
 				<head>
 					{/* Title */}
-					<title>Gol: Shop & Online sales of cosmetic products</title>
+					<title>AtInA: Online sales of women's products</title>
 					
 					{/* Meta */}
 					<meta charSet="utf-8" />
