@@ -1,11 +1,26 @@
 <?php
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Response;
+
 Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('cache:clear');
-    $exitCode = Artisan::call('config:clear');
-    $exitCode = Artisan::call('config:clear');
-    $exitCode = Artisan::call('optimize:clear');
-    $exitCode = Artisan::call('view:clear');
-    return $exitCode;
+    $commands = [
+        'cache:clear',
+        'config:clear',
+        'route:clear',
+        'view:clear',
+        'optimize:clear',
+    ];
+
+    $results = [];
+
+    foreach ($commands as $command) {
+        $results[$command] = Artisan::call($command) === 0 ? 'Success' : 'Failed';
+    }
+
+    return Response::json([
+        'message' => 'Cache cleared successfully!',
+        'results' => $results
+    ]);
 });
 
 Route::middleware(['auth:web'])->get('/user', function () {
@@ -23,7 +38,6 @@ Route::group(['middleware' => ['SiteInit'], 'prefix' => '{lang}'], function ($la
 
     // public  routes that do not require authintication
     Route::get('/', 'Home\HomeController@index');
-    Route::get('/lastProduct', 'Home\HomeController@lastProductApi');
     Route::get('/get-data-public', 'Home\HomeController@getDataPublic');
     // Route::get('/about', 'Home\HomeController@about');
     // Route::get('/contact', 'Home\HomeController@contact');

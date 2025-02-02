@@ -2,7 +2,7 @@
 
 namespace Api\Controllers\Blog;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Api\Controllers\Traits\ApiTrait;
 use Symfony\Component\HttpFoundation\Request;
 use \Models\Content\Blog;
