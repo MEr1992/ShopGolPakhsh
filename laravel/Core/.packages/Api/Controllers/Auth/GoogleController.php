@@ -2,7 +2,7 @@
 
 namespace Api\Controllers\Auth;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;

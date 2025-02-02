@@ -2,7 +2,7 @@
 
 namespace Api\Controllers;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use \Models\Edu\CourseCategory;
 use \Models\Edu\CourseLevel;
 use \Models\Person\Teacher;
