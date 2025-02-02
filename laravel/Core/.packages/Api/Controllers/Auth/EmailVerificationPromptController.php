@@ -2,7 +2,7 @@
 
 namespace Api\Controllers\Auth;
 
-use Api\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Api\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 

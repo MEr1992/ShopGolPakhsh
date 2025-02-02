@@ -2,147 +2,103 @@
 
 namespace Api\Controllers\Product;
 
-use Api\Http\Controllers\Controller;
-use \Models\Content\Slider;
-use \Models\Product\Category;
-use \Models\Product\Brand;
-use \Models\Product\Line;
-use \Models\Product\Product;
+use App\Http\Controllers\Controller;
+use Models\Product\Product;
+use Models\Product\Category;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public $search;
-    public $line_id;
-    public $cat_id;
-    public $min;
-    public $max;
-    public $sort;
-    public $display;
-    public $limit;
+    protected $limit = 9;
 
-    public function index()
+    public function index(Request $request)
     {
-        $this->search = request()->search;
-        $this->line_id = request()->line;
-        $this->cat_id = request()->category;
-        $this->min = request()->min;
-        $this->max = request()->max;
-        $this->sort = request()->sort;
-        $this->display = request()->display;
-        $this->limit = 9;
-        if(request()->type == "first")
-        {
-            $items = [
-                'products' => $this->products(),
-                'categories' => $this->category(),
-            ];
+        $query = Product::with(["category", "categoryParent"])->active();
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where("name", "LIKE", "%{$request->search}%")
+                    ->orWhere("summary", "LIKE", "%{$request->search}%");
+            });
         }
-        else
-        {
-            $items = [
-                'products' => $this->filterProducts(),
-                // 'categories' => $this->category(),
-            ];
+        
+        if ($request->filled('line')) {
+            $query->where("parent_category", $request->line);
         }
+        
+        if ($request->filled('category')) {
+            $query->where("category_id", $request->category);
+        }
+        
+        $this->setSort($query, $request->sort);
+        $this->setLimit($request->display);
+        
+        $products = $query->orderByDesc("id")->paginate($this->limit);
+
+        $items = ['products' => $products];
+        
+        if ($request->type === "first") {
+            $items['categories'] = Category::with("childs")->active()->catParent()->get();
+        }
+
         return response()->json($items);
     }
-    /**
-     * get All Products
-     */
-    public function products()
+
+    protected function setLimit($display)
     {
-        return Product::with("category")->active()->orderByDesc("id")->paginate($this->limit);
+        $limits = ["list" => 4, "column" => 8, "grid" => 9];
+        $this->limit = $limits[$display] ?? 9;
     }
-    /**
-     * get All Categories
-     */
-    public function category()
+
+    protected function setSort($query, $sort)
     {
-        return Category::with("childs")->active()->catParent()->get();
-    }
-    /**
-     * get filter In Products By $search || $line_id || $cat_id
-     */
-    public function filterProducts()
-    {
-        $this->setLimit();
-        $products = Product::with("category")->active();
-        $this->setLimit($products);
-        if($this->search)
-        {
-            $search_like = $this->search;
-            $products = $products->where(function ($q) use($search_like) { $q->where("name", "LIKE", "%".$search_like."%")->orWhere("summary", "LIKE", "%".$search_like."%"); });
-        }
-        if($this->line_id)
-        {
-            $products = $products->where("parent_category", $this->line_id);
-        }
-        if($this->cat_id)
-        {
-            $filter_products = $products->where("category_id", $this->cat_id);
-        }
-        $filter_products = $products->orderByDesc("id")->paginate($this->limit);
-        return $filter_products;
-    }
-    /**
-     * set Limit For display Produts
-     */
-    public function setLimit()
-    {
-        switch($this->display)
-        {
-            case "list":
-                $this->limit=4;
-                break;
-            case "column":
-                $this->limit=8;
-                break;
-            case "grid":
-                $this->limit=9;
-                break;
-            default:
-                $this->limit=9;
+        $sortOptions = [
+            "Newest" => "latest",
+            "MostVisited" => "count_view",
+            "Bestseller" => "count_sell",
+            "Cheapest" => "price",
+            "MostExpensive" => "price",
+        ];
+        
+        if (isset($sortOptions[$sort])) {
+            if ($sort === "Cheapest") {
+                $query->orderBy($sortOptions[$sort], "ASC");
+            } else {
+                $query->orderByDesc($sortOptions[$sort]);
+            }
         }
     }
-    /**
-     * set Sort For display Produts
-     */
-    public function setSort($products)
-    {
-        switch($this->sort)
-        {
-            case "Newest":
-                $products->latest();
-                break;
-            case "MostVisited":
-                $products->orderByDesc("count_view")->latest();
-                break;
-            case "Bestseller":
-                $products->orderByDesc("count_sell")->latest();
-                break;
-            case "Cheapest":
-                $products->orderByDesc("price")->latest();
-                break;
-            case "MostExpensive":
-                $products->orderBy("price","ASC")->latest();
-                break;
-            default:
-                $products;
-        }
-        return $products;
-        // discount  discount_price  price
-    }
-    /**
-     * get Info a Product By $id
-     */
+
     public function show($id)
     {
-        $product = Product::with("category","categoryParent","keywords")->active()->find($id);
-        $products = Product::where("id", "!=", $id)->where("category_id", $product->category_id)->active()->get();
-        $data = [
-            'product'=>$product,
-            'products'=>$products,
-        ];
-        return $data;
+        $product = Product::with(["category", "categoryParent", "keywords"])->active()->findOrFail($id);
+        
+        $relatedProducts = Product::where("id", "!=", $id)
+            ->where("category_id", $product->category_id)
+            ->active()
+            ->get();
+        
+        $this->incrementCount($product, "count_view");
+
+        return response()->json(["product" => $product, "related_products" => $relatedProducts]);
+    }
+
+    protected function incrementCount(Product $product, $field)
+    {
+        $product->increment($field);
+    }
+
+    public function addToFavorites($id)
+    {
+        $product = Product::findOrFail($id);
+        $this->incrementCount($product, "count_like");
+        return response()->json(["message" => "Product added to favorites."]);
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+        $this->incrementCount($product, "count_sell");
+        return response()->json(["message" => "Product added to cart."]);
     }
 }
