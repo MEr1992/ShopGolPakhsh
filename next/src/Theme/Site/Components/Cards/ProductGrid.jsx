@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { Cart } from "@/Theme/Site/Components/Public/Cart";
 import { Like } from "@/Theme/Site/Components/Public/Like";
 import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
@@ -30,7 +31,7 @@ export const ProductGrid = ({ item,mediaPath,local,Lang,calssParent=" style-1" }
 				<div className="dz-content color-discount">
 					<div>
 						<span className="sale-title">{displayDiscount}</span>
-						<h5 className="title"><a href={`/${local}/products/${item?.id}`}>{item?.name}</a></h5>
+						<h5 className="title"><Link href={`/${local}/products/${item?.id}`}>{item?.name}</Link></h5>
 					</div>
 					<h6 className="price">{displayPrice}</h6>
 				</div>

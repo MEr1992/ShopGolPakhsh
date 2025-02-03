@@ -74,7 +74,6 @@ $lang = [
     'text_brand'=>'ما با 6.3 هزار شرکت قابل اعتماد به رشد خود ادامه می دهیم',
     'rotating_brand'=>'شرکای ما - شرکای ما - ',
     'most_visited_products'=>'پربازدید ترین ها',
-    'see_all'=>'مشاهده همه',
     // Words Of Site ================================================
     'filter' => 'فیلتر',
     'showing_1'=>'نمایش',
@@ -128,6 +127,22 @@ $lang = [
     'phone_number'=>'شماره تماس',
     'massage'=>'پیام',
     'submit'=>'ارسال',
+    // Slider index2
+    'Instagram'=>'Instagram',
+    'Facebook'=>'Facebook',
+    'twitter'=>'twitter',
+    'Let’s talk'=>'Let’s talk',
+    'title_last_products_1'=>'جدیدترین ها',
+    'text_last_products_1'=>'آخرین محصولات ما برای راحتی شما',
+    'title_last_products_2'=>'جدیدترین ها',
+    'text_last_products_2'=>'آخرین محصولات ما برای زیبا ماندن شما',
+    'title_suggestion_products_1'=>'پیشنهاد ما برای زیبایی',
+    'title_suggestion_products_2'=>'پیشنهاد مشتریان ما برای راحتی شما',
+    'rotating_suggestion'=>'همه محصولات - همه محصولات - ',
+    'rotating_category'=>'دسته های ما - دسته های ما - ',
+    'category_product'=>'دسته بندی محصولات',
+    'brand'=>'برند',
+    'subject_blog'=>'موضوع بلاگ',
     
     // admin
     'line'=>'لاین',

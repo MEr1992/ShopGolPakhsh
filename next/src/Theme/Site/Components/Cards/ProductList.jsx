@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { Cart } from "@/Theme/Site/Components/Public/Cart";
 import { Like } from "@/Theme/Site/Components/Public/Like";
 import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
@@ -15,10 +16,10 @@ export const ProductList = ({ item,assetsPath,mediaPath,local,Lang,index }) => {
 					<div className="dz-content">
 						<div className="dz-header">
 							<div>
-								<h4 className="title mb-0"><a href={`/${local}/products/${item?.id}`}>{item?.name}</a></h4>
+								<h4 className="title mb-0"><Link href={`/${local}/products/${item?.id}`}>{item?.name}</Link></h4>
 								<ul className="dz-tags">
-									<li><a href="javascript:void(0);" style={{cursor:"default"}}>{item?.category_parent?.["title_"+local]},</a></li>
-									<li><a href="javascript:void(0);" style={{cursor:"default"}}>{item?.category?.["title_"+local]}</a></li>
+									<li><Link href="javascript:void(0);" style={{cursor:"default"}}>{item?.category_parent?.["title_"+local]},</Link></li>
+									<li><Link href="javascript:void(0);" style={{cursor:"default"}}>{item?.category?.["title_"+local]}</Link></li>
 								</ul>
 							</div>
 							{/* {rating()} */}
@@ -66,7 +67,7 @@ const rating = ()=>{
 					<i className="flaticon-star-1"></i>
 				</li>
 			</ul>
-			<span><a href="javascript:void(0);"> 370 Review</a></span>
+			<span><Link href="javascript:void(0);"> 370 Review</Link></span>
 		</div>
 	);
 }

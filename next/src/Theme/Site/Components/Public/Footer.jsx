@@ -5,141 +5,141 @@ import { useLang } from "@/lib";
 export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 	const { Lang } = useLang();
 
-	let parentCategories = data?.categories?.filter((category)=>category?.parent_id==0);
+	let parentCategories = data?.categories?.filter((category)=>category?.parent_id>1);
+	let categories = data?.categories?.filter((category)=>category?.parent_id>1);
+	let brands = data?.brands;
 	let subjects = data?.subjects;
-	let blogs = data?.blogs;
 
 	return(
 		<>
 		    <button className="scroltop" type="button"><i className="fas fa-arrow-up"></i></button>	
 			{/* Footer */}
-			<footer className="site-footer style-1">
-				{/* Footer Top */}
-				<div className="footer-top">
-					<div className="container">
-						<div className="row">
-							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.1s">
-								<div className="widget widget_about me-2">
-									<div className="footer-logo logo-white">
-										<Link href={`/${local}`}><img src={`${assetsPath}/pixio/images/logo.svg`} alt="logo"/></Link>
+			<footer className="site-footer footer-dark style-3">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-4 col-lg-4 col-md-12 px-0">
+							<div className="row dz-post g-0 spno">
+								<div className="col-lg-6 col-6">
+									<div className="dz-post-media">
+										<img src={assetsPath+"/pixio/images/posts/pic1.png"} alt=""/>
 									</div>
-									<ul className="widget-address">
-										<li>
-											<p><span>{Lang('public.address')}</span> : {Lang('public.address_info')}</p>
-										</li>
-										<li>
-											<p><span>{Lang('public.email')}</span> : {Lang('public.email_info')}</p>
-										</li>
-										<li>
-											<p><span>{Lang('public.tel')}</span> : {Lang('public.tel_info')}</p>
-										</li>
-									</ul>
-									{/* <div className="subscribe_widget">
-										<h6 className="title fw-medium text-capitalize">subscribe to our newsletter</h6>	
-										<form className="dzSubscribe style-1" action="script/mailchamp.php" method="post">
-											<div className="dzSubscribeMsg"></div>
-											<div className="form-group">
-												<div className="input-group mb-0">
-													<input name="dzEmail" required="required" type="email" className="form-control" placeholder="Your Email Address"/>
-													<div className="input-group-addon">
-														<button name="submit" defaultValue="Submit" type="submit" className="btn">
-															<i className="icon feather icon-arrow-right"></i>
-														</button>
-													</div>
-												</div>
+								</div>
+								<div className="col-lg-6 col-6">
+									<div className="dz-post-media">
+										<img src={assetsPath+"/pixio/images/posts/pic2.png"} alt=""/>
+									</div>
+								</div>
+								<div className="col-lg-6  col-6">	
+									<div className="dz-post-media">
+										<img src={assetsPath+"/pixio/images/posts/pic3.png"} alt=""/>
+									</div>
+								</div>
+								<div className="col-lg-6 col-6">
+									<div className="dz-post-media">
+										<img src={assetsPath+"/pixio/images/posts/pic4.png"} alt=""/>
+									</div>
+								</div>
+								<a href="javascript:void(0);" className="instagram-link">
+									<div className="follow-link bg-white wow bounceIn" data-wow-delay="0.1s">
+										<div className="follow-link-icon">
+											<img src={assetsPath+"/pixio/images/insta-follow.png"} alt=""/>
+										</div>
+										<div className="follow-link-content">
+											<h4>Share with #Pixio</h4>
+											<p>Follow @Pixio for inspiration.</p>
+										</div>
+									</div>
+								</a>	
+							</div>
+						</div>
+						<div className="col-md-8 col-lg-8 col-md-12">
+							<div className="footer-top">
+								<div className="dz-custom-container">
+									<div className="row align-items-center logo-topbar gx-0 wow fadeInUp" data-wow-delay="0.1s">
+										<div className="col-12 col-sm-6">
+											<div className="footer-logo logo-white mb-0">
+												<a href="index.html"><img src={assetsPath+"/pixio/images/logo-white.svg"} alt=""/></a> 
+											</div>	
+										</div>
+										<div className="col-12 col-sm-6">
+											<div className="dz-social-icon style-1">
+												<ul>
+													<li>
+														<a href="https://www.facebook.com/dexignzone" target="_blank">
+															<i className="fa-brands fa-facebook-f"></i>
+														</a>
+													</li>
+													<li>
+														<a href="https://twitter.com/dexignzones" target="_blank">
+															<i className="fa-brands fa-twitter"></i>
+														</a>
+													</li>
+													<li>
+														<a href="https://www.linkedin.com/showcase/3686700/admin/" target="_blank">
+															<i className="fa-brands fa-linkedin"></i>
+														</a>
+													</li>
+													<li>
+														<a href="https://www.instagram.com/dexignzone/" target="_blank">
+															<i className="fa-brands fa-instagram"></i>
+														</a>
+													</li>
+												</ul>
 											</div>
-										</form>
-									</div> */}
+										</div>
+									</div>
+									<div className="row">
+										<div className="col-lg-4 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.2s">
+											<div className="widget widget_services">
+												<h5 className="footer-title">{Lang("public.category_product")}</h5>
+												<ul>
+													{categories?.map((category, index)=>{
+														return(
+															<li><a href="javascript:void(0);">{category?.["title_"+local]}</a></li>
+														);
+													})}
+												</ul>   
+											</div>
+										</div>
+										<div className="col-lg-4 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
+											<div className="widget widget_services">
+												<h5 className="footer-title">{Lang("public.brand")}</h5>
+												<ul>
+													{brands?.map((brand, index)=>{
+														return(
+															<li><a href="javascript:void(0);">{brand?.["name_"+local]}</a></li>
+														);
+													})}
+												</ul>
+											</div>
+										</div>
+										<div className="col-lg-4 col-md-4 col-sm-4 col-12 wow fadeInUp" data-wow-delay="0.4s">
+											<div className="widget widget_services">
+												<h5 className="footer-title">{Lang("public.subject_blog")}</h5>
+												<ul>
+													{subjects?.map((subject, index)=>{
+														return(
+															<li><a href="javascript:void(0);">{subject?.["title_"+local]}</a></li>
+														);
+													})}
+												</ul>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div className="col-xl-4 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.3s">
-								<div className="widget widget_services">
-									<h5 className="footer-title">{Lang('public.shop')}</h5>
-									<ul>
-										{parentCategories?.map((item,index)=>
-										{
-											return(
-												<li key={index}>
-													<Link href={`/${local}/products?line=${item.id}`}>{item?.["title_"+local]}</Link>
-												</li>
-											);
-										})}
-									</ul>   
+							<div className="footer-bottom wow fadeInUp" data-wow-delay="0.5s">
+								<div className="fb-inner">
+									<div className="text-center"> 
+										<p className="copyright-text">© <span className="current-year">2024</span> <a href="https://www.dexignzone.com/">DexignZone</a> Theme. All Rights Reserved.</p>
+									</div>
 								</div>
 							</div>
-							<div className="col-xl-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.2s">
-								<div className="widget widget_post">
-									<h5 className="footer-title">{Lang('public.last')} {Lang('public.blog')}</h5>
-									<ul>
-										{blogs?.map((blog, index)=>
-										{
-											return(
-												<li key={index}>
-													<div className="dz-media">
-														<img src={mediaPath+"/blog/"+blog?.thumb} alt={blog?.title}/>
-													</div>
-													<div className="dz-content">
-														<h6 className="name">
-															<Link href={`/${local}/blog/${blog?.id}`}>
-																{blog?.title}
-															</Link>
-														</h6>
-														<span className="time">{blog?.created_at}</span>
-													</div>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
-							</div>
-							{/* <div className="col-xl-2 col-md-4 col-sm-4 col-6 wow fadeInUp" data-wow-delay="0.4s">
-								<div className="widget widget_services">
-									<h5 className="footer-title">Useful Links</h5>
-									<ul>
-										<li><a href="#!">Privacy Policy</a></li>
-										<li><a href="#!">Returns</a></li>
-										<li><a href="#!">Terms & Conditions</a></li>
-										<li><a href="#!">Contact Us</a></li>
-										<li><a href="#!">Latest News</a></li>
-										<li><a href="#!">Our Sitemap</a></li>
-									</ul>
-								</div>
-							</div> */}
-							{/* <div className="col-xl-2 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.5s">
-								<div className="widget widget_services">
-									<h5 className="footer-title">Footer Menu</h5>
-									<ul>
-										<li><a href="#!">Instagram profile</a></li>
-										<li><a href="#!">New Collection</a></li>
-										<li><a href="#!">Woman Dress</a></li>
-										<li><a href="#!">Contact Us</a></li>
-										<li><a href="#!">Latest News</a></li>
-									</ul>
-								</div>
-							</div> */}
 						</div>
 					</div>
 				</div>
-				{/* Footer Top End */}
-				{/* Footer Bottom */}
-				<div className="footer-bottom">
-					<div className="container">
-						<div className="row fb-inner wow fadeInUp" data-wow-delay="0.1s">
-							<div className="col-lg-12 col-md-12 text-center"> 
-								<p className="copyright-text">© <span className="current-year">1403</span> 
-								<a href="/">{Lang('public.main_title_info')}</a> {Lang('public.copyright')}</p>
-							</div>
-							{/* <div className="col-lg-6 col-md-12 text-end"> 
-								<div className="d-flex align-items-center justify-content-center justify-content-md-center justify-content-xl-end">
-									<span className="me-3">We Accept: </span>
-									<img src={assetsPath+"/pixio/images/shop/product/small/1.png"} alt=""/>
-								</div>
-							</div> */}
-						</div>
-					</div>
-				</div>
-				{/* Footer Bottom End */}	
 			</footer>
+						
 			{/* Footer End */}
 
 			{/* <Script id='jquery.min.js' src={assetsPath + '/pixio/js/jquery.min.js'} strategy='afterInteractive' /> */}

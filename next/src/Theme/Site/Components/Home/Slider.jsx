@@ -17,8 +17,8 @@ export const Slider = ({ items,mediaPath,assetsPath,Lang,local }) => {
 											<p className="sub-title mb-0" data-swiper-parallax="-40">{items?.[0]?.text}</p>												
 										</div>
 										<div className="content-btn" data-swiper-parallax="-60">
-											<a className="btn btn-secondary  me-3" href="shop-cart.html">ADD TO CART</a>
-											<a className="btn btn-outline-secondary" href="shop-standard.html">VIEW DETAILS</a>
+											<a className="btn btn-secondary  me-3" href={items?.[0]?.link}>{items?.[0]?.btn}</a>
+											<a className="btn btn-outline-secondary" href={items?.[0]?.link_2}>{items?.[0]?.btn_2}</a>
 										</div>
 									</div>
 								</div>
@@ -27,10 +27,7 @@ export const Slider = ({ items,mediaPath,assetsPath,Lang,local }) => {
 										<div className="shap"></div>
 										<div className="border-shap"></div>
 										<div className="border-shap2"></div>
-
 										<div className="img-preview" data-swiper-parallax="-100">
-											{/* <img src="images/main-slider/slider2/pic1.png" alt="banner-media"/> */}
-											{/* <img src={assetsPath+"images/main-slider/slider2/pic1.png"} alt="banner-media"/> */}
 											<img src={mediaPath+"/slider/"+items?.[0]?.image} alt="banner-media"/>
 										</div>
 										<div className="bnr-content-bx slideskew">
@@ -85,17 +82,17 @@ export const Slider = ({ items,mediaPath,assetsPath,Lang,local }) => {
 					<div className="banner-social-media style-2 left">
 						<ul>
 							<li>
-								<a href="../../https@www.instagram.com/dexignzone/default.htm" target="_blank">Instagram</a>
+								<a href="../../https@www.instagram.com/dexignzone/default.htm" target="_blank">{Lang("public.Instagram")}</a>
 							</li>
 							<li>
-								<a href="../../https@www.facebook.com/dexignzone" target="_blank">Facebook</a>
+								<a href="../../https@www.facebook.com/dexignzone" target="_blank">{Lang("public.Facebook")}</a>
 							</li>
 							<li>
-								<a href="../../https@twitter.com/dexignzones" target="_blank">twitter</a>
+								<a href="../../https@twitter.com/dexignzones" target="_blank">{Lang("public.twitter")}</a>
 							</li>
 						</ul>
 					</div>
-					<a href="contact-us-2.html" className="service-btn btn-dark">Let’s talk</a>
+					<a href="contact-us-2.html" className="service-btn btn-dark">{Lang("public.Let’s talk")}</a>
 				</div>
 			</div>		
 			{/* Swiper Banner End */}

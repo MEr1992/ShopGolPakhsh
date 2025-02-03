@@ -73,33 +73,34 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<Link href={hrefMenus[0]}><span>{listMenus[0]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
-									<li class="has-mega-menu sub-menu-down">
-										<Link href={hrefMenus[1]}><span>{listMenus[1]}</span><i class="fas fa-chevron-down tabindex" ></i></Link>
-										<div class="mega-menu shop-menu">
+									<li className="has-mega-menu sub-menu-down auto-width">
+										<Link href={hrefMenus[1]}><span>{listMenus[1]}</span><i className="fas fa-chevron-down tabIndex"></i></Link>
+										<div className="mega-menu">
 											<ul>
-												<li class="side-left">
-													<ul>
-														{parentCategories?.map((category,index)=>{
-															return(
-																<li>
-																	<Link href={`/${local}/products?line=${category?.id}`} class="menu-title">{category?.["title_"+local]}</Link>
-																	<ul>
-																		{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
-																			return(
-																				<li><Link href={`/${local}/products?category=${child?.id}`}>{child?.["title_"+local]}</Link></li>
-																			);
-																		})}
-																	</ul>
-																</li>
-															);
-														})}
-													</ul>
-												</li>
-												{/* <li class="side-right">
-													<div class="adv-media">
-														<img src="images/adv-1.png" alt="/"/>
-													</div>
-												</li> */}
+												{parentCategories?.map((category,index)=>{
+													return(
+														<li className="post-menu" key={index}>
+															<Link href={`/${local}/products?line=${category?.id}`} className="menu-title">{category?.["title_"+local]}</Link>
+															<div className="widget widget_post pt-2">
+																<ul>
+																	{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
+																		return(
+																			<li key={i}>
+																				<div className="dz-media">
+																					<img src={mediaPath+"/category/"+child?.image} alt=""/>
+																				</div>
+																				<div className="dz-content">
+																					<h6 className="name"><Link href={`/${local}/products?category=${child?.id}`}>{child?.["title_"+local]}</Link></h6>
+																					<span className="time">{"("+child?.count_product+")"}</span>
+																				</div>
+																			</li>
+																		);
+																	})}
+																</ul>
+															</div>
+														</li>
+													);
+												})}
 											</ul>
 										</div>
 									</li>
@@ -124,6 +125,23 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 											</ul>
 										</div>
 									</li>
+									{/* <li className="has-mega-menu sub-menu-down auto-width">
+										<a href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></a>
+										<div className="mega-menu">
+											<ul>
+												{subjects?.map((subject,index)=>{
+													return(
+														<li key={index}>
+															<a href="#!" className="menu-title">Blog Dark Style</a>
+															<ul>
+																<li><a href="blog-dark-2-column.html">{subject?.["title_"+local]}</a></li>
+															</ul>
+														</li>
+													);
+												})}
+											</ul>
+										</div>
+									</li> */}
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
 										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>

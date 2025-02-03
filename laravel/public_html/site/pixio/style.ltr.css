@@ -160,3 +160,8 @@
 .back-color-image-6 {
 	background: linear-gradient(to top left, #bc5255, #fdb2b4);
 }
+/* Style For Home index-2 */
+.suggestion-content-inner-2 {
+    padding-top: 0px !important;
+    padding-bottom: 50px !important;
+}

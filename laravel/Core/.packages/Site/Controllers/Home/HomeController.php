@@ -19,9 +19,10 @@ class HomeController extends Controller
             'sliders' => $this->slider(),
             'categories' => $this->category(),
             'brands' => $this->brand(),
-            'lastProducts' => $this->lastProduct(),
-            'bestSellerProducts' => $this->bestSellerProduct(),
-            'mostVisitedProducts' => $this->mostVisitedProduct(),
+            'cosmeticsLastProducts' => $this->cosmeticsLastProduct(),
+            'bodysuitLastProducts' => $this->bodysuitLastProduct(),
+            'cosmeticsSuggestionProducts' => $this->cosmeticsSuggestionProduct(),
+            'bodysuitSuggestionProducts' => $this->bodysuitSuggestionProduct(),
         ];
         return response()->json($items);
     }
@@ -38,26 +39,25 @@ class HomeController extends Controller
     {
         return Brand::active()->get();
     }
-    public function lastProduct()
+    public function cosmeticsLastProduct()
     {
-        return Product::with("category")->active()->orderByDesc("id")->limit(8)->get();
+        return Product::with("category")->Cat2()->active()->orderByDesc("id")->limit(4)->get();
     }
-
-    public function bestSellerProduct()
+    public function bodysuitLastProduct()
     {
-        return Product::active()->orderByDesc("count_sell")->limit(4)->get();
+        return Product::with("category")->Cat1()->active()->orderByDesc("id")->limit(12)->get();
     }
-    public function mostVisitedProduct()
+    public function cosmeticsSuggestionProduct()
     {
-        return Product::with("category")->active()->orderByDesc("count_view")->limit(10)->get();
+        return Product::with("category")->active()->orderByDesc("count_sell")->limit(12)->get();
+    }
+    public function bodysuitSuggestionProduct()
+    {
+        return Product::with("category")->active()->orderByDesc("count_view")->limit(3)->get();
     }
     public function subject()
     {
         return BlogSubject::active()->get();
-    }
-    public function blog()
-    {
-        return Blog::active()->orderByDesc("id")->limit(5)->get();
     }
     /**
      * get data menu
@@ -66,8 +66,8 @@ class HomeController extends Controller
     {
         $items = [
             'categories' => $this->category(),
+            'brands' => $this->brand(),
             'subjects' => $this->subject(),
-            'blogs' => $this->blog(),
         ];
         return response()->json($items);
     }

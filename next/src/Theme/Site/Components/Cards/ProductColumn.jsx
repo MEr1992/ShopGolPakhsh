@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { Cart } from "@/Theme/Site/Components/Public/Cart";
 import { Like } from "@/Theme/Site/Components/Public/Like";
 import { QuickView } from "@/Theme/Site/Components/Public/QuickView";
@@ -37,7 +38,7 @@ export const ProductColumn = ({ item,assetsPath,mediaPath,local,Lang,index }) =>
 						<h6 className="price">{displayPrice}</h6>
 					</div> */}
 					<div className="dz-content">
-						<h5 className="title"><a href={`/${local}/products/${item?.id}`}>{item?.name}</a></h5>
+						<h5 className="title"><Link href={`/${local}/products/${item?.id}`}>{item?.name}</Link></h5>
 						<h5 className="price">{discountPrice}</h5>
 					</div>
 					<div className="product-tag">

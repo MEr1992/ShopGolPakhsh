@@ -39,4 +39,15 @@ class Product extends Model
     {
         return $this->belongsToMany(\Models\Base\Keyword::class, 'product_keyword', 'product_id', 'keyword_id');
     }
+    /**
+     * Scopes
+     */
+    public function scopeCat1($query) // دسته بندی  1
+    {
+        return $query->where('parent_category', 1);
+    }
+    public function scopeCat2($query) // دسته بندی  2
+    {
+        return $query->where('parent_category', 2);
+    }
 }
