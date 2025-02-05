@@ -143,6 +143,10 @@ $lang = [
     'category_product'=>'دسته بندی محصولات',
     'brand'=>'برند',
     'subject_blog'=>'موضوع بلاگ',
+    'title_cart_detail_grid_media_1'=>'ارسال سفارش',
+    'title_cart_detail_grid_media_2'=>'مرجوعی آسان',
+    'text_cart_detail_grid_media_1'=>'ارسال رایگان با حداقل 1 تومن خرید',
+    'text_cart_detail_grid_media_2'=>'30 روزه',
     
     // admin
     'line'=>'لاین',

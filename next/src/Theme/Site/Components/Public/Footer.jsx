@@ -5,8 +5,8 @@ import { useLang } from "@/lib";
 export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 	const { Lang } = useLang();
 
-	let parentCategories = data?.categories?.filter((category)=>category?.parent_id>1);
-	let categories = data?.categories?.filter((category)=>category?.parent_id>1);
+	let parentCategories = data?.categories?.filter((category)=>category?.parent_id==0);
+	let categories = data?.categories?.filter((category)=>category?.parent_id>0);
 	let brands = data?.brands;
 	let subjects = data?.subjects;
 
@@ -58,7 +58,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 									<div className="row align-items-center logo-topbar gx-0 wow fadeInUp" data-wow-delay="0.1s">
 										<div className="col-12 col-sm-6">
 											<div className="footer-logo logo-white mb-0">
-												<a href="index.html"><img src={assetsPath+"/pixio/images/logo-white.svg"} alt=""/></a> 
+												<Link href={`/${local}`}><img src={assetsPath+"/pixio/images/logo-white.svg"} alt=""/></Link> 
 											</div>	
 										</div>
 										<div className="col-12 col-sm-6">
@@ -95,7 +95,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 												<ul>
 													{categories?.map((category, index)=>{
 														return(
-															<li><a href="javascript:void(0);">{category?.["title_"+local]}</a></li>
+															<li key={index}><Link href={`/${local}/products?category=${category?.id}`}>{category?.["title_"+local]}</Link></li>
 														);
 													})}
 												</ul>   
@@ -107,7 +107,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 												<ul>
 													{brands?.map((brand, index)=>{
 														return(
-															<li><a href="javascript:void(0);">{brand?.["name_"+local]}</a></li>
+															<li key={index}><Link href={`/${local}/products?brand=${brand?.id}`}>{brand?.["name_"+local]}</Link></li>
 														);
 													})}
 												</ul>
@@ -119,7 +119,7 @@ export const Footer = ({ data,assetsPath,mediaPath,local }) => {
 												<ul>
 													{subjects?.map((subject, index)=>{
 														return(
-															<li><a href="javascript:void(0);">{subject?.["title_"+local]}</a></li>
+															<li key={index}><Link href={`/${local}/blog?subject=${subject?.id}`}>{subject?.["title_"+local]}</Link></li>
 														);
 													})}
 												</ul>

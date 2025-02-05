@@ -16,11 +16,11 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 	let childCategories = menus?.categories?.filter((category)=>category?.parent_id>0);
 	let subjects = menus?.subjects;
 	let listMenus = [];
-	let hrefMenus = [`/${local}`,`"#!"`,`"#!"`,`/${local}/about`,`/${local}/contact`];
+	let hrefMenus = [`/${local}`,`"#!"`,`"#!"`,`"#!"`,`/${local}/about`,`/${local}/contact`];
 	(local=="en")?
-		listMenus = ['Home','Shop','Blog','About us','Contact us']
+		listMenus = ['Home','ShopBodysuit','ShopCosmetics','Blog','About us','Contact us']
 	:
-		listMenus = ['خانه','فروشگاه','مطالب','درباره ما','ارتباط با ما']
+		listMenus = ['خانه','فروشگاه تن پوش','فروشگاه زیبایی','مطالب','درباره ما','ارتباط با ما']
 		
 	const [isOpen, setIsOpen] = useState(false);
 	useEffect(() => {
@@ -86,7 +86,37 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 																	<ul>
 																		{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
 																			return(
-																				<li><Link href={`/${local}/products?category=${child?.id}`}>{child?.["title_"+local]}</Link></li>
+																				<li><Link href={`/${local}/products?line=${category?.id}&category=${child?.id}`}>{child?.["title_"+local]}</Link></li>
+																			);
+																		})}
+																	</ul>
+																</li>
+															);
+														})}
+													</ul>
+												</li>
+												{/* <li class="side-right">
+													<div class="adv-media">
+														<img src="images/adv-1.png" alt="/"/>
+													</div>
+												</li> */}
+											</ul>
+										</div>
+									</li>
+									<li class="has-mega-menu sub-menu-down">
+										<Link href={hrefMenus[2]}><span>{listMenus[2]}</span><i class="fas fa-chevron-down tabindex" ></i></Link>
+										<div class="mega-menu shop-menu">
+											<ul>
+												<li class="side-left">
+													<ul>
+														{parentCategories?.map((category,index)=>{
+															return(
+																<li>
+																	<Link href={`/${local}/products?line=${category?.id}`} class="menu-title">{category?.["title_"+local]}</Link>
+																	<ul>
+																		{childCategories?.filter(child=>child?.parent_id==category?.id)?.map((child,i)=>{
+																			return(
+																				<li><Link href={`/${local}/products?line=${category?.id}&category=${child?.id}`}>{child?.["title_"+local]}</Link></li>
 																			);
 																		})}
 																	</ul>
@@ -104,7 +134,7 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down">
-										<Link href={hrefMenus[2]}><span>{listMenus[2]}</span><i className="fas fa-chevron-down tabIndex"></i></Link>
+										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex"></i></Link>
 										<div className="mega-menu portfolio-menu">
 											<ul>
 												<li className="side-left">
@@ -125,10 +155,10 @@ export const Header = ({ params,menus,assetsPath,mediaPath,local }) => {
 										</div>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={hrefMenus[3]}><span>{listMenus[3]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 									<li className="has-mega-menu sub-menu-down auto-width menu-left">
-										<Link href={hrefMenus[4]}><span>{listMenus[4]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
+										<Link href={hrefMenus[5]}><span>{listMenus[5]}</span><i className="fas fa-chevron-down tabIndex" ></i></Link>
 									</li>
 								</ul>
 								{/* <div className="dz-social-icon">

@@ -6,7 +6,7 @@ import { useConfig } from "@/lib/config";
 import { useData } from "@/Theme/Midone/Utils/Data";
 import { GalleryProduct,InfoProduct,RelatedProduct,StepProduct,TabsProduct,AttachmentProduct } from "@/app/(site)/[lang]/(Shop)/products/[id]/ProductComponent";
 import { BreadCrumb } from "@/Theme/Site/Components/Public/BreadCrumb";
-import { Error404 } from "@/Theme/Site/Components/Public/Error404";
+import LoadingPage from '@/Theme/Site/ShopTools/LoadingPage';
 
 export default function Page({ params }) {
     const { Lang } = useLang();
@@ -24,20 +24,21 @@ export default function Page({ params }) {
 
     return(
         <>
-            {(items==undefined)?
-                // <Error404 assetsPath={assetsPath} />
-                <span>Load...</span>
-            :
-                <div className="page-content bg-light">
-                    <div className="d-sm-flex justify-content-between container-fluid py-3">
-						<BreadCrumb brName={items?.product?.name} local={local} />
-                    </div>
-                    <InfoProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
-                    <TabsProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
-                    <AttachmentProduct item={items?.product} assetsPath={assetsPath} mediaPath={mediaPath} Lang={Lang} local={local} />
-                    <RelatedProduct items={items?.products} mediaPath={mediaPath} Lang={Lang} local={local} />
+            <div className="page-content bg-light">
+                <div className="d-sm-flex justify-content-between container-fluid py-3">
+                    <BreadCrumb brName={items?.product?.name} local={local} />
                 </div>
-            }
+                {(items==undefined)?
+                    <LoadingPage />
+                :
+                    <>
+                        <InfoProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
+                        <TabsProduct item={items?.product} mediaPath={mediaPath} assetsPath={assetsPath} Lang={Lang} local={local} />
+                        {/* <AttachmentProduct item={items?.product} assetsPath={assetsPath} mediaPath={mediaPath} Lang={Lang} local={local} /> */}
+                        <RelatedProduct items={items?.products} mediaPath={mediaPath} Lang={Lang} local={local} />
+                    </>
+                }
+            </div>
         </>
     );
 }
