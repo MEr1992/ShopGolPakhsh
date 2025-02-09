@@ -2,35 +2,20 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Response;
 
-Route::get('/clear-cache', function() {
-    $commands = [
-        'cache:clear',
-        'config:clear',
-        'route:clear',
-        'view:clear',
-        'optimize:clear',
-    ];
-
-    $results = [];
-
-    foreach ($commands as $command) {
-        $results[$command] = Artisan::call($command) === 0 ? 'Success' : 'Failed';
-    }
-
-    return Response::json([
-        'message' => 'Cache cleared successfully!',
-        'results' => $results
-    ]);
-});
-
 
 Route::get('/test', function(){
     dd("test api");
 });
+Route::post('api-register', [\Api\Controllers\Auth\AuthController::class, 'register']);
+Route::post('api-login', [\Api\Controllers\Auth\AuthController::class, 'login']);
+Route::post('logout', [\Api\Controllers\Auth\AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+
 // Route::get('/products', [\Api\Controllers\Product\ProductController::class, 'index']);
 Route::get('/home', 'Home\HomeController@index');
 Route::get('/get-data-public', 'Home\HomeController@getDataPublic');
 Route::get('/product-list', 'Product\ProductController@index');
+Route::get('/product-view/{id}', 'Product\ProductController@show');
 Route::get('/blog-list', 'Blog\BlogController@index');
 
 Route::get('/lang/{locale}', function ($locale) {
@@ -79,4 +64,26 @@ Route::get('/lang/{locale}', function ($locale) {
 //     Route::get('/footer', 'PublicController@footer');
 // });
 
-require __DIR__ . '/auth.php';
+Route::get('/clear-cache', function() {
+    $commands = [
+        'cache:clear',
+        'config:clear',
+        'route:clear',
+        'view:clear',
+        'optimize:clear',
+    ];
+
+    $results = [];
+
+    foreach ($commands as $command) {
+        $results[$command] = Artisan::call($command) === 0 ? 'Success' : 'Failed';
+    }
+
+    return Response::json([
+        'message' => 'Cache cleared successfully!',
+        'results' => $results
+    ]);
+});
+
+
+// require __DIR__ . '/auth.php';

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    protected $limit = 9;
+    protected $limit = 4;
 
     public function index(Request $request)
     {
@@ -30,8 +30,8 @@ class ProductController extends Controller
             $query->where("category_id", $request->category);
         }
         
-        $this->setSort($query, $request->sort);
-        $this->setLimit($request->display);
+        // $this->setSort($query, $request->sort);
+        // $this->setLimit($request->display);
         
         $products = $query->orderByDesc("id")->paginate($this->limit);
 
